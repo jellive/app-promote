@@ -4,6 +4,11 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import { JSX, SVGProps } from 'react'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: '개발자 Jell'
+}
 
 export default function Component() {
   return (
@@ -45,7 +50,7 @@ export default function Component() {
                 <h2 className="text-2xl font-bold tracking-tighter mt-2">
                   풀스택 개발자
                 </h2>
-                <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl mt-4">
+                <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl my-4">
                   iOS, 프론트엔드를 넘어 사람들이 조금이라도 살기 편한
                   <br />
                   Application을 만들기 위해 노력하는 8년차 개발자입니다.
