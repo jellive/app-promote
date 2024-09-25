@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
+import { JSX, SVGProps } from 'react'
 
 export default function Component() {
   return (
@@ -275,7 +276,9 @@ export default function Component() {
   )
 }
 
-function MountainIcon(props) {
+function MountainIcon(
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+) {
   return (
     <svg
       {...props}
