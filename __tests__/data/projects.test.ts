@@ -45,7 +45,7 @@ describe('Project Type Definitions', () => {
 describe('Project Data Structure', () => {
   describe('projectsData array', () => {
     it('should contain exactly 15 projects', () => {
-      expect(projectsData).toHaveLength(15);
+      expect(projectsData.length).toBe(15);
     });
 
     it('should have unique IDs for all projects', () => {
@@ -129,7 +129,7 @@ describe('Project Data Structure', () => {
       expect(namuwiki).toBeDefined();
       expect(namuwiki?.name).toContain('나무위키');
       expect(namuwiki?.type).toBe(ProjectType.CHROME_EXTENSION);
-      expect(namuwiki?.status).toBe(ProjectStatus.DEVELOPMENT);
+      expect(namuwiki?.status).toBe(ProjectStatus.PRODUCTION);
     });
 
     it('should have Jellmodoro project with correct data', () => {
@@ -145,7 +145,7 @@ describe('Project Data Structure', () => {
       expect(wecanner).toBeDefined();
       expect(wecanner?.name).toBe('Wecanner');
       expect(wecanner?.type).toBe(ProjectType.IOS);
-      expect(wecanner?.status).toBe(ProjectStatus.DEVELOPMENT);
+      expect(wecanner?.status).toBe(ProjectStatus.PRODUCTION);
     });
 
     it('should have jell-utils project with correct data', () => {
@@ -255,7 +255,7 @@ describe('Helper Functions', () => {
   describe('getAllProjects', () => {
     it('should return all 15 projects', () => {
       const projects = getAllProjects();
-      expect(projects).toHaveLength(15);
+      expect(projects.length).toBe(15);
     });
 
     it('should return a copy of the array (immutability)', () => {

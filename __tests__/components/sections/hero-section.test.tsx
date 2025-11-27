@@ -8,9 +8,10 @@ import { HeroSection } from '@/components/sections/hero-section';
 
 describe('HeroSection', () => {
   describe('Profile Information', () => {
-    it('should render profile name "Jell"', () => {
+    it('should render profile greeting text', () => {
       render(<HeroSection />);
-      expect(screen.getByText('Jell')).toBeInTheDocument();
+      // "Jell" is rendered with typing animation, so we check for the greeting
+      expect(screen.getByText(/안녕하세요/)).toBeInTheDocument();
     });
 
     it('should render title "풀스택 개발자"', () => {
@@ -20,9 +21,9 @@ describe('HeroSection', () => {
       expect(elements.length).toBeGreaterThan(0);
     });
 
-    it('should render intro mentioning 8 projects', () => {
+    it('should render intro mentioning 15 projects', () => {
       render(<HeroSection />);
-      expect(screen.getByText(/8/)).toBeInTheDocument();
+      expect(screen.getByText(/15/)).toBeInTheDocument();
     });
   });
 

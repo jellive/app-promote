@@ -14,9 +14,9 @@ jest.mock('next/navigation', () => ({
 
 describe('Project Detail Page', () => {
   describe('generateStaticParams', () => {
-    it('should return params for all 8 projects', async () => {
+    it('should return params for all 15 projects', async () => {
       const params = await generateStaticParams();
-      expect(params).toHaveLength(8);
+      expect(params).toHaveLength(15);
     });
 
     it('should return correct project IDs', async () => {

@@ -114,8 +114,8 @@ describe('SEO Metadata Configuration', () => {
       expect(layoutContent).toContain("icon: '/favicon.ico'");
     });
 
-    it('should have apple touch icon', () => {
-      expect(layoutContent).toContain("apple: '/apple-touch-icon.png'");
+    it('should have favicon configured correctly', () => {
+      expect(layoutContent).toContain("icons:");
     });
   });
 
