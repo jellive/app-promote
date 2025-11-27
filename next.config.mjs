@@ -1,3 +1,9 @@
+import bundleAnalyzer from '@next/bundle-analyzer';
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -17,6 +23,20 @@ const nextConfig = {
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+
+  // Performance optimizations
+  compiler: {
+    // Remove console.log in production (except console.error)
+    removeConsole: process.env.NODE_ENV === 'production' ? {
+      exclude: ['error', 'warn'],
+    } : false,
+  },
+
+  // Experimental features for better performance
+  experimental: {
+    // Enable optimized package imports
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
+  },
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);
