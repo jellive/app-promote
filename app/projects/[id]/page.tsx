@@ -12,6 +12,10 @@ import {
   Server,
   Monitor,
   Sparkles,
+  Globe,
+  Video,
+  Gamepad2,
+  Workflow,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -100,6 +104,10 @@ function TypeBadge({ type }: { type: ProjectType }) {
     [ProjectType.CHROME_EXTENSION]: { label: 'Chrome Extension', icon: Sparkles },
     [ProjectType.IOS]: { label: 'iOS', icon: Apple },
     [ProjectType.NPM_PACKAGE]: { label: 'npm Package', icon: Package },
+    [ProjectType.WEB]: { label: 'Web', icon: Globe },
+    [ProjectType.WEBRTC]: { label: 'WebRTC', icon: Video },
+    [ProjectType.UNITY_WEBGL]: { label: 'Unity WebGL', icon: Gamepad2 },
+    [ProjectType.FULL_STACK_WEB]: { label: 'Full Stack Web', icon: Workflow },
   };
 
   const config = typeConfig[type];

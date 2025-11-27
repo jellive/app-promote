@@ -35,11 +35,11 @@ describe('Sitemap Generation', () => {
   });
 
   describe('Project Pages', () => {
-    it('should include all 8 projects', () => {
+    it('should include all 15 projects', () => {
       const projectEntries = sitemapResult.filter((entry) =>
         entry.url.includes('/projects/')
       );
-      expect(projectEntries).toHaveLength(8);
+      expect(projectEntries).toHaveLength(15);
     });
 
     it('should include cookting project', () => {
@@ -103,8 +103,8 @@ describe('Sitemap Generation', () => {
   });
 
   describe('Total Entries', () => {
-    it('should have correct total count (2 static + 8 projects)', () => {
-      expect(sitemapResult).toHaveLength(10);
+    it('should have correct total count (2 static + 15 projects)', () => {
+      expect(sitemapResult).toHaveLength(17);
     });
   });
 });

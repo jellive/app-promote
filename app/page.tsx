@@ -11,7 +11,7 @@ import { projectsData } from '@/data/projects'
 
 export const metadata: Metadata = {
   title: '개발자 Jell - 풀스택 개발자 포트폴리오',
-  description: '모바일부터 데스크톱까지, 8개의 프로젝트를 통해 사용자 경험을 혁신하는 풀스택 개발자입니다.',
+  description: '8년+ 경력의 풀스택 개발자. iOS, Web, AR/3D 등 15개 이상의 프로젝트를 통해 사용자 경험을 혁신해왔습니다.',
 }
 
 export default function HomePage() {

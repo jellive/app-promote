@@ -35,27 +35,33 @@ interface Value {
 
 const timelineData: TimelineItem[] = [
   {
-    year: '2018',
-    title: '개발 시작',
-    description: '첫 프로그래밍 언어를 배우고 개발의 세계에 입문했습니다.',
+    year: '2015',
+    title: '개발자 커리어 시작',
+    description: '솔로몬비젼에서 첫 개발자로 커리어를 시작했습니다.',
     icon: GraduationCap,
   },
   {
-    year: '2020',
-    title: '풀스택 개발자로 성장',
-    description: 'React, Node.js를 중심으로 웹 개발 역량을 키웠습니다.',
+    year: '2016',
+    title: 'iOS 개발 전문화',
+    description: '케이라운지에서 KnowLounge, KnowRecorder 등 교육 앱을 개발했습니다.',
     icon: Briefcase,
   },
   {
-    year: '2022',
-    title: '모바일 개발 확장',
-    description: 'Flutter를 배우고 크로스 플랫폼 앱 개발을 시작했습니다.',
+    year: '2018',
+    title: '풀스택 개발자로 성장',
+    description: '청담러닝에서 React, Spring Boot 기반 LMS 시스템을 구축했습니다.',
+    icon: Code2,
+  },
+  {
+    year: '2021',
+    title: 'AR/3D 기술 전문화',
+    description: '비주얼신에서 finiroom(LiDAR), glinda AIMI(Unity WebGL) 프로젝트를 리드했습니다.',
     icon: Rocket,
   },
   {
     year: '2024',
-    title: '8개 프로젝트 완료',
-    description: '다양한 플랫폼에서 8개의 프로젝트를 성공적으로 완료했습니다.',
+    title: '수석연구원으로 활동',
+    description: '애즈플로우에서 AZFlow SaaS 플랫폼 개발을 리드하고 있습니다.',
     icon: Award,
   },
 ];
@@ -63,18 +69,18 @@ const timelineData: TimelineItem[] = [
 const achievements: Achievement[] = [
   {
     icon: Award,
-    title: '8개 프로젝트',
-    description: '모바일, 웹, 데스크톱 등 다양한 플랫폼',
+    title: '8년+ 경력',
+    description: '2015년부터 iOS, Web, 풀스택 개발',
   },
   {
     icon: Code2,
-    title: '50,000+ 라인',
-    description: '깔끔하고 유지보수 가능한 코드 작성',
+    title: '15개 프로젝트',
+    description: '모바일, 웹, AR/3D 등 다양한 플랫폼',
   },
   {
     icon: Target,
-    title: '96.8% 테스트 커버리지',
-    description: '철저한 테스트를 통한 품질 보증',
+    title: '상용 서비스 출시',
+    description: '다수의 앱스토어 출시 및 B2B 서비스 운영',
   },
 ];
 

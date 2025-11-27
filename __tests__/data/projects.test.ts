@@ -44,8 +44,8 @@ describe('Project Type Definitions', () => {
 
 describe('Project Data Structure', () => {
   describe('projectsData array', () => {
-    it('should contain exactly 8 projects', () => {
-      expect(projectsData).toHaveLength(8);
+    it('should contain exactly 15 projects', () => {
+      expect(projectsData).toHaveLength(15);
     });
 
     it('should have unique IDs for all projects', () => {
@@ -253,9 +253,9 @@ describe('Helper Functions', () => {
   });
 
   describe('getAllProjects', () => {
-    it('should return all 8 projects', () => {
+    it('should return all 15 projects', () => {
       const projects = getAllProjects();
-      expect(projects).toHaveLength(8);
+      expect(projects).toHaveLength(15);
     });
 
     it('should return a copy of the array (immutability)', () => {

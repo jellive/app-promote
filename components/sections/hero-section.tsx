@@ -34,9 +34,9 @@ export function HeroSection() {
 
           {/* Introduction */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            모바일부터 데스크톱까지, <strong className="text-foreground">8개의 프로젝트</strong>를
-            통해 사용자 경험을 혁신하는 풀스택 개발자입니다.
-            TypeScript와 React 생태계를 중심으로 안정적이고 확장 가능한 솔루션을 만듭니다.
+            <strong className="text-foreground">8년+ 경력</strong>의 풀스택 개발자로,{' '}
+            <strong className="text-foreground">15개 이상의 프로젝트</strong>를 통해
+            iOS, Web, AR/3D 등 다양한 플랫폼에서 사용자 경험을 혁신해왔습니다.
           </p>
 
           {/* CTA Buttons */}

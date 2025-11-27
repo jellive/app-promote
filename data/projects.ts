@@ -17,6 +17,10 @@ export enum ProjectType {
   CHROME_EXTENSION = 'chrome-extension',
   IOS = 'ios',
   NPM_PACKAGE = 'npm-package',
+  WEB = 'web',
+  WEBRTC = 'webrtc',
+  UNITY_WEBGL = 'unity-webgl',
+  FULL_STACK_WEB = 'full-stack-web',
 }
 
 /**
@@ -115,7 +119,349 @@ export interface Project {
 // ============================================================================
 
 export const projectsData: Project[] = [
-  // 1. Cookting
+  // ============================================================================
+  // PROFESSIONAL PROJECTS (회사 프로젝트)
+  // ============================================================================
+
+  // 1. AZFlow - 현재 진행중
+  {
+    id: 'azflow',
+    name: 'AZFlow',
+    emoji: '🔧',
+    type: ProjectType.FULL_STACK_WEB,
+    status: ProjectStatus.DEVELOPMENT,
+    period: '2024.12 - 현재',
+    role: '수석연구원 (애즈플로우)',
+    shortDescription: '기업용 워크플로우 자동화 SaaS 플랫폼',
+    description:
+      '기업의 업무 프로세스를 자동화하고 효율화하는 SaaS 플랫폼입니다. Next.js 14 App Router와 Nest.js를 활용한 풀스택 아키텍처로 구축되었으며, 복잡한 워크플로우 시각화 및 자동화 기능을 제공합니다.',
+    features: [
+      {
+        title: '워크플로우 시각화',
+        description: '드래그 앤 드롭 기반 워크플로우 빌더',
+      },
+      {
+        title: '자동화 엔진',
+        description: '조건 기반 자동 작업 실행 및 트리거',
+      },
+      {
+        title: '실시간 대시보드',
+        description: '워크플로우 진행 상황 실시간 모니터링',
+      },
+      {
+        title: '팀 협업 기능',
+        description: '멀티 유저 권한 관리 및 협업 도구',
+      },
+    ],
+    techStack: {
+      frontend: ['Next.js 14', 'TypeScript', 'TailwindCSS', 'React Flow'],
+      backend: ['Nest.js', 'TypeORM', 'PostgreSQL', 'Redis'],
+      infrastructure: ['Docker', 'AWS', 'GitHub Actions'],
+      desktop: [],
+    },
+    achievements: [
+      {
+        title: '개발 진행 중',
+        description: '2025년 9월 정식 출시 목표',
+        icon: '🚀',
+      },
+    ],
+    links: {},
+  },
+
+  // 2. finiroom
+  {
+    id: 'finiroom',
+    name: 'finiroom',
+    emoji: '📐',
+    type: ProjectType.IOS,
+    status: ProjectStatus.PRODUCTION,
+    period: '2021.09 - 2024.08',
+    role: '선임연구원 (비주얼신)',
+    shortDescription: 'LiDAR 기반 3D 공간 스캐닝 및 인테리어 앱',
+    description:
+      'iPhone의 LiDAR 센서를 활용하여 실내 공간을 3D로 스캔하고, 가구 배치 시뮬레이션 및 인테리어 디자인을 지원하는 iOS 앱입니다. ARKit과 RealityKit을 활용한 증강현실 기능을 제공합니다.',
+    features: [
+      {
+        title: 'LiDAR 3D 스캔',
+        description: 'iPhone LiDAR 센서 활용 공간 3D 모델링',
+      },
+      {
+        title: 'AR 가구 배치',
+        description: '증강현실로 가구 배치 시뮬레이션',
+      },
+      {
+        title: '도면 생성',
+        description: '스캔 데이터 기반 2D/3D 도면 자동 생성',
+      },
+      {
+        title: '인테리어 추천',
+        description: 'AI 기반 인테리어 스타일 추천',
+      },
+    ],
+    techStack: {
+      frontend: ['Swift', 'SwiftUI', 'UIKit', 'ARKit', 'RealityKit', 'SceneKit'],
+      backend: ['Node.js', 'Express', 'MongoDB'],
+      infrastructure: ['AWS S3', 'CloudFront', 'Firebase'],
+      desktop: [],
+    },
+    achievements: [
+      {
+        title: 'App Store 출시',
+        description: 'iOS 앱스토어 정식 출시 및 운영',
+        icon: '📱',
+      },
+      {
+        title: 'LiDAR 기술 적용',
+        description: 'iPhone Pro 시리즈 LiDAR 센서 활용',
+        icon: '📡',
+      },
+    ],
+    links: {
+      appStore: 'https://apps.apple.com/app/finiroom',
+    },
+  },
+
+  // 3. glinda AIMI
+  {
+    id: 'glinda-aimi',
+    name: 'glinda AIMI',
+    emoji: '🎮',
+    type: ProjectType.UNITY_WEBGL,
+    status: ProjectStatus.PRODUCTION,
+    period: '2023.01 - 2024.08',
+    role: '선임연구원 (비주얼신)',
+    shortDescription: 'Unity WebGL 기반 3D 가상 쇼룸',
+    description:
+      'Unity WebGL과 웹 기술을 결합한 인터랙티브 3D 가상 쇼룸 플랫폼입니다. 브라우저에서 실행되는 고품질 3D 환경에서 제품을 탐색하고 구매할 수 있습니다.',
+    features: [
+      {
+        title: '3D 가상 공간',
+        description: 'Unity WebGL 기반 몰입형 3D 환경',
+      },
+      {
+        title: '웹 연동',
+        description: 'Unity-JavaScript 양방향 통신',
+      },
+      {
+        title: '제품 인터랙션',
+        description: '3D 제품 회전, 확대 및 상세 정보 확인',
+      },
+      {
+        title: '반응형 UI',
+        description: '데스크톱/모바일 최적화 인터페이스',
+      },
+    ],
+    techStack: {
+      frontend: ['React', 'TypeScript', 'Unity WebGL', 'Three.js'],
+      backend: ['Node.js', 'Express'],
+      infrastructure: ['AWS', 'CloudFront', 'S3'],
+      desktop: [],
+    },
+    achievements: [
+      {
+        title: '정식 서비스 런칭',
+        description: '상용 서비스로 정식 운영',
+        icon: '🌐',
+      },
+    ],
+    links: {},
+  },
+
+  // 4. KnowRecorder
+  {
+    id: 'knowrecorder',
+    name: 'KnowRecorder',
+    emoji: '🎬',
+    type: ProjectType.IOS,
+    status: ProjectStatus.PRODUCTION,
+    period: '2016.09 - 2018.07',
+    role: '연구원 (케이라운지)',
+    shortDescription: '플립러닝용 강의 녹화 iOS 앱',
+    description:
+      '교육자가 플립러닝(Flipped Learning) 콘텐츠를 쉽게 제작할 수 있는 iOS 앱입니다. PDF 문서에 음성과 드로잉을 녹화하여 인터랙티브한 학습 자료를 만들 수 있습니다.',
+    features: [
+      {
+        title: 'PDF 기반 녹화',
+        description: 'PDF 슬라이드에 음성과 드로잉 녹화',
+      },
+      {
+        title: '실시간 드로잉',
+        description: '다양한 펜 도구로 화면 위에 필기',
+      },
+      {
+        title: '영상 내보내기',
+        description: '녹화 콘텐츠를 영상 파일로 변환',
+      },
+      {
+        title: 'LMS 연동',
+        description: 'KnowLounge 플랫폼과 자동 동기화',
+      },
+    ],
+    techStack: {
+      frontend: ['Swift', 'UIKit', 'AVFoundation', 'Core Graphics'],
+      backend: [],
+      infrastructure: ['AWS S3'],
+      desktop: [],
+    },
+    achievements: [
+      {
+        title: 'App Store 출시',
+        description: '교육용 앱으로 정식 출시',
+        icon: '📱',
+      },
+      {
+        title: '플립러닝 선구자',
+        description: '국내 플립러닝 앱 시장 초기 진입',
+        icon: '🎓',
+      },
+    ],
+    links: {},
+  },
+
+  // 5. KnowLounge
+  {
+    id: 'knowlounge',
+    name: 'KnowLounge',
+    emoji: '📚',
+    type: ProjectType.IOS,
+    status: ProjectStatus.PRODUCTION,
+    period: '2016.06 - 2018.07',
+    role: '연구원 (케이라운지)',
+    shortDescription: '실시간 화이트보드 기반 교육 플랫폼',
+    description:
+      '실시간 화이트보드 공유와 양방향 소통이 가능한 온라인 교육 플랫폼의 iOS 앱입니다. WebSocket 기반 실시간 드로잉 동기화와 음성/영상 통화 기능을 제공합니다.',
+    features: [
+      {
+        title: '실시간 화이트보드',
+        description: 'WebSocket 기반 실시간 드로잉 동기화',
+      },
+      {
+        title: '화상 수업',
+        description: 'WebRTC 기반 실시간 화상 통화',
+      },
+      {
+        title: '수업 녹화',
+        description: '화이트보드와 음성을 함께 녹화',
+      },
+      {
+        title: '학습 관리',
+        description: '과제 제출, 성적 관리 기능',
+      },
+    ],
+    techStack: {
+      frontend: ['Swift', 'UIKit', 'WebSocket', 'WebRTC'],
+      backend: [],
+      infrastructure: ['AWS'],
+      desktop: [],
+    },
+    achievements: [
+      {
+        title: '실시간 동기화',
+        description: '수십 명 동시 접속 화이트보드 구현',
+        icon: '🔄',
+      },
+    ],
+    links: {},
+  },
+
+  // 6. Gotalk
+  {
+    id: 'gotalk',
+    name: 'Gotalk',
+    emoji: '🗣️',
+    type: ProjectType.WEBRTC,
+    status: ProjectStatus.ARCHIVE,
+    period: '2017.03 - 2018.07',
+    role: '연구원 (케이라운지)',
+    shortDescription: 'WebRTC 기반 실시간 화상 교육 웹앱',
+    description:
+      'WebRTC를 활용한 실시간 1:1 화상 영어 교육 웹 애플리케이션입니다. 화상 통화 중 교재 공유, 실시간 피드백, 수업 녹화 기능을 제공합니다.',
+    features: [
+      {
+        title: '1:1 화상 통화',
+        description: 'WebRTC 기반 고품질 화상 통화',
+      },
+      {
+        title: '교재 공유',
+        description: '수업 중 교재 화면 실시간 공유',
+      },
+      {
+        title: '실시간 피드백',
+        description: '수업 중 텍스트/이모지 피드백',
+      },
+      {
+        title: '수업 녹화',
+        description: '수업 내용 녹화 및 복습 기능',
+      },
+    ],
+    techStack: {
+      frontend: ['React', 'JavaScript', 'WebRTC', 'Socket.io'],
+      backend: ['Node.js', 'Express', 'MongoDB'],
+      infrastructure: ['AWS EC2', 'TURN/STUN Server'],
+      desktop: [],
+    },
+    achievements: [
+      {
+        title: 'WebRTC 구현',
+        description: '브라우저 기반 실시간 화상통화 구현',
+        icon: '📹',
+      },
+    ],
+    links: {},
+  },
+
+  // 7. 러닝포털 (청담러닝)
+  {
+    id: 'learning-portal',
+    name: '러닝포털',
+    emoji: '🏫',
+    type: ProjectType.WEB,
+    status: ProjectStatus.PRODUCTION,
+    period: '2018.12 - 2021.07',
+    role: '선임연구원 (청담러닝)',
+    shortDescription: 'B2B 교육 관리 시스템 (LMS)',
+    description:
+      '기업 및 교육기관을 위한 학습 관리 시스템(LMS) 웹 애플리케이션입니다. 강의 관리, 학습자 진도 추적, 성적 관리, 리포트 생성 등 종합적인 교육 관리 기능을 제공합니다.',
+    features: [
+      {
+        title: '강의 관리',
+        description: '온라인 강의 등록 및 관리',
+      },
+      {
+        title: '진도 추적',
+        description: '학습자별 진도율 및 학습 시간 추적',
+      },
+      {
+        title: '성적 관리',
+        description: '시험, 과제 성적 관리 및 분석',
+      },
+      {
+        title: '리포트 생성',
+        description: '학습 데이터 기반 분석 리포트',
+      },
+    ],
+    techStack: {
+      frontend: ['React', 'TypeScript', 'Redux', 'Ant Design'],
+      backend: ['Spring Boot', 'Java', 'MySQL'],
+      infrastructure: ['AWS', 'Docker'],
+      desktop: [],
+    },
+    achievements: [
+      {
+        title: 'B2B 서비스',
+        description: '다수 기업/기관에 서비스 제공',
+        icon: '🏢',
+      },
+    ],
+    links: {},
+  },
+
+  // ============================================================================
+  // PERSONAL PROJECTS (개인 프로젝트)
+  // ============================================================================
+
+  // 8. Cookting
   {
     id: 'cookting',
     name: 'Cookting',
