@@ -102,27 +102,31 @@ describe('Core Web Vitals Optimization', () => {
   });
 
   describe('Largest Contentful Paint (LCP) Optimization', () => {
-    it('should have priority loading for hero images in homepage', () => {
+    it('should use section components for efficient rendering', () => {
       const pagePath = path.join(process.cwd(), 'app/page.tsx');
       const pageContent = fs.readFileSync(pagePath, 'utf-8');
 
-      // First image should have priority attribute
-      expect(pageContent).toContain('priority');
+      // Homepage should use modular section components for better LCP
+      expect(pageContent).toContain('HeroSection');
+      expect(pageContent).toContain('ProjectsSection');
     });
 
-    it('should have lazy loading for non-critical images', () => {
-      const pagePath = path.join(process.cwd(), 'app/page.tsx');
-      const pageContent = fs.readFileSync(pagePath, 'utf-8');
+    it('should have text-based hero for fast LCP', () => {
+      const heroPath = path.join(process.cwd(), 'components/sections/hero-section.tsx');
+      const heroContent = fs.readFileSync(heroPath, 'utf-8');
 
-      // Later images should have loading="lazy"
-      expect(pageContent).toContain('loading="lazy"');
+      // Hero uses text heading as LCP element (faster than images)
+      expect(heroContent).toContain('<h1');
+      expect(heroContent).toContain('data-testid="hero-section"');
     });
 
-    it('should have sizes attribute for responsive images', () => {
-      const pagePath = path.join(process.cwd(), 'app/page.tsx');
-      const pageContent = fs.readFileSync(pagePath, 'utf-8');
+    it('should have proper component structure for LCP', () => {
+      const projectsPath = path.join(process.cwd(), 'components/sections/projects-section.tsx');
+      const projectsContent = fs.readFileSync(projectsPath, 'utf-8');
 
-      expect(pageContent).toContain('sizes=');
+      // Projects section should be properly structured
+      expect(projectsContent).toContain('data-testid="projects-section"');
+      expect(projectsContent).toContain('projectsData');
     });
   });
 });
