@@ -1,0 +1,16 @@
+{
+  "name": "Jell - 풀스택 개발자 포트폴리오",
+  "short_name": "Jell",
+  "description": "8년+ 경력의 풀스택 개발자. iOS, Web, AR/3D 등 다양한 프로젝트 경험.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32",
+      "type": "image/x-icon"
+    }
+  ]
+}
