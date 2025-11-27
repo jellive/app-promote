@@ -1,5 +1,6 @@
 import { Inter } from 'next/font/google'
 import { cn } from '@/lib/utils'
+import { ThemeProvider } from '@/providers/theme-provider'
 import './globals.css'
 
 const fontHeading = Inter({
@@ -14,13 +15,15 @@ const fontBody = Inter({
   variable: '--font-body'
 })
 
-export default function Layout({ children }: { children: JSX.Element }) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={cn('antialiased', fontHeading.variable, fontBody.variable)}
       >
-        {children}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
