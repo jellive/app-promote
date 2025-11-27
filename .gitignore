@@ -68,3 +68,5 @@ node_modules/
 prd.txt
 .cursor
 .taskmaster
+.claude
+internal-docs
