@@ -22,7 +22,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4 h-14 flex items-center">
           <Link
             href="/"
-            className="flex items-center justify-center font-bold text-lg"
+            className="flex items-center justify-center font-bold text-lg text-foreground"
             prefetch={false}
           >
             Jell

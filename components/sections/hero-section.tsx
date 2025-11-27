@@ -1,10 +1,65 @@
 'use client';
 
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Mail } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+
+const FULL_TEXT = 'Jell';
+const TYPING_SPEED = 150;
+const DELETE_SPEED = 100;
+const PAUSE_BEFORE_DELETE = 3000;
+const PAUSE_BEFORE_TYPE = 500;
+
+function TypingText() {
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+
+    if (isPaused) {
+      timeout = setTimeout(() => {
+        setIsPaused(false);
+      }, isDeleting ? PAUSE_BEFORE_TYPE : PAUSE_BEFORE_DELETE);
+      return () => clearTimeout(timeout);
+    }
+
+    if (!isDeleting && displayText === FULL_TEXT) {
+      setIsPaused(true);
+      setIsDeleting(true);
+      return;
+    }
+
+    if (isDeleting && displayText === '') {
+      setIsPaused(true);
+      setIsDeleting(false);
+      return;
+    }
+
+    const speed = isDeleting ? DELETE_SPEED : TYPING_SPEED;
+
+    timeout = setTimeout(() => {
+      if (isDeleting) {
+        setDisplayText(FULL_TEXT.slice(0, displayText.length - 1));
+      } else {
+        setDisplayText(FULL_TEXT.slice(0, displayText.length + 1));
+      }
+    }, speed);
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, isPaused]);
+
+  return (
+    <span className="bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+      {displayText}
+      <span className="animate-pulse text-foreground">|</span>
+    </span>
+  );
+}
 
 export function HeroSection() {
   return (
@@ -21,11 +76,7 @@ export function HeroSection() {
           {/* Profile Info */}
           <div className="space-y-4">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              안녕하세요,{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Jell
-              </span>
-              입니다
+              안녕하세요, <TypingText />입니다
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground">
               풀스택 개발자
