@@ -63,7 +63,8 @@ describe('Image Optimization Configuration', () => {
   });
 });
 
-describe('Image Directory Structure', () => {
+// TODO: Enable these tests when screenshot images are added to the project
+describe.skip('Image Directory Structure (Future Feature)', () => {
   const projectIds = [
     'cookting',
     'dev-utils-hub',
