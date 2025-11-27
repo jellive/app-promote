@@ -16,6 +16,7 @@ import {
   Video,
   Gamepad2,
   Workflow,
+  Chrome,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -270,6 +271,13 @@ function ProjectLinksSection({ project }: { project: Project }) {
       href: project.links.appStore,
       icon: Apple,
       show: !!project.links.appStore,
+    },
+    {
+      key: 'chromeWebStore',
+      label: 'Chrome Web Store',
+      href: project.links.chromeWebStore,
+      icon: Chrome,
+      show: !!project.links.chromeWebStore,
     },
     {
       key: 'npm',

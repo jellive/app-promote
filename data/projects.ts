@@ -90,6 +90,7 @@ export interface Links {
   github?: string;
   live?: string;
   appStore?: string;
+  chromeWebStore?: string;
   npm?: string;
 }
 
@@ -696,7 +697,7 @@ export const projectsData: Project[] = [
     name: '나무위키 링커',
     emoji: '🌳',
     type: ProjectType.CHROME_EXTENSION,
-    status: ProjectStatus.DEVELOPMENT,
+    status: ProjectStatus.PRODUCTION,
     period: '2024.06 - 현재',
     role: '1인 개발',
     shortDescription: '웹페이지 텍스트를 나무위키로 연결하는 확장 프로그램',
@@ -731,6 +732,7 @@ export const projectsData: Project[] = [
       frontend: 1500,
     },
     links: {
+      chromeWebStore: 'https://chromewebstore.google.com/detail/fhmagpkcdpcnmbihkgdcmabidcmdmpgl',
       github: 'https://github.com/jellive/namuwiki-linker',
     },
   },
@@ -799,7 +801,7 @@ export const projectsData: Project[] = [
     name: 'Wecanner',
     emoji: '📷',
     type: ProjectType.IOS,
-    status: ProjectStatus.DEVELOPMENT,
+    status: ProjectStatus.PRODUCTION,
     period: '2024.04 - 현재',
     role: '1인 개발',
     shortDescription: '문서 스캔 및 OCR iOS 앱',
@@ -834,6 +836,7 @@ export const projectsData: Project[] = [
       frontend: 4000,
     },
     links: {
+      appStore: 'https://apps.apple.com/kr/app/wecanner/id6711342598',
       github: 'https://github.com/jellive/wecanner',
     },
   },
