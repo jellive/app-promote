@@ -1,0 +1,883 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Configure Testing Infrastructure (Jest + React Testing Library + Playwright)",
+        "description": "Set up comprehensive testing environment with Jest for unit/integration tests and Playwright for E2E testing, following TDD workflow requirements",
+        "details": "Install and configure testing frameworks:\n\n1. Install dependencies:\n   - jest, @testing-library/react, @testing-library/jest-dom, jest-environment-jsdom\n   - @playwright/test for E2E testing\n   - ts-jest for TypeScript support\n\n2. Create jest.config.js with Next.js compatibility:\n   - Set up module name mapper for @/ alias\n   - Configure testEnvironment: 'jsdom'\n   - Set coverage thresholds (80% overall, 90% for business logic)\n\n3. Create playwright.config.ts:\n   - Configure browsers (Chrome, Firefox, Safari)\n   - Set up device emulation (Desktop 1920x1080, Tablet 768x1024, Mobile 375x667)\n   - Configure base URL and timeout settings\n\n4. Set up test directory structure:\n   - __tests__/ for unit tests\n   - e2e/ for Playwright tests\n   - test-utils.tsx for shared testing utilities\n\n5. Add test scripts to package.json:\n   - test: 'jest --watch'\n   - test:ci: 'jest --ci'\n   - test:coverage: 'jest --coverage'\n   - test:e2e: 'playwright test'\n\n6. Create example test to validate setup",
+        "testStrategy": "Verify installation with simple component test and E2E test. Ensure jest --version and playwright --version work. Run test suite to confirm 0 tests passing initially.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Install and Configure Jest with Next.js 14 and TypeScript",
+            "description": "Install Jest dependencies and create jest.config.js with Next.js App Router compatibility, TypeScript support, and module resolution for @/ alias",
+            "dependencies": [],
+            "details": "1. Install dependencies: jest, @testing-library/react, @testing-library/jest-dom, jest-environment-jsdom, ts-jest\n2. Create jest.config.js with:\n   - testEnvironment: 'jsdom'\n   - moduleNameMapper for @/ alias pointing to src/\n   - setupFilesAfterEnv: ['<rootDir>/jest.setup.js']\n   - transform using ts-jest for .ts/.tsx files\n   - collectCoverageFrom patterns excluding node_modules, .next\n   - coverageThresholds: { global: { branches: 80, functions: 80, lines: 80, statements: 80 } }\n3. Create jest.setup.js importing '@testing-library/jest-dom'\n4. Update tsconfig.json to include jest types\n5. TDD Validation: Run 'jest --version' to verify installation, create simple test file that imports jest-dom matchers to confirm setup works",
+            "status": "done",
+            "testStrategy": "Write a minimal test file (__tests__/setup.test.ts) that uses expect().toBeInTheDocument() matcher. Run 'jest' command - should execute successfully even with 0 test files initially. Verify jest.config.js is loaded by checking coverage thresholds are enforced."
+          },
+          {
+            "id": 2,
+            "title": "Set Up React Testing Library with Custom Render Utilities",
+            "description": "Configure React Testing Library with custom render function that includes Next.js providers and common test utilities",
+            "dependencies": [
+              1
+            ],
+            "details": "1. Create test-utils.tsx in project root:\n   - Import render, RenderOptions from @testing-library/react\n   - Create AllTheProviders wrapper component (will include ThemeProvider later)\n   - Create customRender function wrapping RTL render with providers\n   - Export all RTL utilities plus customRender as default render\n2. Create __tests__/test-utils.test.tsx:\n   - Test that custom render works with simple component\n   - Verify providers are available in test context\n3. Update jest.config.js:\n   - Add moduleNameMapper entry for @/test-utils pointing to test-utils.tsx\n4. TDD Validation: Write test using custom render, verify it can access provider context",
+            "status": "done",
+            "testStrategy": "Create a test component that relies on provider context. Write test using custom render that verifies provider values are accessible. Test should fail without providers, pass with custom render."
+          },
+          {
+            "id": 3,
+            "title": "Install and Configure Playwright for Cross-Browser E2E Testing",
+            "description": "Set up Playwright with browser configuration for Chrome, Firefox, Safari and device emulation for desktop, tablet, and mobile viewports",
+            "dependencies": [
+              1
+            ],
+            "details": "1. Install @playwright/test as devDependency\n2. Run 'npx playwright install' to install browsers\n3. Create playwright.config.ts:\n   - Set baseURL: 'http://localhost:3000'\n   - Configure testDir: './e2e'\n   - Set timeout: 30000ms\n   - Configure projects array:\n     * Desktop Chrome: viewport { width: 1920, height: 1080 }\n     * Desktop Firefox: viewport { width: 1920, height: 1080 }\n     * Desktop Safari: viewport { width: 1920, height: 1080 }\n     * Tablet: viewport { width: 768, height: 1024 }\n     * Mobile: viewport { width: 375, height: 667 }\n   - Set webServer: { command: 'npm run dev', port: 3000, reuseExistingServer: true }\n   - Configure use: { screenshot: 'only-on-failure', video: 'retain-on-failure' }\n4. TDD Validation: Run 'playwright --version', verify config loads without errors",
+            "status": "done",
+            "testStrategy": "Run 'npx playwright test --list' to verify configuration loads. Create minimal test file that navigates to homepage. Run test on all configured browsers - should start dev server and execute successfully across all viewport sizes."
+          },
+          {
+            "id": 4,
+            "title": "Create Test Directory Structure and Example Tests",
+            "description": "Set up __tests__/ and e2e/ directories with example unit and E2E tests to validate the testing infrastructure",
+            "dependencies": [
+              2,
+              3
+            ],
+            "details": "1. Create directory structure:\n   - __tests__/ for Jest unit/integration tests\n   - e2e/ for Playwright E2E tests\n2. Create __tests__/example.test.tsx:\n   - Simple component test using custom render\n   - Test component rendering and user interaction\n   - Verify RTL queries work (getByRole, getByText)\n   - Test should demonstrate TDD RED-GREEN-REFACTOR cycle\n3. Create e2e/example.spec.ts:\n   - Test homepage loads and displays expected content\n   - Test navigation between pages\n   - Test responsive behavior on different viewports\n   - Verify all configured browsers can run test\n4. Add .gitignore entries:\n   - coverage/\n   - test-results/\n   - playwright-report/\n5. TDD Validation: Run both test suites, verify all tests pass and infrastructure works end-to-end",
+            "status": "done",
+            "testStrategy": "Run 'npm run test:ci' - Jest should find and execute unit test successfully. Run 'npm run test:e2e' - Playwright should execute E2E test on all 5 configured browser/viewport combinations. Verify coverage report generates with proper thresholds enforced."
+          },
+          {
+            "id": 5,
+            "title": "Add Test Scripts to package.json and Verify Complete Setup",
+            "description": "Configure npm scripts for running tests and validate entire testing infrastructure with comprehensive test execution",
+            "dependencies": [
+              4
+            ],
+            "details": "1. Add scripts to package.json:\n   - \"test\": \"jest --watch\" (development mode with watch)\n   - \"test:ci\": \"jest --ci --coverage --maxWorkers=2\" (CI mode)\n   - \"test:coverage\": \"jest --coverage\" (local coverage report)\n   - \"test:e2e\": \"playwright test\" (all E2E tests)\n   - \"test:e2e:headed\": \"playwright test --headed\" (visible browser)\n   - \"test:e2e:debug\": \"playwright test --debug\" (debug mode)\n   - \"test:all\": \"npm run test:ci && npm run test:e2e\" (run all tests)\n2. Verify all scripts execute successfully:\n   - test:ci should generate coverage report meeting 80% threshold\n   - test:e2e should run on all 5 browser/viewport configs\n3. Create README-TESTING.md documenting:\n   - How to run different test types\n   - TDD workflow (RED-GREEN-REFACTOR)\n   - Coverage requirements\n   - E2E testing guidelines\n4. Final validation: Run 'npm run test:all' to execute complete test suite",
+            "status": "done",
+            "testStrategy": "Execute each npm script individually and verify output. Run 'npm run test:all' and confirm: (1) Jest runs with coverage ≥80%, (2) Playwright executes on all configured browsers, (3) All tests pass, (4) Coverage report generates in coverage/ directory, (5) Test results saved to test-results/. Verify scripts fail appropriately when tests fail."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Set Up CI/CD Pipeline with GitHub Actions",
+        "description": "Configure automated testing, linting, and build workflows in GitHub Actions",
+        "details": "Create .github/workflows/ directory with three workflow files:\n\n1. test.yml - Automated Testing Workflow:\n   - Trigger on push to main/develop and all PRs\n   - Run lint, typecheck, unit tests with coverage report\n   - Upload coverage to artifacts\n   - Fail if coverage < 80%\n\n2. e2e.yml - E2E Testing Workflow:\n   - Trigger on push to main and PRs\n   - Install Playwright browsers\n   - Run E2E test suite on Chrome, Firefox, Safari\n   - Upload test results and screenshots on failure\n\n3. build.yml - Production Build Workflow:\n   - Trigger on push to main\n   - Run next build\n   - Verify build succeeds without errors\n   - Check bundle size (initial < 200KB)\n\nEnsure all workflows use Node.js 20.x and Yarn 4.5.0 for consistency with package.json.",
+        "testStrategy": "Create dummy failing test, push to trigger workflows. Verify workflows execute and report failure. Fix test, verify workflows pass.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create test.yml workflow for automated testing",
+            "description": "Set up GitHub Actions workflow for linting, type-checking, and unit tests with coverage reporting",
+            "dependencies": [],
+            "details": "Create .github/workflows/test.yml:\n- Trigger on push to main/develop and all pull requests\n- Use actions/checkout@v4 and actions/setup-node@v4\n- Configure Node.js 20.x with Yarn 4.5.0\n- Enable Yarn caching with actions/cache\n- Install dependencies with yarn install --immutable\n- Run yarn lint (ESLint)\n- Run yarn type-check (TypeScript compiler)\n- Run yarn test --coverage (Jest with coverage)\n- Upload coverage report to artifacts using actions/upload-artifact@v4\n- Configure coverage thresholds: fail if overall < 80%\n- Add status badge to README\n\nExpected output: Working test.yml that fails on lint/type/test errors and generates coverage reports",
+            "status": "pending",
+            "testStrategy": "Create intentional lint error, push to trigger workflow, verify it fails. Fix error, verify workflow passes. Check artifacts contain coverage report. Verify coverage threshold enforcement by temporarily lowering coverage."
+          },
+          {
+            "id": 2,
+            "title": "Create e2e.yml workflow for Playwright testing",
+            "description": "Set up GitHub Actions workflow for end-to-end testing across multiple browsers with Playwright",
+            "dependencies": [
+              1
+            ],
+            "details": "Create .github/workflows/e2e.yml:\n- Trigger on push to main and all pull requests\n- Use actions/checkout@v4 and actions/setup-node@v4\n- Configure Node.js 20.x with Yarn 4.5.0\n- Install dependencies with yarn install --immutable\n- Install Playwright browsers: npx playwright install --with-deps\n- Run E2E tests across Chrome, Firefox, Safari using matrix strategy\n- Configure test retries (2 retries on failure)\n- Upload test results (HTML report) on failure using actions/upload-artifact@v4\n- Upload screenshots on failure for debugging\n- Add timeout: 30 minutes for long-running tests\n\nExpected output: Working e2e.yml that runs Playwright tests on multiple browsers and uploads failure artifacts",
+            "status": "pending",
+            "testStrategy": "Create intentional E2E test failure, push to trigger workflow. Verify workflow fails and uploads screenshots/HTML report. Fix test, verify workflow passes on all three browsers (Chrome, Firefox, Safari)."
+          },
+          {
+            "id": 3,
+            "title": "Create build.yml workflow for production build validation",
+            "description": "Set up GitHub Actions workflow for production build verification and bundle size monitoring",
+            "dependencies": [
+              1
+            ],
+            "details": "Create .github/workflows/build.yml:\n- Trigger on push to main branch only\n- Use actions/checkout@v4 and actions/setup-node@v4\n- Configure Node.js 20.x with Yarn 4.5.0\n- Enable Yarn caching for faster builds\n- Install dependencies with yarn install --immutable\n- Run yarn build (next build)\n- Verify build exits with code 0 (no errors)\n- Analyze bundle size using @next/bundle-analyzer or size-limit\n- Check initial bundle < 200KB (fail if exceeded)\n- Upload build artifacts for inspection\n- Add build status badge to README\n\nExpected output: Working build.yml that validates production builds and enforces bundle size limits",
+            "status": "pending",
+            "testStrategy": "Push to main branch to trigger workflow. Verify build succeeds and bundle size is within limits. Intentionally add large dependency to exceed 200KB limit, verify workflow fails with bundle size error. Remove dependency, verify workflow passes."
+          },
+          {
+            "id": 4,
+            "title": "Test all workflows with dummy tests and verify reporting",
+            "description": "Validate all three GitHub Actions workflows with test cases and verify failure/success reporting mechanisms",
+            "dependencies": [
+              1,
+              2,
+              3
+            ],
+            "details": "Comprehensive workflow validation:\n1. Create dummy test cases for each workflow type\n2. Test test.yml:\n   - Push code with lint errors, verify failure\n   - Push code with type errors, verify failure\n   - Push code with failing tests, verify failure\n   - Push clean code, verify success and coverage upload\n3. Test e2e.yml:\n   - Create failing E2E test, verify failure + artifacts\n   - Fix test, verify success across all browsers\n4. Test build.yml:\n   - Trigger build on main, verify success\n   - Add code that breaks build, verify failure\n5. Verify caching works (check workflow run times)\n6. Test pull request triggers (create test PR)\n7. Verify all status badges display correctly\n8. Document workflow behavior in README\n\nExpected output: All workflows tested and validated, README documentation updated with workflow status and usage",
+            "status": "pending",
+            "testStrategy": "Execute test plan above. For each workflow: (1) Verify failure case reports correctly with detailed error messages, (2) Verify success case passes and generates expected artifacts, (3) Check workflow run times to confirm caching is working, (4) Verify PR comments show workflow status. Final validation: all three workflows should be green on main branch."
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Create Project Data Structure and TypeScript Types",
+        "description": "Define comprehensive TypeScript interfaces for all 8 projects and create structured data files",
+        "details": "Create data/projects.ts with TypeScript interfaces and data:\n\n1. Define TypeScript types:\n   - ProjectType enum: 'full-stack-mobile' | 'desktop' | 'infrastructure' | 'chrome-extension' | 'ios' | 'npm-package'\n   - ProjectStatus enum: 'production' | 'app-store-review' | 'archive' | 'development'\n   - TechStack interface (frontend, backend, infrastructure, desktop arrays)\n   - Feature interface (title, description)\n   - CodeStats interface (lines breakdown)\n   - Achievement interface\n   - Screenshot interface (filename, alt, size)\n   - Links interface (github?, live?, appStore?, npm?)\n   - Project interface (all fields from PRD)\n\n2. Create projectsData array with all 8 projects:\n   - Cookting (full-stack-mobile, app-store-review)\n   - DevUtilsHub (desktop, production)\n   - CertSyncManager (infrastructure, production)\n   - ChzzkOBS (desktop, development 95%)\n   - NamuwikiLinker (chrome-extension, development)\n   - Jellmodoro (ios, production)\n   - Wecanner (ios, development)\n   - JellUtils (npm-package, archive)\n\n3. Create helper functions:\n   - getProjectById(id: string): Project | undefined\n   - getProjectsByStatus(status: ProjectStatus): Project[]\n   - getProjectsByType(type: ProjectType): Project[]\n   - getAllProjects(): Project[]\n\n4. Export projectsData and helper functions",
+        "testStrategy": "Write unit tests:\n- Validate TypeScript type checking (should error on invalid data)\n- Test helper functions return correct projects\n- Verify all 8 projects have required fields\n- Test filter functions work correctly\n- Ensure data structure matches PRD specifications",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Define Core TypeScript Enums and Base Interfaces",
+            "description": "Create foundational TypeScript type definitions including ProjectType enum, ProjectStatus enum, and base interfaces (TechStack, Feature, CodeStats, Achievement, Screenshot, Links)",
+            "dependencies": [],
+            "details": "In data/projects.ts, define:\n- ProjectType enum with values: 'full-stack-mobile' | 'desktop' | 'infrastructure' | 'chrome-extension' | 'ios' | 'npm-package'\n- ProjectStatus enum: 'production' | 'app-store-review' | 'archive' | 'development'\n- TechStack interface with frontend, backend, infrastructure, desktop arrays (string[])\n- Feature interface with title and description (both strings)\n- CodeStats interface with lines breakdown (total, frontend, backend, tests fields as numbers)\n- Achievement interface with appropriate fields\n- Screenshot interface (filename: string, alt: string, size?: string)\n- Links interface (github?: string, live?: string, appStore?: string, npm?: string)\nExport all types and interfaces for use in subsequent subtasks.",
+            "status": "pending",
+            "testStrategy": "Write unit tests validating:\n- TypeScript compilation succeeds with valid enum values\n- Invalid enum values cause TypeScript errors\n- Interface structures match expected shapes\n- Optional fields in interfaces work correctly"
+          },
+          {
+            "id": 2,
+            "title": "Create Main Project Interface with All Required Fields",
+            "description": "Define the comprehensive Project interface that combines all base interfaces and includes all fields specified in the PRD for the 8 projects",
+            "dependencies": [
+              1
+            ],
+            "details": "Build the Project interface including:\n- id: string (unique identifier)\n- name: string\n- emoji: string\n- type: ProjectType (from subtask 1)\n- status: ProjectStatus (from subtask 1)\n- period: string\n- role: string\n- shortDescription: string\n- description: string\n- features: Feature[]\n- techStack: TechStack\n- codeStats?: CodeStats (optional)\n- achievements?: Achievement[] (optional)\n- screenshots?: Screenshot[] (optional)\n- links: Links\n- Any additional fields from PRD\nEnsure all field types are correctly defined and match PRD specifications.",
+            "status": "pending",
+            "testStrategy": "Write tests to:\n- Verify Project interface accepts valid project objects\n- Test that all required fields are enforced by TypeScript\n- Validate optional fields work correctly\n- Ensure type safety for nested interfaces (TechStack, Features, etc.)"
+          },
+          {
+            "id": 3,
+            "title": "Implement projectsData Array for Cookting, DevUtilsHub, and CertSyncManager",
+            "description": "Create accurate project data entries for the first 3 projects (Cookting, DevUtilsHub, CertSyncManager) with complete information matching PRD specifications",
+            "dependencies": [
+              2
+            ],
+            "details": "Create projectsData array with detailed entries for:\n1. Cookting (full-stack-mobile, app-store-review status)\n2. DevUtilsHub (desktop, production status)\n3. CertSyncManager (infrastructure, production status)\n\nFor each project, populate ALL fields:\n- Accurate tech stacks (frontend, backend, infrastructure, desktop)\n- Complete feature lists with titles and descriptions\n- Code statistics where available\n- Achievements and screenshots\n- All relevant links (GitHub, live, App Store, npm)\nEnsure data accuracy matches PRD and existing codebase information.",
+            "status": "pending",
+            "testStrategy": "Write tests to:\n- Validate all 3 project objects match Project interface\n- Verify required fields are populated for each project\n- Test tech stack arrays contain expected technologies\n- Ensure project IDs are unique\n- Validate project status and type enums are correct"
+          },
+          {
+            "id": 4,
+            "title": "Implement projectsData Entries for Remaining 5 Projects",
+            "description": "Add complete project data for ChzzkOBS, NamuwikiLinker, Jellmodoro, Wecanner, and JellUtils with accurate information from PRD",
+            "dependencies": [
+              3
+            ],
+            "details": "Extend projectsData array with entries for:\n4. ChzzkOBS (desktop, development 95%)\n5. NamuwikiLinker (chrome-extension, development)\n6. Jellmodoro (ios, production)\n7. Wecanner (ios, development)\n8. JellUtils (npm-package, archive)\n\nFor each project:\n- Research and populate accurate tech stacks\n- Create comprehensive feature lists\n- Add code statistics where available\n- Include achievements and project highlights\n- Add all relevant links\nEnsure consistency with first 3 projects and PRD specifications.",
+            "status": "pending",
+            "testStrategy": "Write tests to:\n- Verify all 8 projects total in projectsData array\n- Test each new project matches Project interface\n- Validate unique IDs across all 8 projects\n- Test data completeness for all required fields\n- Verify project type and status combinations are valid"
+          },
+          {
+            "id": 5,
+            "title": "Build Helper Functions for Project Data Access",
+            "description": "Implement utility functions for accessing and filtering project data: getProjectById, getProjectsByStatus, getProjectsByType, and getAllProjects",
+            "dependencies": [
+              4
+            ],
+            "details": "Create helper functions in data/projects.ts:\n\n1. getProjectById(id: string): Project | undefined\n   - Return project matching id or undefined\n\n2. getProjectsByStatus(status: ProjectStatus): Project[]\n   - Filter projects by status enum value\n   - Return array of matching projects\n\n3. getProjectsByType(type: ProjectType): Project[]\n   - Filter projects by type enum value\n   - Return array of matching projects\n\n4. getAllProjects(): Project[]\n   - Return complete projectsData array\n\nEnsure type safety and efficient implementations.",
+            "status": "pending",
+            "testStrategy": "Write comprehensive unit tests:\n- Test getProjectById returns correct project for valid IDs\n- Test getProjectById returns undefined for invalid IDs\n- Test getProjectsByStatus filters correctly for each status\n- Test getProjectsByType filters correctly for each type\n- Test getAllProjects returns all 8 projects\n- Test empty array returns for non-matching filters"
+          },
+          {
+            "id": 6,
+            "title": "Write Comprehensive Tests and Export Data Module",
+            "description": "Create complete unit test suite for type validation and helper functions, then properly export all types, data, and functions with documentation",
+            "dependencies": [
+              5
+            ],
+            "details": "1. Write comprehensive test suite:\n   - Type validation tests (invalid data should fail TypeScript)\n   - Helper function tests for all edge cases\n   - Data integrity tests (all 8 projects have required fields)\n   - Filter function accuracy tests\n   - PRD specification compliance tests\n\n2. Add JSDoc documentation:\n   - Document all interfaces and types\n   - Add usage examples for helper functions\n   - Include PRD reference comments\n\n3. Export module:\n   - Export all types and interfaces\n   - Export projectsData constant\n   - Export all helper functions\n   - Ensure proper module structure for imports in Tasks 6 and 7\n\nVerify 80%+ test coverage for this module.",
+            "status": "pending",
+            "testStrategy": "Run complete test suite and verify:\n- All tests pass (unit tests for types and functions)\n- Test coverage ≥80% overall, ≥90% for helper functions\n- TypeScript compilation succeeds with strict mode\n- All 8 projects validated against Project interface\n- Helper functions tested with valid and invalid inputs\n- Data structure fully matches PRD specifications"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Implement Dark Mode with next-themes",
+        "description": "Add dark mode support with system preference detection and manual toggle",
+        "details": "Install and configure next-themes:\n\n1. Install next-themes package\n\n2. Create providers/theme-provider.tsx:\n   - Wrap ThemeProvider from next-themes\n   - Set attribute='class', defaultTheme='system', enableSystem\n   - Export ThemeProvider component\n\n3. Update app/layout.tsx:\n   - Wrap children with ThemeProvider\n   - Add suppressHydrationWarning to <html>\n\n4. Create components/theme-toggle.tsx:\n   - Use useTheme() hook\n   - Render Sun/Moon icons (lucide-react)\n   - Toggle between light/dark/system\n   - Show current theme state\n\n5. Update globals.css:\n   - Add dark mode CSS variables\n   - Ensure all shadcn/ui colors support dark mode\n   - Test contrast ratios for WCAG AA compliance\n\n6. Add theme toggle to Header component",
+        "testStrategy": "TDD approach:\n- Write tests for ThemeProvider rendering\n- Test ThemeToggle component switches themes\n- Test system preference detection\n- Test persistence across page reloads\n- E2E test: toggle theme, verify CSS variables change\n- Verify WCAG contrast ratios in both modes",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Install next-themes and Create ThemeProvider Wrapper Component",
+            "description": "Install next-themes package and create a ThemeProvider wrapper component that configures theme settings with system preference detection",
+            "dependencies": [],
+            "details": "1. Install next-themes: `npm install next-themes`\n2. Create providers/theme-provider.tsx:\n   - Import ThemeProvider from 'next-themes'\n   - Create wrapper component with props: children, attribute='class', defaultTheme='system', enableSystem=true\n   - Export ThemeProvider component with proper TypeScript types\n   - Ensure proper client-side rendering with 'use client' directive\n3. Write tests BEFORE implementation (TDD RED phase):\n   - Test ThemeProvider renders children correctly\n   - Test provider accepts and applies configuration props\n   - Test TypeScript type safety\n4. Implement minimal code to pass tests (GREEN phase)\n5. Refactor for code quality (REFACTOR phase)",
+            "status": "pending",
+            "testStrategy": "TDD approach:\n- RED: Write failing test for ThemeProvider rendering with children\n- RED: Write failing test for configuration props (attribute, defaultTheme, enableSystem)\n- GREEN: Implement ThemeProvider wrapper to pass tests\n- REFACTOR: Improve component structure and types\n- Unit test: Verify component mounts without errors\n- Unit test: Verify props are correctly passed to next-themes ThemeProvider"
+          },
+          {
+            "id": 2,
+            "title": "Update app/layout.tsx with ThemeProvider Integration",
+            "description": "Integrate ThemeProvider into the root layout and add hydration warning suppression for proper SSR handling",
+            "dependencies": [
+              1
+            ],
+            "details": "1. Update app/layout.tsx:\n   - Import ThemeProvider from '@/providers/theme-provider'\n   - Wrap {children} with <ThemeProvider>\n   - Add suppressHydrationWarning to <html> tag\n   - Ensure proper component hierarchy: html > body > ThemeProvider > children\n2. Write tests BEFORE changes (TDD RED phase):\n   - Test layout renders with ThemeProvider wrapper\n   - Test suppressHydrationWarning is present on html element\n   - Test children components receive theme context\n3. Implement changes (GREEN phase)\n4. Refactor for optimization (REFACTOR phase)\n5. Test theme persistence across page navigation",
+            "status": "pending",
+            "testStrategy": "TDD approach:\n- RED: Write failing test for ThemeProvider wrapper in layout\n- RED: Write failing test for suppressHydrationWarning attribute\n- GREEN: Update layout.tsx to pass tests\n- REFACTOR: Optimize component structure\n- Integration test: Verify theme context is available to child components\n- E2E test: Test theme persistence across page reloads using localStorage\n- E2E test: Verify no hydration mismatch warnings in console"
+          },
+          {
+            "id": 3,
+            "title": "Create ThemeToggle Component with Icons and Switching Logic",
+            "description": "Build an interactive theme toggle component using useTheme hook with Sun/Moon icons and support for light/dark/system modes",
+            "dependencies": [
+              1,
+              2
+            ],
+            "details": "1. Create components/theme-toggle.tsx:\n   - Add 'use client' directive for client-side interactivity\n   - Import useTheme from 'next-themes'\n   - Import Sun, Moon icons from 'lucide-react'\n   - Create button component with theme switching logic\n   - Implement three-state toggle: light → dark → system\n   - Show current theme state with appropriate icon\n   - Add accessible labels and ARIA attributes\n2. Write tests BEFORE implementation (TDD RED phase):\n   - Test component renders with correct initial icon\n   - Test clicking toggles between themes\n   - Test theme state updates correctly\n   - Test accessibility attributes\n3. Implement component (GREEN phase)\n4. Refactor for UX optimization (REFACTOR phase)",
+            "status": "pending",
+            "testStrategy": "TDD approach:\n- RED: Write failing test for ThemeToggle component rendering\n- RED: Write failing test for theme switching on click (light → dark → system)\n- RED: Write failing test for icon changes based on current theme\n- GREEN: Implement ThemeToggle component to pass all tests\n- REFACTOR: Improve button styling and transitions\n- Unit test: Verify useTheme hook integration\n- Unit test: Test keyboard accessibility (Enter/Space key support)\n- Integration test: Verify theme changes propagate to document element\n- E2E test: Test theme toggle in Header component"
+          },
+          {
+            "id": 4,
+            "title": "Update globals.css with Dark Mode Variables and WCAG Compliance",
+            "description": "Add dark mode CSS custom properties, ensure shadcn/ui color support, and validate WCAG AA contrast ratios for accessibility",
+            "dependencies": [
+              1,
+              2,
+              3
+            ],
+            "details": "1. Update globals.css:\n   - Add dark mode CSS custom properties in :root and .dark selectors\n   - Define color variables for: background, foreground, primary, secondary, accent, muted, border, destructive\n   - Ensure all shadcn/ui components support dark mode colors\n   - Add smooth transitions for theme changes (background, color, border)\n2. WCAG AA compliance validation:\n   - Test contrast ratios: text/background must be ≥4.5:1 (normal text), ≥3:1 (large text)\n   - Use browser DevTools or contrast checker tools\n   - Document contrast ratios in comments\n3. Write tests BEFORE CSS changes (TDD RED phase):\n   - Test CSS variables exist in both light and dark modes\n   - Test contrast ratios meet WCAG AA standards\n4. Implement CSS (GREEN phase)\n5. Refactor for performance (REFACTOR phase)",
+            "status": "pending",
+            "testStrategy": "TDD approach:\n- RED: Write failing test for dark mode CSS variables presence\n- RED: Write failing test for WCAG contrast compliance (use automated tools)\n- GREEN: Implement dark mode CSS variables to pass tests\n- REFACTOR: Optimize variable naming and organization\n- Visual regression test: Compare screenshots of light/dark modes\n- Accessibility test: Run axe-core or similar tool to verify contrast ratios\n- Manual test: Verify all shadcn/ui components (buttons, cards, inputs) display correctly in dark mode\n- E2E test: Toggle theme and verify CSS variables change on document root\n- Performance test: Verify smooth theme transitions without layout shift"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Build Reusable UI Components (Header, Footer, ProjectCard, StatCard)",
+        "description": "Create core UI components with full TDD coverage for layout and project display",
+        "details": "Create components following TDD cycle (RED-GREEN-REFACTOR):\n\n1. components/header.tsx:\n   - Logo/brand (link to home)\n   - Navigation: Projects, Skills, About, Contact\n   - Theme toggle button\n   - Mobile hamburger menu (responsive)\n   - Smooth scroll to sections\n   - Sticky header on scroll\n\n2. components/footer.tsx:\n   - Grid layout (5 columns on desktop, responsive)\n   - Sections: About, Projects, Resources, Legal, Contact\n   - Links to GitHub, LinkedIn, Blog, Email\n   - Copyright notice\n   - Privacy policy link\n\n3. components/project-card.tsx:\n   - Project image with Next/Image optimization\n   - Title, emoji, type badge\n   - Short description (truncate to 2 lines)\n   - Tech stack badges (max 5 visible)\n   - Status badge (Production/Archive/Development)\n   - Hover effect with shadow and scale\n   - Click to navigate to /projects/[id]\n\n4. components/stat-card.tsx:\n   - Large number with count-up animation\n   - Label text\n   - Icon (lucide-react)\n   - Gradient background option\n   - Dark mode support\n\nEach component should have:\n- TypeScript props interface\n- Accessibility attributes (aria-labels)\n- Responsive design (mobile-first)\n- Dark mode support\n- Unit tests (render, props, interactions)\n- Storybook-like documentation comments",
+        "testStrategy": "For each component, write tests BEFORE implementation:\n1. RED: Write failing test for component render\n2. GREEN: Implement minimal component\n3. REFACTOR: Improve code quality\n4. Test responsive behavior at breakpoints\n5. Test dark mode CSS classes\n6. Test accessibility (keyboard nav, screen reader)\n7. Test hover/click interactions\n8. Achieve ≥90% coverage per component",
+        "priority": "high",
+        "dependencies": [
+          1,
+          3,
+          4
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "TDD: Write tests and implement Header component with navigation",
+            "description": "Follow RED-GREEN-REFACTOR cycle to create Header component with logo, navigation links, theme toggle, and mobile hamburger menu",
+            "dependencies": [],
+            "details": "RED: Write failing tests for Header rendering, navigation links (Projects, Skills, About, Contact), theme toggle button, and mobile menu visibility. GREEN: Implement Header component with: (1) Logo/brand linking to home, (2) Desktop navigation with smooth scroll, (3) Theme toggle button, (4) Mobile hamburger menu with responsive breakpoint, (5) TypeScript interface for props. REFACTOR: Extract navigation items to constant, optimize mobile menu animation. Test sticky header behavior on scroll.",
+            "status": "pending",
+            "testStrategy": "Write tests before implementation: (1) Header renders with logo and navigation, (2) All nav links present with correct hrefs, (3) Theme toggle button functional, (4) Mobile menu hidden on desktop, visible on mobile, (5) Smooth scroll behavior triggers on link click, (6) Sticky header class applied on scroll. Achieve ≥90% coverage."
+          },
+          {
+            "id": 2,
+            "title": "TDD: Add accessibility and responsive features to Header",
+            "description": "Implement keyboard navigation, ARIA labels, and test responsive behavior across all breakpoints for Header component",
+            "dependencies": [
+              1
+            ],
+            "details": "RED: Write failing tests for keyboard navigation (Tab, Enter, Escape for mobile menu), ARIA labels (aria-label for nav, aria-expanded for hamburger), and responsive breakpoints (mobile <768px, tablet 768-1024px, desktop >1024px). GREEN: Add accessibility attributes, implement keyboard event handlers, test at sm/md/lg/xl breakpoints. REFACTOR: Extract breakpoint logic, optimize event listeners. Test focus management and screen reader compatibility.",
+            "status": "pending",
+            "testStrategy": "Accessibility tests: (1) Keyboard navigation with Tab/Enter/Escape, (2) ARIA labels present and accurate, (3) Focus trap in mobile menu, (4) Screen reader announcements. Responsive tests: (5) Mobile menu shows <768px, (6) Desktop nav shows ≥768px, (7) Layout correct at all breakpoints. Coverage ≥90%."
+          },
+          {
+            "id": 3,
+            "title": "TDD: Write tests and implement Footer component with 5-column grid",
+            "description": "Follow RED-GREEN-REFACTOR cycle to create Footer component with responsive 5-column layout and external links",
+            "dependencies": [],
+            "details": "RED: Write failing tests for Footer rendering, 5-column grid layout (About, Projects, Resources, Legal, Contact), external links (GitHub, LinkedIn, Blog, Email), copyright notice, and responsive collapse to single column on mobile. GREEN: Implement Footer with: (1) Grid layout (grid-cols-5 desktop, grid-cols-1 mobile), (2) Section headings and links, (3) Social media icons from lucide-react, (4) Copyright with current year, (5) Privacy policy link. REFACTOR: Extract link data to constants, optimize grid spacing.",
+            "status": "pending",
+            "testStrategy": "Write tests before implementation: (1) Footer renders with 5 sections, (2) All external links present with correct hrefs and target='_blank', (3) Copyright text includes current year, (4) Grid layout changes at breakpoint, (5) Privacy policy link present, (6) Icons render correctly. Achieve ≥90% coverage."
+          },
+          {
+            "id": 4,
+            "title": "TDD: Write tests and implement ProjectCard component with image optimization",
+            "description": "Follow RED-GREEN-REFACTOR cycle to create ProjectCard component with Next/Image, tech stack badges, and hover effects",
+            "dependencies": [],
+            "details": "RED: Write failing tests for ProjectCard rendering with props (title, emoji, type, description, techStack, status, imageUrl, projectId), Next/Image optimization, tech stack badges (max 5), status badge, hover effect (shadow + scale), and navigation to /projects/[id] on click. GREEN: Implement ProjectCard with: (1) Next/Image with priority/loading props, (2) TypeScript interface for props, (3) Description truncation (2 lines with text-ellipsis), (4) Tech badges with color coding, (5) Status badge (Production/Archive/Development), (6) Hover CSS (shadow-lg, scale-105). REFACTOR: Extract badge component, optimize image sizes.",
+            "status": "pending",
+            "testStrategy": "Write tests before implementation: (1) ProjectCard renders with all props, (2) Next/Image has correct src and alt, (3) Description truncates to 2 lines, (4) Max 5 tech badges shown, (5) Status badge renders with correct color, (6) Click navigates to /projects/[id], (7) Hover classes applied on mouse enter. Coverage ≥90%."
+          },
+          {
+            "id": 5,
+            "title": "TDD: Write tests and implement StatCard component with count-up animation",
+            "description": "Follow RED-GREEN-REFACTOR cycle to create StatCard component with animated number counter and icon support",
+            "dependencies": [],
+            "details": "RED: Write failing tests for StatCard rendering with props (value, label, icon, gradientFrom, gradientTo), count-up animation triggering on scroll into view, icon from lucide-react, gradient background, and dark mode support. GREEN: Implement StatCard with: (1) TypeScript interface for props, (2) useInView hook for scroll detection, (3) Count-up animation using requestAnimationFrame or library (react-countup), (4) Icon rendering from lucide-react, (5) Gradient background with CSS (bg-gradient-to-br), (6) Dark mode classes (dark:bg-). REFACTOR: Extract animation logic to custom hook, optimize performance.",
+            "status": "pending",
+            "testStrategy": "Write tests before implementation: (1) StatCard renders with value and label, (2) Icon renders when provided, (3) Count-up animation runs from 0 to value, (4) Animation triggers on scroll into view (mock IntersectionObserver), (5) Gradient background applied, (6) Dark mode classes present, (7) Animation completes in expected duration. Coverage ≥90%."
+          },
+          {
+            "id": 6,
+            "title": "Add dark mode support and styling to all components",
+            "description": "Implement dark mode CSS classes and verify theme toggle functionality across Header, Footer, ProjectCard, and StatCard",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "details": "Add dark mode classes to all components: (1) Header - dark:bg-gray-900, dark:text-white, (2) Footer - dark:bg-gray-800, dark:border-gray-700, (3) ProjectCard - dark:bg-gray-800, dark:hover:shadow-gray-700, (4) StatCard - dark:from-gray-800, dark:to-gray-900. Integrate with theme provider (next-themes). Test theme toggle switches all components between light/dark. Ensure proper contrast ratios for accessibility (WCAG AA). Verify smooth transitions (transition-colors duration-200).",
+            "status": "pending",
+            "testStrategy": "Dark mode tests: (1) All components have dark: classes, (2) Theme toggle switches theme context, (3) Components re-render with correct classes on theme change, (4) Contrast ratios meet WCAG AA (4.5:1 for text), (5) Transitions smooth without flicker, (6) Icons and images visible in both themes. Use testing-library to mock theme context. Coverage ≥90%."
+          },
+          {
+            "id": 7,
+            "title": "Implement responsive behavior and test at all breakpoints",
+            "description": "Ensure all components (Header, Footer, ProjectCard, StatCard) work correctly at mobile, tablet, and desktop breakpoints",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "details": "Test responsive behavior at Tailwind breakpoints: (1) Mobile (<640px) - Header shows hamburger, Footer single column, ProjectCard full width, StatCard stacked, (2) Tablet (640-1024px) - Header shows partial nav, Footer 2-3 columns, ProjectCard 2 per row, StatCard 2 per row, (3) Desktop (>1024px) - Header full nav, Footer 5 columns, ProjectCard 3 per row, StatCard 4 per row. Use responsive design testing tools or viewport emulation. Verify touch interactions on mobile (tap, swipe). Test orientation changes (portrait/landscape).",
+            "status": "pending",
+            "testStrategy": "Responsive tests at breakpoints: (1) sm (640px), (2) md (768px), (3) lg (1024px), (4) xl (1280px), (5) 2xl (1536px). For each breakpoint test: layout grid columns, visibility of elements (hamburger vs desktop nav), font sizes, spacing, and touch target sizes (min 44x44px). Use jest with matchMedia mock and Playwright for viewport testing. Coverage ≥90%."
+          },
+          {
+            "id": 8,
+            "title": "Achieve ≥90% test coverage for all components with integration tests",
+            "description": "Write comprehensive integration tests combining all components and verify overall test coverage meets quality threshold",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "details": "Write integration tests: (1) Header + Footer together on page, (2) ProjectCard grid with multiple cards, (3) StatCard grid with all 4 stats, (4) Theme toggle affects all components simultaneously, (5) Responsive layout with all components at each breakpoint, (6) Navigation between components (Header nav scrolls to sections). Run jest --coverage to verify ≥90% coverage (statements, branches, functions, lines). Identify uncovered code paths and add tests. Document any intentionally uncovered code (e.g., error boundaries, fallbacks).",
+            "status": "pending",
+            "testStrategy": "Integration and coverage tests: (1) Full page render with all components, (2) User flow: click nav → scroll to section → click project card → navigate, (3) Theme toggle integration across components, (4) Responsive integration at all breakpoints, (5) Run jest --coverage and verify ≥90% for each metric, (6) Add missing tests for edge cases, (7) Document coverage report. Use Playwright for E2E integration tests."
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Redesign Home Page with New Sections (Hero, Stats, Projects, Skills, About, Contact)",
+        "description": "Rebuild app/page.tsx with all portfolio sections showcasing 8 projects and full-stack skills",
+        "details": "Refactor app/page.tsx following TDD:\n\n1. HeroSection:\n   - Profile info: Name 'Jell', title '풀스택 개발자'\n   - Updated intro highlighting 8 completed projects\n   - 2 CTA buttons: '프로젝트 보기', '연락하기'\n   - Responsive grid layout\n\n2. StatsSection:\n   - 4 StatCards in grid:\n     * 8 Completed Projects\n     * 50,000+ Lines of Code\n     * 1,649 Tests Written\n     * 96.8% Test Coverage\n   - Count-up animation on scroll into view\n   - Icons from lucide-react\n\n3. ProjectsSection:\n   - Filter tabs: All, Production (6), Archive (2)\n   - 3-column grid (responsive: 1 on mobile, 2 on tablet)\n   - ProjectCard for each project\n   - Show 6 initially, 'Load More' button for remaining 2\n   - Smooth animations on filter change\n\n4. SkillsSection:\n   - 6 categories: Frontend, Backend, Mobile, Desktop, Infrastructure, AI/ML\n   - Tech stack badges with icons (simpleicons or custom SVG)\n   - Grid layout with category headers\n   - Hover effect on skill badges\n\n5. AboutSection (enhanced from current):\n   - Add development journey timeline\n   - Highlight full-stack transition\n   - Mention key achievements\n\n6. ContactSection (keep current form):\n   - Add form validation\n   - Add success/error toast notifications\n   - Email integration (optional: EmailJS or API route)\n\nAll sections should:\n- Use proper semantic HTML (section, article, nav)\n- Support dark mode\n- Be fully responsive\n- Have proper spacing and typography",
+        "testStrategy": "TDD for each section:\n1. Write integration tests for section rendering\n2. Test filter functionality in ProjectsSection\n3. Test count-up animation triggers\n4. Test form validation in ContactSection\n5. E2E test: scroll through all sections\n6. E2E test: filter projects\n7. E2E test: submit contact form\n8. Test responsive breakpoints (375px, 768px, 1024px)\n9. Verify all sections render with correct data",
+        "priority": "high",
+        "dependencies": [
+          3,
+          5
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Write tests and implement HeroSection component",
+            "description": "Create HeroSection with profile info, updated intro, and 2 CTA buttons following TDD",
+            "dependencies": [],
+            "details": "RED: Write failing tests for HeroSection rendering profile name 'Jell', title '풀스택 개발자', intro highlighting 8 projects, and 2 CTA buttons ('프로젝트 보기', '연락하기'). GREEN: Implement components/sections/hero-section.tsx with responsive grid layout, profile information, and CTA buttons linking to #projects and #contact sections. REFACTOR: Extract button components, optimize layout for mobile/tablet/desktop breakpoints. Verify dark mode support and accessibility (semantic HTML, ARIA labels).",
+            "status": "pending",
+            "testStrategy": "Write tests for: (1) Profile name and title render correctly, (2) Intro text mentions '8개의 프로젝트', (3) Both CTA buttons present with correct href attributes, (4) Responsive layout at 3 breakpoints, (5) Dark mode CSS classes apply correctly. Achieve ≥90% coverage for HeroSection."
+          },
+          {
+            "id": 2,
+            "title": "Write tests and implement StatsSection with count-up animations",
+            "description": "Create StatsSection with 4 StatCards featuring scroll-triggered count-up animations",
+            "dependencies": [],
+            "details": "RED: Write failing tests for StatsSection rendering 4 StatCards (8 Projects, 50,000+ Lines, 1,649 Tests, 96.8% Coverage) with lucide-react icons and count-up animation on scroll. GREEN: Implement components/sections/stats-section.tsx using Intersection Observer API to detect scroll into view. Create reusable StatCard component with icon, value, label props. Implement count-up animation using requestAnimationFrame or library like react-countup. REFACTOR: Extract animation logic, optimize performance with useCallback/useMemo, ensure smooth animation timing.",
+            "status": "pending",
+            "testStrategy": "Write tests for: (1) All 4 StatCards render with correct initial values, (2) Intersection Observer triggers on scroll (mock in jsdom), (3) Count-up animation completes to target value, (4) Icons from lucide-react render correctly, (5) Grid layout responsive behavior. Mock Intersection Observer for unit tests, verify animation in E2E tests."
+          },
+          {
+            "id": 3,
+            "title": "Write tests and implement ProjectsSection with filter tabs and pagination",
+            "description": "Create ProjectsSection with filter functionality and 'Load More' pagination for 8 projects",
+            "dependencies": [],
+            "details": "RED: Write failing tests for ProjectsSection rendering filter tabs (All, Production [6], Archive [2]), 3-column responsive grid, initial 6 projects display, and 'Load More' button. GREEN: Implement components/sections/projects-section.tsx fetching projects from lib/projects.ts (Task 3 dependency). Implement filter state management with useState, filter logic to show Production (status='production') vs Archive (status='archived'). Show first 6 projects initially, 'Load More' button reveals remaining 2. Use ProjectCard component (Task 5). REFACTOR: Extract filter logic to custom hook, optimize re-renders with useMemo, add smooth fade-in animations on filter change using framer-motion or CSS transitions.",
+            "status": "pending",
+            "testStrategy": "Write tests for: (1) Filter tabs render with correct counts, (2) Clicking 'Production' shows 6 projects, (3) Clicking 'Archive' shows 2 projects, (4) Initial render shows 6 projects with 'Load More' button, (5) 'Load More' reveals remaining projects, (6) Grid responsive behavior (1 col mobile, 2 tablet, 3 desktop). Integration test: verify filter + pagination interaction."
+          },
+          {
+            "id": 4,
+            "title": "Write tests and implement SkillsSection with 6 categories and tech badges",
+            "description": "Create SkillsSection displaying tech stack across 6 categories with badges and icons",
+            "dependencies": [],
+            "details": "RED: Write failing tests for SkillsSection rendering 6 categories (Frontend, Backend, Mobile, Desktop, Infrastructure, AI/ML) with tech badges and icons. GREEN: Implement components/sections/skills-section.tsx defining skills data structure with categories and tech stacks. Use simple-icons or custom SVG for tech logos (React, TypeScript, Node.js, etc.). Create SkillBadge component with icon, name, and hover effect. Grid layout with category headers and badge grids. REFACTOR: Extract skills data to lib/skills.ts, optimize icon loading (lazy load or sprite sheet), enhance hover animations with CSS transforms.",
+            "status": "pending",
+            "testStrategy": "Write tests for: (1) All 6 category headers render, (2) Each category contains correct tech badges, (3) Icons render for major technologies, (4) Hover effect applies (test CSS class or style change), (5) Grid layout responsive at breakpoints. Verify accessibility: keyboard navigation, screen reader support for badges."
+          },
+          {
+            "id": 5,
+            "title": "Write tests and enhance AboutSection with timeline and achievements",
+            "description": "Enhance existing AboutSection with development journey timeline and key achievements",
+            "dependencies": [],
+            "details": "RED: Write failing tests for enhanced AboutSection rendering development journey timeline and key achievements section. GREEN: Implement components/sections/about-section.tsx (or enhance existing) adding timeline component showing career progression (e.g., '2020: Started coding', '2022: First production app', '2024: 8 projects completed'). Add achievements section highlighting full-stack transition, test coverage milestone (96.8%), project diversity. Use semantic HTML (section, article) and proper typography hierarchy. REFACTOR: Extract timeline data to configuration, add fade-in animations on scroll, optimize layout for mobile.",
+            "status": "pending",
+            "testStrategy": "Write tests for: (1) Timeline renders all milestones in chronological order, (2) Achievements section lists key accomplishments, (3) Full-stack transition mentioned in content, (4) Responsive layout at all breakpoints, (5) Dark mode support. Verify semantic HTML and accessibility."
+          },
+          {
+            "id": 6,
+            "title": "Write tests and enhance ContactSection with validation and notifications",
+            "description": "Enhance ContactSection with form validation and success/error toast notifications",
+            "dependencies": [],
+            "details": "RED: Write failing tests for ContactSection form validation (required fields, email format) and toast notifications on submit success/error. GREEN: Implement components/sections/contact-section.tsx (or enhance existing) adding react-hook-form for validation, zod schema for validation rules (name required, valid email format, message min length). Integrate toast library (sonner or react-hot-toast) for success/error notifications. Optional: Add EmailJS integration or API route for email sending. REFACTOR: Extract form schema to lib/schemas.ts, optimize form re-renders, add loading state during submission.",
+            "status": "pending",
+            "testStrategy": "Write tests for: (1) Required field validation triggers error messages, (2) Invalid email format shows error, (3) Successful submission shows success toast, (4) Form submission error shows error toast, (5) Form resets after successful submission. Mock email API calls. E2E test: fill and submit form, verify toast appears."
+          },
+          {
+            "id": 7,
+            "title": "Write integration tests for section interactions",
+            "description": "Create integration tests for cross-section interactions like filtering and form submission",
+            "dependencies": [
+              3,
+              6
+            ],
+            "details": "RED: Write failing integration tests for: (1) ProjectsSection filter changes update displayed projects, (2) 'Load More' pagination interaction, (3) ContactSection form submission flow including validation and toast notifications, (4) CTA buttons in HeroSection scroll to correct sections. GREEN: Implement tests using @testing-library/react with userEvent for interactions. Test state changes across filter tabs, verify pagination logic, test form submission with valid/invalid data. REFACTOR: Extract common test utilities (render with providers, mock data), organize tests by user flow.",
+            "status": "pending",
+            "testStrategy": "Integration tests covering: (1) Filter interaction: click filter tab → verify project list updates, (2) Pagination: click 'Load More' → verify additional projects appear, (3) Form submission: fill form → submit → verify toast appears, (4) Navigation: click CTA → verify scroll behavior (mock scrollIntoView). Achieve ≥90% coverage for interaction logic."
+          },
+          {
+            "id": 8,
+            "title": "Write E2E tests for full page flow and responsive behavior",
+            "description": "Create Playwright E2E tests for complete page flow across all sections and device sizes",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "details": "RED: Write failing Playwright E2E tests for: (1) Full page load and scroll through all 6 sections, (2) ProjectsSection filter and pagination flow, (3) ContactSection form submission end-to-end, (4) Responsive behavior at mobile/tablet/desktop viewports, (5) Dark mode toggle across all sections. GREEN: Implement tests/e2e/home.spec.ts with test cases covering complete user journey from hero to contact. Test filter tabs, 'Load More' button, form submission with real DOM interactions. Test responsive layouts using page.setViewportSize(). REFACTOR: Extract page object models for sections, reuse common setup/teardown logic.",
+            "status": "pending",
+            "testStrategy": "E2E tests: (1) Navigate to home page → verify all sections visible, (2) Filter projects → verify DOM updates, (3) Submit contact form → verify toast notification in browser, (4) Test mobile viewport (375px), tablet (768px), desktop (1440px) → verify responsive layouts, (5) Toggle dark mode → verify CSS variables change across all sections. Run on Chrome, Firefox, Safari."
+          },
+          {
+            "id": 9,
+            "title": "Rebuild app/page.tsx with all sections and verify coverage",
+            "description": "Replace existing app/page.tsx content with all 6 new sections and verify ≥90% test coverage",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "details": "RED: Write failing test for app/page.tsx rendering all 6 sections in correct order. GREEN: Rebuild app/page.tsx importing and rendering HeroSection, StatsSection, ProjectsSection, SkillsSection, AboutSection, ContactSection in sequence. Remove all existing content (current 3 static project cards). Add proper section spacing, semantic HTML structure (main > section elements), and metadata for SEO. REFACTOR: Extract section layout wrapper, optimize page-level performance (lazy load sections below fold), ensure proper TypeScript types. Run full test suite to verify ≥90% coverage for all sections.",
+            "status": "pending",
+            "testStrategy": "Final verification tests: (1) All 6 sections render in correct order, (2) No existing content remains from old page.tsx, (3) Semantic HTML structure validated, (4) Metadata includes project count and full-stack keywords, (5) Run jest --coverage → verify ≥90% coverage for business logic, ≥80% overall. Run full E2E suite → verify no regressions."
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Create Dynamic Project Detail Pages (/projects/[id])",
+        "description": "Build individual project showcase pages with comprehensive information for all 8 projects",
+        "details": "Create app/projects/[id]/page.tsx following TDD:\n\n1. Dynamic route with generateStaticParams():\n   - Pre-render all 8 project pages at build time\n   - Use getProjectById() to fetch data\n   - Return 404 if project not found\n\n2. ProjectHero component:\n   - Large project name with emoji\n   - Project type badge and status badge\n   - Period and role information\n   - Short description\n   - Quick stats (lines of code, tests, coverage if available)\n\n3. TechStackGrid component:\n   - Categorized tech stack (Frontend, Backend, Infrastructure, etc.)\n   - Icon + name for each technology\n   - Tooltips with version info\n   - Responsive grid layout\n\n4. FeaturesSection component:\n   - List of key features with icons\n   - Title and detailed description for each\n   - Expandable cards for long descriptions\n\n5. ScreenshotGallery component:\n   - Carousel/lightbox for project screenshots\n   - Next/Image with lazy loading\n   - Thumbnail navigation\n   - Mobile swipe support\n   - Alt text for accessibility\n   - Placeholder images if screenshots not ready\n\n6. AchievementsSection component:\n   - Badge-style achievement cards\n   - Icons for different achievement types\n   - Highlight significant metrics\n\n7. CodeStatsSection component:\n   - Bar chart or donut chart (optional: recharts or chart.js)\n   - Show lines of code breakdown\n   - Test coverage visualization\n   - Repository statistics\n\n8. ProjectLinks component:\n   - Conditional rendering based on available links\n   - GitHub (if public)\n   - Live demo\n   - App Store / Chrome Web Store\n   - npm package\n   - Large CTA buttons with icons\n\n9. Metadata generation:\n   - Dynamic title: '[Project Name] - Jell Portfolio'\n   - Description from project data\n   - Open Graph tags\n   - Twitter Card tags",
+        "testStrategy": "TDD for project detail pages:\n1. Test generateStaticParams returns 8 project IDs\n2. Test each component renders with mock project data\n3. Test 404 handling for invalid project ID\n4. Test screenshot carousel navigation\n5. Test responsive layout at all breakpoints\n6. Test metadata generation for SEO\n7. E2E test: navigate from home to project detail\n8. E2E test: screenshot gallery interactions\n9. Test all 8 projects render without errors\n10. Verify Open Graph tags with meta tag validator",
+        "priority": "high",
+        "dependencies": [
+          3,
+          5
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up dynamic route with generateStaticParams",
+            "description": "Create app/projects/[id]/page.tsx with dynamic routing, implement generateStaticParams() for build-time pre-rendering of all 8 projects, and handle 404 for invalid IDs",
+            "dependencies": [],
+            "details": "Following TDD: (1) Write test for generateStaticParams returning 8 project IDs, (2) Write test for 404 response when project not found, (3) Implement generateStaticParams() using getAllProjects() from data/projects.ts, (4) Create page component fetching data with getProjectById(), (5) Add notFound() call for invalid IDs, (6) Verify all tests pass with ≥90% coverage",
+            "status": "pending",
+            "testStrategy": "Unit tests: generateStaticParams returns array of 8 project IDs. Integration test: page renders with valid ID, returns 404 with invalid ID. Verify build-time static generation works correctly."
+          },
+          {
+            "id": 2,
+            "title": "Create ProjectHero component with quick stats",
+            "description": "Build hero section displaying project name with emoji, badges (type/status), period/role info, description, and quick statistics",
+            "dependencies": [
+              1
+            ],
+            "details": "Following TDD: (1) Write tests for ProjectHero rendering all fields from project data, (2) Write test for conditional stats display, (3) Create components/projects/ProjectHero.tsx accepting project prop, (4) Implement large heading with project.name and project.emoji, (5) Add ProjectTypeBadge and StatusBadge components, (6) Display period, role, shortDescription, (7) Show code stats (lines, tests, coverage) if available, (8) Style responsively with Tailwind, (9) Verify ≥90% test coverage",
+            "status": "pending",
+            "testStrategy": "Unit tests: component renders with mock project data, displays all fields correctly, conditionally shows stats only when available. Snapshot test for visual regression. Test responsive layout at mobile/tablet/desktop breakpoints."
+          },
+          {
+            "id": 3,
+            "title": "Create TechStackGrid component with categorization",
+            "description": "Build categorized tech stack grid showing frontend/backend/infrastructure technologies with icons, names, tooltips, and responsive layout",
+            "dependencies": [
+              1
+            ],
+            "details": "Following TDD: (1) Write tests for TechStackGrid rendering categorized technologies, (2) Write test for tooltip display on hover, (3) Create components/projects/TechStackGrid.tsx, (4) Implement category sections (Frontend, Backend, Infrastructure, Desktop, etc.), (5) Add tech icon + name for each item using lucide-react or simple-icons, (6) Implement tooltips showing version info using Radix UI Tooltip, (7) Create responsive CSS Grid layout (1 col mobile, 2-3 cols tablet, 4+ cols desktop), (8) Verify ≥90% coverage",
+            "status": "pending",
+            "testStrategy": "Unit tests: renders all tech categories, displays correct icons and names, shows tooltips with version info. Responsive test: grid adapts at breakpoints. Accessibility test: tooltips are keyboard accessible."
+          },
+          {
+            "id": 4,
+            "title": "Create FeaturesSection component with expandable cards",
+            "description": "Build features list with icons, titles, descriptions, and expandable cards for long content",
+            "dependencies": [
+              1
+            ],
+            "details": "Following TDD: (1) Write tests for FeaturesSection rendering feature list, (2) Write test for expand/collapse functionality, (3) Create components/projects/FeaturesSection.tsx, (4) Map over project.features array, (5) Render feature icon (lucide-react), title, and description, (6) Implement expandable card logic using useState for long descriptions (>200 chars), (7) Add 'Read more' / 'Show less' toggle, (8) Style with cards using shadcn/ui Card component, (9) Verify ≥90% coverage",
+            "status": "pending",
+            "testStrategy": "Unit tests: renders all features, expand/collapse toggles work, long descriptions truncated initially. Interaction test: clicking 'Read more' expands description. Accessibility test: keyboard navigation and screen reader support."
+          },
+          {
+            "id": 5,
+            "title": "Create ScreenshotGallery component with carousel and lightbox",
+            "description": "Build screenshot gallery with carousel navigation, lightbox modal, thumbnail navigation, mobile swipe support, lazy loading, and placeholder images",
+            "dependencies": [
+              1
+            ],
+            "details": "Following TDD: (1) Write tests for gallery rendering screenshots, (2) Write test for navigation (next/prev buttons, thumbnails), (3) Write test for lightbox modal, (4) Create components/projects/ScreenshotGallery.tsx, (5) Use Next/Image with lazy loading and priority for first image, (6) Implement carousel using embla-carousel-react or swiper, (7) Add lightbox modal with yet-another-react-lightbox, (8) Implement thumbnail navigation below main image, (9) Add touch/swipe support for mobile, (10) Show placeholder if screenshots array empty, (11) Add descriptive alt text for accessibility, (12) Verify ≥90% coverage",
+            "status": "pending",
+            "testStrategy": "Unit tests: renders screenshots, navigation buttons work, thumbnails clickable. Integration test: lightbox opens on click, swipe gestures work on mobile. Accessibility test: alt text present, keyboard navigation functional. Performance test: lazy loading verified."
+          },
+          {
+            "id": 6,
+            "title": "Create AchievementsSection component with badge cards",
+            "description": "Build achievements display with badge-style cards, achievement type icons, and highlighted metrics",
+            "dependencies": [
+              1
+            ],
+            "details": "Following TDD: (1) Write tests for AchievementsSection rendering achievement list, (2) Write test for different achievement type icons, (3) Create components/projects/AchievementsSection.tsx, (4) Map over project.achievements array, (5) Render badge-style cards using shadcn/ui Badge component, (6) Add icons based on achievement type (Trophy, Award, Star, Target from lucide-react), (7) Highlight significant metrics with bold/color emphasis, (8) Create grid layout for cards (2-3 cols), (9) Verify ≥90% coverage",
+            "status": "pending",
+            "testStrategy": "Unit tests: renders all achievements, displays correct icons per type, highlights metrics. Snapshot test for badge styling. Responsive test: grid adapts at breakpoints."
+          },
+          {
+            "id": 7,
+            "title": "Create CodeStatsSection component with visualizations",
+            "description": "Build code statistics section with bar chart or donut chart showing lines of code breakdown, test coverage visualization, and repository stats",
+            "dependencies": [
+              1
+            ],
+            "details": "Following TDD: (1) Write tests for CodeStatsSection rendering stats, (2) Write test for chart rendering with mock data, (3) Create components/projects/CodeStatsSection.tsx, (4) Install recharts library (or use chart.js alternative), (5) Implement bar chart showing lines of code breakdown by language/category, (6) Create donut chart for test coverage percentage, (7) Display repository statistics (commits, contributors, stars if public), (8) Add conditional rendering if codeStats unavailable, (9) Style charts with dark mode support, (10) Verify ≥90% coverage",
+            "status": "pending",
+            "testStrategy": "Unit tests: renders with codeStats data, charts display correctly, handles missing data gracefully. Integration test: recharts components receive correct data props. Accessibility test: charts have aria-labels and text alternatives."
+          },
+          {
+            "id": 8,
+            "title": "Create ProjectLinks component with conditional rendering",
+            "description": "Build project links section with conditional rendering based on available links (GitHub, live demo, App Store, Chrome Web Store, npm), with large CTA buttons and icons",
+            "dependencies": [
+              1
+            ],
+            "details": "Following TDD: (1) Write tests for ProjectLinks conditional rendering, (2) Write test for each link type display, (3) Create components/projects/ProjectLinks.tsx, (4) Check project.links object for available URLs (github, liveDemo, appStore, chromeWebStore, npmPackage), (5) Conditionally render buttons only for existing links, (6) Create large CTA Button components using shadcn/ui Button with variant='default', (7) Add appropriate icons (Github, ExternalLink, Apple, Chrome, Package from lucide-react), (8) Implement target='_blank' rel='noopener noreferrer' for external links, (9) Verify ≥90% coverage",
+            "status": "pending",
+            "testStrategy": "Unit tests: only renders buttons for available links, all link types handled correctly, external link attributes present. Interaction test: buttons are clickable. Accessibility test: buttons have descriptive aria-labels."
+          },
+          {
+            "id": 9,
+            "title": "Generate dynamic metadata for SEO and social sharing",
+            "description": "Implement generateMetadata() function to create dynamic title, description, Open Graph tags, and Twitter Card tags for each project page",
+            "dependencies": [
+              1
+            ],
+            "details": "Following TDD: (1) Write tests for generateMetadata returning correct metadata object, (2) Create generateMetadata() async function in page.tsx, (3) Fetch project data using getProjectById(params.id), (4) Generate dynamic title: `${project.name} - Jell Portfolio`, (5) Use project.longDescription or shortDescription for description, (6) Create openGraph object with title, description, images (use project.screenshots[0] or fallback), (7) Add twitter object with card='summary_large_image', (8) Return metadata object, (9) Verify metadata renders in page head during build",
+            "status": "pending",
+            "testStrategy": "Unit tests: generateMetadata returns correct metadata structure for each project. Integration test: metadata appears in HTML head. E2E test: Open Graph preview works with social media debuggers (LinkedIn, Twitter). Verify dynamic values for all 8 projects."
+          },
+          {
+            "id": 10,
+            "title": "Validate all 8 project pages and achieve test coverage",
+            "description": "Test all 8 project detail pages render correctly with proper components, 404 handling works, and achieve ≥90% test coverage",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9
+            ],
+            "details": "Following TDD validation: (1) Write E2E tests using Playwright for all 8 project pages (/projects/1 through /projects/8), (2) Verify each page renders ProjectHero, TechStackGrid, FeaturesSection, ScreenshotGallery, AchievementsSection, CodeStatsSection, ProjectLinks, (3) Test 404 page for /projects/999 (invalid ID), (4) Test responsive layout at mobile (375px), tablet (768px), desktop (1440px), (5) Run jest --coverage and verify ≥90% coverage for all components, (6) Test dark mode switching on project pages, (7) Verify accessibility with Lighthouse (score ≥90), (8) Test navigation from /projects list page to detail pages",
+            "status": "pending",
+            "testStrategy": "E2E tests: navigate to all 8 project pages, verify all components visible, test 404 handling. Coverage test: run jest --coverage, ensure ≥90% for project detail page and all sub-components. Accessibility audit: run Lighthouse, fix any issues. Responsive test: verify layout at all breakpoints. Integration test: navigation flow from projects list works correctly."
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Optimize Images and Implement Next.js Image Best Practices",
+        "description": "Set up image optimization pipeline with WebP conversion and responsive images",
+        "details": "Implement Next.js Image optimization:\n\n1. Image directory structure:\n   - public/screenshots/[project-id]/ for all project images\n   - public/tech-icons/ for technology logos\n   - Create placeholder images for missing screenshots\n\n2. Configure next.config.js:\n   - Add image domains if using external images\n   - Set image formats: ['image/webp', 'image/avif']\n   - Configure image sizes for responsive breakpoints\n\n3. Replace all <img> with Next/Image:\n   - Add width, height, alt for all images\n   - Use priority for above-the-fold images\n   - Use loading='lazy' for below-the-fold\n   - Implement responsive srcset automatically\n\n4. Create image placeholder system:\n   - Use placeholder='blur' for local images\n   - Generate low-quality placeholders (LQIP)\n   - Blur-up effect on image load\n\n5. Optimize existing images:\n   - Compress screenshots to optimal size\n   - Convert to WebP format\n   - Ensure proper aspect ratios\n   - Maximum 1920px width for screenshots\n\n6. Create tech stack icon sprite or optimized SVG set:\n   - Use SVG for technology icons when possible\n   - Implement lazy loading for icon components\n   - Cache icons in browser",
+        "testStrategy": "Image optimization validation:\n1. Run Lighthouse audit, verify image optimization score ≥90\n2. Check Network tab: confirm WebP format served\n3. Verify image dimensions match rendered size\n4. Test lazy loading: images below fold load on scroll\n5. Test placeholder blur effect\n6. E2E test: screenshot gallery loads all images\n7. Verify no CLS (Cumulative Layout Shift) from images\n8. Test responsive images load correct sizes at breakpoints",
+        "priority": "medium",
+        "dependencies": [
+          6,
+          7
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create Organized Image Directory Structure",
+            "description": "Set up public/screenshots/[project-id]/ directories for all 8 projects and public/tech-icons/ for technology logos. Audit existing images and organize them into proper directories.",
+            "dependencies": [],
+            "details": "1. Create public/screenshots/ parent directory with subdirectories for each project ID (8 total)\n2. Create public/tech-icons/ directory for technology stack icons\n3. Move existing 3 screenshots from current locations to appropriate project directories\n4. Document directory structure in README or comments\n5. Create placeholder images for projects missing screenshots (5 projects need placeholders)\n6. Verify directory structure matches pattern: public/screenshots/[project-id]/screenshot-[n].jpg",
+            "status": "pending",
+            "testStrategy": "Verification tests: (1) Check all 8 project directories exist, (2) Verify 3 existing images moved correctly, (3) Confirm placeholder images created for missing projects, (4) Test file paths resolve correctly in Next.js public folder, (5) Validate naming convention follows pattern"
+          },
+          {
+            "id": 2,
+            "title": "Configure next.config.mjs with Image Optimization Settings",
+            "description": "Update next.config.mjs to enable WebP/AVIF formats, configure responsive image sizes, and set up image domains if needed for external images.",
+            "dependencies": [
+              1
+            ],
+            "details": "1. Add images configuration block to next.config.mjs\n2. Set formats: ['image/webp', 'image/avif'] for optimal compression\n3. Configure deviceSizes: [640, 750, 828, 1080, 1200, 1920] for responsive breakpoints\n4. Configure imageSizes: [16, 32, 48, 64, 96, 128, 256, 384] for smaller images\n5. Add remotePatterns if using external image sources\n6. Set minimumCacheTTL for browser caching optimization\n7. Document configuration choices in comments",
+            "status": "pending",
+            "testStrategy": "Configuration validation: (1) Run next build to verify config is valid, (2) Check Network tab confirms WebP/AVIF served, (3) Verify responsive srcset generated with configured sizes, (4) Test image caching headers, (5) Validate no build errors or warnings"
+          },
+          {
+            "id": 3,
+            "title": "Replace All <img> Tags with Next/Image Component",
+            "description": "Update all existing <img> tags in app/page.tsx (3 images) with Next.js Image component, adding proper width, height, alt, priority, and loading attributes.",
+            "dependencies": [
+              2
+            ],
+            "details": "1. Import Image from 'next/image' in app/page.tsx\n2. Replace all 3 <img> tags with <Image> components\n3. Add width and height props to prevent Cumulative Layout Shift (CLS)\n4. Add descriptive alt text for accessibility\n5. Set priority={true} for above-the-fold images\n6. Set loading='lazy' for below-the-fold images\n7. Ensure proper aspect ratios maintained\n8. Update image paths to use new directory structure from Task 8.1\n9. Test responsive behavior at all breakpoints",
+            "status": "pending",
+            "testStrategy": "Component replacement tests: (1) Verify all 3 images render correctly, (2) Check width/height prevent CLS (measure layout shift score), (3) Test priority images load first, (4) Verify lazy loading works for below-fold, (5) Test responsive srcset generation, (6) Validate alt text for accessibility, (7) Run Lighthouse to check image optimization score"
+          },
+          {
+            "id": 4,
+            "title": "Implement Blur Placeholders and LQIP System",
+            "description": "Generate low-quality image placeholders (LQIP) for all project screenshots, implement blur-up effect using Next.js placeholder='blur', and create placeholder generation system.",
+            "dependencies": [
+              3
+            ],
+            "details": "1. Install sharp if needed for LQIP generation\n2. Create scripts/generate-placeholders.js to automate LQIP creation\n3. Generate base64-encoded blur placeholders for all project images\n4. Add placeholder='blur' and blurDataURL to all <Image> components\n5. For remote images, use placeholder='empty' with custom loading state\n6. Test blur-up effect on image load\n7. Optimize placeholder file sizes (target <1KB per placeholder)\n8. Document placeholder generation process in README",
+            "status": "pending",
+            "testStrategy": "Placeholder validation: (1) Test blur effect displays before image loads, (2) Verify smooth transition from blur to full image, (3) Check placeholder file sizes <1KB, (4) Test on slow network (throttle to 3G), (5) Validate no layout shift during blur-to-image transition, (6) Test placeholder script generates valid base64 strings"
+          },
+          {
+            "id": 5,
+            "title": "Optimize Images and Validate with Lighthouse Audit",
+            "description": "Compress and convert all existing images to WebP format, optimize for web delivery (max 1920px width), and validate optimization with Lighthouse audit targeting ≥90 performance score.",
+            "dependencies": [
+              4
+            ],
+            "details": "1. Install image optimization tools (sharp, imagemin, or use online tools)\n2. Compress all project screenshots to optimal size (target <200KB per image)\n3. Convert all images to WebP format (keep originals as backup)\n4. Resize images to maximum 1920px width while maintaining aspect ratio\n5. Optimize tech icons (prefer SVG, fallback to optimized PNG)\n6. Run Lighthouse audit on homepage and project pages\n7. Verify image optimization score ≥90\n8. Test Core Web Vitals (LCP should include optimized images)\n9. Validate CLS score <0.1 (no layout shift from images)\n10. Document optimization results and file size reductions",
+            "status": "pending",
+            "testStrategy": "Optimization validation: (1) Run Lighthouse audit, verify Performance ≥90, (2) Check Network tab: all images served as WebP/AVIF, (3) Verify image dimensions match rendered size (no oversized images), (4) Test lazy loading on scroll, (5) Measure LCP includes largest image, (6) Validate CLS <0.1, (7) Compare before/after file sizes (target 50-70% reduction), (8) E2E test: load all 8 project pages, verify images optimized"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Implement SEO, Metadata, and Structured Data",
+        "description": "Add comprehensive SEO optimization with metadata, Open Graph, and JSON-LD",
+        "details": "Implement SEO best practices:\n\n1. Update app/layout.tsx metadata:\n   - title: 'Jell - Full-Stack Developer Portfolio | 8 Production Projects'\n   - description: 'Portfolio showcasing 8 completed projects including Cookting (AI recipe app), Dev Utils Hub, and more. Full-stack developer with Flutter, NestJS, React expertise.'\n   - keywords: 'full-stack developer, portfolio, Flutter, NestJS, React, Next.js, TypeScript'\n   - authors: [{ name: 'Jell', url: 'https://jell.kr' }]\n   - openGraph: { title, description, images, type: 'website' }\n   - twitter: { card: 'summary_large_image', creator: '@jellive' }\n\n2. Create app/sitemap.ts:\n   - Generate sitemap.xml with all routes\n   - Include home, all 8 project pages, privacy\n   - Set lastModified, changeFrequency, priority\n\n3. Create app/robots.ts:\n   - Allow all crawlers\n   - Link to sitemap\n\n4. Add JSON-LD structured data:\n   - Create components/json-ld.tsx\n   - Person schema for developer profile\n   - CreativeWork schema for each project\n   - Add to relevant pages\n\n5. Optimize meta tags for each page:\n   - Unique titles and descriptions\n   - Canonical URLs\n   - Language tags (lang='ko' for Korean content)\n\n6. Add analytics preparation:\n   - Google Analytics 4 setup structure\n   - Privacy-compliant tracking\n   - Cookie consent consideration",
+        "testStrategy": "SEO validation:\n1. Test metadata API in each page\n2. Verify sitemap.xml generates correctly at /sitemap.xml\n3. Verify robots.txt at /robots.txt\n4. Validate JSON-LD with Google Rich Results Test\n5. Test Open Graph with Facebook Sharing Debugger\n6. Test Twitter Card with Twitter Card Validator\n7. Run Lighthouse SEO audit, target ≥90 score\n8. Verify all pages have unique titles/descriptions\n9. Test canonical URLs are correct",
+        "priority": "medium",
+        "dependencies": [
+          6,
+          7
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Update app/layout.tsx with comprehensive global metadata",
+            "description": "Enhance the existing root layout metadata configuration with complete SEO fields including title template, description, keywords, authors, Open Graph, and Twitter Card settings",
+            "dependencies": [],
+            "details": "Update app/layout.tsx metadata object: (1) Set title template with 'Jell - Full-Stack Developer Portfolio | 8 Production Projects', (2) Add description: 'Portfolio showcasing 8 completed projects including Cookting (AI recipe app), Dev Utils Hub, and more. Full-stack developer with Flutter, NestJS, React expertise.', (3) Add keywords array: ['full-stack developer', 'portfolio', 'Flutter', 'NestJS', 'React', 'Next.js', 'TypeScript'], (4) Set authors: [{ name: 'Jell', url: 'https://jell.kr' }], (5) Configure openGraph with title, description, images (portfolio preview image), type: 'website', url: 'https://jell.kr', (6) Add twitter metadata: { card: 'summary_large_image', creator: '@jellive', title, description, images }. Ensure suppressHydrationWarning is already present on html tag for theme support.",
+            "status": "pending",
+            "testStrategy": "Manual validation: (1) Verify metadata renders in view-source and browser DevTools, (2) Test Open Graph with Facebook Sharing Debugger (https://developers.facebook.com/tools/debug/), (3) Test Twitter Card with Twitter Card Validator, (4) Confirm title appears correctly in browser tab and search results preview, (5) Verify all fields are present in HTML head section"
+          },
+          {
+            "id": 2,
+            "title": "Create app/sitemap.ts for sitemap.xml generation",
+            "description": "Implement Next.js 14 App Router sitemap generation with all routes including home, 8 project detail pages, and privacy page",
+            "dependencies": [],
+            "details": "Create app/sitemap.ts using Next.js MetadataRoute.Sitemap type: (1) Import MetadataRoute and projects data, (2) Export default function returning array of sitemap entries, (3) Add home route: { url: 'https://jell.kr', lastModified: new Date(), changeFrequency: 'monthly', priority: 1 }, (4) Map all 8 projects to sitemap entries: projects.map(p => ({ url: `https://jell.kr/projects/${p.id}`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 })), (5) Add privacy page: { url: 'https://jell.kr/privacy', lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 }. Next.js automatically serves this at /sitemap.xml.",
+            "status": "pending",
+            "testStrategy": "Validation: (1) Run npm run build and verify sitemap.xml generated in .next, (2) Access http://localhost:3000/sitemap.xml in browser and verify valid XML format, (3) Verify all 10 URLs present (1 home + 8 projects + 1 privacy), (4) Submit sitemap URL to Google Search Console for validation, (5) Check sitemap follows sitemaps.org protocol"
+          },
+          {
+            "id": 3,
+            "title": "Create app/robots.ts for robots.txt configuration",
+            "description": "Implement robots.txt generation to allow all crawlers and reference sitemap for search engine optimization",
+            "dependencies": [
+              2
+            ],
+            "details": "Create app/robots.ts using Next.js MetadataRoute.Robot type: (1) Import MetadataRoute, (2) Export default function returning object with rules and sitemap, (3) Set rules: [{ userAgent: '*', allow: '/', disallow: '/api/' }] to allow all crawlers except API routes, (4) Set sitemap: 'https://jell.kr/sitemap.xml' to reference the generated sitemap. Next.js automatically serves this at /robots.txt.",
+            "status": "pending",
+            "testStrategy": "Validation: (1) Access http://localhost:3000/robots.txt and verify correct format, (2) Confirm 'User-agent: *' and 'Allow: /' directives present, (3) Verify sitemap URL is correctly referenced, (4) Test with Google's robots.txt Tester tool, (5) Ensure robots.txt is accessible after deployment at https://jell.kr/robots.txt"
+          },
+          {
+            "id": 4,
+            "title": "Create JSON-LD structured data component with Person and CreativeWork schemas",
+            "description": "Implement reusable JSON-LD component for structured data markup to enhance search engine understanding of developer profile and projects",
+            "dependencies": [],
+            "details": "Create components/json-ld.tsx: (1) Define PersonSchema type matching schema.org Person specification with @context, @type, name, url, jobTitle, sameAs (social links), (2) Define CreativeWorkSchema type for projects with @context, @type, name, description, author, datePublished, keywords, (3) Create JsonLd component accepting schema prop and rendering script tag with type='application/ld+json' and dangerouslySetInnerHTML, (4) Export helper functions: getPersonSchema() returning developer profile data ({ '@context': 'https://schema.org', '@type': 'Person', name: 'Jell', url: 'https://jell.kr', jobTitle: 'Full-Stack Developer', sameAs: ['https://github.com/jellive', 'https://www.linkedin.com/in/jell'] }), getCreativeWorkSchema(project) converting project data to CreativeWork schema.",
+            "status": "pending",
+            "testStrategy": "Validation: (1) Add JsonLd component to app/layout.tsx and app/projects/[id]/page.tsx, (2) Verify JSON-LD appears in view-source inside script tags, (3) Validate with Google Rich Results Test (https://search.google.com/test/rich-results), (4) Check schema.org validator for proper structure, (5) Confirm no JSON syntax errors in browser console, (6) Test that structured data appears in Google Search Console"
+          },
+          {
+            "id": 5,
+            "title": "Add dynamic metadata to project detail pages",
+            "description": "Implement generateMetadata function in app/projects/[id]/page.tsx to create unique SEO metadata for each of the 8 project pages",
+            "dependencies": [
+              1,
+              4
+            ],
+            "details": "Update app/projects/[id]/page.tsx: (1) Import Metadata type from next, (2) Export async generateMetadata function accepting params: { id: string }, (3) Fetch project data using getProjectById(id), return null metadata if not found, (4) Return Metadata object with: title: `${project.name} - ${project.shortDescription} | Jell Portfolio`, description: `${project.longDescription.substring(0, 160)}...`, openGraph: { title, description, images: [project.screenshots[0]], type: 'article', url: `https://jell.kr/projects/${id}` }, twitter: { card: 'summary_large_image', title, description, images }, keywords: project.techStack combined, (5) Add canonical URL metadata, (6) Set alternates for language (lang: 'ko' if Korean content). Ensure unique metadata for all 8 projects.",
+            "status": "pending",
+            "testStrategy": "For each of 8 projects: (1) Navigate to /projects/[id] and verify unique title in browser tab, (2) Check view-source for project-specific metadata, (3) Test Open Graph with Facebook Sharing Debugger - verify project screenshot and description, (4) Verify Twitter Card preview shows project-specific content, (5) Confirm no duplicate titles across projects, (6) Test canonical URLs are correct"
+          },
+          {
+            "id": 6,
+            "title": "Comprehensive SEO validation with Lighthouse and testing tools",
+            "description": "Validate all SEO implementations using automated tools and manual testing to achieve ≥90 SEO score and verify metadata across all pages",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "details": "Run comprehensive validation: (1) Lighthouse audit on home page and 3 sample project pages - target ≥90 SEO score, verify meta descriptions, title tags, and structured data detected, (2) Google Rich Results Test for JSON-LD validation on home and project pages - confirm Person and CreativeWork schemas recognized, (3) Facebook Sharing Debugger for all 8 project pages - verify Open Graph images and descriptions render correctly, (4) Twitter Card Validator for home and sample projects - confirm summary_large_image card type works, (5) Google Search Console - submit sitemap and verify indexing status, check for mobile usability issues, (6) Manual checklist: unique title for all pages, meta descriptions <160 chars, canonical URLs present, lang attribute set, no duplicate content warnings, (7) Document results and fix any issues found, re-test until all criteria met.",
+            "status": "pending",
+            "testStrategy": "Acceptance criteria: (1) Lighthouse SEO score ≥90 on all tested pages, (2) All 8 projects pass Rich Results Test with valid structured data, (3) Open Graph previews correctly on Facebook for all projects, (4) Twitter Card validator shows proper preview, (5) Sitemap successfully submitted to Search Console with 0 errors, (6) No SEO warnings in browser console, (7) All pages have unique titles and descriptions, (8) Mobile-friendly test passes. Document all test results with screenshots."
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Performance Optimization and Core Web Vitals",
+        "description": "Optimize bundle size, implement code splitting, and achieve Lighthouse performance ≥90",
+        "details": "Implement performance optimizations:\n\n1. Bundle size optimization:\n   - Analyze bundle with @next/bundle-analyzer\n   - Identify large dependencies\n   - Implement dynamic imports for heavy components\n   - Remove unused code and dependencies\n   - Target: initial bundle < 200KB, total < 500KB\n\n2. Code splitting strategy:\n   - Use next/dynamic for below-the-fold components\n   - Lazy load project detail components\n   - Split by route automatically (Next.js default)\n   - Prefetch critical routes\n\n3. Font optimization:\n   - Use next/font for automatic font optimization\n   - Subset fonts to include only used characters\n   - Implement font-display: swap\n\n4. JavaScript optimization:\n   - Enable SWC minification (Next.js default)\n   - Remove console.logs in production\n   - Implement tree shaking\n\n5. CSS optimization:\n   - Purge unused Tailwind CSS\n   - Inline critical CSS\n   - Defer non-critical CSS\n\n6. Core Web Vitals targets:\n   - LCP (Largest Contentful Paint): < 2.5s\n   - FID (First Input Delay): < 100ms\n   - CLS (Cumulative Layout Shift): < 0.1\n\n7. Caching strategy:\n   - Configure Cache-Control headers\n   - Service worker for offline support (optional)\n   - Static asset versioning\n\n8. Implement loading states:\n   - Skeleton screens for data fetching\n   - Loading indicators\n   - Smooth transitions",
+        "testStrategy": "Performance validation:\n1. Run next build and analyze bundle report\n2. Verify initial bundle < 200KB\n3. Run Lighthouse on all pages (Performance, Accessibility, Best Practices, SEO ≥90)\n4. Test Core Web Vitals in Chrome DevTools\n5. Use WebPageTest for real-world performance\n6. Test on throttled 3G network\n7. Verify no render-blocking resources\n8. E2E test: measure page load time < 3s\n9. Test font loading doesn't cause FOIT/FOUT\n10. Verify no console errors in production build",
+        "priority": "medium",
+        "dependencies": [
+          6,
+          7,
+          8,
+          9
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up Bundle Analysis and Baseline Metrics",
+            "description": "Install @next/bundle-analyzer, configure it, and establish baseline performance metrics for all pages",
+            "dependencies": [],
+            "details": "Install and configure bundle analyzer:\n\n1. Install @next/bundle-analyzer: npm install @next/bundle-analyzer\n2. Update next.config.js to enable bundle analysis with ANALYZE=true flag\n3. Run production build with analysis: ANALYZE=true npm run build\n4. Document current bundle sizes (initial, total, per-route)\n5. Run Lighthouse on all pages (home, projects list, project details) and record baseline scores\n6. Measure Core Web Vitals using Chrome DevTools and WebPageTest\n7. Create performance-metrics.md documenting baselines: bundle sizes, Lighthouse scores, LCP/FID/CLS values\n8. Identify top 5 largest dependencies and components from bundle analysis\n\nTargets to measure against:\n- Initial bundle target: < 200KB\n- Total bundle target: < 500KB\n- Lighthouse Performance: ≥ 90\n- LCP: < 2.5s, FID: < 100ms, CLS: < 0.1",
+            "status": "pending",
+            "testStrategy": "Validation steps:\n1. Verify @next/bundle-analyzer generates visual reports in .next/analyze/\n2. Confirm baseline metrics documented with actual numbers\n3. Verify Lighthouse can run on all pages without errors\n4. Test that bundle analysis identifies heaviest dependencies\n5. Ensure WebPageTest results captured for 3G throttled network"
+          },
+          {
+            "id": 2,
+            "title": "Implement Code Splitting with next/dynamic",
+            "description": "Apply dynamic imports to heavy below-the-fold components and project detail sections using next/dynamic",
+            "dependencies": [
+              1
+            ],
+            "details": "Implement code splitting strategy:\n\n1. Write tests for lazy-loaded components (should render after import, show loading state)\n2. Identify candidates from Task 1 analysis: ProjectCard grid, ProjectDetailContent, TechStackGrid, ScreenshotCarousel\n3. Wrap heavy components with next/dynamic:\n   - app/projects/[id]/page.tsx: dynamic import ProjectDetailContent\n   - components/project-card.tsx: dynamic import if over 20KB\n   - Add loading skeleton components for each dynamic import\n4. Configure dynamic imports with ssr: false for client-only components\n5. Implement route prefetching for /projects links using next/link prefetch prop\n6. Test that components load on-demand and show loading states\n7. Re-run bundle analysis to verify route-specific bundle size reduction\n8. Verify initial bundle reduction by comparing with baseline from Task 1\n\nExpected: 30-40% reduction in initial bundle size",
+            "status": "pending",
+            "testStrategy": "TDD validation:\n1. Test dynamic components render after async import completes\n2. Test loading skeletons appear during component load\n3. Verify Network tab shows separate chunk files loaded on demand\n4. Test prefetching works: hover over project link, verify chunk prefetched\n5. Compare bundle sizes before/after: initial bundle should decrease significantly\n6. Lighthouse performance score should improve"
+          },
+          {
+            "id": 3,
+            "title": "Optimize Fonts with Subsetting and Display Strategy",
+            "description": "Complete font optimization using next/font with character subsetting and optimal display strategy",
+            "dependencies": [],
+            "details": "Optimize font loading (building on existing next/font setup):\n\n1. Review current font configuration in app/layout.tsx\n2. Implement font subsetting:\n   - Analyze actual characters used across all content\n   - Configure subset parameter with used character ranges\n   - For Korean/English mix, optimize subsets for both languages\n3. Set display: 'swap' for all fonts to prevent FOIT (Flash of Invisible Text)\n4. Preload critical fonts using next/font's preload option\n5. Remove any unused font weights or styles\n6. Configure font-display CSS property for fallback behavior\n7. Verify fonts are inlined in CSS (next/font default behavior)\n8. Test font loading performance with throttled network\n\nExpected: Eliminate font-related CLS, improve LCP by 200-500ms",
+            "status": "pending",
+            "testStrategy": "Font optimization validation:\n1. Verify font files are self-hosted (check Network tab)\n2. Test font-display: swap prevents invisible text\n3. Measure CLS before/after font optimization (should be < 0.1)\n4. Verify subset reduces font file size (compare original vs optimized)\n5. Test fonts load correctly on slow 3G network\n6. Lighthouse audit should show optimized font loading"
+          },
+          {
+            "id": 4,
+            "title": "JavaScript Optimization: Minification and Tree Shaking",
+            "description": "Configure production JavaScript optimization with SWC minification, remove console.logs, and verify tree shaking",
+            "dependencies": [
+              1
+            ],
+            "details": "Optimize JavaScript bundle:\n\n1. Verify SWC minification is enabled (Next.js default in production)\n2. Configure next.config.js to remove console.logs in production:\n   - Add compiler.removeConsole: true (except console.error)\n3. Audit dependencies for tree-shaking opportunities:\n   - Check for imports like 'import { specific } from library'\n   - Replace full lodash imports with lodash-es\n   - Verify side-effect-free packages in package.json\n4. Remove unused dependencies identified in Task 1 analysis\n5. Configure webpack analyzer to show tree-shaking results\n6. Verify dead code elimination in production build\n7. Test that production build has no console.logs (except errors)\n8. Re-run bundle analysis to measure JavaScript size reduction\n\nExpected: 15-25% JavaScript bundle size reduction",
+            "status": "pending",
+            "testStrategy": "JavaScript optimization validation:\n1. Build production and verify no console.logs in browser console\n2. Check bundle analysis report for minification effectiveness\n3. Test tree shaking: import unused export, verify not in bundle\n4. Compare JavaScript bundle sizes before/after optimization\n5. Verify source maps still work for debugging\n6. Lighthouse audit should show improved JavaScript performance"
+          },
+          {
+            "id": 5,
+            "title": "CSS Optimization: Purge Unused Tailwind and Inline Critical CSS",
+            "description": "Optimize CSS delivery by purging unused Tailwind classes and implementing critical CSS inlining",
+            "dependencies": [],
+            "details": "Optimize CSS for faster rendering:\n\n1. Configure Tailwind CSS purging in tailwind.config.js:\n   - Ensure content array includes all component paths\n   - Verify production build purges unused classes\n   - Test safelist for dynamic classes\n2. Analyze CSS bundle size in production build\n3. Implement critical CSS strategy:\n   - Identify above-the-fold CSS for home page and project list\n   - Use next.js built-in CSS optimization (automatic in App Router)\n   - Verify critical CSS is inlined in <head>\n4. Configure CSS modules for component-scoped styles if needed\n5. Remove duplicate CSS from global styles and Tailwind\n6. Test CSS loading doesn't block rendering\n7. Verify dark mode CSS doesn't add significant overhead\n8. Measure CSS impact on LCP and FCP (First Contentful Paint)\n\nExpected: 40-60% CSS size reduction, improved FCP by 100-300ms",
+            "status": "pending",
+            "testStrategy": "CSS optimization validation:\n1. Compare CSS bundle size before/after Tailwind purging\n2. Verify unused Tailwind classes removed in production build\n3. Test critical CSS is inlined: view page source, check <style> in <head>\n4. Measure render-blocking CSS time in Lighthouse\n5. Test dark mode toggle doesn't cause CSS re-download\n6. Verify no CSS-related CLS (layout shifts)\n7. Lighthouse Best Practices score should improve"
+          },
+          {
+            "id": 6,
+            "title": "Implement Caching Strategy and Static Asset Optimization",
+            "description": "Configure Cache-Control headers, implement service worker (optional), and optimize static asset delivery",
+            "dependencies": [
+              2,
+              4,
+              5
+            ],
+            "details": "Implement comprehensive caching strategy:\n\n1. Configure Cache-Control headers in next.config.js:\n   - Static assets (images, fonts): Cache-Control: public, max-age=31536000, immutable\n   - HTML pages: Cache-Control: public, max-age=0, must-revalidate\n   - API routes: appropriate cache headers based on data freshness\n2. Implement static asset versioning:\n   - Verify Next.js automatic hashing for JS/CSS files\n   - Test that file hashes change when content changes\n3. Configure service worker for offline support (optional):\n   - Use next-pwa if implementing PWA features\n   - Cache static assets and pages for offline access\n4. Set up CDN-friendly headers (if deploying to Vercel/Netlify)\n5. Verify browser caching behavior in DevTools Network tab\n6. Test cache invalidation when deploying new versions\n7. Implement stale-while-revalidate for optimal UX\n8. Document caching strategy in performance-metrics.md\n\nExpected: Repeat visits 70-90% faster, improved Time to Interactive",
+            "status": "pending",
+            "testStrategy": "Caching validation:\n1. Test Cache-Control headers in Network tab for all resource types\n2. Verify static assets cached: reload page, check 'from cache' status\n3. Test cache invalidation: change file, verify new hash and re-fetch\n4. If service worker: test offline functionality\n5. Measure repeat visit performance with Lighthouse\n6. Test stale-while-revalidate behavior\n7. WebPageTest repeat view should show significant improvement"
+          },
+          {
+            "id": 7,
+            "title": "Create Loading States with Skeleton Screens",
+            "description": "Implement skeleton screens and loading indicators for all data fetching and dynamic imports",
+            "dependencies": [
+              2
+            ],
+            "details": "Implement comprehensive loading UI:\n\n1. Write tests for loading states (should render skeleton, then content)\n2. Create reusable skeleton components:\n   - components/skeletons/project-card-skeleton.tsx\n   - components/skeletons/project-detail-skeleton.tsx\n   - components/skeletons/tech-stack-skeleton.tsx\n3. Implement Next.js loading.tsx for route-level loading states:\n   - app/projects/loading.tsx for project list\n   - app/projects/[id]/loading.tsx for project details\n4. Add Suspense boundaries for dynamic components from Task 2\n5. Implement smooth transitions between loading and loaded states\n6. Use Tailwind animate-pulse for skeleton shimmer effect\n7. Ensure loading states match final content layout (prevent CLS)\n8. Test loading states on throttled 3G network\n\nExpected: Improved perceived performance, CLS < 0.1, better UX during loading",
+            "status": "pending",
+            "testStrategy": "TDD for loading states:\n1. Test Suspense boundary renders skeleton component\n2. Test skeleton matches final content layout dimensions\n3. Simulate slow network: verify skeleton appears before content\n4. Measure CLS: loading state transitions shouldn't cause layout shift\n5. Test smooth fade-in transition when content loads\n6. Verify loading states accessible (ARIA labels)\n7. E2E test: navigate between pages, verify loading states appear"
+          },
+          {
+            "id": 8,
+            "title": "Validate Core Web Vitals and Performance Targets",
+            "description": "Comprehensive performance validation using Lighthouse, WebPageTest, and real-device testing to confirm all targets met",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "details": "Final performance validation and optimization:\n\n1. Run production build: npm run build && npm start\n2. Lighthouse audits on all pages (home, /projects, /projects/[id]):\n   - Performance ≥ 90\n   - Accessibility ≥ 90\n   - Best Practices ≥ 90\n   - SEO ≥ 90\n3. Measure Core Web Vitals in Chrome DevTools:\n   - LCP (Largest Contentful Paint): < 2.5s\n   - FID (First Input Delay): < 100ms\n   - CLS (Cumulative Layout Shift): < 0.1\n4. WebPageTest validation:\n   - Test on 3G throttled network\n   - Verify filmstrip shows content quickly\n   - Check waterfall for optimization opportunities\n5. Real device testing on mobile (iOS Safari, Android Chrome)\n6. Compare final metrics with baseline from Task 1\n7. Document final performance metrics in performance-metrics.md\n8. Create performance regression tests for CI/CD\n\nTargets: All Lighthouse scores ≥90, Core Web Vitals in 'Good' range, bundle sizes met",
+            "status": "pending",
+            "testStrategy": "Comprehensive performance validation:\n1. Lighthouse CI: automated tests fail if scores drop below 90\n2. Core Web Vitals measured on all pages and user flows\n3. WebPageTest: 3G network, median LCP < 2.5s across 9 runs\n4. Real device testing: verify performance on actual mobile devices\n5. Bundle size check: initial < 200KB, total < 500KB\n6. Regression test: performance scores don't degrade with new features\n7. Document final vs baseline metrics with percentage improvements"
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "created": "2025-11-27T04:41:58.910Z",
+      "updated": "2025-11-27T05:12:11.406Z",
+      "description": "Tasks for master context"
+    }
+  }
+}
