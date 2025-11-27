@@ -93,11 +93,13 @@ export default function Component() {
               <div className="grid gap-4">
                 <Image
                   src="/app-screenshot/knowrecorder.png"
-                  width="400"
-                  height="225"
-                  alt="Knowrecorder"
+                  width={400}
+                  height={225}
+                  alt="KnowRecorder - Flip-learning 앱 스크린샷"
                   className="rounded-xl object-cover"
                   style={{ aspectRatio: '400/225', objectFit: 'cover' }}
+                  priority
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="space-y-1">
                   <h3 className="text-lg font-bold">KnowRecorder</h3>
@@ -110,11 +112,13 @@ export default function Component() {
               <div className="grid gap-4">
                 <Image
                   src="/app-screenshot/knowlounge.png"
-                  width="400"
-                  height="225"
-                  alt="App 2"
+                  width={400}
+                  height={225}
+                  alt="KnowLounge - 실시간 화이트보드 앱 스크린샷"
                   className="rounded-xl object-cover"
                   style={{ aspectRatio: '400/225', objectFit: 'cover' }}
+                  loading="lazy"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="space-y-1">
                   <h3 className="text-lg font-bold">KnowLounge</h3>
@@ -127,11 +131,13 @@ export default function Component() {
               <div className="grid gap-4">
                 <Image
                   src="/app-screenshot/alo.png"
-                  width="400"
-                  height="225"
-                  alt="App 3"
+                  width={400}
+                  height={225}
+                  alt="Alo - 랜덤 비디오 채팅 앱 스크린샷"
                   className="rounded-xl object-cover"
                   style={{ aspectRatio: '400/225', objectFit: 'cover' }}
+                  loading="lazy"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="space-y-1">
                   <h3 className="text-lg font-bold">Alo</h3>
