@@ -22,6 +22,7 @@ import {
   ProjectType,
 } from '@/data/projects';
 import { cn } from '@/lib/utils';
+import { ProjectJsonLd } from '@/components/seo/json-ld';
 
 interface PageProps {
   params: { id: string };
@@ -315,6 +316,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
   return (
     <main className="min-h-screen py-8 md:py-16">
+      <ProjectJsonLd project={project} />
       <div className="container mx-auto px-4">
         {/* Back Navigation */}
         <Link

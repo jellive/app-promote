@@ -5,6 +5,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import { JSX, SVGProps } from 'react'
 import { Metadata } from 'next'
+import { HomePageJsonLd } from '@/components/seo/json-ld'
 
 export const metadata: Metadata = {
   title: '개발자 Jell'
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 export default function Component() {
   return (
     <div className="flex flex-col min-h-dvh">
+      <HomePageJsonLd />
       <header className="px-4 lg:px-6 h-14 flex items-center">
         <Link
           href="#"
