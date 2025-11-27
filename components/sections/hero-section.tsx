@@ -54,9 +54,17 @@ function TypingText() {
   }, [displayText, isDeleting, isPaused]);
 
   return (
-    <span className="bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+    <span className="jell-gradient-text">
       {displayText}
       <span className="animate-pulse text-foreground">|</span>
+      <style jsx>{`
+        .jell-gradient-text {
+          background: linear-gradient(to right, #3b82f6, #a855f7) !important;
+          -webkit-background-clip: text !important;
+          -webkit-text-fill-color: transparent !important;
+          background-clip: text !important;
+        }
+      `}</style>
     </span>
   );
 }
