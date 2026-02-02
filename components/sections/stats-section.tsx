@@ -1,39 +1,39 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { Code2, FolderKanban, TestTube2, ShieldCheck } from 'lucide-react';
-import { StatCard } from '@/components/stat-card';
+import * as React from "react";
+import { Code2, FolderKanban, TestTube2, ShieldCheck } from "lucide-react";
+import { StatCard } from "@/components/stat-card";
 
 const stats = [
   {
     value: 15,
-    label: '완료된 프로젝트',
+    label: "완료된 프로젝트",
     icon: FolderKanban,
-    gradientFrom: 'from-blue-500',
-    gradientTo: 'to-cyan-500',
+    gradientFrom: "from-blue-500",
+    gradientTo: "to-cyan-500",
   },
   {
     value: 50000,
-    label: '작성한 코드 라인',
+    label: "작성한 코드 라인",
     icon: Code2,
-    suffix: '+',
-    gradientFrom: 'from-purple-500',
-    gradientTo: 'to-pink-500',
+    suffix: "+",
+    gradientFrom: "from-purple-500",
+    gradientTo: "to-pink-500",
   },
   {
     value: 1649,
-    label: '작성한 테스트',
+    label: "작성한 테스트",
     icon: TestTube2,
-    gradientFrom: 'from-green-500',
-    gradientTo: 'to-emerald-500',
+    gradientFrom: "from-green-500",
+    gradientTo: "to-emerald-500",
   },
   {
     value: 96.8,
-    label: '테스트 커버리지',
+    label: "테스트 커버리지",
     icon: ShieldCheck,
-    suffix: '%',
-    gradientFrom: 'from-orange-500',
-    gradientTo: 'to-yellow-500',
+    suffix: "%",
+    gradientFrom: "from-orange-500",
+    gradientTo: "to-yellow-500",
   },
 ];
 

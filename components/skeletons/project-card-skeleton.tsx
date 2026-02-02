@@ -3,7 +3,7 @@
  * Matches the layout of ProjectCard to prevent CLS
  */
 
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
 interface ProjectCardSkeletonProps {
   className?: string;
@@ -14,9 +14,9 @@ export function ProjectCardSkeleton({ className }: ProjectCardSkeletonProps) {
     <div
       data-testid="project-card-skeleton"
       className={cn(
-        'group relative overflow-hidden rounded-xl border bg-card p-6',
-        'animate-pulse',
-        className
+        "group relative overflow-hidden rounded-xl border bg-card p-6",
+        "animate-pulse",
+        className,
       )}
     >
       {/* Header with emoji and title */}

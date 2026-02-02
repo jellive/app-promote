@@ -1,7 +1,7 @@
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 
 // Mock window.matchMedia for next-themes
-Object.defineProperty(window, 'matchMedia', {
+Object.defineProperty(window, "matchMedia", {
   writable: true,
   value: jest.fn().mockImplementation((query: string) => ({
     matches: false,
@@ -16,7 +16,7 @@ Object.defineProperty(window, 'matchMedia', {
 });
 
 // Mock Next.js router
-jest.mock('next/navigation', () => ({
+jest.mock("next/navigation", () => ({
   useRouter() {
     return {
       push: jest.fn(),
@@ -27,7 +27,7 @@ jest.mock('next/navigation', () => ({
     };
   },
   usePathname() {
-    return '';
+    return "";
   },
   useSearchParams() {
     return new URLSearchParams();
@@ -35,7 +35,7 @@ jest.mock('next/navigation', () => ({
 }));
 
 // Mock Next.js Image component
-jest.mock('next/image', () => ({
+jest.mock("next/image", () => ({
   __esModule: true,
   default: function MockImage(props: Record<string, unknown>) {
     // Return a simple object that represents an img element

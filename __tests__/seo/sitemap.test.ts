@@ -3,107 +3,111 @@
  * TDD: Validate Next.js sitemap generation
  */
 
-import sitemap from '@/app/sitemap';
-import { projectsData } from '@/data/projects';
+import sitemap from "@/app/sitemap";
+import { projectsData } from "@/data/projects";
 
-describe('Sitemap Generation', () => {
+describe("Sitemap Generation", () => {
   let sitemapResult: ReturnType<typeof sitemap>;
 
   beforeAll(() => {
     sitemapResult = sitemap();
   });
 
-  describe('Static Pages', () => {
-    it('should include home page', () => {
-      const homePage = sitemapResult.find((entry) => entry.url === 'https://jell.kr');
+  describe("Static Pages", () => {
+    it("should include home page", () => {
+      const homePage = sitemapResult.find(
+        (entry) => entry.url === "https://jell.kr",
+      );
       expect(homePage).toBeDefined();
       expect(homePage?.priority).toBe(1.0);
     });
 
-    it('should include privacy page', () => {
+    it("should include privacy page", () => {
       const privacyPage = sitemapResult.find((entry) =>
-        entry.url.includes('/privacy')
+        entry.url.includes("/privacy"),
       );
       expect(privacyPage).toBeDefined();
       expect(privacyPage?.priority).toBe(0.3);
     });
 
-    it('should have lastModified date on static pages', () => {
-      const homePage = sitemapResult.find((entry) => entry.url === 'https://jell.kr');
+    it("should have lastModified date on static pages", () => {
+      const homePage = sitemapResult.find(
+        (entry) => entry.url === "https://jell.kr",
+      );
       expect(homePage?.lastModified).toBeInstanceOf(Date);
     });
   });
 
-  describe('Project Pages', () => {
-    it('should include all 15 projects', () => {
+  describe("Project Pages", () => {
+    it("should include all 15 projects", () => {
       const projectEntries = sitemapResult.filter((entry) =>
-        entry.url.includes('/projects/')
+        entry.url.includes("/projects/"),
       );
       expect(projectEntries).toHaveLength(15);
     });
 
-    it('should include cookting project', () => {
+    it("should include cookting project", () => {
       const cooktingPage = sitemapResult.find((entry) =>
-        entry.url.includes('/projects/cookting')
+        entry.url.includes("/projects/cookting"),
       );
       expect(cooktingPage).toBeDefined();
-      expect(cooktingPage?.url).toBe('https://jell.kr/projects/cookting');
+      expect(cooktingPage?.url).toBe("https://jell.kr/projects/cookting");
     });
 
-    it('should include dev-utils-hub project', () => {
+    it("should include dev-utils-hub project", () => {
       const devUtilsPage = sitemapResult.find((entry) =>
-        entry.url.includes('/projects/dev-utils-hub')
+        entry.url.includes("/projects/dev-utils-hub"),
       );
       expect(devUtilsPage).toBeDefined();
     });
 
-    it('should have correct priority for project pages', () => {
+    it("should have correct priority for project pages", () => {
       const projectPages = sitemapResult.filter((entry) =>
-        entry.url.includes('/projects/')
+        entry.url.includes("/projects/"),
       );
       projectPages.forEach((page) => {
         expect(page.priority).toBe(0.8);
       });
     });
 
-    it('should have monthly change frequency for projects', () => {
+    it("should have monthly change frequency for projects", () => {
       const projectPages = sitemapResult.filter((entry) =>
-        entry.url.includes('/projects/')
+        entry.url.includes("/projects/"),
       );
       projectPages.forEach((page) => {
-        expect(page.changeFrequency).toBe('monthly');
+        expect(page.changeFrequency).toBe("monthly");
       });
     });
 
-    it('should include all project IDs from projectsData', () => {
+    it("should include all project IDs from projectsData", () => {
       const projectIds = projectsData.map((p) => p.id);
       projectIds.forEach((id) => {
         const projectPage = sitemapResult.find((entry) =>
-          entry.url.includes(`/projects/${id}`)
+          entry.url.includes(`/projects/${id}`),
         );
         expect(projectPage).toBeDefined();
       });
     });
   });
 
-  describe('URL Format', () => {
-    it('should use correct base URL', () => {
+  describe("URL Format", () => {
+    it("should use correct base URL", () => {
       sitemapResult.forEach((entry) => {
         expect(entry.url).toMatch(/^https:\/\/jell\.kr/);
       });
     });
 
-    it('should not have trailing slashes', () => {
+    it("should not have trailing slashes", () => {
       sitemapResult.forEach((entry) => {
-        if (entry.url !== 'https://jell.kr') {
+        if (entry.url !== "https://jell.kr") {
           expect(entry.url).not.toMatch(/\/$/);
         }
       });
     });
   });
 
-  describe('Total Entries', () => {
-    it('should have correct total count (2 static + 15 projects)', () => {
+  describe("Total Entries", () => {
+    it("should have correct total count (2 static + 15 projects)", () => {
       expect(sitemapResult).toHaveLength(17);
     });
   });

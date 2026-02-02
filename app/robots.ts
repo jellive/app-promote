@@ -1,19 +1,19 @@
-import { MetadataRoute } from 'next';
+import { MetadataRoute } from "next";
 
-const BASE_URL = 'https://jell.kr';
+const BASE_URL = "https://jell.kr";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        userAgent: '*',
-        allow: '/',
-        disallow: ['/api/', '/admin/'],
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/api/", "/admin/"],
       },
       {
-        userAgent: 'Googlebot',
-        allow: '/',
-        disallow: ['/api/', '/admin/'],
+        userAgent: "Googlebot",
+        allow: "/",
+        disallow: ["/api/", "/admin/"],
       },
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,

@@ -3,12 +3,12 @@
  * TDD: RED phase - Write tests first
  */
 
-import { render, screen } from '@testing-library/react';
-import { HeroSection } from '@/components/sections/hero-section';
+import { render, screen } from "@testing-library/react";
+import { HeroSection } from "@/components/sections/hero-section";
 
-describe('HeroSection', () => {
-  describe('Profile Information', () => {
-    it('should render profile greeting text', () => {
+describe("HeroSection", () => {
+  describe("Profile Information", () => {
+    it("should render profile greeting text", () => {
       render(<HeroSection />);
       // "Jell" is rendered with typing animation, so we check for the greeting
       expect(screen.getByText(/안녕하세요/)).toBeInTheDocument();
@@ -21,56 +21,60 @@ describe('HeroSection', () => {
       expect(elements.length).toBeGreaterThan(0);
     });
 
-    it('should render intro mentioning 15 projects', () => {
+    it("should render intro mentioning 15 projects", () => {
       render(<HeroSection />);
       expect(screen.getByText(/15/)).toBeInTheDocument();
     });
   });
 
-  describe('CTA Buttons', () => {
+  describe("CTA Buttons", () => {
     it('should render "프로젝트 보기" button', () => {
       render(<HeroSection />);
-      expect(screen.getByRole('link', { name: /프로젝트 보기/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("link", { name: /프로젝트 보기/i }),
+      ).toBeInTheDocument();
     });
 
     it('should render "연락하기" button', () => {
       render(<HeroSection />);
-      expect(screen.getByRole('link', { name: /연락하기/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("link", { name: /연락하기/i }),
+      ).toBeInTheDocument();
     });
 
-    it('should have correct href for projects button', () => {
+    it("should have correct href for projects button", () => {
       render(<HeroSection />);
-      const projectsBtn = screen.getByRole('link', { name: /프로젝트 보기/i });
-      expect(projectsBtn).toHaveAttribute('href', '#projects');
+      const projectsBtn = screen.getByRole("link", { name: /프로젝트 보기/i });
+      expect(projectsBtn).toHaveAttribute("href", "#projects");
     });
 
-    it('should have correct href for contact button', () => {
+    it("should have correct href for contact button", () => {
       render(<HeroSection />);
-      const contactBtn = screen.getByRole('link', { name: /연락하기/i });
-      expect(contactBtn).toHaveAttribute('href', '#contact');
+      const contactBtn = screen.getByRole("link", { name: /연락하기/i });
+      expect(contactBtn).toHaveAttribute("href", "#contact");
     });
   });
 
-  describe('Layout and Structure', () => {
-    it('should render as a section element', () => {
+  describe("Layout and Structure", () => {
+    it("should render as a section element", () => {
       render(<HeroSection />);
-      expect(screen.getByTestId('hero-section')).toBeInTheDocument();
+      expect(screen.getByTestId("hero-section")).toBeInTheDocument();
     });
 
-    it('should have proper id for navigation', () => {
+    it("should have proper id for navigation", () => {
       render(<HeroSection />);
-      const section = screen.getByTestId('hero-section');
-      expect(section).toHaveAttribute('id', 'hero');
+      const section = screen.getByTestId("hero-section");
+      expect(section).toHaveAttribute("id", "hero");
     });
   });
 
-  describe('Accessibility', () => {
-    it('should have accessible heading structure', () => {
+  describe("Accessibility", () => {
+    it("should have accessible heading structure", () => {
       render(<HeroSection />);
-      expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
+      expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
     });
 
-    it('should have descriptive text content', () => {
+    it("should have descriptive text content", () => {
       render(<HeroSection />);
       // Use getAllByText since "프로젝트" appears multiple times
       const elements = screen.getAllByText(/프로젝트/);
@@ -78,10 +82,10 @@ describe('HeroSection', () => {
     });
   });
 
-  describe('Dark Mode Support', () => {
-    it('should have theme-aware background classes', () => {
+  describe("Dark Mode Support", () => {
+    it("should have theme-aware background classes", () => {
       render(<HeroSection />);
-      const section = screen.getByTestId('hero-section');
+      const section = screen.getByTestId("hero-section");
       // Section uses bg-background which is theme-aware
       expect(section.className).toBeTruthy();
     });

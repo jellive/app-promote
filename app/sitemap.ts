@@ -1,7 +1,7 @@
-import { MetadataRoute } from 'next';
-import { projectsData } from '@/data/projects';
+import { MetadataRoute } from "next";
+import { projectsData } from "@/data/projects";
 
-const BASE_URL = 'https://jell.kr';
+const BASE_URL = "https://jell.kr";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date();
@@ -11,13 +11,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: BASE_URL,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 1.0,
     },
     {
       url: `${BASE_URL}/privacy`,
       lastModified: currentDate,
-      changeFrequency: 'yearly',
+      changeFrequency: "yearly",
       priority: 0.3,
     },
   ];
@@ -26,7 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const projectPages: MetadataRoute.Sitemap = projectsData.map((project) => ({
     url: `${BASE_URL}/projects/${project.id}`,
     lastModified: currentDate,
-    changeFrequency: 'monthly' as const,
+    changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 

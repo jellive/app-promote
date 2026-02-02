@@ -1,6 +1,7 @@
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
+"use client";
+
+import { notFound } from "next/navigation";
+import Link from "next/link";
 import {
   ArrowLeft,
   Github,
@@ -17,80 +18,63 @@ import {
   Gamepad2,
   Workflow,
   Chrome,
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
+  Calendar,
+  User,
+  Trophy,
+  BarChart3,
+  Link2,
+} from "lucide-react";
 import {
-  projectsData,
   getProjectById,
   Project,
   ProjectStatus,
   ProjectType,
-} from '@/data/projects';
-import { cn } from '@/lib/utils';
-import { ProjectJsonLd } from '@/components/seo/json-ld';
+} from "@/data/projects";
+import { cn } from "@/lib/utils";
+import { ProjectJsonLd } from "@/components/seo/json-ld";
 
 interface PageProps {
   params: { id: string };
 }
 
-// Generate static params for all projects
-export async function generateStaticParams() {
-  return projectsData.map((project) => ({
-    id: project.id,
-  }));
-}
-
-// Generate metadata for SEO
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const project = getProjectById(params.id);
-
-  if (!project) {
-    return {
-      title: 'Project Not Found',
-    };
-  }
-
-  return {
-    title: `${project.name} - Jell Portfolio`,
-    description: project.shortDescription,
-    openGraph: {
-      title: `${project.name} ${project.emoji}`,
-      description: project.description,
-      type: 'article',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${project.name} - Jell Portfolio`,
-      description: project.shortDescription,
-    },
-  };
-}
-
 // Status badge component
 function StatusBadge({ status }: { status: ProjectStatus }) {
-  const statusConfig: Record<ProjectStatus, { label: string; className: string }> = {
+  const statusConfig: Record<
+    ProjectStatus,
+    { label: string; bgColor: string; color: string }
+  > = {
     [ProjectStatus.PRODUCTION]: {
-      label: 'Production',
-      className: 'bg-green-500/20 text-green-600 dark:text-green-400 border-green-500/30',
+      label: "LIVE",
+      bgColor: "bg-primary",
+      color: "text-background",
     },
     [ProjectStatus.APP_STORE_REVIEW]: {
-      label: 'App Store 심사중',
-      className: 'bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 border-yellow-500/30',
+      label: "REVIEW",
+      bgColor: "bg-secondary",
+      color: "text-foreground",
     },
     [ProjectStatus.DEVELOPMENT]: {
-      label: '개발중',
-      className: 'bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30',
+      label: "DEV",
+      bgColor: "bg-accent",
+      color: "text-background",
     },
     [ProjectStatus.ARCHIVE]: {
-      label: 'Archive',
-      className: 'bg-gray-500/20 text-gray-600 dark:text-gray-400 border-gray-500/30',
+      label: "ARCHIVE",
+      bgColor: "bg-muted",
+      color: "text-foreground",
     },
   };
 
   const config = statusConfig[status];
 
   return (
-    <span className={cn('px-3 py-1 rounded-full text-xs font-medium border', config.className)}>
+    <span
+      className={cn(
+        "px-3 py-1 border-2 border-foreground font-mono text-xs font-bold",
+        config.bgColor,
+        config.color,
+      )}
+    >
       {config.label}
     </span>
   );
@@ -98,24 +82,33 @@ function StatusBadge({ status }: { status: ProjectStatus }) {
 
 // Type badge component
 function TypeBadge({ type }: { type: ProjectType }) {
-  const typeConfig: Record<ProjectType, { label: string; icon: React.ElementType }> = {
-    [ProjectType.FULL_STACK_MOBILE]: { label: 'Full Stack Mobile', icon: Layers },
-    [ProjectType.DESKTOP]: { label: 'Desktop', icon: Monitor },
-    [ProjectType.INFRASTRUCTURE]: { label: 'Infrastructure', icon: Server },
-    [ProjectType.CHROME_EXTENSION]: { label: 'Chrome Extension', icon: Sparkles },
-    [ProjectType.IOS]: { label: 'iOS', icon: Apple },
-    [ProjectType.NPM_PACKAGE]: { label: 'npm Package', icon: Package },
-    [ProjectType.WEB]: { label: 'Web', icon: Globe },
-    [ProjectType.WEBRTC]: { label: 'WebRTC', icon: Video },
-    [ProjectType.UNITY_WEBGL]: { label: 'Unity WebGL', icon: Gamepad2 },
-    [ProjectType.FULL_STACK_WEB]: { label: 'Full Stack Web', icon: Workflow },
+  const typeConfig: Record<
+    ProjectType,
+    { label: string; icon: React.ElementType }
+  > = {
+    [ProjectType.FULL_STACK_MOBILE]: {
+      label: "Full Stack Mobile",
+      icon: Layers,
+    },
+    [ProjectType.DESKTOP]: { label: "Desktop", icon: Monitor },
+    [ProjectType.INFRASTRUCTURE]: { label: "Infrastructure", icon: Server },
+    [ProjectType.CHROME_EXTENSION]: {
+      label: "Chrome Extension",
+      icon: Sparkles,
+    },
+    [ProjectType.IOS]: { label: "iOS", icon: Apple },
+    [ProjectType.NPM_PACKAGE]: { label: "npm Package", icon: Package },
+    [ProjectType.WEB]: { label: "Web", icon: Globe },
+    [ProjectType.WEBRTC]: { label: "WebRTC", icon: Video },
+    [ProjectType.UNITY_WEBGL]: { label: "Unity WebGL", icon: Gamepad2 },
+    [ProjectType.FULL_STACK_WEB]: { label: "Full Stack Web", icon: Workflow },
   };
 
   const config = typeConfig[type];
   const Icon = config.icon;
 
   return (
-    <span className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
+    <span className="inline-flex items-center gap-2 px-3 py-1 border-2 border-foreground bg-background font-mono text-xs font-bold">
       <Icon className="w-3 h-3" />
       {config.label}
     </span>
@@ -125,32 +118,71 @@ function TypeBadge({ type }: { type: ProjectType }) {
 // Tech Stack Section Component
 function TechStackSection({ project }: { project: Project }) {
   const categories = [
-    { key: 'frontend', label: 'Frontend', icon: Code2, items: project.techStack.frontend },
-    { key: 'backend', label: 'Backend', icon: Server, items: project.techStack.backend },
-    { key: 'infrastructure', label: 'Infrastructure', icon: Layers, items: project.techStack.infrastructure },
-    { key: 'desktop', label: 'Desktop', icon: Monitor, items: project.techStack.desktop },
-  ].filter(cat => cat.items.length > 0);
+    {
+      key: "frontend",
+      label: "Frontend",
+      icon: Code2,
+      items: project.techStack.frontend,
+      color: "bg-primary",
+    },
+    {
+      key: "backend",
+      label: "Backend",
+      icon: Server,
+      items: project.techStack.backend,
+      color: "bg-secondary",
+    },
+    {
+      key: "infrastructure",
+      label: "Infrastructure",
+      icon: Layers,
+      items: project.techStack.infrastructure,
+      color: "bg-accent",
+    },
+    {
+      key: "desktop",
+      label: "Desktop",
+      icon: Monitor,
+      items: project.techStack.desktop,
+      color: "bg-primary",
+    },
+  ].filter((cat) => cat.items.length > 0);
 
   return (
-    <section data-testid="tech-stack-section" className="space-y-4">
-      <h2 className="text-xl font-semibold">기술 스택</h2>
+    <section
+      data-testid="tech-stack-section"
+      className="space-y-6 stagger-fade-in"
+    >
+      <div className="flex items-center gap-3">
+        <div className="px-3 py-1 bg-foreground text-background font-mono text-sm font-bold">
+          TECH STACK
+        </div>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {categories.map((category) => {
+        {categories.map((category, index) => {
           const Icon = category.icon;
           return (
             <div
               key={category.key}
-              className="p-4 rounded-lg bg-muted/50 border"
+              className="border-4 border-foreground bg-card p-6 brutal-shadow hover-brutal transition-all stagger-fade-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="flex items-center gap-2 mb-3">
-                <Icon className="w-4 h-4 text-primary" />
-                <span className="font-medium text-sm">{category.label}</span>
+              <div className="flex items-center gap-2 mb-4">
+                <div
+                  className={cn(
+                    "p-2 border-2 border-foreground",
+                    category.color,
+                  )}
+                >
+                  <Icon className="w-4 h-4 text-background" />
+                </div>
+                <span className="font-bold text-lg">{category.label}</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {category.items.map((tech) => (
                   <span
                     key={tech}
-                    className="px-2.5 py-1 text-xs rounded-md bg-background border"
+                    className="px-3 py-1.5 text-sm font-bold border-2 border-foreground bg-background"
                   >
                     {tech}
                   </span>
@@ -167,16 +199,27 @@ function TechStackSection({ project }: { project: Project }) {
 // Features Section Component
 function FeaturesSection({ project }: { project: Project }) {
   return (
-    <section data-testid="features-section" className="space-y-4">
-      <h2 className="text-xl font-semibold">주요 기능</h2>
+    <section
+      data-testid="features-section"
+      className="space-y-6 stagger-fade-in"
+      style={{ animationDelay: "0.2s" }}
+    >
+      <div className="flex items-center gap-3">
+        <div className="px-3 py-1 bg-foreground text-background font-mono text-sm font-bold">
+          KEY FEATURES
+        </div>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {project.features.map((feature, index) => (
           <div
             key={index}
-            className="p-4 rounded-lg bg-muted/50 border hover:border-primary/50 transition-colors"
+            className="border-4 border-foreground bg-card p-6 brutal-shadow hover-brutal transition-all stagger-fade-in"
+            style={{ animationDelay: `${0.3 + index * 0.05}s` }}
           >
-            <h3 className="font-medium mb-2">{feature.title}</h3>
-            <p className="text-sm text-muted-foreground">{feature.description}</p>
+            <h3 className="font-bold text-lg mb-2">{feature.title}</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              {feature.description}
+            </p>
           </div>
         ))}
       </div>
@@ -191,22 +234,32 @@ function AchievementsSection({ project }: { project: Project }) {
   }
 
   return (
-    <section data-testid="achievements-section" className="space-y-4">
-      <h2 className="text-xl font-semibold">성과</h2>
+    <section
+      data-testid="achievements-section"
+      className="space-y-6 stagger-fade-in"
+      style={{ animationDelay: "0.4s" }}
+    >
+      <div className="flex items-center gap-3">
+        <div className="px-3 py-1 bg-foreground text-background font-mono text-sm font-bold">
+          <Trophy className="inline-block w-4 h-4 mr-2" />
+          ACHIEVEMENTS
+        </div>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {project.achievements.map((achievement, index) => (
           <div
             key={index}
-            className={cn(
-              'flex items-start gap-3 p-4 rounded-lg',
-              'bg-gradient-to-r from-primary/5 to-transparent',
-              'border border-primary/10'
-            )}
+            className="border-4 border-foreground bg-card p-6 brutal-shadow hover-brutal transition-all stagger-fade-in"
+            style={{ animationDelay: `${0.5 + index * 0.05}s` }}
           >
-            <span className="text-2xl">{achievement.icon || '🏆'}</span>
-            <div>
-              <h3 className="font-medium">{achievement.title}</h3>
-              <p className="text-sm text-muted-foreground">{achievement.description}</p>
+            <div className="flex items-start gap-4">
+              <span className="text-3xl">{achievement.icon || "🏆"}</span>
+              <div>
+                <h3 className="font-bold text-lg mb-1">{achievement.title}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {achievement.description}
+                </p>
+              </div>
             </div>
           </div>
         ))}
@@ -222,25 +275,64 @@ function CodeStatsSection({ project }: { project: Project }) {
   }
 
   const stats = [
-    { label: '총 코드', value: project.codeStats.total, show: true },
-    { label: 'Frontend', value: project.codeStats.frontend, show: !!project.codeStats.frontend },
-    { label: 'Backend', value: project.codeStats.backend, show: !!project.codeStats.backend },
-    { label: 'Tests', value: project.codeStats.tests, show: !!project.codeStats.tests },
-  ].filter(stat => stat.show);
+    {
+      label: "Total",
+      value: project.codeStats.total,
+      show: true,
+      color: "bg-primary",
+    },
+    {
+      label: "Frontend",
+      value: project.codeStats.frontend,
+      show: !!project.codeStats.frontend,
+      color: "bg-secondary",
+    },
+    {
+      label: "Backend",
+      value: project.codeStats.backend,
+      show: !!project.codeStats.backend,
+      color: "bg-accent",
+    },
+    {
+      label: "Tests",
+      value: project.codeStats.tests,
+      show: !!project.codeStats.tests,
+      color: "bg-primary",
+    },
+  ].filter((stat) => stat.show);
 
   return (
-    <section data-testid="code-stats-section" className="space-y-4">
-      <h2 className="text-xl font-semibold">코드 통계</h2>
+    <section
+      data-testid="code-stats-section"
+      className="space-y-6 stagger-fade-in"
+      style={{ animationDelay: "0.6s" }}
+    >
+      <div className="flex items-center gap-3">
+        <div className="px-3 py-1 bg-foreground text-background font-mono text-sm font-bold">
+          <BarChart3 className="inline-block w-4 h-4 mr-2" />
+          CODE STATS
+        </div>
+      </div>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        {stats.map((stat) => (
+        {stats.map((stat, index) => (
           <div
             key={stat.label}
-            className="p-4 rounded-lg bg-muted/50 border text-center"
+            className="border-4 border-foreground bg-card p-6 text-center brutal-shadow hover-lift transition-all stagger-fade-in"
+            style={{ animationDelay: `${0.7 + index * 0.05}s` }}
           >
-            <div className="text-2xl font-bold text-primary">
-              {stat.value?.toLocaleString()}
+            <div
+              className={cn(
+                "inline-block px-3 py-1 border-2 border-foreground mb-3",
+                stat.color,
+              )}
+            >
+              <span className="text-2xl font-black font-mono text-background">
+                {stat.value?.toLocaleString()}
+              </span>
             </div>
-            <div className="text-xs text-muted-foreground mt-1">{stat.label} Lines</div>
+            <div className="text-xs font-mono font-bold text-muted-foreground">
+              {stat.label} Lines
+            </div>
           </div>
         ))}
       </div>
@@ -252,69 +344,81 @@ function CodeStatsSection({ project }: { project: Project }) {
 function ProjectLinksSection({ project }: { project: Project }) {
   const links = [
     {
-      key: 'github',
-      label: 'GitHub',
+      key: "github",
+      label: "GitHub",
       href: project.links.github,
       icon: Github,
       show: !!project.links.github,
+      color: "bg-foreground text-background",
     },
     {
-      key: 'live',
-      label: 'Live Demo',
+      key: "live",
+      label: "Live Demo",
       href: project.links.live,
       icon: ExternalLink,
       show: !!project.links.live,
+      color: "bg-primary text-background",
     },
     {
-      key: 'appStore',
-      label: 'App Store',
+      key: "appStore",
+      label: "App Store",
       href: project.links.appStore,
       icon: Apple,
       show: !!project.links.appStore,
+      color: "bg-secondary text-foreground",
     },
     {
-      key: 'chromeWebStore',
-      label: 'Chrome Web Store',
+      key: "chromeWebStore",
+      label: "Chrome Web Store",
       href: project.links.chromeWebStore,
       icon: Chrome,
       show: !!project.links.chromeWebStore,
+      color: "bg-accent text-background",
     },
     {
-      key: 'npm',
-      label: 'npm',
+      key: "npm",
+      label: "npm",
       href: project.links.npm,
       icon: Package,
       show: !!project.links.npm,
+      color: "bg-foreground text-background",
     },
-  ].filter(link => link.show);
+  ].filter((link) => link.show);
 
   if (links.length === 0) {
     return null;
   }
 
   return (
-    <section data-testid="project-links-section" className="space-y-4">
-      <h2 className="text-xl font-semibold">링크</h2>
+    <section
+      data-testid="project-links-section"
+      className="space-y-6 stagger-fade-in"
+      style={{ animationDelay: "0.8s" }}
+    >
+      <div className="flex items-center gap-3">
+        <div className="px-3 py-1 bg-foreground text-background font-mono text-sm font-bold">
+          <Link2 className="inline-block w-4 h-4 mr-2" />
+          PROJECT LINKS
+        </div>
+      </div>
       <div className="flex flex-wrap gap-3">
-        {links.map((link) => {
+        {links.map((link, index) => {
           const Icon = link.icon;
           return (
-            <Button
+            <a
               key={link.key}
-              asChild
-              variant="outline"
-              size="lg"
-              className="gap-2"
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "inline-flex items-center gap-2 px-6 py-3 border-2 border-foreground font-bold font-mono brutal-shadow hover-brutal transition-all stagger-fade-in",
+                link.color,
+              )}
+              style={{ animationDelay: `${0.9 + index * 0.05}s` }}
             >
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Icon className="w-4 h-4" />
-                {link.label}
-              </a>
-            </Button>
+              <Icon className="w-4 h-4" />
+              {link.label}
+            </a>
           );
         })}
       </div>
@@ -323,7 +427,7 @@ function ProjectLinksSection({ project }: { project: Project }) {
 }
 
 // Main Page Component
-export default async function ProjectDetailPage({ params }: PageProps) {
+export default function ProjectDetailPage({ params }: PageProps) {
   const project = getProjectById(params.id);
 
   if (!project) {
@@ -331,54 +435,102 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   }
 
   return (
-    <main className="min-h-screen py-8 md:py-16">
+    <main className="min-h-screen py-20 md:py-32 relative overflow-hidden">
       <ProjectJsonLd project={project} />
-      <div className="container mx-auto px-4">
+
+      {/* Background Pattern */}
+      <div
+        className="absolute inset-0 grid-pattern opacity-10"
+        aria-hidden="true"
+      />
+
+      {/* Decorative Elements */}
+      <div
+        className="absolute top-20 right-10 w-32 h-32 border-4 border-secondary rotate-12 hidden xl:block"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute bottom-20 left-10 w-24 h-24 bg-accent/10 -rotate-6 hidden xl:block"
+        aria-hidden="true"
+      />
+
+      <div className="container mx-auto px-4 relative z-10">
         {/* Back Navigation */}
         <Link
           href="/#projects"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+          className="inline-flex items-center gap-2 px-4 py-2 border-2 border-foreground bg-background font-mono font-bold text-sm brutal-shadow-sm hover-brutal transition-all mb-8"
         >
           <ArrowLeft className="w-4 h-4" />
-          프로젝트 목록으로 돌아가기
+          프로젝트 목록
         </Link>
 
         {/* Hero Section */}
-        <header className="mb-12">
-          <div className="flex flex-wrap items-center gap-3 mb-4">
-            <span className="text-4xl">{project.emoji}</span>
-            <h1 className="text-3xl md:text-4xl font-bold">{project.name}</h1>
+        <header className="mb-16 max-w-5xl">
+          <div className="flex flex-wrap items-center gap-4 mb-6">
+            <span className="text-5xl md:text-6xl">{project.emoji}</span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold">
+              <span className="relative inline-block">
+                <span className="relative z-10">{project.name}</span>
+                <span className="absolute -bottom-2 left-0 w-full h-4 bg-primary -z-10 block" />
+              </span>
+            </h1>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2 mb-6">
+          <div className="flex flex-wrap items-center gap-3 mb-6">
             <TypeBadge type={project.type} />
             <StatusBadge status={project.status} />
           </div>
 
-          <p className="text-lg text-muted-foreground mb-4">
+          <p className="text-xl md:text-2xl font-bold mb-6 leading-relaxed">
             {project.shortDescription}
           </p>
 
-          <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-            <span>📅 {project.period}</span>
-            <span>👤 {project.role}</span>
+          <div className="flex flex-wrap gap-4 font-mono text-sm">
+            <div className="flex items-center gap-2 px-4 py-2 border-2 border-foreground bg-background">
+              <Calendar className="w-4 h-4 text-primary" />
+              <span className="text-muted-foreground">Period:</span>
+              <span className="font-bold">{project.period}</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 border-2 border-foreground bg-background">
+              <User className="w-4 h-4 text-secondary" />
+              <span className="text-muted-foreground">Role:</span>
+              <span className="font-bold">{project.role}</span>
+            </div>
           </div>
         </header>
 
         {/* Description */}
-        <section className="mb-12">
-          <p className="text-muted-foreground leading-relaxed">
-            {project.description}
-          </p>
+        <section className="mb-16 max-w-5xl">
+          <div className="border-4 border-foreground bg-card p-6 md:p-8 brutal-shadow">
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+              {project.description}
+            </p>
+          </div>
         </section>
 
         {/* Content Sections */}
-        <div className="space-y-12">
+        <div className="space-y-12 max-w-5xl">
           <TechStackSection project={project} />
           <FeaturesSection project={project} />
           <AchievementsSection project={project} />
           <CodeStatsSection project={project} />
           <ProjectLinksSection project={project} />
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="mt-20 max-w-5xl">
+          <div className="p-8 border-4 border-foreground bg-card brutal-shadow-lg text-center">
+            <p className="text-lg font-bold mb-4">
+              더 많은 프로젝트가 궁금하신가요?
+            </p>
+            <Link
+              href="/#projects"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background font-bold border-2 border-foreground hover-lift transition-transform font-mono"
+            >
+              <span>모든 프로젝트 보기</span>
+              <span>→</span>
+            </Link>
+          </div>
         </div>
       </div>
     </main>
