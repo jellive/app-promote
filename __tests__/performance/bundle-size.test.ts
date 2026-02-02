@@ -20,7 +20,7 @@ describe("Performance Configuration", () => {
     });
 
     it("should enable analyzer via ANALYZE env variable", () => {
-      expect(configContent).toContain("process.env.ANALYZE === 'true'");
+      expect(configContent).toContain('process.env.ANALYZE === "true"');
     });
   });
 
@@ -30,11 +30,11 @@ describe("Performance Configuration", () => {
     });
 
     it("should preserve console.error in production", () => {
-      expect(configContent).toContain("exclude: ['error'");
+      expect(configContent).toContain('exclude: ["error"');
     });
 
     it("should preserve console.warn in production", () => {
-      expect(configContent).toContain("'warn'");
+      expect(configContent).toContain('"warn"');
     });
   });
 
@@ -54,11 +54,11 @@ describe("Performance Configuration", () => {
     });
 
     it("should enable WebP format", () => {
-      expect(configContent).toContain("'image/webp'");
+      expect(configContent).toContain('"image/webp"');
     });
 
     it("should enable AVIF format", () => {
-      expect(configContent).toContain("'image/avif'");
+      expect(configContent).toContain('"image/avif"');
     });
 
     it("should have cache TTL configured", () => {

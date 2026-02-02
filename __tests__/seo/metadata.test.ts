@@ -16,7 +16,7 @@ describe("SEO Metadata Configuration", () => {
 
   describe("Site Configuration", () => {
     it("should have site name configured", () => {
-      expect(layoutContent).toContain("name: 'Jell Portfolio'");
+      expect(layoutContent).toContain('name: "Jell Portfolio"');
     });
 
     it("should have site description configured", () => {
@@ -25,12 +25,12 @@ describe("SEO Metadata Configuration", () => {
     });
 
     it("should have site URL configured", () => {
-      expect(layoutContent).toContain("url: 'https://jell.kr'");
+      expect(layoutContent).toContain('url: "https://jell.kr"');
     });
 
     it("should have author information", () => {
       expect(layoutContent).toContain("author:");
-      expect(layoutContent).toContain("name: 'Jell'");
+      expect(layoutContent).toContain('name: "Jell"');
       expect(layoutContent).toContain("jellive7@gmail.com");
     });
   });
@@ -63,11 +63,11 @@ describe("SEO Metadata Configuration", () => {
     });
 
     it("should have og type as website", () => {
-      expect(layoutContent).toContain("type: 'website'");
+      expect(layoutContent).toContain('type: "website"');
     });
 
     it("should have Korean locale", () => {
-      expect(layoutContent).toContain("locale: 'ko_KR'");
+      expect(layoutContent).toContain('locale: "ko_KR"');
     });
 
     it("should have og images configured", () => {
@@ -83,11 +83,11 @@ describe("SEO Metadata Configuration", () => {
     });
 
     it("should use summary_large_image card", () => {
-      expect(layoutContent).toContain("card: 'summary_large_image'");
+      expect(layoutContent).toContain('card: "summary_large_image"');
     });
 
     it("should have twitter creator", () => {
-      expect(layoutContent).toContain("creator: '@jellive'");
+      expect(layoutContent).toContain('creator: "@jellive"');
     });
   });
 
@@ -111,7 +111,7 @@ describe("SEO Metadata Configuration", () => {
 
   describe("Icons Configuration", () => {
     it("should have favicon configured", () => {
-      expect(layoutContent).toContain("icon: '/favicon.ico'");
+      expect(layoutContent).toContain('icon: "/favicon.ico"');
     });
 
     it("should have favicon configured correctly", () => {
@@ -125,15 +125,15 @@ describe("SEO Metadata Configuration", () => {
     });
 
     it("should have theme color for light mode", () => {
-      expect(layoutContent).toContain("media: '(prefers-color-scheme: light)'");
+      expect(layoutContent).toContain('media: "(prefers-color-scheme: light)"');
     });
 
     it("should have theme color for dark mode", () => {
-      expect(layoutContent).toContain("media: '(prefers-color-scheme: dark)'");
+      expect(layoutContent).toContain('media: "(prefers-color-scheme: dark)"');
     });
 
     it("should have device-width configured", () => {
-      expect(layoutContent).toContain("width: 'device-width'");
+      expect(layoutContent).toContain('width: "device-width"');
     });
   });
 
@@ -152,7 +152,7 @@ describe("SEO Metadata Configuration", () => {
 
   describe("Manifest", () => {
     it("should have web manifest configured", () => {
-      expect(layoutContent).toContain("manifest: '/site.webmanifest'");
+      expect(layoutContent).toContain('manifest: "/site.webmanifest"');
     });
   });
 });

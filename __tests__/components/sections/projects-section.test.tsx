@@ -36,11 +36,9 @@ describe("ProjectsSection", () => {
       expect(screen.getByRole("tab", { name: /전체/i })).toBeInTheDocument();
     });
 
-    it('should have "Production" filter tab', () => {
+    it('should have "Active" filter tab', () => {
       render(<ProjectsSection />);
-      expect(
-        screen.getByRole("tab", { name: /production/i }),
-      ).toBeInTheDocument();
+      expect(screen.getByRole("tab", { name: /active/i })).toBeInTheDocument();
     });
 
     it('should have "Archive" filter tab', () => {
@@ -70,12 +68,12 @@ describe("ProjectsSection", () => {
   });
 
   describe("Filter Functionality", () => {
-    it("should filter projects when clicking Production tab", () => {
+    it("should filter projects when clicking Active tab", () => {
       render(<ProjectsSection />);
-      const productionTab = screen.getByRole("tab", { name: /production/i });
-      fireEvent.click(productionTab);
+      const activeTab = screen.getByRole("tab", { name: /active/i });
+      fireEvent.click(activeTab);
 
-      // After clicking, only production projects should be visible
+      // After clicking, only active projects should be visible
       const cards = screen.getAllByRole("article");
       expect(cards.length).toBeGreaterThan(0);
     });

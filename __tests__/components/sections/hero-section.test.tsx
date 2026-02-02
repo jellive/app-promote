@@ -23,7 +23,9 @@ describe("HeroSection", () => {
 
     it("should render intro mentioning 15 projects", () => {
       render(<HeroSection />);
-      expect(screen.getByText(/15/)).toBeInTheDocument();
+      // Use getAllByText since "15" appears multiple times in the hero section
+      const elements = screen.getAllByText(/15/);
+      expect(elements.length).toBeGreaterThan(0);
     });
   });
 

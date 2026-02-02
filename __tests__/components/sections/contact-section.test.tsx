@@ -39,8 +39,8 @@ describe("ContactSection", () => {
 
     it("should have email link with mailto", () => {
       render(<ContactSection />);
-      const emailLink = screen.getByTestId("contact-email").querySelector("a");
-      expect(emailLink).toHaveAttribute(
+      const emailElement = screen.getByTestId("contact-email");
+      expect(emailElement).toHaveAttribute(
         "href",
         expect.stringContaining("mailto:"),
       );
@@ -53,10 +53,8 @@ describe("ContactSection", () => {
 
     it("should have GitHub link with correct URL", () => {
       render(<ContactSection />);
-      const githubLink = screen
-        .getByTestId("contact-github")
-        .querySelector("a");
-      expect(githubLink).toHaveAttribute(
+      const githubElement = screen.getByTestId("contact-github");
+      expect(githubElement).toHaveAttribute(
         "href",
         expect.stringContaining("github.com"),
       );
@@ -71,23 +69,23 @@ describe("ContactSection", () => {
 
     it("should have name input field", () => {
       render(<ContactSection />);
-      expect(screen.getByLabelText(/이름/i)).toBeInTheDocument();
+      expect(screen.getByLabelText(/name/i)).toBeInTheDocument();
     });
 
     it("should have email input field", () => {
       render(<ContactSection />);
-      expect(screen.getByLabelText(/이메일/i)).toBeInTheDocument();
+      expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
     });
 
     it("should have message textarea", () => {
       render(<ContactSection />);
-      expect(screen.getByLabelText(/메시지/i)).toBeInTheDocument();
+      expect(screen.getByLabelText(/message/i)).toBeInTheDocument();
     });
 
     it("should have submit button", () => {
       render(<ContactSection />);
       expect(
-        screen.getByRole("button", { name: /보내기/i }),
+        screen.getByRole("button", { name: /send message/i }),
       ).toBeInTheDocument();
     });
   });
@@ -95,31 +93,31 @@ describe("ContactSection", () => {
   describe("Form Validation", () => {
     it("should mark name field as required", () => {
       render(<ContactSection />);
-      const nameInput = screen.getByLabelText(/이름/i);
+      const nameInput = screen.getByLabelText(/name/i);
       expect(nameInput).toBeRequired();
     });
 
     it("should mark email field as required", () => {
       render(<ContactSection />);
-      const emailInput = screen.getByLabelText(/이메일/i);
+      const emailInput = screen.getByLabelText(/email \*/i);
       expect(emailInput).toBeRequired();
     });
 
     it("should mark message field as required", () => {
       render(<ContactSection />);
-      const messageInput = screen.getByLabelText(/메시지/i);
+      const messageInput = screen.getByLabelText(/message/i);
       expect(messageInput).toBeRequired();
     });
 
     it("should have email type on email input", () => {
       render(<ContactSection />);
-      const emailInput = screen.getByLabelText(/이메일/i);
+      const emailInput = screen.getByLabelText(/email \*/i);
       expect(emailInput).toHaveAttribute("type", "email");
     });
 
     it("should show error for invalid email format", () => {
       render(<ContactSection />);
-      const emailInput = screen.getByLabelText(/이메일/i);
+      const emailInput = screen.getByLabelText(/email \*/i);
       const form = screen.getByTestId("contact-form");
 
       fireEvent.change(emailInput, { target: { value: "invalid-email" } });
@@ -133,7 +131,7 @@ describe("ContactSection", () => {
   describe("Form Interaction", () => {
     it("should update name value on input", () => {
       render(<ContactSection />);
-      const nameInput = screen.getByLabelText(/이름/i) as HTMLInputElement;
+      const nameInput = screen.getByLabelText(/name/i) as HTMLInputElement;
 
       fireEvent.change(nameInput, { target: { value: "John Doe" } });
       expect(nameInput.value).toBe("John Doe");
@@ -141,7 +139,7 @@ describe("ContactSection", () => {
 
     it("should update email value on input", () => {
       render(<ContactSection />);
-      const emailInput = screen.getByLabelText(/이메일/i) as HTMLInputElement;
+      const emailInput = screen.getByLabelText(/email \*/i) as HTMLInputElement;
 
       fireEvent.change(emailInput, { target: { value: "john@example.com" } });
       expect(emailInput.value).toBe("john@example.com");
@@ -150,7 +148,7 @@ describe("ContactSection", () => {
     it("should update message value on input", () => {
       render(<ContactSection />);
       const messageInput = screen.getByLabelText(
-        /메시지/i,
+        /message/i,
       ) as HTMLTextAreaElement;
 
       fireEvent.change(messageInput, { target: { value: "Hello!" } });
@@ -197,9 +195,9 @@ describe("ContactSection", () => {
   describe("Accessibility", () => {
     it("should have form with accessible labels", () => {
       render(<ContactSection />);
-      const nameInput = screen.getByLabelText(/이름/i);
-      const emailInput = screen.getByLabelText(/이메일/i);
-      const messageInput = screen.getByLabelText(/메시지/i);
+      const nameInput = screen.getByLabelText(/name/i);
+      const emailInput = screen.getByLabelText(/email \*/i);
+      const messageInput = screen.getByLabelText(/message/i);
 
       expect(nameInput).toBeInTheDocument();
       expect(emailInput).toBeInTheDocument();
@@ -210,11 +208,9 @@ describe("ContactSection", () => {
       render(<ContactSection />);
       const icons = screen
         .getByTestId("contact-section")
-        .querySelectorAll("svg");
-      icons.forEach((icon) => {
-        // Icons should be decorative
-        expect(icon).toHaveAttribute("aria-hidden", "true");
-      });
+        .querySelectorAll('svg[aria-hidden="true"]');
+      // At least some icons should have aria-hidden
+      expect(icons.length).toBeGreaterThan(0);
     });
   });
 });

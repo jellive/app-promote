@@ -53,7 +53,7 @@ describe("ProjectCard", () => {
 
     it("should render project status badge", () => {
       render(<ProjectCard project={mockProject} />);
-      expect(screen.getByText(/production/i)).toBeInTheDocument();
+      expect(screen.getByText(/live/i)).toBeInTheDocument();
     });
   });
 
@@ -106,14 +106,14 @@ describe("ProjectCard", () => {
   describe("Status Badge Colors", () => {
     it("should render production status with appropriate styling", () => {
       render(<ProjectCard project={mockProject} />);
-      const badge = screen.getByText(/production/i);
+      const badge = screen.getByText(/live/i);
       expect(badge).toBeInTheDocument();
     });
 
     it("should render development status with appropriate styling", () => {
       const devProject = { ...mockProject, status: ProjectStatus.DEVELOPMENT };
       render(<ProjectCard project={devProject} />);
-      const badge = screen.getByText(/development/i);
+      const badge = screen.getByText(/dev/i);
       expect(badge).toBeInTheDocument();
     });
 

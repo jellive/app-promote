@@ -16,11 +16,11 @@ describe("Core Web Vitals Optimization", () => {
     });
 
     it("should have WebP format enabled for LCP optimization", () => {
-      expect(configContent).toContain("'image/webp'");
+      expect(configContent).toContain('"image/webp"');
     });
 
     it("should have AVIF format enabled for better compression", () => {
-      expect(configContent).toContain("'image/avif'");
+      expect(configContent).toContain('"image/avif"');
     });
 
     it("should have device sizes configured for responsive images", () => {

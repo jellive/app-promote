@@ -16,11 +16,11 @@ describe("Image Optimization Configuration", () => {
 
   describe("Image Formats", () => {
     it("should enable WebP format", () => {
-      expect(configContent).toContain("'image/webp'");
+      expect(configContent).toContain('"image/webp"');
     });
 
     it("should enable AVIF format", () => {
-      expect(configContent).toContain("'image/avif'");
+      expect(configContent).toContain('"image/avif"');
     });
 
     it("should have formats array configured", () => {

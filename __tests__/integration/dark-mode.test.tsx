@@ -124,8 +124,8 @@ describe("Dark Mode Integration", () => {
 
       const footer = screen.getByRole("contentinfo");
       expect(footer).toBeInTheDocument();
-      // Footer uses bg-muted/30 which is theme-aware
-      expect(footer).toHaveClass("bg-muted/30");
+      // Footer uses border-foreground which is theme-aware
+      expect(footer).toHaveClass("border-foreground");
     });
 
     it("should have accessible links in dark mode", () => {
@@ -151,8 +151,8 @@ describe("Dark Mode Integration", () => {
 
       const article = screen.getByRole("article");
       const cardDiv = article.querySelector("div");
-      // ProjectCard uses dark:hover:shadow-gray-800/50
-      expect(cardDiv).toHaveClass("dark:hover:shadow-gray-800/50");
+      // ProjectCard uses bg-card which is theme-aware
+      expect(cardDiv).toHaveClass("bg-card");
     });
 
     it("should display project info correctly in dark mode", () => {
@@ -263,7 +263,8 @@ describe("Dark Mode Integration", () => {
       );
 
       // All components should be visible and functional (use getAllByText for duplicates)
-      const jellTexts = screen.getAllByText("Jell");
+      // Header and Footer use "JELL" (uppercase)
+      const jellTexts = screen.getAllByText("JELL");
       expect(jellTexts.length).toBeGreaterThan(0);
       expect(screen.getByText("10")).toBeInTheDocument();
       expect(screen.getByText("Test Project")).toBeInTheDocument();
