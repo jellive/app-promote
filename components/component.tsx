@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
-import Link from 'next/link'
-import Image from 'next/image'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Button } from '@/components/ui/button'
-import { JSX, SVGProps } from 'react'
+import Link from "next/link";
+import Image from "next/image";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { JSX, SVGProps } from "react";
 
 export function component() {
   return (
@@ -102,7 +102,7 @@ export function component() {
                   height="225"
                   alt="App 1"
                   className="rounded-xl object-cover"
-                  style={{ aspectRatio: '400/225', objectFit: 'cover' }}
+                  style={{ aspectRatio: "400/225", objectFit: "cover" }}
                 />
                 <div className="space-y-1">
                   <h3 className="text-lg font-bold">Productivity App</h3>
@@ -118,7 +118,7 @@ export function component() {
                   height="225"
                   alt="App 2"
                   className="rounded-xl object-cover"
-                  style={{ aspectRatio: '400/225', objectFit: 'cover' }}
+                  style={{ aspectRatio: "400/225", objectFit: "cover" }}
                 />
                 <div className="space-y-1">
                   <h3 className="text-lg font-bold">Fitness Tracker</h3>
@@ -134,7 +134,7 @@ export function component() {
                   height="225"
                   alt="App 3"
                   className="rounded-xl object-cover"
-                  style={{ aspectRatio: '400/225', objectFit: 'cover' }}
+                  style={{ aspectRatio: "400/225", objectFit: "cover" }}
                 />
                 <div className="space-y-1">
                   <h3 className="text-lg font-bold">Meditation App</h3>
@@ -283,11 +283,11 @@ export function component() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
 
 function MountainIcon(
-  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
 ) {
   return (
     <svg
@@ -304,5 +304,5 @@ function MountainIcon(
     >
       <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
     </svg>
-  )
+  );
 }

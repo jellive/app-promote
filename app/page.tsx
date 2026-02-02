@@ -1,18 +1,19 @@
-import Link from 'next/link'
-import { Metadata } from 'next'
-import { HomePageJsonLd } from '@/components/seo/json-ld'
-import { HeroSection } from '@/components/sections/hero-section'
-import { StatsSection } from '@/components/sections/stats-section'
-import { ProjectsSection } from '@/components/sections/projects-section'
-import { SkillsSection } from '@/components/sections/skills-section'
-import { AboutSection } from '@/components/sections/about-section'
-import { ContactSection } from '@/components/sections/contact-section'
-import { projectsData } from '@/data/projects'
+import Link from "next/link";
+import { Metadata } from "next";
+import { HomePageJsonLd } from "@/components/seo/json-ld";
+import { HeroSection } from "@/components/sections/hero-section";
+import { StatsSection } from "@/components/sections/stats-section";
+import { ProjectsSection } from "@/components/sections/projects-section";
+import { SkillsSection } from "@/components/sections/skills-section";
+import { AboutSection } from "@/components/sections/about-section";
+import { ContactSection } from "@/components/sections/contact-section";
+import { projectsData } from "@/data/projects";
 
 export const metadata: Metadata = {
-  title: '개발자 Jell - 풀스택 개발자 포트폴리오',
-  description: '8년+ 경력의 풀스택 개발자. iOS, Web, AR/3D 등 15개 이상의 프로젝트를 통해 사용자 경험을 혁신해왔습니다.',
-}
+  title: "개발자 Jell - 풀스택 개발자 포트폴리오",
+  description:
+    "8년+ 경력의 풀스택 개발자. iOS, Web, AR/3D 등 15개 이상의 프로젝트를 통해 사용자 경험을 혁신해왔습니다.",
+};
 
 export default function HomePage() {
   return (
@@ -87,14 +88,23 @@ export default function HomePage() {
           <div className="grid gap-1 col-span-2 sm:col-span-1">
             <h3 className="font-semibold">프로젝트</h3>
             {projectsData.slice(0, 5).map((project) => (
-              <Link key={project.id} href={`/projects/${project.id}`} prefetch={false}>
+              <Link
+                key={project.id}
+                href={`/projects/${project.id}`}
+                prefetch={false}
+              >
                 {project.name}
               </Link>
             ))}
           </div>
           <div className="grid gap-1">
             <h3 className="font-semibold">Resources</h3>
-            <Link href="https://blog.jell.kr" prefetch={false} target="_blank" rel="noopener noreferrer">
+            <Link
+              href="https://blog.jell.kr"
+              prefetch={false}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Blog
             </Link>
           </div>
@@ -109,7 +119,12 @@ export default function HomePage() {
             <Link href="mailto:jellive7@gmail.com" prefetch={false}>
               Email
             </Link>
-            <Link href="https://www.github.com/jellive" prefetch={false} target="_blank" rel="noopener noreferrer">
+            <Link
+              href="https://www.github.com/jellive"
+              prefetch={false}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Github
             </Link>
             <Link
@@ -127,5 +142,5 @@ export default function HomePage() {
         </div>
       </footer>
     </div>
-  )
+  );
 }

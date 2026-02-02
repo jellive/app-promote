@@ -3,7 +3,7 @@
  * Implements Schema.org vocabulary for rich search results
  */
 
-import { Project } from '@/data/projects';
+import { Project } from "@/data/projects";
 
 interface PersonJsonLdProps {
   name: string;
@@ -37,20 +37,20 @@ export function PersonJsonLd({
   sameAs = [],
 }: PersonJsonLdProps) {
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
+    "@context": "https://schema.org",
+    "@type": "Person",
     name,
     jobTitle,
     url,
     email,
     sameAs,
     knowsAbout: [
-      'iOS Development',
-      'Flutter',
-      'React',
-      'Next.js',
-      'TypeScript',
-      'Full Stack Development',
+      "iOS Development",
+      "Flutter",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Full Stack Development",
     ],
   };
 
@@ -65,16 +65,16 @@ export function PersonJsonLd({
 // Website JSON-LD for the portfolio site
 export function WebsiteJsonLd({ name, url, description }: WebsiteJsonLdProps) {
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
+    "@context": "https://schema.org",
+    "@type": "WebSite",
     name,
     url,
     description,
     author: {
-      '@type': 'Person',
-      name: 'Jell',
+      "@type": "Person",
+      name: "Jell",
     },
-    inLanguage: 'ko-KR',
+    inLanguage: "ko-KR",
   };
 
   return (
@@ -95,14 +95,14 @@ export function SoftwareApplicationJsonLd({
   url,
 }: SoftwareApplicationJsonLdProps) {
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
     name,
     description,
     applicationCategory,
     ...(operatingSystem && { operatingSystem }),
     author: {
-      '@type': 'Person',
+      "@type": "Person",
       name: author,
     },
     ...(url && { url }),
@@ -125,28 +125,39 @@ export function ProjectJsonLd({ project }: { project: Project }) {
       ...project.techStack.desktop,
     ];
 
-    if (techStack.some((t) => t.toLowerCase().includes('ios') || t.toLowerCase().includes('swift'))) {
-      return 'iOS';
+    if (
+      techStack.some(
+        (t) =>
+          t.toLowerCase().includes("ios") || t.toLowerCase().includes("swift"),
+      )
+    ) {
+      return "iOS";
     }
-    if (techStack.some((t) => t.toLowerCase().includes('flutter'))) {
-      return 'iOS, Android';
+    if (techStack.some((t) => t.toLowerCase().includes("flutter"))) {
+      return "iOS, Android";
     }
-    if (techStack.some((t) => t.toLowerCase().includes('electron') || t.toLowerCase().includes('tauri'))) {
-      return 'Windows, macOS, Linux';
+    if (
+      techStack.some(
+        (t) =>
+          t.toLowerCase().includes("electron") ||
+          t.toLowerCase().includes("tauri"),
+      )
+    ) {
+      return "Windows, macOS, Linux";
     }
     return undefined;
   };
 
   const getApplicationCategory = () => {
     const typeMap: Record<string, string> = {
-      'full-stack-mobile': 'MobileApplication',
-      'desktop': 'DesktopApplication',
-      'ios': 'MobileApplication',
-      'chrome-extension': 'BrowserApplication',
-      'npm-package': 'DeveloperApplication',
-      'infrastructure': 'DeveloperApplication',
+      "full-stack-mobile": "MobileApplication",
+      desktop: "DesktopApplication",
+      ios: "MobileApplication",
+      "chrome-extension": "BrowserApplication",
+      "npm-package": "DeveloperApplication",
+      infrastructure: "DeveloperApplication",
     };
-    return typeMap[project.type] || 'Application';
+    return typeMap[project.type] || "Application";
   };
 
   return (
@@ -171,9 +182,9 @@ export function HomePageJsonLd() {
         url="https://jell.kr"
         email="jellive7@gmail.com"
         sameAs={[
-          'https://github.com/jellive',
-          'https://www.linkedin.com/in/han-goon-yoo-429980113/',
-          'https://blog.jell.kr',
+          "https://github.com/jellive",
+          "https://www.linkedin.com/in/han-goon-yoo-429980113/",
+          "https://blog.jell.kr",
         ]}
       />
       <WebsiteJsonLd

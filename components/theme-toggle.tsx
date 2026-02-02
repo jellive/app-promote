@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { Moon, Sun } from 'lucide-react';
-import { useTheme } from 'next-themes';
-import { Button } from '@/components/ui/button';
+import * as React from "react";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
 
 /**
  * Theme toggle button component
@@ -20,7 +20,7 @@ export function ThemeToggle() {
 
   const toggleTheme = () => {
     const currentTheme = resolvedTheme || theme;
-    setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    setTheme(currentTheme === "dark" ? "light" : "dark");
   };
 
   if (!mounted) {
@@ -31,14 +31,14 @@ export function ThemeToggle() {
     );
   }
 
-  const isDark = resolvedTheme === 'dark';
+  const isDark = resolvedTheme === "dark";
 
   return (
     <Button
       variant="ghost"
       size="icon"
       onClick={toggleTheme}
-      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
       {isDark ? (
         <Sun className="h-5 w-5 transition-transform" />
