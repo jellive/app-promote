@@ -80,10 +80,34 @@ export function ContactSection() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Form submission logic would go here
-    console.log("Form submitted:", formData);
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -312,12 +336,25 @@ export function ContactSection() {
 
               <Button
                 type="submit"
-                className="w-full brutal-shadow hover-brutal bg-foreground text-background hover:bg-foreground font-bold text-lg h-14 px-8 border-2 border-foreground font-mono"
+                disabled={isSubmitting}
+                className="w-full brutal-shadow hover-brutal bg-foreground text-background hover:bg-foreground font-bold text-lg h-14 px-8 border-2 border-foreground font-mono disabled:opacity-50"
                 size="lg"
               >
                 <Send className="w-5 h-5 mr-2" aria-hidden="true" />
-                SEND MESSAGE
+                {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
               </Button>
+
+              {submitStatus === "success" && (
+                <p className="text-green-600 font-mono text-sm font-bold mt-2">
+                  ✓ 메시지가 전송되었습니다. 24시간 내 회신 드리겠습니다.
+                </p>
+              )}
+              {submitStatus === "error" && (
+                <p className="text-red-600 font-mono text-sm font-bold mt-2">
+                  ✗ 전송에 실패했습니다. jellive7@gmail.com으로 직접
+                  연락해주세요.
+                </p>
+              )}
             </form>
           </div>
         </div>
