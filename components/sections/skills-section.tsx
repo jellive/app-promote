@@ -58,8 +58,11 @@ const skillsData: CategoryData[] = [
       { name: "Node.js", proficiency: "expert" },
       { name: "Express", proficiency: "expert" },
       { name: "NestJS", proficiency: "expert" },
+      { name: "Spring Boot", proficiency: "advanced" },
+      { name: "Kotlin", proficiency: "advanced" },
       { name: "PostgreSQL", proficiency: "expert" },
       { name: "MongoDB", proficiency: "intermediate" },
+      { name: "MSSQL", proficiency: "intermediate" },
       { name: "Redis", proficiency: "advanced" },
       { name: "GraphQL", proficiency: "advanced" },
     ],
@@ -75,6 +78,7 @@ const skillsData: CategoryData[] = [
       { name: "React Native", proficiency: "advanced" },
       { name: "iOS (Swift)", proficiency: "expert" },
       { name: "Android (Kotlin)", proficiency: "intermediate" },
+      { name: "WebView Bridge", proficiency: "expert" },
     ],
   },
   {
@@ -84,9 +88,7 @@ const skillsData: CategoryData[] = [
     emoji: "💻",
     skills: [
       { name: "Electron", proficiency: "advanced" },
-      { name: "Tauri", proficiency: "intermediate" },
       { name: "Flutter Desktop", proficiency: "advanced" },
-      { name: "WPF", proficiency: "intermediate" },
     ],
   },
   {
@@ -96,9 +98,9 @@ const skillsData: CategoryData[] = [
     emoji: "☁️",
     skills: [
       { name: "Docker", proficiency: "advanced" },
-      { name: "Kubernetes", proficiency: "intermediate" },
       { name: "AWS", proficiency: "advanced" },
       { name: "GCP", proficiency: "intermediate" },
+      { name: "Supabase", proficiency: "advanced" },
       { name: "CI/CD", proficiency: "advanced" },
       { name: "Vercel", proficiency: "expert" },
     ],
@@ -110,8 +112,6 @@ const skillsData: CategoryData[] = [
     emoji: "🤖",
     skills: [
       { name: "Python", proficiency: "advanced" },
-      { name: "TensorFlow", proficiency: "intermediate" },
-      { name: "PyTorch", proficiency: "intermediate" },
       { name: "LangChain", proficiency: "advanced" },
       { name: "OpenAI API", proficiency: "expert" },
     ],
