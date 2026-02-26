@@ -259,7 +259,8 @@ export const projectsData: Project[] = [
       },
     ],
     links: {
-      appStore: "https://apps.apple.com/app/finiroom",
+      appStore:
+        "https://apps.apple.com/kr/app/%EA%B8%80%EB%A6%B0%EB%8B%A4-%EB%AA%A8%EB%B0%94%EC%9D%BC/id1601360086",
     },
   },
 
@@ -645,6 +646,10 @@ export const projectsData: Project[] = [
     ],
     links: {
       github: "https://github.com/jellive/cookting",
+      live: "https://naengbu.jell.kr",
+      appStore: "https://apps.apple.com/kr/app/%EC%BF%A1%ED%8C%85/id6755325967",
+      playStore:
+        "https://play.google.com/store/apps/details?id=kr.jell.naengbu",
     },
   },
 
@@ -754,6 +759,7 @@ export const projectsData: Project[] = [
     ],
     links: {
       github: "https://github.com/jellive/couple-planner",
+      live: "https://couple-planner.jell.kr",
     },
   },
 
@@ -921,6 +927,7 @@ export const projectsData: Project[] = [
     ],
     links: {
       github: "https://github.com/jellive/dev-utils-hub",
+      live: "https://dev-utils.jell.kr",
     },
   },
 
