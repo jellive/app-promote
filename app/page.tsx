@@ -12,7 +12,7 @@ import { projectsData } from "@/data/projects";
 export const metadata: Metadata = {
   title: "개발자 Jell - 풀스택 개발자 포트폴리오",
   description:
-    "8년+ 경력의 풀스택 개발자. iOS, Web, AR/3D 등 15개 이상의 프로젝트를 통해 사용자 경험을 혁신해왔습니다.",
+    "8년+ 경력의 풀스택 개발자. iOS, Web, AR/3D 등 18개의 프로젝트를 통해 사용자 경험을 혁신해왔습니다.",
 };
 
 export default function HomePage() {
@@ -49,6 +49,14 @@ export default function HomePage() {
               prefetch={false}
             >
               소개
+            </Link>
+            <Link
+              href="https://blog.jell.kr"
+              className="text-sm font-medium hover:text-primary transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              블로그
             </Link>
             <Link
               href="#contact"

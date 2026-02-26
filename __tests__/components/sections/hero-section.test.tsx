@@ -21,10 +21,10 @@ describe("HeroSection", () => {
       expect(elements.length).toBeGreaterThan(0);
     });
 
-    it("should render intro mentioning 15 projects", () => {
+    it("should render intro mentioning 18 projects", () => {
       render(<HeroSection />);
-      // Use getAllByText since "15" appears multiple times in the hero section
-      const elements = screen.getAllByText(/15/);
+      // Use getAllByText since "18" appears multiple times in the hero section
+      const elements = screen.getAllByText(/18/);
       expect(elements.length).toBeGreaterThan(0);
     });
   });
@@ -90,6 +90,32 @@ describe("HeroSection", () => {
       const section = screen.getByTestId("hero-section");
       // Section uses bg-background which is theme-aware
       expect(section.className).toBeTruthy();
+    });
+  });
+
+  describe("Social Links", () => {
+    it("should render Blog social link with aria-label", () => {
+      render(<HeroSection />);
+      expect(screen.getByRole("link", { name: /blog/i })).toBeInTheDocument();
+    });
+
+    it("should have correct href for Blog social link", () => {
+      render(<HeroSection />);
+      const blogLink = screen.getByRole("link", { name: /blog/i });
+      expect(blogLink).toHaveAttribute("href", "https://blog.jell.kr");
+    });
+  });
+
+  describe("Resume Download", () => {
+    it("should render resume download button", () => {
+      render(<HeroSection />);
+      expect(screen.getByText(/이력서 다운로드/i)).toBeInTheDocument();
+    });
+
+    it("should have correct href for resume download", () => {
+      render(<HeroSection />);
+      const resumeLink = screen.getByText(/이력서 다운로드/i).closest("a");
+      expect(resumeLink).toHaveAttribute("href", "/resume-jell-2026.pdf");
     });
   });
 });

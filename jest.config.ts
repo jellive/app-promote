@@ -17,6 +17,7 @@ const config: Config = {
     "<rootDir>/node_modules/",
     "<rootDir>/.next/",
     "<rootDir>/e2e/",
+    "<rootDir>/.claude/worktrees/",
   ],
   transform: {
     "^.+\\.(js|jsx|ts|tsx)$": [

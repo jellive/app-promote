@@ -44,8 +44,8 @@ describe("Project Type Definitions", () => {
 
 describe("Project Data Structure", () => {
   describe("projectsData array", () => {
-    it("should contain exactly 15 projects", () => {
-      expect(projectsData.length).toBe(15);
+    it("should contain exactly 18 projects", () => {
+      expect(projectsData.length).toBe(18);
     });
 
     it("should have unique IDs for all projects", () => {
@@ -97,7 +97,7 @@ describe("Project Data Structure", () => {
       expect(cookting).toBeDefined();
       expect(cookting?.name).toBe("Cookting");
       expect(cookting?.type).toBe(ProjectType.FULL_STACK_MOBILE);
-      expect(cookting?.status).toBe(ProjectStatus.APP_STORE_REVIEW);
+      expect(cookting?.status).toBe(ProjectStatus.PRODUCTION);
     });
 
     it("should have DevUtilsHub project with correct data", () => {
@@ -136,8 +136,8 @@ describe("Project Data Structure", () => {
       const jellmodoro = projectsData.find((p) => p.id === "jellmodoro");
       expect(jellmodoro).toBeDefined();
       expect(jellmodoro?.name).toBe("Jellmodoro");
-      expect(jellmodoro?.type).toBe(ProjectType.IOS);
-      expect(jellmodoro?.status).toBe(ProjectStatus.PRODUCTION);
+      expect(jellmodoro?.type).toBe(ProjectType.FULL_STACK_MOBILE);
+      expect(jellmodoro?.status).toBe(ProjectStatus.DEVELOPMENT);
     });
 
     it("should have Wecanner project with correct data", () => {
@@ -194,12 +194,9 @@ describe("Helper Functions", () => {
       });
     });
 
-    it("should return projects with app-store-review status", () => {
+    it("should return empty array for app-store-review status", () => {
       const projects = getProjectsByStatus(ProjectStatus.APP_STORE_REVIEW);
-      expect(projects.length).toBeGreaterThan(0);
-      projects.forEach((p) => {
-        expect(p.status).toBe(ProjectStatus.APP_STORE_REVIEW);
-      });
+      expect(projects.length).toBe(0);
     });
 
     it("should return projects with archive status", () => {
@@ -253,9 +250,9 @@ describe("Helper Functions", () => {
   });
 
   describe("getAllProjects", () => {
-    it("should return all 15 projects", () => {
+    it("should return all 18 projects", () => {
       const projects = getAllProjects();
-      expect(projects.length).toBe(15);
+      expect(projects.length).toBe(18);
     });
 
     it("should return a copy of the array (immutability)", () => {
@@ -264,5 +261,38 @@ describe("Helper Functions", () => {
       expect(projects1).not.toBe(projects2);
       expect(projects1).toEqual(projects2);
     });
+  });
+});
+
+describe("Achievement Business Metrics", () => {
+  it("Achievement interface should support optional metric field", () => {
+    // metric 필드를 가진 achievement 객체가 유효한 타입이어야 함
+    const achievement: Achievement = {
+      title: "Test",
+      description: "Test description",
+      metric: "MAU 500+",
+    };
+    expect(achievement.metric).toBe("MAU 500+");
+  });
+
+  it("azflow should have achievements with metric values", () => {
+    const azflow = getProjectById("azflow");
+    expect(azflow?.achievements?.some((a) => a.metric !== undefined)).toBe(
+      true,
+    );
+  });
+
+  it("vinjari should have achievements with metric values", () => {
+    const vinjari = getProjectById("vinjari");
+    expect(vinjari?.achievements?.some((a) => a.metric !== undefined)).toBe(
+      true,
+    );
+  });
+
+  it("finiroom should have achievements with metric values", () => {
+    const finiroom = getProjectById("finiroom");
+    expect(finiroom?.achievements?.some((a) => a.metric !== undefined)).toBe(
+      true,
+    );
   });
 });

@@ -51,7 +51,7 @@ const timelineData: TimelineItem[] = [
     year: "2018",
     title: "풀스택 개발자로 성장",
     description:
-      "청담러닝에서 React, Spring Boot 기반 LMS 시스템을 구축했습니다.",
+      "청담어학원(현 크레버스)에서 Vue 2, Kotlin Spring Boot 기반 학생 어학 교육 플랫폼을 구축했습니다.",
     icon: Code2,
   },
   {
@@ -64,8 +64,15 @@ const timelineData: TimelineItem[] = [
   {
     year: "2024",
     title: "수석연구원으로 활동",
-    description: "애즈플로우에서 AZFlow SaaS 플랫폼 개발을 리드하고 있습니다.",
+    description: "애즈플로우에서 AZFlow SaaS 플랫폼 개발을 리드했습니다.",
     icon: Award,
+  },
+  {
+    year: "2025",
+    title: "프리랜서 & 새로운 도전",
+    description:
+      "빈자리(캠핑장 앱) Flutter 프리랜서 프로젝트를 완수하고, 새로운 풀타임 기회를 찾고 있습니다.",
+    icon: Rocket,
   },
 ];
 
@@ -134,12 +141,13 @@ export function AboutSection() {
                 data-testid="about-bio"
                 className="text-muted-foreground leading-relaxed"
               >
-                저는 풀스택 개발자로서 웹, 모바일, 데스크톱 애플리케이션을
-                개발합니다. 사용자 중심의 직관적인 인터페이스와 안정적인 백엔드
-                시스템을 구축하는 것을 좋아합니다. 테스트 주도 개발(TDD)과 클린
-                코드를 실천하며, 지속적인 학습을 통해 더 나은 개발자가 되기 위해
-                노력하고 있습니다. 다양한 플랫폼에서의 경험을 바탕으로 최적의
-                기술 스택을 선택하고, 효율적인 솔루션을 제공합니다.
+                iOS 앱부터 WebGL 3D 쇼룸, 핀테크 SaaS까지 — 플랫폼을 가리지 않고
+                사용자가 실제로 쓰는 서비스를 만들어온 풀스택 개발자입니다.
+                LiDAR 기반 공간 스캐닝(finiroom), 실시간 화이트보드 교육
+                시스템(러닝포털), 투자 관리 플랫폼(AZFlow) 등 기술적 도전이 있는
+                프로젝트에서 가장 빛을 발합니다. 최근에는 Flutter 하이브리드
+                앱에서 1,156개의 테스트를 작성하며 TDD와 Clean Architecture를
+                실천하고 있습니다.
               </p>
             </div>
 

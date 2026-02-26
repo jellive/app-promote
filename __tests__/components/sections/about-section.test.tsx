@@ -115,6 +115,25 @@ describe("AboutSection", () => {
     });
   });
 
+  describe("Timeline Content", () => {
+    it("should include 2025 year in timeline", () => {
+      render(<AboutSection />);
+      const years = screen.getAllByTestId("timeline-year");
+      const yearTexts = years.map((y) => y.textContent);
+      expect(yearTexts).toContain("2025");
+    });
+
+    it("should show 2024 description in past tense (리드했습니다)", () => {
+      render(<AboutSection />);
+      const descriptions = screen.getAllByTestId("timeline-description");
+      const desc2024 = descriptions.find((d) =>
+        d.textContent?.includes("AZFlow SaaS"),
+      );
+      expect(desc2024).toBeDefined();
+      expect(desc2024?.textContent).toMatch(/리드했습니다/);
+    });
+  });
+
   describe("Layout", () => {
     it("should have two-column layout on desktop", () => {
       render(<AboutSection />);

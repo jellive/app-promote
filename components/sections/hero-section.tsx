@@ -10,6 +10,8 @@ import {
   Linkedin,
   Code2,
   Terminal,
+  BookOpen,
+  FileDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -128,9 +130,7 @@ export function HeroSection() {
               <p className="text-xl md:text-2xl leading-relaxed max-w-2xl">
                 <span className="font-bold text-foreground">8년+ 경력</span>의
                 풀스택 개발자로,{" "}
-                <span className="font-bold text-primary">
-                  15개 이상의 프로젝트
-                </span>
+                <span className="font-bold text-primary">18개의 프로젝트</span>
                 를 통해 iOS, Web, AR/3D 등 다양한 플랫폼에서{" "}
                 <span className="relative inline-block">
                   <span className="relative z-10">사용자 경험을 혁신</span>
@@ -162,6 +162,17 @@ export function HeroSection() {
                     연락하기
                   </Link>
                 </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="brutal-shadow-sm hover-lift border-2 border-foreground font-bold text-lg h-14 px-8"
+                >
+                  <a href="/resume-jell-2026.pdf" download>
+                    <FileDown className="mr-2 h-5 w-5" />
+                    이력서 다운로드
+                  </a>
+                </Button>
               </div>
 
               {/* Social Links */}
@@ -183,6 +194,15 @@ export function HeroSection() {
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-6 h-6" />
+                </a>
+                <a
+                  href="https://blog.jell.kr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 border-2 border-foreground hover-brutal transition-all"
+                  aria-label="Blog"
+                >
+                  <BookOpen className="w-6 h-6" />
                 </a>
               </div>
             </div>
@@ -220,21 +240,30 @@ export function HeroSection() {
                     </div>
                     <div className="pl-4">
                       <span className="text-secondary">projects</span>:{" "}
-                      <span className="text-accent">15</span>,
+                      <span className="text-accent">18</span>,
                     </div>
                     <div className="pl-4">
-                      <span className="text-secondary">skills</span>: [
+                      <span className="text-secondary">tests</span>:{" "}
+                      <span className="text-accent">&quot;1,649+&quot;</span>,
                     </div>
-                    <div className="pl-8 text-primary">
-                      &quot;iOS&quot;, &quot;Web&quot;, &quot;AR/3D&quot;
+                    <div className="pl-4">
+                      <span className="text-secondary">coverage</span>:{" "}
+                      <span className="text-accent">&quot;96.8%&quot;</span>,
                     </div>
-                    <div className="pl-4">],</div>
                     <div className="pl-4">
                       <span className="text-secondary">status</span>:{" "}
                       <span className="text-primary">
-                        &quot;available&quot;
+                        &quot;open_to_work&quot;
                       </span>
+                      ,
                     </div>
+                    <div className="pl-4">
+                      <span className="text-secondary">seeking</span>: [
+                    </div>
+                    <div className="pl-8 text-primary">
+                      &quot;Senior&quot;, &quot;FullStack&quot;
+                    </div>
+                    <div className="pl-4">],</div>
                     <div>{"}"}</div>
                   </div>
                 </div>
@@ -255,7 +284,7 @@ export function HeroSection() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 lg:mt-24">
             {[
               { label: "경력", value: "8+", unit: "YEARS" },
-              { label: "프로젝트", value: "15", unit: "PROJECTS" },
+              { label: "프로젝트", value: "18", unit: "PROJECTS" },
               { label: "테스트", value: "1.6K", unit: "TESTS" },
               { label: "커버리지", value: "96.8", unit: "%" },
             ].map((stat, i) => (

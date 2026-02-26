@@ -1,6 +1,6 @@
 /**
  * @fileoverview Project data structure and helper functions
- * Contains TypeScript types/interfaces and data for all 8 portfolio projects
+ * Contains TypeScript types/interfaces and data for all 18 portfolio projects
  */
 
 // ============================================================================
@@ -72,6 +72,7 @@ export interface Achievement {
   title: string;
   description: string;
   icon?: string;
+  metric?: string; // e.g., "MAU 500+", "-3,341 LOC", "96.8% Coverage"
 }
 
 /**
@@ -130,8 +131,8 @@ export const projectsData: Project[] = [
     name: "AZFlow",
     emoji: "💼",
     type: ProjectType.FULL_STACK_WEB,
-    status: ProjectStatus.PRODUCTION,
-    period: "2024.08 - 현재",
+    status: ProjectStatus.ARCHIVE,
+    period: "2024.12 - 2025.09",
     role: "수석연구원 (애즈플로우)",
     shortDescription: "스타트업 투자 관리 플랫폼",
     description:
@@ -173,11 +174,13 @@ export const projectsData: Project[] = [
         title: "마이크로서비스 아키텍처",
         description: "투자사/스타트업 분리된 독립 서비스",
         icon: "🏗️",
+        metric: "마이크로서비스 3개 독립 배포",
       },
       {
         title: "AI 통합",
         description: "RAG 기반 지능형 검색 시스템 구축",
         icon: "🤖",
+        metric: "Swagger API 문서 100% 자동화",
       },
     ],
     links: {
@@ -191,7 +194,7 @@ export const projectsData: Project[] = [
     name: "finiroom",
     emoji: "📐",
     type: ProjectType.IOS,
-    status: ProjectStatus.PRODUCTION,
+    status: ProjectStatus.ARCHIVE,
     period: "2021.09 - 2024.08",
     role: "선임연구원 (비주얼신) - 웹/앱 개발",
     shortDescription: "LiDAR 기반 3D 공간 스캐닝 및 인테리어 앱",
@@ -233,11 +236,13 @@ export const projectsData: Project[] = [
         title: "App Store 출시",
         description: "iOS 앱스토어 정식 출시 및 운영",
         icon: "📱",
+        metric: "App Store 정식 출시",
       },
       {
         title: "LiDAR 기술 적용",
         description: "iPhone Pro 시리즈 LiDAR 센서 활용",
         icon: "📡",
+        metric: "LiDAR 공간 정확도 95%+",
       },
     ],
     links: {
@@ -251,7 +256,7 @@ export const projectsData: Project[] = [
     name: "glinda AIMI",
     emoji: "🎮",
     type: ProjectType.UNITY_WEBGL,
-    status: ProjectStatus.PRODUCTION,
+    status: ProjectStatus.ARCHIVE,
     period: "2023.01 - 2024.08",
     role: "선임연구원 (비주얼신) - 웹 프론트엔드 개발",
     shortDescription: "Unity WebGL 기반 3D 가상 쇼룸",
@@ -286,6 +291,7 @@ export const projectsData: Project[] = [
         title: "정식 서비스 런칭",
         description: "상용 서비스로 정식 운영",
         icon: "🌐",
+        metric: "상용 서비스 런칭 및 B2B 고객 확보",
       },
     ],
     links: {},
@@ -297,7 +303,7 @@ export const projectsData: Project[] = [
     name: "KnowRecorder",
     emoji: "🎬",
     type: ProjectType.IOS,
-    status: ProjectStatus.PRODUCTION,
+    status: ProjectStatus.ARCHIVE,
     period: "2016.09 - 2018.07",
     role: "연구원 (케이라운지)",
     shortDescription: "플립러닝용 강의 녹화 iOS 앱",
@@ -348,7 +354,7 @@ export const projectsData: Project[] = [
     name: "KnowLounge",
     emoji: "📚",
     type: ProjectType.IOS,
-    status: ProjectStatus.PRODUCTION,
+    status: ProjectStatus.ARCHIVE,
     period: "2016.06 - 2018.07",
     role: "연구원 (케이라운지)",
     shortDescription: "실시간 화이트보드 기반 교육 플랫폼",
@@ -434,64 +440,134 @@ export const projectsData: Project[] = [
     links: {},
   },
 
-  // 7. 러닝포털 (청담러닝)
+  // 7. 러닝포털 (청담어학원, 현 크레버스)
   {
     id: "learning-portal",
     name: "러닝포털",
     emoji: "🏫",
-    type: ProjectType.WEB,
-    status: ProjectStatus.PRODUCTION,
+    type: ProjectType.FULL_STACK_MOBILE,
+    status: ProjectStatus.ARCHIVE,
     period: "2018.12 - 2021.07",
-    role: "선임연구원 (청담러닝)",
-    shortDescription: "B2B 교육 관리 시스템 (LMS)",
+    role: "대리 (청담어학원, 현 크레버스)",
+    shortDescription: "학생 어학 교육 웹서비스 및 모바일 앱",
     description:
-      "기업 및 교육기관을 위한 학습 관리 시스템(LMS) 웹 애플리케이션입니다. 강의 관리, 학습자 진도 추적, 성적 관리, 리포트 생성 등 종합적인 교육 관리 기능을 제공합니다.",
+      "청담어학원(현 크레버스)의 학생 어학 교육 플랫폼입니다. 러닝포털(학생 숙제/활동 관리 포털), i-Learning(Writing/Listening 등 실전 학습 수행 웹서비스), 청담 올림(학부모 등하원 관리/안내문/교재·학원비 납부) 등 복합 서비스를 Vue 2 웹과 Android/iOS 네이티브 웹앱으로 개발·운영했습니다.",
     features: [
       {
-        title: "강의 관리",
-        description: "온라인 강의 등록 및 관리",
+        title: "러닝포털",
+        description:
+          "학생이 수업 후 숙제 확인 및 활동을 수행하는 포털 웹사이트 및 모바일 앱",
       },
       {
-        title: "진도 추적",
-        description: "학습자별 진도율 및 학습 시간 추적",
+        title: "i-Learning",
+        description:
+          "Writing, Listening 등 마이크·키보드를 활용한 실전 숙제 수행 웹서비스",
       },
       {
-        title: "성적 관리",
-        description: "시험, 과제 성적 관리 및 분석",
-      },
-      {
-        title: "리포트 생성",
-        description: "학습 데이터 기반 분석 리포트",
+        title: "청담 올림",
+        description:
+          "학부모 자녀 등하원 관리, 안내문 수신, 교재 및 학원비 납부 서비스",
       },
     ],
     techStack: {
-      frontend: ["React", "TypeScript", "Redux", "Ant Design"],
-      backend: ["Spring Boot", "Java", "MySQL"],
-      infrastructure: ["AWS", "Docker"],
+      frontend: ["Vue 2", "JavaScript", "Android (Native)", "iOS (Native)"],
+      backend: ["Kotlin", "Spring Boot", "MSSQL"],
+      infrastructure: ["AWS"],
       desktop: [],
     },
     achievements: [
       {
-        title: "B2B 서비스",
-        description: "다수 기업/기관에 서비스 제공",
-        icon: "🏢",
+        title: "멀티 플랫폼",
+        description: "Web + Android + iOS 네이티브 웹앱 동시 운영",
+        icon: "📱",
+        metric: "Web + Android + iOS 멀티플랫폼",
+      },
+      {
+        title: "어학 교육 서비스",
+        description: "청담어학원 학생·학부모 대상 종합 교육 플랫폼",
+        icon: "🎓",
+        metric: "학생/학부모 대상 3개 서비스 동시 운영",
       },
     ],
     links: {},
   },
 
   // ============================================================================
-  // PERSONAL PROJECTS (개인 프로젝트)
+  // PERSONAL / FREELANCE PROJECTS (개인 & 외주 프로젝트)
   // ============================================================================
 
-  // 8. Cookting
+  // 1. 빈자리 (Vinjari)
+  {
+    id: "vinjari",
+    name: "빈자리 (Vinjari)",
+    emoji: "🏕️",
+    type: ProjectType.FULL_STACK_MOBILE,
+    status: ProjectStatus.PRODUCTION,
+    period: "2025.12 - 현재",
+    role: "Flutter 모바일 개발자 (프리랜서)",
+    shortDescription: "캠핑장 예약 플랫폼 하이브리드 앱",
+    description:
+      "캠핑장 빈자리 실시간 확인 및 예약이 가능한 모바일 앱입니다. WebView-Native Bridge 아키텍처로 기존 웹 서비스(Next.js)를 Flutter 앱으로 래핑하면서, 네이티브 기능(푸시 알림, 소셜 로그인, 본인인증, 위치 정보)을 Bridge를 통해 통합했습니다. Clean Architecture와 TDD를 적용하여 1,156개 이상의 테스트를 작성했습니다.",
+    features: [
+      {
+        title: "WebView-Native Bridge",
+        description: "네이티브 기능과 웹 간 양방향 통신 아키텍처 설계 및 구현",
+      },
+      {
+        title: "소셜 로그인",
+        description: "Apple, 카카오, 네이버 소셜 로그인 + PASS 본인인증",
+      },
+      {
+        title: "푸시 알림",
+        description: "FCM 기반 전체/개인 푸시 알림 시스템",
+      },
+      {
+        title: "디바이스 자동 등록",
+        description: "앱 설치 시 서버에 디바이스 자동 등록 (TDD 기반)",
+      },
+    ],
+    techStack: {
+      frontend: ["Flutter", "Dart", "Clean Architecture", "GetIt"],
+      backend: [],
+      infrastructure: ["Firebase", "FCM", "WebView Bridge"],
+      desktop: [],
+    },
+    codeStats: {
+      total: 25000,
+      frontend: 25000,
+      tests: 1156,
+    },
+    achievements: [
+      {
+        title: "WebView Bridge 아키텍처",
+        description: "Native-Web 하이브리드 통신 설계 및 구현",
+        icon: "🌉",
+        metric: "Bridge 코드 -3,341줄 최적화",
+      },
+      {
+        title: "Clean Architecture A-",
+        description: "TDD 기반 체계적 아키텍처 (1,156+ 테스트)",
+        icon: "🏗️",
+        metric: "Clean Architecture A- 등급",
+      },
+      {
+        title: "대규모 리팩토링",
+        description: "Bridge 코드 -3,341줄 최적화",
+        icon: "♻️",
+        metric: "1,156개 테스트 작성 (TDD)",
+      },
+    ],
+    links: {},
+  },
+
+  // 2. Cookting
   {
     id: "cookting",
     name: "Cookting",
     emoji: "🍳",
     type: ProjectType.FULL_STACK_MOBILE,
-    status: ProjectStatus.APP_STORE_REVIEW,
-    period: "2024.03 - 현재",
+    status: ProjectStatus.PRODUCTION,
+    period: "2024.08 - 현재",
     role: "1인 풀스택 개발",
     shortDescription: "AI 기반 냉장고 재료 인식 레시피 추천 앱",
     description:
@@ -503,7 +579,8 @@ export const projectsData: Project[] = [
       },
       {
         title: "스마트 레시피 추천",
-        description: "보유 재료 기반 최적의 레시피를 AI가 생성",
+        description:
+          "GPT-4 + Gemini Pro 하이브리드 AI가 보유 재료 기반 최적의 레시피를 생성",
       },
       {
         title: "재료 유통기한 관리",
@@ -516,11 +593,12 @@ export const projectsData: Project[] = [
     ],
     techStack: {
       frontend: ["Flutter", "Dart", "Riverpod", "GetIt"],
-      backend: ["Supabase", "PostgreSQL", "Edge Functions", "Claude AI API"],
+      backend: ["NestJS", "Supabase", "PostgreSQL", "Edge Functions"],
       infrastructure: [
         "Supabase Auth",
         "Supabase Storage",
         "Supabase Realtime",
+        "Docker",
       ],
       desktop: [],
     },
@@ -531,13 +609,13 @@ export const projectsData: Project[] = [
     },
     achievements: [
       {
-        title: "App Store 심사 중",
-        description: "iOS 앱스토어 출시를 위한 심사 진행 중",
+        title: "App Store 출시",
+        description: "iOS 앱스토어 정식 출시 및 운영 중",
         icon: "📱",
       },
       {
         title: "AI 통합",
-        description: "Claude AI를 활용한 지능형 레시피 추천 시스템",
+        description: "GPT-4 + Gemini Pro 하이브리드 AI 레시피 추천 시스템",
         icon: "🤖",
       },
     ],
@@ -546,258 +624,147 @@ export const projectsData: Project[] = [
     },
   },
 
-  // 2. Dev Utils Hub
+  // 3. Time Letter
   {
-    id: "dev-utils-hub",
-    name: "Dev Utils Hub",
-    emoji: "🛠️",
-    type: ProjectType.DESKTOP,
-    status: ProjectStatus.PRODUCTION,
-    period: "2024.01 - 2024.06",
-    role: "1인 개발",
-    shortDescription: "개발자를 위한 올인원 유틸리티 데스크톱 앱",
+    id: "time-letter",
+    name: "Time Letter",
+    emoji: "💌",
+    type: ProjectType.FULL_STACK_MOBILE,
+    status: ProjectStatus.DEVELOPMENT,
+    period: "2025.10 - 현재",
+    role: "React Native 개발자",
+    shortDescription: "타임캡슐 일기 앱 (React Native + Next.js 웹)",
     description:
-      "개발 작업에서 자주 사용하는 다양한 유틸리티 기능들을 하나의 앱으로 통합했습니다. JSON 포맷터, Base64 인코더/디코더, UUID 생성기, 정규식 테스터 등 20개 이상의 도구를 제공합니다.",
+      "미래의 나에게 편지를 보내는 타임캡슐 일기 앱입니다. React Native(Expo)로 모바일 앱을, Next.js로 웹 앱을 동시에 개발하고 있으며, Turborepo 모노레포 구조로 통합 관리합니다. ESLint 9.x, Sentry 크래시 리포팅, EAS Update OTA 배포 등 품질 인프라를 갖추었습니다.",
     features: [
       {
-        title: "JSON 포맷터/검증기",
-        description: "JSON 데이터 자동 정렬 및 유효성 검사",
+        title: "타임캡슐 편지",
+        description: "미래 날짜를 지정하여 편지를 작성하고 열람",
       },
       {
-        title: "Base64 인코더/디코더",
-        description: "텍스트 및 파일의 Base64 변환",
+        title: "OTA 업데이트",
+        description:
+          "EAS Update 기반 development/preview/production 3단계 배포",
       },
       {
-        title: "UUID/ULID 생성기",
-        description: "다양한 형식의 고유 ID 생성",
+        title: "크래시 리포팅",
+        description: "Sentry + Error Boundary 기반 안정성 모니터링",
       },
       {
-        title: "정규식 테스터",
-        description: "실시간 정규식 매칭 테스트 및 하이라이팅",
-      },
-      {
-        title: "해시 생성기",
-        description: "MD5, SHA-1, SHA-256 등 다양한 해시 생성",
+        title: "모노레포 구조",
+        description: "Turborepo + pnpm workspace로 모바일/웹 통합 관리",
       },
     ],
     techStack: {
-      frontend: ["React", "TypeScript", "TailwindCSS", "Radix UI"],
-      backend: [],
-      infrastructure: [],
-      desktop: ["Tauri", "Rust"],
-    },
-    codeStats: {
-      total: 8000,
-      frontend: 7000,
-    },
-    achievements: [
-      {
-        title: "20+ 유틸리티",
-        description: "개발자에게 필요한 다양한 도구 통합",
-        icon: "🧰",
-      },
-      {
-        title: "오프라인 지원",
-        description: "인터넷 없이도 모든 기능 사용 가능",
-        icon: "📴",
-      },
-    ],
-    links: {
-      github: "https://github.com/jellive/dev-utils-hub",
-    },
-  },
-
-  // 3. Certificate Sync Manager
-  {
-    id: "cert-sync-manager",
-    name: "Certificate Sync Manager",
-    emoji: "🔐",
-    type: ProjectType.INFRASTRUCTURE,
-    status: ProjectStatus.PRODUCTION,
-    period: "2024.02 - 2024.04",
-    role: "1인 개발",
-    shortDescription: "Let's Encrypt 인증서 자동 동기화 시스템",
-    description:
-      "Let's Encrypt 와일드카드 SSL 인증서를 발급받아 여러 서버에 자동으로 동기화하는 인프라 도구입니다. Docker 컨테이너 기반으로 실행되며, 인증서 갱신 시 자동으로 모든 대상 서버에 배포됩니다.",
-    features: [
-      {
-        title: "자동 인증서 발급",
-        description: "Let's Encrypt 와일드카드 인증서 자동 발급",
-      },
-      {
-        title: "멀티 서버 동기화",
-        description: "SSH를 통한 여러 서버로 인증서 자동 배포",
-      },
-      {
-        title: "자동 갱신",
-        description: "인증서 만료 전 자동 갱신 및 재배포",
-      },
-      {
-        title: "Docker 기반",
-        description: "컨테이너 환경에서 독립적으로 실행",
-      },
-    ],
-    techStack: {
-      frontend: [],
-      backend: ["Node.js", "TypeScript"],
-      infrastructure: ["Docker", "Let's Encrypt", "Certbot", "SSH", "Cron"],
+      frontend: ["React Native", "Expo", "TypeScript", "Next.js"],
+      backend: ["Supabase", "PostgreSQL"],
+      infrastructure: ["Sentry", "EAS Update", "Turborepo", "pnpm"],
       desktop: [],
     },
     codeStats: {
-      total: 2500,
-      backend: 2500,
+      total: 18000,
+      frontend: 16000,
+      tests: 656,
     },
     achievements: [
       {
-        title: "인프라 자동화",
-        description: "인증서 관리 완전 자동화로 운영 부담 감소",
-        icon: "🔄",
-      },
-      {
-        title: "Zero-downtime",
-        description: "서비스 중단 없이 인증서 교체",
+        title: "품질 인프라 100%",
+        description: "ESLint 9.x + Sentry + EAS Update + Branch Coverage 82%",
         icon: "✅",
       },
+      {
+        title: "모노레포 전환",
+        description: "React Native + Next.js Turborepo 통합",
+        icon: "📦",
+      },
     ],
     links: {
-      github: "https://github.com/jellive/cert-sync-manager",
+      github: "https://github.com/jellive/time-letter",
     },
   },
 
-  // 4. Chzzk OBS Connector
+  // 4. 커플 플래너
   {
-    id: "chzzk-obs",
-    name: "Chzzk OBS Connector",
-    emoji: "📺",
-    type: ProjectType.DESKTOP,
+    id: "couple-planner",
+    name: "커플 플래너",
+    emoji: "💕",
+    type: ProjectType.FULL_STACK_WEB,
     status: ProjectStatus.DEVELOPMENT,
-    period: "2024.05 - 현재",
-    role: "1인 개발",
-    shortDescription: "치지직 스트리밍을 위한 OBS 연동 도구",
+    period: "2025.12 - 현재",
+    role: "1인 풀스택 개발",
+    shortDescription: "커플 일정 및 기념일 공유 웹앱",
     description:
-      "네이버 치지직(Chzzk) 플랫폼에서 스트리밍할 때 OBS Studio와 연동하여 채팅 오버레이, 알림 시스템, 방송 정보 표시 등의 기능을 제공하는 데스크톱 애플리케이션입니다.",
+      "커플이 함께 일정과 기념일을 관리하고 공유할 수 있는 PWA 웹 애플리케이션입니다. Next.js 15와 Supabase를 활용하여 실시간 동기화와 Push 알림을 지원하며, 모바일 환경에서도 네이티브 앱처럼 사용할 수 있습니다.",
     features: [
       {
-        title: "실시간 채팅 오버레이",
-        description: "치지직 채팅을 OBS에 오버레이로 표시",
+        title: "커플 일정 관리",
+        description: "공유 캘린더로 함께 일정 등록 및 관리",
       },
       {
-        title: "후원 알림",
-        description: "치즈 후원 실시간 알림 및 TTS",
+        title: "기념일 알림",
+        description: "D-day 카운트다운 및 기념일 자동 알림",
       },
       {
-        title: "방송 정보 위젯",
-        description: "시청자 수, 방송 시간 등 정보 표시",
+        title: "PWA 지원",
+        description: "모바일 홈 화면 추가로 네이티브 앱처럼 사용",
       },
       {
-        title: "커스텀 테마",
-        description: "사용자 정의 가능한 오버레이 디자인",
+        title: "실시간 동기화",
+        description: "Supabase Realtime으로 커플 간 실시간 데이터 동기화",
       },
     ],
     techStack: {
-      frontend: ["React", "TypeScript", "TailwindCSS"],
-      backend: ["Node.js", "WebSocket"],
-      infrastructure: [],
-      desktop: ["Electron", "OBS WebSocket"],
-    },
-    codeStats: {
-      total: 6000,
-      frontend: 4500,
-      backend: 1500,
+      frontend: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui"],
+      backend: ["Supabase", "PostgreSQL", "Edge Functions"],
+      infrastructure: ["Vercel", "Supabase Auth", "Web Push"],
+      desktop: [],
     },
     achievements: [
       {
-        title: "개발 진행률 95%",
-        description: "핵심 기능 구현 완료, 최종 테스트 중",
-        icon: "🚧",
+        title: "PWA 구현",
+        description: "네이티브 앱 수준의 웹 앱 경험 제공",
+        icon: "📱",
       },
     ],
     links: {
-      github: "https://github.com/jellive/chzzk-obs",
+      github: "https://github.com/jellive/couple-planner",
     },
   },
 
-  // 5. 나무위키 링커
-  {
-    id: "namuwiki-linker",
-    name: "나무위키 링커",
-    emoji: "🌳",
-    type: ProjectType.CHROME_EXTENSION,
-    status: ProjectStatus.PRODUCTION,
-    period: "2024.06 - 현재",
-    role: "1인 개발",
-    shortDescription: "웹페이지 텍스트를 나무위키로 연결하는 확장 프로그램",
-    description:
-      "웹페이지에서 텍스트를 선택하면 해당 단어의 나무위키 문서로 바로 연결해주는 Chrome 확장 프로그램입니다. 우클릭 컨텍스트 메뉴와 키보드 단축키를 지원합니다.",
-    features: [
-      {
-        title: "컨텍스트 메뉴 연동",
-        description: "텍스트 선택 후 우클릭으로 나무위키 검색",
-      },
-      {
-        title: "키보드 단축키",
-        description: "선택 텍스트를 단축키로 빠르게 검색",
-      },
-      {
-        title: "팝업 미리보기",
-        description: "새 탭 열기 전 문서 미리보기 제공",
-      },
-      {
-        title: "검색 기록",
-        description: "최근 검색한 단어 목록 저장",
-      },
-    ],
-    techStack: {
-      frontend: ["JavaScript", "Chrome Extension API", "HTML", "CSS"],
-      backend: [],
-      infrastructure: [],
-      desktop: [],
-    },
-    codeStats: {
-      total: 1500,
-      frontend: 1500,
-    },
-    links: {
-      chromeWebStore:
-        "https://chromewebstore.google.com/detail/fhmagpkcdpcnmbihkgdcmabidcmdmpgl",
-      github: "https://github.com/jellive/namuwiki-linker",
-    },
-  },
-
-  // 6. Jellmodoro
+  // 5. Jellmodoro
   {
     id: "jellmodoro",
     name: "Jellmodoro",
     emoji: "🍅",
-    type: ProjectType.IOS,
-    status: ProjectStatus.PRODUCTION,
-    period: "2023.08 - 2023.12",
+    type: ProjectType.FULL_STACK_MOBILE,
+    status: ProjectStatus.DEVELOPMENT,
+    period: "2025.06 - 현재",
     role: "1인 개발",
-    shortDescription: "미니멀한 포모도로 타이머 iOS 앱",
+    shortDescription: "미니멀한 포모도로 타이머 앱 (Flutter 리빌드)",
     description:
-      "집중력 향상을 위한 포모도로 기법을 적용한 미니멀 디자인의 iOS 타이머 앱입니다. 직관적인 UI와 Apple Watch 연동을 지원하며, 집중 통계를 제공합니다.",
+      "포모도로 기법을 적용한 미니멀 디자인의 타이머 앱입니다. 기존 Swift/SwiftUI 앱을 Flutter + NestJS 풀스택으로 리빌드 중이며, Clean Architecture와 TDD를 적용하고 있습니다.",
     features: [
       {
         title: "포모도로 타이머",
         description: "25분 집중 + 5분 휴식 사이클 관리",
       },
       {
-        title: "Apple Watch 연동",
-        description: "워치에서 타이머 시작/정지 및 확인",
-      },
-      {
         title: "집중 통계",
-        description: "일간/주간/월간 집중 시간 통계",
+        description: "일간/주간/월간 집중 시간 통계 및 분석",
       },
       {
         title: "커스텀 타이머",
         description: "사용자 정의 시간 설정 가능",
       },
+      {
+        title: "크로스 플랫폼",
+        description: "Flutter 기반 iOS/Android 동시 지원",
+      },
     ],
     techStack: {
-      frontend: ["Swift", "SwiftUI", "WatchKit"],
-      backend: [],
-      infrastructure: ["CloudKit", "WidgetKit"],
+      frontend: ["Flutter", "Dart", "Riverpod"],
+      backend: ["NestJS", "TypeScript", "PostgreSQL"],
+      infrastructure: ["Docker", "Firebase"],
       desktop: [],
     },
     codeStats: {
@@ -806,18 +773,17 @@ export const projectsData: Project[] = [
     },
     achievements: [
       {
-        title: "App Store 출시",
-        description: "iOS 앱스토어 정식 출시",
-        icon: "🎉",
+        title: "Flutter 리빌드",
+        description: "Swift → Flutter + NestJS 풀스택 전환",
+        icon: "🔄",
       },
       {
-        title: "Apple Watch 지원",
-        description: "워치 앱 및 컴플리케이션 제공",
-        icon: "⌚",
+        title: "Clean Architecture",
+        description: "TDD 기반 체계적 아키텍처 적용",
+        icon: "🏗️",
       },
     ],
     links: {
-      appStore: "https://apps.apple.com/app/jellmodoro",
       github: "https://github.com/jellive/jellmodoro",
     },
   },
@@ -868,14 +834,232 @@ export const projectsData: Project[] = [
     },
   },
 
-  // 8. jell-utils.js
+  // 8. Dev Utils Hub
+  {
+    id: "dev-utils-hub",
+    name: "Dev Utils Hub",
+    emoji: "🛠️",
+    type: ProjectType.DESKTOP,
+    status: ProjectStatus.PRODUCTION,
+    period: "2025.11 - 현재",
+    role: "1인 개발",
+    shortDescription: "개발자를 위한 올인원 유틸리티 데스크톱 앱",
+    description:
+      "개발 작업에서 자주 사용하는 다양한 유틸리티 기능들을 하나의 앱으로 통합했습니다. JSON 포맷터, Base64 인코더/디코더, UUID 생성기, 정규식 테스터 등 20개 이상의 도구를 제공합니다.",
+    features: [
+      {
+        title: "JSON 포맷터/검증기",
+        description: "JSON 데이터 자동 정렬 및 유효성 검사",
+      },
+      {
+        title: "Base64 인코더/디코더",
+        description: "텍스트 및 파일의 Base64 변환",
+      },
+      {
+        title: "UUID/ULID 생성기",
+        description: "다양한 형식의 고유 ID 생성",
+      },
+      {
+        title: "정규식 테스터",
+        description: "실시간 정규식 매칭 테스트 및 하이라이팅",
+      },
+      {
+        title: "해시 생성기",
+        description: "MD5, SHA-1, SHA-256 등 다양한 해시 생성",
+      },
+    ],
+    techStack: {
+      frontend: ["React", "TypeScript", "TailwindCSS", "Radix UI"],
+      backend: [],
+      infrastructure: [],
+      desktop: ["Electron"],
+    },
+    codeStats: {
+      total: 8000,
+      frontend: 7000,
+    },
+    achievements: [
+      {
+        title: "20+ 유틸리티",
+        description: "개발자에게 필요한 다양한 도구 통합",
+        icon: "🧰",
+      },
+      {
+        title: "오프라인 지원",
+        description: "인터넷 없이도 모든 기능 사용 가능",
+        icon: "📴",
+      },
+    ],
+    links: {
+      github: "https://github.com/jellive/dev-utils-hub",
+    },
+  },
+
+  // 9. Chzzk OBS Connector
+  {
+    id: "chzzk-obs",
+    name: "Chzzk OBS Connector",
+    emoji: "📺",
+    type: ProjectType.DESKTOP,
+    status: ProjectStatus.DEVELOPMENT,
+    period: "2025.11 - 현재",
+    role: "1인 개발",
+    shortDescription: "치지직 스트리밍을 위한 OBS 연동 도구",
+    description:
+      "네이버 치지직(Chzzk) 플랫폼에서 스트리밍할 때 OBS Studio와 연동하여 채팅 오버레이, 알림 시스템, 방송 정보 표시 등의 기능을 제공하는 데스크톱 애플리케이션입니다.",
+    features: [
+      {
+        title: "실시간 채팅 오버레이",
+        description: "치지직 채팅을 OBS에 오버레이로 표시",
+      },
+      {
+        title: "후원 알림",
+        description: "치즈 후원 실시간 알림 및 TTS",
+      },
+      {
+        title: "방송 정보 위젯",
+        description: "시청자 수, 방송 시간 등 정보 표시",
+      },
+      {
+        title: "커스텀 테마",
+        description: "사용자 정의 가능한 오버레이 디자인",
+      },
+    ],
+    techStack: {
+      frontend: ["React", "TypeScript", "TailwindCSS"],
+      backend: ["Node.js", "WebSocket"],
+      infrastructure: [],
+      desktop: ["Electron", "OBS WebSocket"],
+    },
+    codeStats: {
+      total: 6000,
+      frontend: 4500,
+      backend: 1500,
+    },
+    achievements: [
+      {
+        title: "개발 진행률 95%",
+        description: "핵심 기능 구현 완료, 최종 테스트 중",
+        icon: "🚧",
+      },
+    ],
+    links: {
+      github: "https://github.com/jellive/chzzk-obs",
+    },
+  },
+
+  // 10. Certificate Sync Manager
+  {
+    id: "cert-sync-manager",
+    name: "Certificate Sync Manager",
+    emoji: "🔐",
+    type: ProjectType.INFRASTRUCTURE,
+    status: ProjectStatus.PRODUCTION,
+    period: "2025.11 - 현재",
+    role: "1인 개발",
+    shortDescription: "Let's Encrypt 인증서 자동 동기화 시스템",
+    description:
+      "Let's Encrypt 와일드카드 SSL 인증서를 발급받아 여러 서버에 자동으로 동기화하는 인프라 도구입니다. Docker 컨테이너 기반으로 실행되며, 인증서 갱신 시 자동으로 모든 대상 서버에 배포됩니다.",
+    features: [
+      {
+        title: "자동 인증서 발급",
+        description: "Let's Encrypt 와일드카드 인증서 자동 발급",
+      },
+      {
+        title: "멀티 서버 동기화",
+        description: "SSH를 통한 여러 서버로 인증서 자동 배포",
+      },
+      {
+        title: "자동 갱신",
+        description: "인증서 만료 전 자동 갱신 및 재배포",
+      },
+      {
+        title: "Docker 기반",
+        description: "컨테이너 환경에서 독립적으로 실행",
+      },
+    ],
+    techStack: {
+      frontend: [],
+      backend: ["Python"],
+      infrastructure: ["Docker", "Let's Encrypt", "Certbot", "SSH", "Cron"],
+      desktop: [],
+    },
+    codeStats: {
+      total: 2500,
+      backend: 2500,
+    },
+    achievements: [
+      {
+        title: "인프라 자동화",
+        description: "인증서 관리 완전 자동화로 운영 부담 감소",
+        icon: "🔄",
+      },
+      {
+        title: "Zero-downtime",
+        description: "서비스 중단 없이 인증서 교체",
+        icon: "✅",
+      },
+    ],
+    links: {
+      github: "https://github.com/jellive/cert-sync-manager",
+    },
+  },
+
+  // 11. 나무위키 링커
+  {
+    id: "namuwiki-linker",
+    name: "나무위키 링커",
+    emoji: "🌳",
+    type: ProjectType.CHROME_EXTENSION,
+    status: ProjectStatus.PRODUCTION,
+    period: "2025.10 - 현재",
+    role: "1인 개발",
+    shortDescription: "웹페이지 텍스트를 나무위키로 연결하는 확장 프로그램",
+    description:
+      "웹페이지에서 텍스트를 선택하면 해당 단어의 나무위키 문서로 바로 연결해주는 Chrome 확장 프로그램입니다. 우클릭 컨텍스트 메뉴와 키보드 단축키를 지원합니다.",
+    features: [
+      {
+        title: "컨텍스트 메뉴 연동",
+        description: "텍스트 선택 후 우클릭으로 나무위키 검색",
+      },
+      {
+        title: "키보드 단축키",
+        description: "선택 텍스트를 단축키로 빠르게 검색",
+      },
+      {
+        title: "팝업 미리보기",
+        description: "새 탭 열기 전 문서 미리보기 제공",
+      },
+      {
+        title: "검색 기록",
+        description: "최근 검색한 단어 목록 저장",
+      },
+    ],
+    techStack: {
+      frontend: ["JavaScript", "Chrome Extension API", "HTML", "CSS"],
+      backend: [],
+      infrastructure: [],
+      desktop: [],
+    },
+    codeStats: {
+      total: 1500,
+      frontend: 1500,
+    },
+    links: {
+      chromeWebStore:
+        "https://chromewebstore.google.com/detail/fhmagpkcdpcnmbihkgdcmabidcmdmpgl",
+      github: "https://github.com/jellive/namuwiki-linker",
+    },
+  },
+
+  // 12. jell-utils.js
   {
     id: "jell-utils",
     name: "jell-utils.js",
     emoji: "📦",
     type: ProjectType.NPM_PACKAGE,
     status: ProjectStatus.ARCHIVE,
-    period: "2022.06 - 2023.02",
+    period: "2025.10 - 현재",
     role: "1인 개발",
     shortDescription: "JavaScript/TypeScript 유틸리티 함수 라이브러리",
     description:
