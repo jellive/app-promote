@@ -10,7 +10,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ProjectCard } from "@/components/project-card";
 import { StatCard } from "@/components/stat-card";
-import { ProjectType, ProjectStatus } from "@/data/projects";
+import { ProjectType, ProjectStatus, ProjectCategory } from "@/data/projects";
 import { Code } from "lucide-react";
 
 // Mock next-themes
@@ -34,6 +34,7 @@ const mockProject = {
   emoji: "🚀",
   type: ProjectType.FULL_STACK_MOBILE,
   status: ProjectStatus.PRODUCTION,
+  category: ProjectCategory.PERSONAL,
   period: "2024.01 - 2024.06",
   role: "Developer",
   shortDescription: "A test project",

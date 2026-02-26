@@ -24,6 +24,19 @@ describe("SEO Metadata Configuration", () => {
       expect(layoutContent).toContain("풀스택 개발자");
     });
 
+    it("should have open to work signal in description", () => {
+      expect(layoutContent).toContain("Senior 포지션 구직 중");
+    });
+
+    it("should include job seeking keywords", () => {
+      expect(layoutContent).toContain("시니어 개발자");
+      expect(layoutContent).toContain("Open to Work");
+    });
+
+    it("should have openGraph title with Open to Work signal", () => {
+      expect(layoutContent).toContain("Open to Work");
+    });
+
     it("should have site URL configured", () => {
       expect(layoutContent).toContain('url: "https://jell.kr"');
     });

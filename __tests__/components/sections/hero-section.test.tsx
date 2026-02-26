@@ -93,6 +93,20 @@ describe("HeroSection", () => {
     });
   });
 
+  describe("Open to Work Badge", () => {
+    it("should render OPEN TO WORK badge text", () => {
+      render(<HeroSection />);
+      expect(screen.getByText(/OPEN TO WORK/i)).toBeInTheDocument();
+    });
+
+    it("should display position info in badge", () => {
+      render(<HeroSection />);
+      expect(
+        screen.getByText(/풀스택 \/ 프론트엔드 시니어/i),
+      ).toBeInTheDocument();
+    });
+  });
+
   describe("Social Links", () => {
     it("should render Blog social link with aria-label", () => {
       render(<HeroSection />);

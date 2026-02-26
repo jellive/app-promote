@@ -9,7 +9,6 @@ import {
   Github,
   Linkedin,
   Code2,
-  Terminal,
   BookOpen,
   FileDown,
 } from "lucide-react";
@@ -101,9 +100,12 @@ export function HeroSection() {
             <div className="space-y-8 stagger-fade-in">
               {/* Badge */}
               <div className="inline-block">
-                <div className="px-4 py-2 bg-foreground text-background font-mono text-sm font-bold brutal-shadow-sm">
-                  <Terminal className="inline-block w-4 h-4 mr-2" />
-                  AVAILABLE FOR HIRE
+                <div className="px-4 py-2 bg-foreground text-background font-mono text-sm font-bold brutal-shadow-sm flex items-center gap-2">
+                  <span
+                    className="w-2 h-2 rounded-full bg-green-400 animate-pulse"
+                    aria-hidden="true"
+                  />
+                  OPEN TO WORK · 풀스택 / 프론트엔드 시니어
                 </div>
               </div>
 

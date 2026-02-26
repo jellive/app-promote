@@ -5,7 +5,7 @@
 
 import { render, screen } from "@testing-library/react";
 import { ProjectCard } from "@/components/project-card";
-import { ProjectType, ProjectStatus } from "@/data/projects";
+import { ProjectType, ProjectStatus, ProjectCategory } from "@/data/projects";
 
 const mockProject = {
   id: "test-project",
@@ -13,6 +13,7 @@ const mockProject = {
   emoji: "🚀",
   type: ProjectType.FULL_STACK_MOBILE,
   status: ProjectStatus.PRODUCTION,
+  category: ProjectCategory.PERSONAL,
   period: "2024.01 - 2024.06",
   role: "Developer",
   shortDescription: "A test project for testing purposes",

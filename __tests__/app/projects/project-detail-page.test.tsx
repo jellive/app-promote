@@ -17,8 +17,8 @@ describe("Project Detail Page", () => {
   // that cannot be exported from a "use client" component.
   // Testing the data source directly instead.
   describe("Static Params Data", () => {
-    it("should have 15 projects available", () => {
-      expect(projectsData).toHaveLength(15);
+    it("should have 18 projects available", () => {
+      expect(projectsData).toHaveLength(18);
     });
 
     it("should have correct project IDs", () => {
@@ -82,7 +82,7 @@ describe("Project Detail Page", () => {
     it("should render project period", async () => {
       const Page = await ProjectDetailPage({ params });
       render(Page);
-      expect(screen.getByText(/2024\.03/)).toBeInTheDocument();
+      expect(screen.getByText(/2024\.08/)).toBeInTheDocument();
     });
 
     it("should render project role", async () => {
@@ -148,7 +148,7 @@ describe("Project Detail Page", () => {
     it("should display achievement titles", async () => {
       const Page = await ProjectDetailPage({ params });
       render(Page);
-      expect(screen.getByText("App Store 심사 중")).toBeInTheDocument();
+      expect(screen.getByText("App Store 출시")).toBeInTheDocument();
     });
   });
 

@@ -33,6 +33,15 @@ export enum ProjectStatus {
   DEVELOPMENT = "development",
 }
 
+/**
+ * Project category (work type)
+ */
+export enum ProjectCategory {
+  PROFESSIONAL = "professional", // 회사 프로젝트
+  FREELANCE = "freelance", // 프리랜서
+  PERSONAL = "personal", // 개인 프로젝트
+}
+
 // ============================================================================
 // INTERFACES
 // ============================================================================
@@ -104,6 +113,7 @@ export interface Project {
   emoji: string;
   type: ProjectType;
   status: ProjectStatus;
+  category: ProjectCategory;
   period: string;
   role: string;
   shortDescription: string;
@@ -132,6 +142,7 @@ export const projectsData: Project[] = [
     emoji: "💼",
     type: ProjectType.FULL_STACK_WEB,
     status: ProjectStatus.ARCHIVE,
+    category: ProjectCategory.PROFESSIONAL,
     period: "2024.12 - 2025.09",
     role: "수석연구원 (애즈플로우)",
     shortDescription: "스타트업 투자 관리 플랫폼",
@@ -195,6 +206,7 @@ export const projectsData: Project[] = [
     emoji: "📐",
     type: ProjectType.IOS,
     status: ProjectStatus.ARCHIVE,
+    category: ProjectCategory.PROFESSIONAL,
     period: "2021.09 - 2024.08",
     role: "선임연구원 (비주얼신) - 웹/앱 개발",
     shortDescription: "LiDAR 기반 3D 공간 스캐닝 및 인테리어 앱",
@@ -257,6 +269,7 @@ export const projectsData: Project[] = [
     emoji: "🎮",
     type: ProjectType.UNITY_WEBGL,
     status: ProjectStatus.ARCHIVE,
+    category: ProjectCategory.PROFESSIONAL,
     period: "2023.01 - 2024.08",
     role: "선임연구원 (비주얼신) - 웹 프론트엔드 개발",
     shortDescription: "Unity WebGL 기반 3D 가상 쇼룸",
@@ -304,6 +317,7 @@ export const projectsData: Project[] = [
     emoji: "🎬",
     type: ProjectType.IOS,
     status: ProjectStatus.ARCHIVE,
+    category: ProjectCategory.PROFESSIONAL,
     period: "2016.09 - 2018.07",
     role: "연구원 (케이라운지)",
     shortDescription: "플립러닝용 강의 녹화 iOS 앱",
@@ -355,6 +369,7 @@ export const projectsData: Project[] = [
     emoji: "📚",
     type: ProjectType.IOS,
     status: ProjectStatus.ARCHIVE,
+    category: ProjectCategory.PROFESSIONAL,
     period: "2016.06 - 2018.07",
     role: "연구원 (케이라운지)",
     shortDescription: "실시간 화이트보드 기반 교육 플랫폼",
@@ -401,6 +416,7 @@ export const projectsData: Project[] = [
     emoji: "🗣️",
     type: ProjectType.WEBRTC,
     status: ProjectStatus.ARCHIVE,
+    category: ProjectCategory.PROFESSIONAL,
     period: "2017.03 - 2018.07",
     role: "연구원 (케이라운지)",
     shortDescription: "WebRTC 기반 실시간 화상 교육 웹앱",
@@ -447,6 +463,7 @@ export const projectsData: Project[] = [
     emoji: "🏫",
     type: ProjectType.FULL_STACK_MOBILE,
     status: ProjectStatus.ARCHIVE,
+    category: ProjectCategory.PROFESSIONAL,
     period: "2018.12 - 2021.07",
     role: "대리 (청담어학원, 현 크레버스)",
     shortDescription: "학생 어학 교육 웹서비스 및 모바일 앱",
@@ -493,7 +510,7 @@ export const projectsData: Project[] = [
   },
 
   // ============================================================================
-  // PERSONAL / FREELANCE PROJECTS (개인 & 외주 프로젝트)
+  // FREELANCE PROJECTS (프리랜서 프로젝트)
   // ============================================================================
 
   // 1. 빈자리 (Vinjari)
@@ -503,6 +520,7 @@ export const projectsData: Project[] = [
     emoji: "🏕️",
     type: ProjectType.FULL_STACK_MOBILE,
     status: ProjectStatus.PRODUCTION,
+    category: ProjectCategory.FREELANCE,
     period: "2025.12 - 현재",
     role: "Flutter 모바일 개발자 (프리랜서)",
     shortDescription: "캠핑장 예약 플랫폼 하이브리드 앱",
@@ -560,13 +578,18 @@ export const projectsData: Project[] = [
     links: {},
   },
 
-  // 2. Cookting
+  // ============================================================================
+  // PERSONAL PROJECTS (개인 프로젝트)
+  // ============================================================================
+
+  // 1. Cookting
   {
     id: "cookting",
     name: "Cookting",
     emoji: "🍳",
     type: ProjectType.FULL_STACK_MOBILE,
     status: ProjectStatus.PRODUCTION,
+    category: ProjectCategory.PERSONAL,
     period: "2024.08 - 현재",
     role: "1인 풀스택 개발",
     shortDescription: "AI 기반 냉장고 재료 인식 레시피 추천 앱",
@@ -624,13 +647,14 @@ export const projectsData: Project[] = [
     },
   },
 
-  // 3. Time Letter
+  // 2. Time Letter
   {
     id: "time-letter",
     name: "Time Letter",
     emoji: "💌",
     type: ProjectType.FULL_STACK_MOBILE,
     status: ProjectStatus.DEVELOPMENT,
+    category: ProjectCategory.PERSONAL,
     period: "2025.10 - 현재",
     role: "React Native 개발자",
     shortDescription: "타임캡슐 일기 앱 (React Native + Next.js 웹)",
@@ -683,13 +707,14 @@ export const projectsData: Project[] = [
     },
   },
 
-  // 4. 커플 플래너
+  // 3. 커플 플래너
   {
     id: "couple-planner",
     name: "커플 플래너",
     emoji: "💕",
     type: ProjectType.FULL_STACK_WEB,
     status: ProjectStatus.DEVELOPMENT,
+    category: ProjectCategory.PERSONAL,
     period: "2025.12 - 현재",
     role: "1인 풀스택 개발",
     shortDescription: "커플 일정 및 기념일 공유 웹앱",
@@ -731,13 +756,14 @@ export const projectsData: Project[] = [
     },
   },
 
-  // 5. Jellmodoro
+  // 4. Jellmodoro
   {
     id: "jellmodoro",
     name: "Jellmodoro",
     emoji: "🍅",
     type: ProjectType.FULL_STACK_MOBILE,
     status: ProjectStatus.DEVELOPMENT,
+    category: ProjectCategory.PERSONAL,
     period: "2025.06 - 현재",
     role: "1인 개발",
     shortDescription: "미니멀한 포모도로 타이머 앱 (Flutter 리빌드)",
@@ -788,13 +814,14 @@ export const projectsData: Project[] = [
     },
   },
 
-  // 7. Wecanner
+  // 5. Wecanner
   {
     id: "wecanner",
     name: "Wecanner",
     emoji: "📅",
     type: ProjectType.IOS,
     status: ProjectStatus.PRODUCTION,
+    category: ProjectCategory.PERSONAL,
     period: "2024.04 - 현재",
     role: "1인 개발",
     shortDescription: "요일별 할 일 관리 iOS 앱",
@@ -834,13 +861,14 @@ export const projectsData: Project[] = [
     },
   },
 
-  // 8. Dev Utils Hub
+  // 6. Dev Utils Hub
   {
     id: "dev-utils-hub",
     name: "Dev Utils Hub",
     emoji: "🛠️",
     type: ProjectType.DESKTOP,
     status: ProjectStatus.PRODUCTION,
+    category: ProjectCategory.PERSONAL,
     period: "2025.11 - 현재",
     role: "1인 개발",
     shortDescription: "개발자를 위한 올인원 유틸리티 데스크톱 앱",
@@ -895,13 +923,14 @@ export const projectsData: Project[] = [
     },
   },
 
-  // 9. Chzzk OBS Connector
+  // 7. Chzzk OBS Connector
   {
     id: "chzzk-obs",
     name: "Chzzk OBS Connector",
     emoji: "📺",
     type: ProjectType.DESKTOP,
     status: ProjectStatus.DEVELOPMENT,
+    category: ProjectCategory.PERSONAL,
     period: "2025.11 - 현재",
     role: "1인 개발",
     shortDescription: "치지직 스트리밍을 위한 OBS 연동 도구",
@@ -948,13 +977,14 @@ export const projectsData: Project[] = [
     },
   },
 
-  // 10. Certificate Sync Manager
+  // 8. Certificate Sync Manager
   {
     id: "cert-sync-manager",
     name: "Certificate Sync Manager",
     emoji: "🔐",
     type: ProjectType.INFRASTRUCTURE,
     status: ProjectStatus.PRODUCTION,
+    category: ProjectCategory.PERSONAL,
     period: "2025.11 - 현재",
     role: "1인 개발",
     shortDescription: "Let's Encrypt 인증서 자동 동기화 시스템",
@@ -1005,13 +1035,14 @@ export const projectsData: Project[] = [
     },
   },
 
-  // 11. 나무위키 링커
+  // 9. 나무위키 링커
   {
     id: "namuwiki-linker",
     name: "나무위키 링커",
     emoji: "🌳",
     type: ProjectType.CHROME_EXTENSION,
     status: ProjectStatus.PRODUCTION,
+    category: ProjectCategory.PERSONAL,
     period: "2025.10 - 현재",
     role: "1인 개발",
     shortDescription: "웹페이지 텍스트를 나무위키로 연결하는 확장 프로그램",
@@ -1052,13 +1083,14 @@ export const projectsData: Project[] = [
     },
   },
 
-  // 12. jell-utils.js
+  // 10. jell-utils.js
   {
     id: "jell-utils",
     name: "jell-utils.js",
     emoji: "📦",
     type: ProjectType.NPM_PACKAGE,
     status: ProjectStatus.ARCHIVE,
+    category: ProjectCategory.PERSONAL,
     period: "2025.10 - 현재",
     role: "1인 개발",
     shortDescription: "JavaScript/TypeScript 유틸리티 함수 라이브러리",
@@ -1140,6 +1172,15 @@ export function getProjectsByStatus(status: ProjectStatus): Project[] {
  */
 export function getProjectsByType(type: ProjectType): Project[] {
   return projectsData.filter((project) => project.type === type);
+}
+
+/**
+ * Get projects filtered by category
+ * @param category - Project category to filter by
+ * @returns Array of matching projects
+ */
+export function getProjectsByCategory(category: ProjectCategory): Project[] {
+  return projectsData.filter((project) => project.category === category);
 }
 
 /**

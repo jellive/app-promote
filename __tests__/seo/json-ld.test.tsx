@@ -68,6 +68,29 @@ describe("PersonJsonLd Component", () => {
     expect(jsonLd?.knowsAbout).toContain("Flutter");
     expect(jsonLd?.knowsAbout).toContain("React");
   });
+
+  it("should include alternateName", () => {
+    const { container } = render(
+      <PersonJsonLd {...defaultProps} alternateName="Jell" />,
+    );
+    const jsonLd = getJsonLdContent(container) as Record<string, unknown>;
+    expect(jsonLd?.alternateName).toBe("Jell");
+  });
+
+  it("should include seeks when provided", () => {
+    const seeks = {
+      "@type": "JobPosting" as const,
+      title: "시니어 풀스택 개발자",
+      description: "풀타임 또는 프리랜서 시니어 포지션",
+    };
+    const { container } = render(
+      <PersonJsonLd {...defaultProps} seeks={seeks} />,
+    );
+    const jsonLd = getJsonLdContent(container) as Record<string, unknown>;
+    const seeksData = jsonLd?.seeks as Record<string, unknown>;
+    expect(seeksData?.["@type"]).toBe("JobPosting");
+    expect(seeksData?.title).toBe("시니어 풀스택 개발자");
+  });
 });
 
 describe("WebsiteJsonLd Component", () => {
@@ -188,12 +211,12 @@ describe("ProjectJsonLd Component", () => {
 });
 
 describe("HomePageJsonLd Component", () => {
-  it("should render both Person and Website JSON-LD", () => {
+  it("should render Person, Website, and ProfilePage JSON-LD", () => {
     const { container } = render(<HomePageJsonLd />);
     const scripts = container.querySelectorAll(
       'script[type="application/ld+json"]',
     );
-    expect(scripts.length).toBe(2);
+    expect(scripts.length).toBe(3);
   });
 
   it("should include Person JSON-LD", () => {
@@ -207,7 +230,7 @@ describe("HomePageJsonLd Component", () => {
     );
     const personJsonLd = jsonLdContents.find((j) => j["@type"] === "Person");
     expect(personJsonLd).toBeDefined();
-    expect(personJsonLd?.name).toBe("Jell");
+    expect(personJsonLd?.name).toBe("유한군");
   });
 
   it("should include WebSite JSON-LD", () => {
@@ -236,5 +259,50 @@ describe("HomePageJsonLd Component", () => {
     const personJsonLd = jsonLdContents.find((j) => j["@type"] === "Person");
     const sameAs = personJsonLd?.sameAs as string[];
     expect(sameAs).toContain("https://github.com/jellive");
+  });
+
+  it("should include ProfilePage JSON-LD", () => {
+    const { container } = render(<HomePageJsonLd />);
+    const scripts = container.querySelectorAll(
+      'script[type="application/ld+json"]',
+    );
+    const jsonLdContents = Array.from(scripts).map(
+      (script) =>
+        JSON.parse(script.textContent || "{}") as Record<string, unknown>,
+    );
+    const profilePage = jsonLdContents.find(
+      (j) => j["@type"] === "ProfilePage",
+    );
+    expect(profilePage).toBeDefined();
+    expect(profilePage?.name).toContain("Jell");
+    expect(profilePage?.url).toBe("https://jell.kr");
+  });
+
+  it("should include seeks in Person JSON-LD", () => {
+    const { container } = render(<HomePageJsonLd />);
+    const scripts = container.querySelectorAll(
+      'script[type="application/ld+json"]',
+    );
+    const jsonLdContents = Array.from(scripts).map(
+      (script) =>
+        JSON.parse(script.textContent || "{}") as Record<string, unknown>,
+    );
+    const personJsonLd = jsonLdContents.find((j) => j["@type"] === "Person");
+    const seeks = personJsonLd?.seeks as Record<string, unknown>;
+    expect(seeks?.["@type"]).toBe("JobPosting");
+    expect(seeks?.title).toBe("시니어 풀스택 개발자");
+  });
+
+  it("should include alternateName in Person JSON-LD", () => {
+    const { container } = render(<HomePageJsonLd />);
+    const scripts = container.querySelectorAll(
+      'script[type="application/ld+json"]',
+    );
+    const jsonLdContents = Array.from(scripts).map(
+      (script) =>
+        JSON.parse(script.textContent || "{}") as Record<string, unknown>,
+    );
+    const personJsonLd = jsonLdContents.find((j) => j["@type"] === "Person");
+    expect(personJsonLd?.alternateName).toBe("Jell");
   });
 });

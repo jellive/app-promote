@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { type Project, ProjectStatus } from "@/data/projects";
+import { type Project, ProjectStatus, ProjectCategory } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
 interface ProjectCardProps {
@@ -35,6 +35,24 @@ const statusConfig: Record<
   },
 };
 
+const categoryConfig: Record<
+  ProjectCategory,
+  { label: string; className: string }
+> = {
+  [ProjectCategory.PROFESSIONAL]: {
+    label: "💼 회사",
+    className: "bg-primary/20 text-primary border-primary",
+  },
+  [ProjectCategory.FREELANCE]: {
+    label: "🏢 프리랜서",
+    className: "bg-secondary/20 text-secondary-foreground border-secondary",
+  },
+  [ProjectCategory.PERSONAL]: {
+    label: "🔧 개인",
+    className: "bg-accent/20 text-accent-foreground border-accent",
+  },
+};
+
 const typeConfig: Record<string, { label: string; icon: string }> = {
   "full-stack-mobile": { label: "Full-Stack", icon: "📱" },
   "full-stack-web": { label: "Full-Stack", icon: "🌐" },
@@ -64,6 +82,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
     label: project.type,
     icon: "🔧",
   };
+  const categoryInfo = categoryConfig[project.category];
 
   return (
     <article
@@ -94,6 +113,17 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
                   <span className="text-xs font-mono text-muted-foreground">
                     {typeInfo.icon} {typeInfo.label}
                   </span>
+                  {categoryInfo && (
+                    <span
+                      data-testid="category-badge"
+                      className={cn(
+                        "px-2 py-0.5 border font-mono text-xs font-bold",
+                        categoryInfo.className,
+                      )}
+                    >
+                      {categoryInfo.label}
+                    </span>
+                  )}
                 </div>
               </div>
             </div>

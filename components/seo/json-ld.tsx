@@ -5,12 +5,20 @@
 
 import { Project } from "@/data/projects";
 
+interface SeeksJsonLd {
+  "@type": "JobPosting";
+  title: string;
+  description: string;
+}
+
 interface PersonJsonLdProps {
   name: string;
+  alternateName?: string;
   jobTitle: string;
   url: string;
   email: string;
   sameAs?: string[];
+  seeks?: SeeksJsonLd;
 }
 
 interface WebsiteJsonLdProps {
@@ -28,15 +36,22 @@ interface SoftwareApplicationJsonLdProps {
   url?: string;
 }
 
+interface ProfilePageJsonLdProps {
+  name: string;
+  url: string;
+}
+
 // Person JSON-LD for portfolio owner
 export function PersonJsonLd({
   name,
+  alternateName,
   jobTitle,
   url,
   email,
   sameAs = [],
+  seeks,
 }: PersonJsonLdProps) {
-  const jsonLd = {
+  const personData: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Person",
     name,
@@ -53,6 +68,9 @@ export function PersonJsonLd({
       "Full Stack Development",
     ],
   };
+  if (alternateName) personData.alternateName = alternateName;
+  if (seeks) personData.seeks = seeks;
+  const jsonLd = personData;
 
   return (
     <script
@@ -75,6 +93,23 @@ export function WebsiteJsonLd({ name, url, description }: WebsiteJsonLdProps) {
       name: "Jell",
     },
     inLanguage: "ko-KR",
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
+// ProfilePage JSON-LD for the portfolio profile page
+export function ProfilePageJsonLd({ name, url }: ProfilePageJsonLdProps) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    name,
+    url,
   };
 
   return (
@@ -177,7 +212,8 @@ export function HomePageJsonLd() {
   return (
     <>
       <PersonJsonLd
-        name="Jell"
+        name="유한군"
+        alternateName="Jell"
         jobTitle="풀스택 개발자"
         url="https://jell.kr"
         email="jellive7@gmail.com"
@@ -186,11 +222,20 @@ export function HomePageJsonLd() {
           "https://www.linkedin.com/in/han-goon-yoo-429980113/",
           "https://blog.jell.kr",
         ]}
+        seeks={{
+          "@type": "JobPosting",
+          title: "시니어 풀스택 개발자",
+          description: "풀타임 또는 프리랜서 시니어 포지션",
+        }}
       />
       <WebsiteJsonLd
         name="Jell Portfolio"
         url="https://jell.kr"
         description="8년차 풀스택 개발자 Jell의 포트폴리오. iOS, Flutter, React, Next.js 등 다양한 기술 스택으로 사용자 중심의 앱을 개발합니다."
+      />
+      <ProfilePageJsonLd
+        name="Jell - 풀스택 개발자 포트폴리오"
+        url="https://jell.kr"
       />
     </>
   );

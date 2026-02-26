@@ -2,6 +2,8 @@ import { Manrope, Space_Mono } from "next/font/google";
 import { Metadata, Viewport } from "next";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 import "./globals.css";
 
 const fontHeading = Manrope({
@@ -28,7 +30,7 @@ const fontBody = Manrope({
 const siteConfig = {
   name: "Jell Portfolio",
   description:
-    "8년차 풀스택 개발자 Jell의 포트폴리오. iOS, Flutter, React, Next.js 등 다양한 기술 스택으로 사용자 중심의 앱을 개발합니다.",
+    "8년+ 경력 풀스택 개발자 Jell | iOS · Flutter · React · Next.js | 18개 프로젝트 | Senior 포지션 구직 중",
   url: "https://jell.kr",
   ogImage: "/og-image.png",
   author: {
@@ -47,6 +49,13 @@ const siteConfig = {
     "앱 개발",
     "포트폴리오",
     "Jell",
+    "시니어 개발자",
+    "구직",
+    "Senior Developer",
+    "Open to Work",
+    "LiDAR",
+    "TDD",
+    "Clean Architecture",
   ],
 };
 
@@ -70,7 +79,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     url: siteConfig.url,
-    title: siteConfig.name,
+    title: "Jell - Full-Stack Developer | Open to Work",
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [
@@ -130,7 +139,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           fontMono.variable,
         )}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <div className="flex flex-col min-h-dvh">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
