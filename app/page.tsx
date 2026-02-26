@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { HomePageJsonLd } from "@/components/seo/json-ld";
 import { HeroSection } from "@/components/sections/hero-section";
 import { StatsSection } from "@/components/sections/stats-section";
@@ -6,7 +7,16 @@ import { ProjectsSection } from "@/components/sections/projects-section";
 import { SkillsSection } from "@/components/sections/skills-section";
 import { BlogSection } from "@/components/sections/blog-section";
 import { AboutSection } from "@/components/sections/about-section";
-import { ContactSection } from "@/components/sections/contact-section";
+import { TimelineSection } from "@/components/sections/timeline-section";
+
+// 폴드 아래 무거운 Client Component는 지연 로딩 (초기 JS 번들 감소)
+const ContactSection = dynamic(
+  () =>
+    import("@/components/sections/contact-section").then(
+      (m) => m.ContactSection,
+    ),
+  { ssr: true },
+);
 
 export const metadata: Metadata = {
   title: "개발자 Jell - 풀스택 개발자 포트폴리오",
@@ -24,6 +34,7 @@ export default function HomePage() {
       <SkillsSection />
       <BlogSection />
       <AboutSection />
+      <TimelineSection />
       <ContactSection />
     </>
   );

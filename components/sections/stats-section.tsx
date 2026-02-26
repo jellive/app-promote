@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import { Code2, FolderKanban, TestTube2, ShieldCheck } from "lucide-react";
 import { StatCard } from "@/components/stat-card";
