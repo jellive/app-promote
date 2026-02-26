@@ -27,9 +27,9 @@ describe("StatsSection", () => {
       expect(statCards).toHaveLength(4);
     });
 
-    it("should display projects count (15)", () => {
+    it("should display projects count (18)", () => {
       render(<StatsSection />);
-      expect(screen.getByText("15")).toBeInTheDocument();
+      expect(screen.getByText("18")).toBeInTheDocument();
     });
 
     it("should display lines of code (50000+)", () => {
