@@ -100,6 +100,7 @@ export interface Links {
   github?: string;
   live?: string;
   appStore?: string;
+  playStore?: string;
   chromeWebStore?: string;
   npm?: string;
 }

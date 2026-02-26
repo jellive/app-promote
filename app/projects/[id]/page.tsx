@@ -23,6 +23,7 @@ import {
   Trophy,
   BarChart3,
   Link2,
+  Smartphone,
 } from "lucide-react";
 import {
   getProjectById,
@@ -366,6 +367,14 @@ function ProjectLinksSection({ project }: { project: Project }) {
       icon: Apple,
       show: !!project.links.appStore,
       color: "bg-secondary text-foreground",
+    },
+    {
+      key: "playStore",
+      label: "Google Play",
+      href: project.links.playStore,
+      icon: Smartphone,
+      show: !!project.links.playStore,
+      color: "bg-green-600 text-white",
     },
     {
       key: "chromeWebStore",
