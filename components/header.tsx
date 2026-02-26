@@ -11,6 +11,7 @@ const navItems = [
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "About", href: "#about" },
+  { label: "Blog", href: "https://blog.jell.kr", external: true },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -65,6 +66,9 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className="px-4 py-2 border-2 border-foreground font-mono font-bold text-sm hover-brutal transition-all duration-200 bg-background"
+                {...(item.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
               >
                 {item.label}
               </Link>
@@ -118,6 +122,9 @@ export function Header() {
                 className="px-4 py-3 border-2 border-foreground font-mono font-bold text-sm hover-brutal transition-all duration-200 bg-background stagger-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
                 onClick={() => setMobileMenuOpen(false)}
+                {...(item.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
               >
                 {item.label}
               </Link>
