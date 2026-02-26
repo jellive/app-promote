@@ -10,12 +10,8 @@ import { AboutSection } from "@/components/sections/about-section";
 import { TimelineSection } from "@/components/sections/timeline-section";
 
 // 폴드 아래 무거운 Client Component는 지연 로딩 (초기 JS 번들 감소)
-const ContactSection = dynamic(
-  () =>
-    import("@/components/sections/contact-section").then(
-      (m) => m.ContactSection,
-    ),
-  { ssr: true },
+const ContactSection = dynamic(() =>
+  import("@/components/sections/contact-section").then((m) => m.ContactSection),
 );
 
 export const metadata: Metadata = {
