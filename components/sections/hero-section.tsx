@@ -168,7 +168,7 @@ export function HeroSection() {
                   size="lg"
                   className="brutal-shadow-sm hover-lift border-2 border-foreground font-bold text-lg h-14 px-8"
                 >
-                  <a href="/resume-jell-2026.pdf" download>
+                  <a href="/이력서_유한군.pdf" download>
                     <FileDown className="mr-2 h-5 w-5" />
                     이력서 다운로드
                   </a>

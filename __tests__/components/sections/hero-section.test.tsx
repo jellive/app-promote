@@ -115,7 +115,7 @@ describe("HeroSection", () => {
     it("should have correct href for resume download", () => {
       render(<HeroSection />);
       const resumeLink = screen.getByText(/이력서 다운로드/i).closest("a");
-      expect(resumeLink).toHaveAttribute("href", "/resume-jell-2026.pdf");
+      expect(resumeLink).toHaveAttribute("href", "/이력서_유한군.pdf");
     });
   });
 });
