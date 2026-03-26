@@ -94,6 +94,18 @@ export interface Screenshot {
 }
 
 /**
+ * Architecture diagram (text-based for Mermaid or plain description)
+ */
+export interface Architecture {
+  /** Short summary of the architecture pattern */
+  summary: string;
+  /** Mermaid diagram source (graph TD / flowchart) */
+  diagram?: string;
+  /** Key design decisions */
+  decisions?: string[];
+}
+
+/**
  * Project links
  */
 export interface Links {
@@ -124,6 +136,7 @@ export interface Project {
   codeStats?: CodeStats;
   achievements?: Achievement[];
   screenshots?: Screenshot[];
+  architecture?: Architecture;
   links: Links;
 }
 
@@ -596,7 +609,7 @@ export const projectsData: Project[] = [
     role: "1인 풀스택 개발",
     shortDescription: "AI 기반 냉장고 재료 인식 레시피 추천 앱",
     description:
-      "냉장고 속 재료를 AI가 자동으로 인식하고, 보유한 재료로 만들 수 있는 최적의 레시피를 추천해주는 iOS 앱입니다. Claude AI를 활용한 자연어 레시피 생성과 실시간 재료 관리 기능을 제공합니다.",
+      "냉장고 속 재료를 AI가 자동으로 인식하고, 보유한 재료로 만들 수 있는 최적의 레시피를 추천해주는 풀스택 앱입니다. Turborepo 모노레포 구조로 Flutter 앱(iOS/Android), NestJS API 서버, Next.js 웹, AI 마이크로서비스 4개 앱을 통합 관리합니다. BullMQ 기반 비동기 AI 처리, Supabase Realtime 동기화, Docker 컨테이너 배포를 갖춘 프로덕션 서비스입니다.",
     features: [
       {
         title: "AI 재료 인식",
@@ -605,45 +618,75 @@ export const projectsData: Project[] = [
       {
         title: "스마트 레시피 추천",
         description:
-          "GPT-4 + Gemini Pro 하이브리드 AI가 보유 재료 기반 최적의 레시피를 생성",
+          "GPT-4 + Gemini Pro 하이브리드 AI가 보유 재료 기반 최적의 레시피를 BullMQ 큐로 비동기 생성",
       },
       {
-        title: "재료 유통기한 관리",
-        description: "재료별 유통기한 알림 및 관리 시스템",
+        title: "Turborepo 모노레포",
+        description: "Flutter 앱 + NestJS API + Next.js 웹 + AI 마이크로서비스 4개 앱 통합",
       },
       {
-        title: "레시피 저장 및 공유",
-        description: "마음에 드는 레시피 저장 및 소셜 공유",
+        title: "실시간 동기화",
+        description: "Supabase Realtime으로 재료·레시피 실시간 동기화",
       },
     ],
     techStack: {
-      frontend: ["Flutter", "Dart", "Riverpod", "GetIt"],
-      backend: ["NestJS", "Supabase", "PostgreSQL", "Edge Functions"],
+      frontend: ["Flutter", "Dart", "Riverpod", "Next.js", "TypeScript"],
+      backend: ["NestJS", "BullMQ", "Redis", "PostgreSQL", "Drizzle ORM", "OpenAI API", "Gemini API"],
       infrastructure: [
+        "Turborepo",
+        "Docker",
         "Supabase Auth",
         "Supabase Storage",
         "Supabase Realtime",
-        "Docker",
+        "Firebase FCM",
       ],
       desktop: [],
     },
     codeStats: {
-      total: 15000,
+      total: 18000,
       frontend: 12000,
-      backend: 3000,
+      backend: 6000,
     },
     achievements: [
       {
         title: "App Store 출시",
         description: "iOS 앱스토어 정식 출시 및 운영 중",
         icon: "📱",
+        metric: "App Store + Google Play 출시",
       },
       {
-        title: "AI 통합",
-        description: "GPT-4 + Gemini Pro 하이브리드 AI 레시피 추천 시스템",
+        title: "Turborepo 모노레포",
+        description: "4개 앱(Flutter, NestJS, Next.js, AI 서비스) 통합 관리",
+        icon: "📦",
+        metric: "4개 앱 통합 모노레포",
+      },
+      {
+        title: "AI 마이크로서비스",
+        description: "BullMQ 기반 비동기 AI 처리 마이크로서비스 분리",
         icon: "🤖",
+        metric: "BullMQ 비동기 큐 처리",
       },
     ],
+    architecture: {
+      summary: "Turborepo 모노레포 기반 4개 앱 통합: Flutter(모바일) + NestJS API + Next.js 웹 + AI 마이크로서비스. BullMQ 비동기 큐로 AI 처리를 분리하여 API 응답 지연 없이 레시피 생성.",
+      diagram: `flowchart TD
+    A[Flutter App] -->|REST API| B[NestJS API Server]
+    C[Next.js Web] -->|REST API| B
+    B -->|BullMQ Queue| D[AI Microservice]
+    D -->|OpenAI GPT-4| E[Recipe Generation]
+    D -->|Gemini Pro| E
+    B -->|Drizzle ORM| F[(PostgreSQL)]
+    B <-->|Realtime| G[Supabase]
+    G -->|Auth| A
+    G -->|Storage| B
+    H[Firebase FCM] -->|Push| A`,
+      decisions: [
+        "BullMQ 비동기 큐로 AI 처리를 API 서버에서 분리 — 응답 지연 제거",
+        "Turborepo로 Flutter/NestJS/Next.js/AI 서비스 빌드 캐시 공유",
+        "GPT-4 + Gemini Pro 하이브리드 — 비용 최적화 및 폴백 처리",
+        "Supabase Realtime으로 멀티 디바이스 재료 목록 실시간 동기화",
+      ],
+    },
     links: {
       github: "https://github.com/jellive/cookting",
       live: "https://naengbu.jell.kr",
@@ -653,19 +696,61 @@ export const projectsData: Project[] = [
     },
   },
 
-  // 2. Time Letter
+  // 2. JellScan
+  {
+    id: "jellscan",
+    name: "JellScan",
+    emoji: "🔍",
+    type: ProjectType.FULL_STACK_MOBILE,
+    status: ProjectStatus.DEVELOPMENT,
+    category: ProjectCategory.PERSONAL,
+    period: "2025.08 - 현재",
+    role: "1인 풀스택 개발",
+    shortDescription: "OCR 기반 문서 스캔 & 텍스트 추출 앱",
+    description:
+      "카메라로 문서를 촬영하면 OCR 엔진이 텍스트를 자동 추출하고, NestJS 백엔드에서 AI 기반 후처리로 정확도를 높이는 풀스택 앱입니다. Flutter(모바일) + Next.js(웹)을 Turborepo 모노레포로 통합 관리합니다.",
+    features: [
+      {
+        title: "OCR 텍스트 추출",
+        description: "카메라/갤러리 이미지에서 텍스트 자동 인식 및 추출",
+      },
+      {
+        title: "AI 후처리",
+        description: "LLM 기반 OCR 결과 교정 및 구조화",
+      },
+      {
+        title: "문서 관리",
+        description: "추출된 텍스트 저장, 검색, 공유 기능",
+      },
+      {
+        title: "Turborepo 모노레포",
+        description: "Flutter(모바일) + Next.js(웹) 통합 관리",
+      },
+    ],
+    techStack: {
+      frontend: ["Flutter", "Dart", "Next.js", "TypeScript"],
+      backend: ["NestJS", "TypeScript", "PostgreSQL"],
+      infrastructure: ["Turborepo", "Docker", "Supabase"],
+      desktop: [],
+    },
+    links: {
+      github: "https://github.com/jellive/jellscan",
+    },
+  },
+
+  // 3. Time Letter
   {
     id: "time-letter",
     name: "Time Letter",
     emoji: "💌",
     type: ProjectType.FULL_STACK_MOBILE,
-    status: ProjectStatus.DEVELOPMENT,
+    status: ProjectStatus.PRODUCTION,
     category: ProjectCategory.PERSONAL,
     period: "2025.10 - 현재",
     role: "React Native 개발자",
     shortDescription: "타임캡슐 일기 앱 (React Native + Next.js 웹)",
     description:
-      "미래의 나에게 편지를 보내는 타임캡슐 일기 앱입니다. React Native(Expo)로 모바일 앱을, Next.js로 웹 앱을 동시에 개발하고 있으며, Turborepo 모노레포 구조로 통합 관리합니다. ESLint 9.x, Sentry 크래시 리포팅, EAS Update OTA 배포 등 품질 인프라를 갖추었습니다.",
+      "미래의 나에게 편지를 보내는 타임캡슐 일기 앱입니다. React Native(Expo)로 모바일 앱을, Next.js로 웹 앱을 동시에 개발하고 있으며, Turborepo 모노레포 구조로 통합 관리합니다. ESLint 9.x, Sentry 크래시 리포팅, EAS Update OTA 배포, 이메일 인증, 계정 관리 등 프로덕션 수준의 기능과 품질 인프라를 갖추고 App Store/Play Store에 출시되었습니다.",
     features: [
       {
         title: "타임캡슐 편지",
@@ -684,11 +769,15 @@ export const projectsData: Project[] = [
         title: "모노레포 구조",
         description: "Turborepo + pnpm workspace로 모바일/웹 통합 관리",
       },
+      {
+        title: "이메일 인증 & 계정 관리",
+        description: "이메일 기반 회원가입/로그인, 계정 삭제 기능",
+      },
     ],
     techStack: {
       frontend: ["React Native", "Expo", "TypeScript", "Next.js"],
       backend: ["Supabase", "PostgreSQL"],
-      infrastructure: ["Sentry", "EAS Update", "Turborepo", "pnpm"],
+      infrastructure: ["Sentry", "EAS Update", "Turborepo", "Fastlane"],
       desktop: [],
     },
     codeStats: {
@@ -697,6 +786,11 @@ export const projectsData: Project[] = [
       tests: 656,
     },
     achievements: [
+      {
+        title: "App Store 출시",
+        description: "React Native(Expo) 기반 iOS/Android 앱 출시",
+        icon: "🚀",
+      },
       {
         title: "품질 인프라 100%",
         description: "ESLint 9.x + Sentry + EAS Update + Branch Coverage 82%",
@@ -710,10 +804,12 @@ export const projectsData: Project[] = [
     ],
     links: {
       github: "https://github.com/jellive/time-letter",
+      appStore:
+        "https://apps.apple.com/kr/app/%EC%8B%9C%EA%B0%84%EC%9D%98-%ED%8E%B8%EC%A7%80/id6743721091",
     },
   },
 
-  // 3. 커플 플래너
+  // 4. 커플 플래너
   {
     id: "couple-planner",
     name: "커플 플래너",
@@ -723,38 +819,45 @@ export const projectsData: Project[] = [
     category: ProjectCategory.PERSONAL,
     period: "2025.12 - 현재",
     role: "1인 풀스택 개발",
-    shortDescription: "커플 일정 및 기념일 공유 웹앱",
+    shortDescription: "커플 일정 및 기념일 공유 웹앱 (PWA)",
     description:
-      "커플이 함께 일정과 기념일을 관리하고 공유할 수 있는 PWA 웹 애플리케이션입니다. Next.js 15와 Supabase를 활용하여 실시간 동기화와 Push 알림을 지원하며, 모바일 환경에서도 네이티브 앱처럼 사용할 수 있습니다.",
+      "커플이 함께 일정과 기념일을 관리하고 공유할 수 있는 PWA 웹 애플리케이션입니다. Next.js 15 App Router와 Supabase Realtime으로 실시간 동기화, AI SDK 기반 4개 AI 기능(일정 추천, 갈등 해결, 날짜 코스 추천, 감정 분석), @serwist/next PWA, 다국어(next-intl), Google Calendar 연동을 지원합니다.",
     features: [
       {
-        title: "커플 일정 관리",
-        description: "공유 캘린더로 함께 일정 등록 및 관리",
-      },
-      {
-        title: "기념일 알림",
-        description: "D-day 카운트다운 및 기념일 자동 알림",
-      },
-      {
-        title: "PWA 지원",
-        description: "모바일 홈 화면 추가로 네이티브 앱처럼 사용",
+        title: "4가지 AI 기능",
+        description: "일정 추천, 갈등 해결, 데이트 코스 추천, 감정 분석 — AI SDK + Google Gemini",
       },
       {
         title: "실시간 동기화",
-        description: "Supabase Realtime으로 커플 간 실시간 데이터 동기화",
+        description: "Supabase Realtime + @tanstack/react-query로 커플 간 충돌 없는 실시간 데이터 동기화",
+      },
+      {
+        title: "PWA + 다국어",
+        description: "@serwist/next PWA, next-intl 다국어, Google Calendar API 연동",
+      },
+      {
+        title: "기념일 & 캘린더",
+        description: "react-big-calendar 기반 D-day 카운트다운 및 기념일 자동 알림",
       },
     ],
     techStack: {
-      frontend: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui"],
-      backend: ["Supabase", "PostgreSQL", "Edge Functions"],
-      infrastructure: ["Vercel", "Supabase Auth", "Web Push"],
+      frontend: ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "shadcn/ui", "@tanstack/react-query"],
+      backend: ["Supabase", "PostgreSQL", "Edge Functions", "AI SDK", "Google Gemini"],
+      infrastructure: ["Vercel", "Supabase Auth", "Supabase Realtime", "@serwist/next PWA", "next-intl", "Upstash Redis"],
       desktop: [],
     },
     achievements: [
       {
-        title: "PWA 구현",
-        description: "네이티브 앱 수준의 웹 앱 경험 제공",
+        title: "4개 AI 기능",
+        description: "AI SDK + Gemini 기반 일정·갈등·데이트·감정 분석",
+        icon: "🤖",
+        metric: "4가지 AI 기능 통합",
+      },
+      {
+        title: "PWA + 실시간",
+        description: "Supabase Realtime + serwist PWA 네이티브 앱 경험",
         icon: "📱",
+        metric: "Lighthouse PWA 100점 목표",
       },
     ],
     links: {
@@ -769,7 +872,7 @@ export const projectsData: Project[] = [
     name: "Jellmodoro",
     emoji: "🍅",
     type: ProjectType.FULL_STACK_MOBILE,
-    status: ProjectStatus.DEVELOPMENT,
+    status: ProjectStatus.PRODUCTION,
     category: ProjectCategory.PERSONAL,
     period: "2025.06 - 현재",
     role: "1인 개발",
@@ -817,6 +920,7 @@ export const projectsData: Project[] = [
       },
     ],
     links: {
+      appStore: "https://apps.apple.com/kr/app/jellmodoro/id6751464594",
       github: "https://github.com/jellive/jellmodoro",
     },
   },
