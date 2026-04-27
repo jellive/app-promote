@@ -622,7 +622,8 @@ export const projectsData: Project[] = [
       },
       {
         title: "Turborepo 모노레포",
-        description: "Flutter 앱 + NestJS API + Next.js 웹 + AI 마이크로서비스 4개 앱 통합",
+        description:
+          "Flutter 앱 + NestJS API + Next.js 웹 + AI 마이크로서비스 4개 앱 통합",
       },
       {
         title: "실시간 동기화",
@@ -631,7 +632,15 @@ export const projectsData: Project[] = [
     ],
     techStack: {
       frontend: ["Flutter", "Dart", "Riverpod", "Next.js", "TypeScript"],
-      backend: ["NestJS", "BullMQ", "Redis", "PostgreSQL", "Drizzle ORM", "OpenAI API", "Gemini API"],
+      backend: [
+        "NestJS",
+        "BullMQ",
+        "Redis",
+        "PostgreSQL",
+        "Drizzle ORM",
+        "OpenAI API",
+        "Gemini API",
+      ],
       infrastructure: [
         "Turborepo",
         "Docker",
@@ -649,10 +658,11 @@ export const projectsData: Project[] = [
     },
     achievements: [
       {
-        title: "App Store 출시",
-        description: "iOS 앱스토어 정식 출시 및 운영 중",
+        title: "Google Play 출시",
+        description:
+          "Android 앱 정식 출시 및 운영 중 (iOS App Store 심사 준비)",
         icon: "📱",
-        metric: "App Store + Google Play 출시",
+        metric: "Google Play 출시",
       },
       {
         title: "Turborepo 모노레포",
@@ -668,7 +678,8 @@ export const projectsData: Project[] = [
       },
     ],
     architecture: {
-      summary: "Turborepo 모노레포 기반 4개 앱 통합: Flutter(모바일) + NestJS API + Next.js 웹 + AI 마이크로서비스. BullMQ 비동기 큐로 AI 처리를 분리하여 API 응답 지연 없이 레시피 생성.",
+      summary:
+        "Turborepo 모노레포 기반 4개 앱 통합: Flutter(모바일) + NestJS API + Next.js 웹 + AI 마이크로서비스. BullMQ 비동기 큐로 AI 처리를 분리하여 API 응답 지연 없이 레시피 생성.",
       diagram: `flowchart TD
     A[Flutter App] -->|REST API| B[NestJS API Server]
     C[Next.js Web] -->|REST API| B
@@ -690,7 +701,6 @@ export const projectsData: Project[] = [
     links: {
       github: "https://github.com/jellive/cookting",
       live: "https://naengbu.jell.kr",
-      appStore: "https://apps.apple.com/kr/app/%EC%BF%A1%ED%8C%85/id6755325967",
       playStore:
         "https://play.google.com/store/apps/details?id=kr.jell.naengbu",
     },
@@ -815,35 +825,60 @@ export const projectsData: Project[] = [
     name: "커플 플래너",
     emoji: "💕",
     type: ProjectType.FULL_STACK_WEB,
-    status: ProjectStatus.DEVELOPMENT,
+    status: ProjectStatus.PRODUCTION,
     category: ProjectCategory.PERSONAL,
     period: "2025.12 - 현재",
     role: "1인 풀스택 개발",
-    shortDescription: "커플 일정 및 기념일 공유 웹앱 (PWA)",
+    shortDescription:
+      "커플 일정 및 기념일 공유 웹앱 (PWA) — couple-planner.jell.kr",
     description:
-      "커플이 함께 일정과 기념일을 관리하고 공유할 수 있는 PWA 웹 애플리케이션입니다. Next.js 15 App Router와 Supabase Realtime으로 실시간 동기화, AI SDK 기반 4개 AI 기능(일정 추천, 갈등 해결, 날짜 코스 추천, 감정 분석), @serwist/next PWA, 다국어(next-intl), Google Calendar 연동을 지원합니다.",
+      "커플이 함께 일정과 기념일을 관리하고 공유할 수 있는 PWA 웹 애플리케이션입니다. Next.js 16 App Router (React 19) + Supabase Realtime으로 실시간 동기화, AI SDK 기반 4개 AI 기능(일정 추천, 갈등 해결, 날짜 코스 추천, 감정 분석), @serwist/next PWA, 다국어(next-intl), Google Calendar 연동을 갖춘 프로덕션 서비스입니다.",
     features: [
       {
         title: "4가지 AI 기능",
-        description: "일정 추천, 갈등 해결, 데이트 코스 추천, 감정 분석 — AI SDK + Google Gemini",
+        description:
+          "일정 추천, 갈등 해결, 데이트 코스 추천, 감정 분석 — AI SDK + Google Gemini",
       },
       {
         title: "실시간 동기화",
-        description: "Supabase Realtime + @tanstack/react-query로 커플 간 충돌 없는 실시간 데이터 동기화",
+        description:
+          "Supabase Realtime + @tanstack/react-query로 커플 간 충돌 없는 실시간 데이터 동기화",
       },
       {
         title: "PWA + 다국어",
-        description: "@serwist/next PWA, next-intl 다국어, Google Calendar API 연동",
+        description:
+          "@serwist/next PWA, next-intl 다국어, Google Calendar API 연동",
       },
       {
         title: "기념일 & 캘린더",
-        description: "react-big-calendar 기반 D-day 카운트다운 및 기념일 자동 알림",
+        description:
+          "react-big-calendar 기반 D-day 카운트다운 및 기념일 자동 알림",
       },
     ],
     techStack: {
-      frontend: ["Next.js 15", "React", "TypeScript", "Tailwind CSS", "shadcn/ui", "@tanstack/react-query"],
-      backend: ["Supabase", "PostgreSQL", "Edge Functions", "AI SDK", "Google Gemini"],
-      infrastructure: ["Vercel", "Supabase Auth", "Supabase Realtime", "@serwist/next PWA", "next-intl", "Upstash Redis"],
+      frontend: [
+        "Next.js 16",
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "@tanstack/react-query",
+      ],
+      backend: [
+        "Supabase",
+        "PostgreSQL",
+        "Edge Functions",
+        "AI SDK",
+        "Google Gemini",
+      ],
+      infrastructure: [
+        "Vercel",
+        "Supabase Auth",
+        "Supabase Realtime",
+        "@serwist/next PWA",
+        "next-intl",
+        "Upstash Redis",
+      ],
       desktop: [],
     },
     achievements: [
@@ -930,45 +965,80 @@ export const projectsData: Project[] = [
     id: "wecanner",
     name: "Wecanner",
     emoji: "📅",
-    type: ProjectType.IOS,
+    type: ProjectType.FULL_STACK_MOBILE,
     status: ProjectStatus.PRODUCTION,
     category: ProjectCategory.PERSONAL,
     period: "2024.04 - 현재",
     role: "1인 개발",
-    shortDescription: "요일별 할 일 관리 iOS 앱",
+    shortDescription:
+      "주간 할 일 관리 앱 (iOS Swift v1 → Flutter v2 마이그레이션 완료)",
     description:
-      "요일마다 반복되는 할 일을 간편하게 관리하는 iOS 앱입니다. 요일별 할 일 기록, 캘린더 기반 일정 관리, 여러 기기 간 자동 동기화, 위젯 지원 등의 기능을 제공합니다.",
+      "요일마다 반복되는 할 일을 간편하게 관리하는 크로스플랫폼 앱입니다. v1.x는 Swift + TCA + Tuist 기반 iOS 네이티브로 출시했고, v2.0 (2026-04 출시)에서 Flutter + Riverpod 기반으로 풀 재작성하여 iOS/Android 동시 지원합니다. WidgetKit 기반 홈/잠금화면 위젯, Firebase Auth/Firestore 다기기 동기화, 골든 테스트 자동 스크린샷 파이프라인을 갖췄습니다.",
     features: [
       {
-        title: "요일별 할 일",
-        description: "Weekly 뷰에서 요일마다 반복되는 할 일을 간단하게 기록",
+        title: "주간 할 일 그리드",
+        description: "7일을 한눈에 보는 위젯/앱 통합 인터페이스",
       },
       {
-        title: "캘린더 일정 관리",
-        description: "특별한 날짜와 중요한 일정을 캘린더로 관리",
+        title: "iOS 네이티브 위젯",
+        description: "WidgetKit으로 홈화면 + 잠금화면 위젯 직접 구현",
       },
       {
-        title: "멀티 기기 동기화",
-        description: "iPhone, iPad 등 여러 기기 간 자동 동기화",
+        title: "Swift → Flutter 2.0 마이그레이션",
+        description:
+          "v1.x Swift(TCA + Tuist) → v2.0 Flutter(Riverpod) 풀 재작성, App Store 출시 완료",
       },
       {
-        title: "위젯 지원",
-        description: "앱을 열지 않고도 위젯에서 할 일 확인",
+        title: "Firebase 다기기 동기화",
+        description: "Firebase Auth + Firestore로 iPhone, iPad 자동 동기화",
       },
     ],
     techStack: {
-      frontend: ["Swift", "SwiftUI", "WidgetKit"],
+      frontend: [
+        "Flutter",
+        "Dart",
+        "Riverpod",
+        "Swift",
+        "SwiftUI",
+        "TCA",
+        "WidgetKit",
+      ],
       backend: [],
-      infrastructure: ["CloudKit", "Core Data"],
+      infrastructure: [
+        "Firebase Auth",
+        "Firebase Firestore",
+        "Tuist",
+        "Fastlane",
+      ],
       desktop: [],
     },
     codeStats: {
-      total: 4000,
-      frontend: 4000,
+      total: 18000,
+      frontend: 18000,
     },
+    achievements: [
+      {
+        title: "Swift → Flutter 풀 마이그레이션",
+        description:
+          "iOS 네이티브 v1을 Flutter v2로 전면 재작성하여 App Store 출시",
+        icon: "🔄",
+        metric: "Flutter v2.0 App Store 출시 (2026-04)",
+      },
+      {
+        title: "iOS WidgetKit 위젯",
+        description: "홈화면 + 잠금화면 네이티브 위젯 (Swift v1 유지)",
+        icon: "📱",
+      },
+      {
+        title: "골든 스크린샷 자동화",
+        description: "golden_screenshot 패키지로 42장 스크린샷 4초 생성",
+        icon: "📸",
+        metric: "iOS 4 + Android 3 사이즈 = 42장",
+      },
+    ],
     links: {
       appStore: "https://apps.apple.com/kr/app/wecanner/id6711342598",
-      github: "https://github.com/jellive/wecanner",
+      github: "https://github.com/jellive/weekly_widget",
     },
   },
 
@@ -982,9 +1052,10 @@ export const projectsData: Project[] = [
     category: ProjectCategory.PERSONAL,
     period: "2025.11 - 현재",
     role: "1인 개발",
-    shortDescription: "개발자를 위한 올인원 유틸리티 데스크톱 앱",
+    shortDescription:
+      "개발자를 위한 올인원 유틸리티 — Tauri 데스크톱 앱 + 오프라인 PWA",
     description:
-      "개발 작업에서 자주 사용하는 다양한 유틸리티 기능들을 하나의 앱으로 통합했습니다. JSON 포맷터, Base64 인코더/디코더, UUID 생성기, 정규식 테스터 등 20개 이상의 도구를 제공합니다.",
+      "개발 작업에서 자주 사용하는 다양한 유틸리티 기능들을 하나의 앱으로 통합했습니다. Rust 기반 Tauri 2 데스크톱 앱과 오프라인 PWA를 동시 제공하며, JSON 포맷터, Base64 인코더/디코더, UUID 생성기, 정규식 테스터, AI 코드 설명기 등 16개 이상의 도구를 갖췄습니다. Vitest 641개 테스트로 품질을 보증합니다.",
     features: [
       {
         title: "JSON 포맷터/검증기",
@@ -1008,25 +1079,39 @@ export const projectsData: Project[] = [
       },
     ],
     techStack: {
-      frontend: ["React", "TypeScript", "TailwindCSS", "Radix UI"],
+      frontend: [
+        "React 19",
+        "TypeScript",
+        "TailwindCSS",
+        "Radix UI",
+        "Zustand",
+        "react-i18next",
+      ],
       backend: [],
-      infrastructure: [],
-      desktop: ["Electron"],
+      infrastructure: ["Vitest", "Lighthouse CI", "Mutation Testing"],
+      desktop: ["Tauri 2.10.1", "Rust"],
     },
     codeStats: {
       total: 8000,
       frontend: 7000,
+      tests: 641,
     },
     achievements: [
       {
-        title: "20+ 유틸리티",
-        description: "개발자에게 필요한 다양한 도구 통합",
+        title: "16+ 유틸리티",
+        description: "JSON/Base64/JWT/Regex/Hash/AI 도구 등 통합",
         icon: "🧰",
       },
       {
-        title: "오프라인 지원",
-        description: "인터넷 없이도 모든 기능 사용 가능",
-        icon: "📴",
+        title: "Tauri 2 마이그레이션",
+        description: "Electron → Tauri 2로 전환 (메모리/번들 크기 대폭 감소)",
+        icon: "🦀",
+      },
+      {
+        title: "641 테스트 + 오프라인 PWA",
+        description: "Vitest 641개 테스트, 인터넷 없이도 모든 기능 사용 가능",
+        icon: "✅",
+        metric: "Vitest 641 tests + Offline PWA",
       },
     ],
     links: {
@@ -1147,41 +1232,44 @@ export const projectsData: Project[] = [
     },
   },
 
-  // 9. 나무위키 링커
+  // 9. 나무위키 실검 아카라이브 링커
   {
-    id: "namuwiki-linker",
-    name: "나무위키 링커",
+    id: "namu-arca-linker",
+    name: "나무위키 실검 아카라이브 링커",
     emoji: "🌳",
     type: ProjectType.CHROME_EXTENSION,
     status: ProjectStatus.PRODUCTION,
     category: ProjectCategory.PERSONAL,
     period: "2025.10 - 현재",
     role: "1인 개발",
-    shortDescription: "웹페이지 텍스트를 나무위키로 연결하는 확장 프로그램",
+    shortDescription:
+      "나무위키 실시간 검색어 옆에 아카라이브 링크를 자동 추가하는 Chrome 확장",
     description:
-      "웹페이지에서 텍스트를 선택하면 해당 단어의 나무위키 문서로 바로 연결해주는 Chrome 확장 프로그램입니다. 우클릭 컨텍스트 메뉴와 키보드 단축키를 지원합니다.",
+      "나무위키 실시간 검색어 페이지에서 각 검색어 옆에 자동으로 아카라이브 검색 링크를 삽입해주는 Chrome 확장 프로그램입니다. Manifest V3 기반에 TypeScript + Vite + Vitest 빌드 파이프라인을 갖췄고, chrome-webstore-upload로 자동 배포됩니다.",
     features: [
       {
-        title: "컨텍스트 메뉴 연동",
-        description: "텍스트 선택 후 우클릭으로 나무위키 검색",
+        title: "자동 아카라이브 링크 삽입",
+        description:
+          "나무위키 실검 페이지의 각 검색어 옆에 아카라이브 링크 자동 추가",
       },
       {
-        title: "키보드 단축키",
-        description: "선택 텍스트를 단축키로 빠르게 검색",
+        title: "Manifest V3 + TypeScript",
+        description: "최신 Chrome Extension 표준 + 풀 타입 안전성",
       },
       {
-        title: "팝업 미리보기",
-        description: "새 탭 열기 전 문서 미리보기 제공",
+        title: "Vite + Vitest 파이프라인",
+        description: "Vite 빌드 + Vitest 단위 테스트 + ESLint + Prettier",
       },
       {
-        title: "검색 기록",
-        description: "최근 검색한 단어 목록 저장",
+        title: "Chrome Web Store 자동 배포",
+        description:
+          "chrome-webstore-upload로 release → upload → publish 한 번에",
       },
     ],
     techStack: {
-      frontend: ["JavaScript", "Chrome Extension API", "HTML", "CSS"],
+      frontend: ["TypeScript", "Vite", "Chrome Extension API", "Manifest V3"],
       backend: [],
-      infrastructure: [],
+      infrastructure: ["Vitest", "ESLint", "chrome-webstore-upload"],
       desktop: [],
     },
     codeStats: {
@@ -1191,7 +1279,7 @@ export const projectsData: Project[] = [
     links: {
       chromeWebStore:
         "https://chromewebstore.google.com/detail/fhmagpkcdpcnmbihkgdcmabidcmdmpgl",
-      github: "https://github.com/jellive/namuwiki-linker",
+      github: "https://github.com/jellive/namu_arca_linker",
     },
   },
 
@@ -1203,11 +1291,12 @@ export const projectsData: Project[] = [
     type: ProjectType.NPM_PACKAGE,
     status: ProjectStatus.ARCHIVE,
     category: ProjectCategory.PERSONAL,
-    period: "2025.10 - 현재",
+    period: "2021.04 - 2021.05",
     role: "1인 개발",
-    shortDescription: "JavaScript/TypeScript 유틸리티 함수 라이브러리",
+    shortDescription:
+      "JavaScript/TypeScript 유틸리티 함수 라이브러리 (npm 0.2.0)",
     description:
-      "자주 사용하는 JavaScript/TypeScript 유틸리티 함수들을 모아놓은 npm 패키지입니다. 문자열 처리, 날짜 포맷팅, 배열 조작 등의 기능을 제공합니다.",
+      "자주 사용하는 JavaScript/TypeScript 유틸리티 함수들을 모아놓은 npm 패키지입니다. 문자열 처리, 날짜 포맷팅, 배열 조작 등의 기능을 제공합니다. npm 레지스트리에 v0.2.0 공개 배포되어 있습니다.",
     features: [
       {
         title: "문자열 유틸리티",
@@ -1239,8 +1328,9 @@ export const projectsData: Project[] = [
     achievements: [
       {
         title: "npm 배포",
-        description: "npm 레지스트리에 공개 배포",
+        description: "npm 레지스트리에 v0.2.0 공개 배포 (2021-04 publish)",
         icon: "📤",
+        metric: "npm v0.2.0 published",
       },
       {
         title: "100% 테스트 커버리지",
@@ -1251,6 +1341,284 @@ export const projectsData: Project[] = [
     links: {
       npm: "https://www.npmjs.com/package/jell-utils",
       github: "https://github.com/jellive/jell-utils",
+    },
+  },
+
+  // 11. abroad-crawler
+  {
+    id: "abroad-crawler",
+    name: "abroad-crawler",
+    emoji: "🌏",
+    type: ProjectType.INFRASTRUCTURE,
+    status: ProjectStatus.PRODUCTION,
+    category: ProjectCategory.PERSONAL,
+    period: "2026.04 - 현재",
+    role: "1인 개발",
+    shortDescription:
+      "유학 정보 자동 크롤링 + AI 요약 + 매일 08:00 KST Telegram 브리핑 봇",
+    description:
+      "유학 에이전시를 위한 일일 브리핑 봇입니다. 14개 소스(비자/이민 정책, 입학, 커뮤니티 등)를 매일 자동 크롤링하고, Gemini로 한국어 요약 + 분류한 뒤 매일 아침 08:00 KST에 Telegram 채널로 자동 발송합니다. PRD 5편 작성 후 단일 세션에서 MVP를 완성한 케이스입니다.",
+    features: [
+      {
+        title: "14개 소스 자동 크롤링",
+        description:
+          "httpx + BeautifulSoup4 + feedparser로 RSS/HTML 정적 크롤링",
+      },
+      {
+        title: "Gemini AI 한국어 요약",
+        description:
+          "google-genai 기반 구조화된 JSON 응답으로 제목/요약 자동 생성",
+      },
+      {
+        title: "Telegram 자동 발송",
+        description:
+          "APScheduler로 매일 08:00 KST 브리핑 + 6시간마다 헬스체크 DM",
+      },
+      {
+        title: "긴급 정책 변경 알림",
+        description: "비자 정책 등 중대 변경 감지 시 관리자 DM으로 즉시 알림",
+      },
+    ],
+    techStack: {
+      frontend: [],
+      backend: [
+        "Python 3.12",
+        "httpx",
+        "BeautifulSoup4",
+        "feedparser",
+        "google-genai (Gemini)",
+        "python-telegram-bot",
+        "APScheduler",
+        "asyncpg",
+      ],
+      infrastructure: ["PostgreSQL", "Docker", "uv"],
+      desktop: [],
+    },
+    codeStats: {
+      total: 4500,
+      backend: 4500,
+      tests: 70,
+    },
+    achievements: [
+      {
+        title: "MVP 하루 완성",
+        description:
+          "PRD 5편 작성 후 단일 세션에서 크롤링 + AI 요약 + Telegram 발송 + 스케줄러 완성",
+        icon: "⚡",
+        metric: "PRD → MVP 1일",
+      },
+      {
+        title: "70 테스트 + ruff lint clean",
+        description:
+          "pipeline + crawler + formatter 단위 테스트, ruff 정적 분석",
+        icon: "✅",
+      },
+      {
+        title: "프로덕션 자동화",
+        description: "jell-server에 Docker 배포, 매일 자동 브리핑 운영 중",
+        icon: "🤖",
+      },
+    ],
+    architecture: {
+      summary:
+        "Python 비동기 크롤러 → Gemini AI 요약 → PostgreSQL 저장 → APScheduler 스케줄링 → Telegram 발송. 14개 소스 병렬 크롤 + 6시간 헬스체크 + 긴급 변경 즉시 알림.",
+      diagram: `flowchart LR
+    A[14개 소스<br/>HTML/RSS 크롤링] --> B[Gemini AI<br/>한국어 요약 + 분류]
+    B --> C[(PostgreSQL)]
+    C --> D[Telegram 봇]
+    D --> E[매일 08:00 KST<br/>채널 자동 발송]
+    C --> F[6시간 헬스체크<br/>관리자 DM]
+    G[긴급 정책 변경] -.-> H[즉시 Admin DM]`,
+      decisions: [
+        "Gemini로 한국어 요약 + 구조화된 JSON 응답으로 후처리 단순화",
+        "APScheduler로 단일 프로세스 내 스케줄링 + 헬스체크 통합",
+        "asyncpg로 비동기 DB I/O — 크롤링과 동시 동작",
+        "Docker compose로 jell-server 통합 배포 (공용 postgres 사용)",
+      ],
+    },
+    links: {
+      github: "https://github.com/jellive/abroad-crawler",
+    },
+  },
+
+  // 12. JellHub
+  {
+    id: "jellhub",
+    name: "JellHub",
+    emoji: "🏠",
+    type: ProjectType.FULL_STACK_WEB,
+    status: ProjectStatus.PRODUCTION,
+    category: ProjectCategory.PERSONAL,
+    period: "2026.04 - 현재",
+    role: "1인 개발",
+    shortDescription: "jell-server 통합 운영 대시보드 (hub.jell.kr)",
+    description:
+      "자체 호스팅 인프라 jell-server의 통합 운영 대시보드입니다. SSL 인증서 모니터링 + 일일 텔레그램 리포트, 서버 상태/도메인 헬스체크, 텔레그램 봇을 통한 원격 명령(/ssl, /status, /history) 처리 등 셀프호스팅 운영을 한 곳에서 관리합니다. Korean ISP DPI로 Node.js fetch가 차단되는 문제를 fetch shim + webhook 마이그레이션으로 해결했습니다.",
+    features: [
+      {
+        title: "SSL 일일 리포트",
+        description:
+          "16개 도메인 SSL 만료 모니터링 + D-14 갱신 권장 알림 자동 발송",
+      },
+      {
+        title: "Telegram 봇 명령",
+        description:
+          "/ssl, /status, /history, /help 봇 명령을 webhook으로 처리",
+      },
+      {
+        title: "서버 SSH 운영",
+        description:
+          "ssh2로 jell-server에 원격 명령, Socket.IO로 실시간 로그 스트림",
+      },
+      {
+        title: "Korean DPI 우회",
+        description:
+          "Node.js fetch가 ISP DPI로 차단되는 문제를 wget shim + webhook으로 해결",
+      },
+    ],
+    techStack: {
+      frontend: ["Next.js 16", "React", "TypeScript", "Tailwind CSS"],
+      backend: ["Next.js API Routes", "Socket.IO", "Prisma", "ssh2"],
+      infrastructure: ["PostgreSQL", "Docker", "nginx", "Telegram Bot API"],
+      desktop: [],
+    },
+    achievements: [
+      {
+        title: "Korean DPI 차단 우회",
+        description:
+          "Node fetch → wget shim 패치 + 폴링 → webhook 마이그레이션으로 Telegram 정상화",
+        icon: "🔓",
+        metric: "fetch shim + webhook 패턴 정착",
+      },
+      {
+        title: "16 도메인 SSL 자동 모니터링",
+        description: "매일 10:00 KST SSL 만료 현황 + D-14 갱신 권장 알람",
+        icon: "🔒",
+      },
+      {
+        title: "통합 Telegram 봇",
+        description: "/ssl, /status, /history 등 원격 운영 명령을 봇으로 통합",
+        icon: "🤖",
+      },
+    ],
+    links: {
+      github: "https://github.com/jellive/jellhub",
+      live: "https://hub.jell.kr",
+    },
+  },
+
+  // 13. threat-crawler
+  {
+    id: "threat-crawler",
+    name: "threat-crawler",
+    emoji: "🛡️",
+    type: ProjectType.FULL_STACK_WEB,
+    status: ProjectStatus.PRODUCTION,
+    category: ProjectCategory.PERSONAL,
+    period: "2026.04 - 현재",
+    role: "1인 개발",
+    shortDescription:
+      "보안 위협 인텔리전스 플랫폼 — 비동기 크롤러 + YARA/Sigma/DGA 탐지 + Next.js 대시보드",
+    description:
+      "다크웹/뉴스/커뮤니티 등 보안 위협 정보를 자동 수집하고, YARA + Sigma + DGA 룰 기반 탐지 엔진으로 분류한 뒤 대시보드에서 가시화하는 셀프 호스팅 보안 플랫폼입니다. Python 비동기 크롤러 + Next.js 대시보드 + 통합 PostgreSQL의 풀스택 구성입니다.",
+    features: [
+      {
+        title: "비동기 크롤러",
+        description: "다크웹(.onion)/뉴스/커뮤니티 등 다중 소스 비동기 크롤링",
+      },
+      {
+        title: "YARA/Sigma/DGA 탐지",
+        description:
+          "YARA 룰 + Sigma 시그마 + DGA(Domain Generation Algorithm) 분석 엔진",
+      },
+      {
+        title: "Next.js 대시보드",
+        description:
+          "실시간 위협 통계, 카테고리별 필터링, IOC/Sandbox 결과 가시화",
+      },
+      {
+        title: "Docker 통합 배포",
+        description:
+          "crawlers + web + 통합 PostgreSQL을 docker-compose로 jell-server 운영",
+      },
+    ],
+    techStack: {
+      frontend: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+      backend: ["Python", "asyncio", "YARA", "Sigma", "PostgreSQL"],
+      infrastructure: ["Docker", "nginx", "Tor (proxy)"],
+      desktop: [],
+    },
+    achievements: [
+      {
+        title: "다크웹 크롤링 운영",
+        description: "Tor 프록시로 .onion 다크웹 포럼/마켓 데이터 자동 수집",
+        icon: "🕸️",
+      },
+      {
+        title: "탐지 엔진 통합",
+        description: "YARA + Sigma + DGA 3개 엔진을 단일 파이프라인으로 통합",
+        icon: "🔍",
+      },
+      {
+        title: "통합 PostgreSQL",
+        description:
+          "전용 DB 컨테이너 → 공용 postgres로 마이그레이션, URL unique 인덱스 + 중복 정리",
+        icon: "🗄️",
+      },
+    ],
+    links: {
+      github: "https://github.com/jellive/threat-crawler",
+      live: "https://threat.jell.kr",
+    },
+  },
+
+  // 14. 한화 스코어 알림
+  {
+    id: "hanwha-score",
+    name: "한화 스코어 알림",
+    emoji: "🦅",
+    type: ProjectType.CHROME_EXTENSION,
+    status: ProjectStatus.PRODUCTION,
+    category: ProjectCategory.PERSONAL,
+    period: "2026.03 - 현재",
+    role: "1인 개발",
+    shortDescription:
+      "KBO 한화 이글스 실시간 스코어를 Chrome 툴바 뱃지로 알리는 확장",
+    description:
+      "KBO 한화 이글스 경기 실시간 스코어를 Chrome 확장 뱃지로 표시하고, 점수 변경 시 시스템 알림을 띄워주는 Chrome Extension입니다. Manifest V3 + Service Worker 기반에 alarms/notifications API로 백그라운드 폴링을 구현했습니다.",
+    features: [
+      {
+        title: "실시간 스코어 뱃지",
+        description: "Chrome 툴바 뱃지에 현재 경기 스코어 실시간 표시",
+      },
+      {
+        title: "득점 푸시 알림",
+        description: "점수 변경 시 시스템 notifications로 즉시 알림",
+      },
+      {
+        title: "Manifest V3 + Service Worker",
+        description:
+          "최신 Chrome Extension 표준, alarms API 기반 백그라운드 폴링",
+      },
+      {
+        title: "Naver Sports API",
+        description:
+          "api-gw.sports.naver.com 비공식 API로 KBO 경기 데이터 조회",
+      },
+    ],
+    techStack: {
+      frontend: [
+        "JavaScript",
+        "Chrome Extension API",
+        "Manifest V3",
+        "Service Worker",
+      ],
+      backend: [],
+      infrastructure: [],
+      desktop: [],
+    },
+    links: {
+      github: "https://github.com/jellive/hanwha-score",
     },
   },
 ];
