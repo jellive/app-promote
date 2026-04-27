@@ -148,7 +148,9 @@ describe("Project Detail Page", () => {
     it("should display achievement titles", async () => {
       const Page = await ProjectDetailPage({ params });
       render(Page);
-      expect(screen.getByText("Google Play 출시")).toBeInTheDocument();
+      expect(
+        screen.getByText("App Store + Google Play 출시"),
+      ).toBeInTheDocument();
     });
   });
 

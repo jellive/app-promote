@@ -658,11 +658,10 @@ export const projectsData: Project[] = [
     },
     achievements: [
       {
-        title: "Google Play 출시",
-        description:
-          "Android 앱 정식 출시 및 운영 중 (iOS App Store 심사 준비)",
+        title: "App Store + Google Play 출시",
+        description: "iOS App Store + Android Play Store 정식 출시 및 운영 중",
         icon: "📱",
-        metric: "Google Play 출시",
+        metric: "App Store + Google Play 출시",
       },
       {
         title: "Turborepo 모노레포",
@@ -701,6 +700,7 @@ export const projectsData: Project[] = [
     links: {
       github: "https://github.com/jellive/cookting",
       live: "https://naengbu.jell.kr",
+      appStore: "https://apps.apple.com/kr/app/%EC%BF%A1%ED%8C%85/id6755325967",
       playStore:
         "https://play.google.com/store/apps/details?id=kr.jell.naengbu",
     },
