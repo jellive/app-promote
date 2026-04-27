@@ -44,8 +44,8 @@ describe("Project Type Definitions", () => {
 
 describe("Project Data Structure", () => {
   describe("projectsData array", () => {
-    it("should contain exactly 18 projects", () => {
-      expect(projectsData.length).toBe(18);
+    it("should contain exactly 23 projects", () => {
+      expect(projectsData.length).toBe(23);
     });
 
     it("should have unique IDs for all projects", () => {
@@ -124,8 +124,8 @@ describe("Project Data Structure", () => {
       expect(chzzk?.status).toBe(ProjectStatus.DEVELOPMENT);
     });
 
-    it("should have NamuwikiLinker project with correct data", () => {
-      const namuwiki = projectsData.find((p) => p.id === "namuwiki-linker");
+    it("should have NamuArcaLinker project with correct data", () => {
+      const namuwiki = projectsData.find((p) => p.id === "namu-arca-linker");
       expect(namuwiki).toBeDefined();
       expect(namuwiki?.name).toContain("나무위키");
       expect(namuwiki?.type).toBe(ProjectType.CHROME_EXTENSION);
@@ -137,14 +137,14 @@ describe("Project Data Structure", () => {
       expect(jellmodoro).toBeDefined();
       expect(jellmodoro?.name).toBe("Jellmodoro");
       expect(jellmodoro?.type).toBe(ProjectType.FULL_STACK_MOBILE);
-      expect(jellmodoro?.status).toBe(ProjectStatus.DEVELOPMENT);
+      expect(jellmodoro?.status).toBe(ProjectStatus.PRODUCTION);
     });
 
     it("should have Wecanner project with correct data", () => {
       const wecanner = projectsData.find((p) => p.id === "wecanner");
       expect(wecanner).toBeDefined();
       expect(wecanner?.name).toBe("Wecanner");
-      expect(wecanner?.type).toBe(ProjectType.IOS);
+      expect(wecanner?.type).toBe(ProjectType.FULL_STACK_MOBILE);
       expect(wecanner?.status).toBe(ProjectStatus.PRODUCTION);
     });
 
@@ -250,9 +250,9 @@ describe("Helper Functions", () => {
   });
 
   describe("getAllProjects", () => {
-    it("should return all 18 projects", () => {
+    it("should return all 23 projects", () => {
       const projects = getAllProjects();
-      expect(projects.length).toBe(18);
+      expect(projects.length).toBe(23);
     });
 
     it("should return a copy of the array (immutability)", () => {

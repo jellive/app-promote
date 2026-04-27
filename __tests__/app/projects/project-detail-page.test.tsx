@@ -17,8 +17,8 @@ describe("Project Detail Page", () => {
   // that cannot be exported from a "use client" component.
   // Testing the data source directly instead.
   describe("Static Params Data", () => {
-    it("should have 18 projects available", () => {
-      expect(projectsData).toHaveLength(18);
+    it("should have 23 projects available", () => {
+      expect(projectsData).toHaveLength(23);
     });
 
     it("should have correct project IDs", () => {
@@ -110,7 +110,7 @@ describe("Project Detail Page", () => {
     it("should display backend technologies", async () => {
       const Page = await ProjectDetailPage({ params });
       render(Page);
-      expect(screen.getByText("Supabase")).toBeInTheDocument();
+      expect(screen.getByText("NestJS")).toBeInTheDocument();
     });
   });
 
@@ -148,7 +148,7 @@ describe("Project Detail Page", () => {
     it("should display achievement titles", async () => {
       const Page = await ProjectDetailPage({ params });
       render(Page);
-      expect(screen.getByText("App Store 출시")).toBeInTheDocument();
+      expect(screen.getByText("Google Play 출시")).toBeInTheDocument();
     });
   });
 
@@ -184,7 +184,7 @@ describe("Project Detail Page", () => {
     it("should display total lines of code", async () => {
       const Page = await ProjectDetailPage({ params });
       render(Page);
-      expect(screen.getByText(/15,?000/)).toBeInTheDocument();
+      expect(screen.getByText(/18,?000/)).toBeInTheDocument();
     });
   });
 
