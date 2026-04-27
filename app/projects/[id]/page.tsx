@@ -1,5 +1,3 @@
-"use client";
-
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
@@ -27,6 +25,7 @@ import {
 } from "lucide-react";
 import {
   getProjectById,
+  projectsData,
   Project,
   ProjectStatus,
   ProjectType,
@@ -434,6 +433,13 @@ function ProjectLinksSection({ project }: { project: Project }) {
     </section>
   );
 }
+
+// SSG: pre-render every known project id; unknown ids return 404.
+export function generateStaticParams() {
+  return projectsData.map((project) => ({ id: project.id }));
+}
+
+export const dynamicParams = false;
 
 // Main Page Component
 export default function ProjectDetailPage({ params }: PageProps) {
