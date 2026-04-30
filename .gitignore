@@ -12,6 +12,11 @@
 !.yarn/sdks
 !.yarn/versions
 
+# This project standardizes on Yarn Berry (see .yarnrc.yml). CI uses
+# `yarn install --immutable` and never reads package-lock.json, so prevent
+# accidental npm installs from polluting the repo.
+package-lock.json
+
 # testing
 /coverage
 /test-results
