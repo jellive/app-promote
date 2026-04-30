@@ -138,6 +138,8 @@ export interface Project {
   screenshots?: Screenshot[];
   architecture?: Architecture;
   links: Links;
+  /** Source repo is private — UI hides the github button and shows a "Private repo" badge instead. */
+  private?: boolean;
 }
 
 // ============================================================================
@@ -600,6 +602,7 @@ export const projectsData: Project[] = [
   // 1. Cookting
   {
     id: "cookting",
+    private: true,
     name: "Cookting",
     emoji: "🍳",
     type: ProjectType.FULL_STACK_MOBILE,
@@ -751,6 +754,7 @@ export const projectsData: Project[] = [
   // 3. Time Letter
   {
     id: "time-letter",
+    private: true,
     name: "Time Letter",
     emoji: "💌",
     type: ProjectType.FULL_STACK_MOBILE,
@@ -822,6 +826,7 @@ export const projectsData: Project[] = [
   // 4. 커플 플래너
   {
     id: "couple-planner",
+    private: true,
     name: "커플 플래너",
     emoji: "💕",
     type: ProjectType.FULL_STACK_WEB,
@@ -904,6 +909,7 @@ export const projectsData: Project[] = [
   // 4. Jellmodoro
   {
     id: "jellmodoro",
+    private: true,
     name: "Jellmodoro",
     emoji: "🍅",
     type: ProjectType.FULL_STACK_MOBILE,
@@ -963,6 +969,7 @@ export const projectsData: Project[] = [
   // 5. Wecanner
   {
     id: "wecanner",
+    private: true,
     name: "Wecanner",
     emoji: "📅",
     type: ProjectType.FULL_STACK_MOBILE,
@@ -1347,6 +1354,7 @@ export const projectsData: Project[] = [
   // 11. abroad-crawler
   {
     id: "abroad-crawler",
+    private: true,
     name: "abroad-crawler",
     emoji: "🌏",
     type: ProjectType.INFRASTRUCTURE,
@@ -1444,6 +1452,7 @@ export const projectsData: Project[] = [
   // 12. JellHub
   {
     id: "jellhub",
+    private: true,
     name: "JellHub",
     emoji: "🏠",
     type: ProjectType.FULL_STACK_WEB,
@@ -1510,6 +1519,7 @@ export const projectsData: Project[] = [
   // 13. threat-crawler
   {
     id: "threat-crawler",
+    private: true,
     name: "threat-crawler",
     emoji: "🛡️",
     type: ProjectType.FULL_STACK_WEB,

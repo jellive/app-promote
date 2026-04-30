@@ -163,14 +163,36 @@ describe("Project Detail Page", () => {
       expect(screen.getByTestId("project-links-section")).toBeInTheDocument();
     });
 
-    it("should display GitHub link when available", async () => {
-      const Page = await ProjectDetailPage({ params });
+    it("should display GitHub link for public repos", async () => {
+      const Page = await ProjectDetailPage({
+        params: { id: "dev-utils-hub" },
+      });
       render(Page);
       const githubLink = screen.getByRole("link", { name: /github/i });
       expect(githubLink).toHaveAttribute(
         "href",
         expect.stringContaining("github.com"),
       );
+    });
+
+    it("should hide GitHub link and show 'Private repo' badge for private repos", async () => {
+      const Page = await ProjectDetailPage({ params: { id: "cookting" } });
+      render(Page);
+      expect(screen.getByTestId("private-repo-badge")).toBeInTheDocument();
+      expect(screen.getByText(/private repo/i)).toBeInTheDocument();
+      expect(
+        screen.queryByRole("link", { name: /github/i }),
+      ).not.toBeInTheDocument();
+    });
+
+    it("should not show 'Private repo' badge for public repos", async () => {
+      const Page = await ProjectDetailPage({
+        params: { id: "dev-utils-hub" },
+      });
+      render(Page);
+      expect(
+        screen.queryByTestId("private-repo-badge"),
+      ).not.toBeInTheDocument();
     });
   });
 

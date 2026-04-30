@@ -296,3 +296,40 @@ describe("Achievement Business Metrics", () => {
     );
   });
 });
+
+describe("Project private flag", () => {
+  // Verified 2026-04-30 via `gh api repos/jellive/<name>` — repos that returned
+  // private:true are the source of truth for this list.
+  const expectedPrivateIds = [
+    "cookting",
+    "time-letter",
+    "couple-planner",
+    "jellmodoro",
+    "wecanner",
+    "abroad-crawler",
+    "jellhub",
+    "threat-crawler",
+  ];
+
+  it.each(expectedPrivateIds)("%s should be marked private", (id) => {
+    const project = getProjectById(id);
+    expect(project).toBeDefined();
+    expect(project?.private).toBe(true);
+  });
+
+  it("should not mark public personal repos as private", () => {
+    const publicIds = ["dev-utils-hub", "namu-arca-linker", "hanwha-score"];
+    publicIds.forEach((id) => {
+      const project = getProjectById(id);
+      expect(project?.private).not.toBe(true);
+    });
+  });
+
+  it("should expose exactly the expected private projects", () => {
+    const actualPrivateIds = projectsData
+      .filter((p) => p.private === true)
+      .map((p) => p.id)
+      .sort();
+    expect(actualPrivateIds).toEqual([...expectedPrivateIds].sort());
+  });
+});

@@ -22,6 +22,7 @@ import {
   BarChart3,
   Link2,
   Smartphone,
+  Lock,
 } from "lucide-react";
 import {
   getProjectById,
@@ -348,7 +349,7 @@ function ProjectLinksSection({ project }: { project: Project }) {
       label: "GitHub",
       href: project.links.github,
       icon: Github,
-      show: !!project.links.github,
+      show: !!project.links.github && !project.private,
       color: "bg-foreground text-background",
     },
     {
@@ -393,7 +394,9 @@ function ProjectLinksSection({ project }: { project: Project }) {
     },
   ].filter((link) => link.show);
 
-  if (links.length === 0) {
+  const showPrivateBadge = !!project.private;
+
+  if (links.length === 0 && !showPrivateBadge) {
     return null;
   }
 
@@ -410,6 +413,17 @@ function ProjectLinksSection({ project }: { project: Project }) {
         </div>
       </div>
       <div className="flex flex-wrap gap-3">
+        {showPrivateBadge && (
+          <span
+            data-testid="private-repo-badge"
+            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-foreground bg-muted text-muted-foreground font-bold font-mono brutal-shadow stagger-fade-in"
+            style={{ animationDelay: "0.9s" }}
+            title="Source code is in a private repository"
+          >
+            <Lock className="w-4 h-4" />
+            Private repo
+          </span>
+        )}
         {links.map((link, index) => {
           const Icon = link.icon;
           return (
@@ -422,7 +436,9 @@ function ProjectLinksSection({ project }: { project: Project }) {
                 "inline-flex items-center gap-2 px-6 py-3 border-2 border-foreground font-bold font-mono brutal-shadow hover-brutal transition-all stagger-fade-in",
                 link.color,
               )}
-              style={{ animationDelay: `${0.9 + index * 0.05}s` }}
+              style={{
+                animationDelay: `${(showPrivateBadge ? 0.95 : 0.9) + index * 0.05}s`,
+              }}
             >
               <Icon className="w-4 h-4" />
               {link.label}
