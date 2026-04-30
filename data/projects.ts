@@ -1347,7 +1347,7 @@ export const projectsData: Project[] = [
     ],
     links: {
       npm: "https://www.npmjs.com/package/jell-utils",
-      github: "https://github.com/jellive/jell-utils",
+      github: "https://github.com/jellive/jell-utils.js",
     },
   },
 
