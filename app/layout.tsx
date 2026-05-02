@@ -1,4 +1,4 @@
-import { Manrope, Space_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { Metadata, Viewport } from "next";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/providers/theme-provider";
@@ -6,25 +6,39 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import "./globals.css";
 
-const fontHeading = Manrope({
-  subsets: ["latin"],
+// Self-hosted (originally Manrope + Space Mono via next/font/google).
+// Korean DPI blocks fonts.googleapis.com from this network at build time
+// (ETIMEDOUT during `next build`); shipping the woff2 files locally also
+// removes the fonts.googleapis.com hop at runtime, improving LCP.
+const fontHeading = localFont({
+  src: "../public/fonts/manrope-variable.woff2",
   display: "swap",
   variable: "--font-heading",
-  weight: ["400", "500", "600", "700", "800"],
+  weight: "400 800",
 });
 
-const fontMono = Space_Mono({
-  subsets: ["latin"],
+const fontMono = localFont({
+  src: [
+    {
+      path: "../public/fonts/space-mono-400.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/space-mono-700.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
   display: "swap",
   variable: "--font-mono",
-  weight: ["400", "700"],
 });
 
-const fontBody = Manrope({
-  subsets: ["latin"],
+const fontBody = localFont({
+  src: "../public/fonts/manrope-variable.woff2",
   display: "swap",
   variable: "--font-body",
-  weight: ["400", "500", "600", "700", "800"],
+  weight: "400 800",
 });
 
 const siteConfig = {
