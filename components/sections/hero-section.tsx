@@ -11,7 +11,6 @@ import {
   Code2,
   BookOpen,
   FileDown,
-  Boxes,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -174,20 +173,6 @@ export function HeroSection() {
                   <a href="/이력서_유한군.pdf" download>
                     <FileDown className="mr-2 h-5 w-5" />
                     이력서 다운로드
-                  </a>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  className="brutal-shadow hover-brutal bg-primary text-primary-foreground hover:bg-primary font-bold text-lg h-14 px-8"
-                >
-                  <a
-                    href="https://jell-portfolio-3d.vercel.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Boxes className="mr-2 h-5 w-5" />
-                    3D로 보기
                   </a>
                 </Button>
               </div>

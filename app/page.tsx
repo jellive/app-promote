@@ -8,6 +8,7 @@ import { SkillsSection } from "@/components/sections/skills-section";
 import { BlogSection } from "@/components/sections/blog-section";
 import { AboutSection } from "@/components/sections/about-section";
 import { TimelineSection } from "@/components/sections/timeline-section";
+import { Floating3DCTA } from "@/components/floating-3d-cta";
 
 // 폴드 아래 무거운 Client Component는 지연 로딩 (초기 JS 번들 감소)
 const ContactSection = dynamic(() =>
@@ -32,6 +33,7 @@ export default function HomePage() {
       <AboutSection />
       <TimelineSection />
       <ContactSection />
+      <Floating3DCTA />
     </>
   );
 }
