@@ -246,10 +246,10 @@ export function HeroSection() {
                     </div>
                     <div className="pl-4">
                       <span className="text-secondary">tests</span>:{" "}
-                      <span className="text-accent">&quot;1,649+&quot;</span>,
+                      <span className="text-accent">&quot;4,000+&quot;</span>,
                     </div>
                     <div className="pl-4">
-                      <span className="text-secondary">coverage</span>:{" "}
+                      <span className="text-secondary">backend_coverage</span>:{" "}
                       <span className="text-accent">&quot;96.8%&quot;</span>,
                     </div>
                     <div className="pl-4">
@@ -287,8 +287,8 @@ export function HeroSection() {
             {[
               { label: "경력", value: "8+", unit: "YEARS" },
               { label: "프로젝트", value: "24", unit: "PROJECTS" },
-              { label: "테스트", value: "1.6K", unit: "TESTS" },
-              { label: "커버리지", value: "96.8", unit: "%" },
+              { label: "테스트", value: "4K+", unit: "TESTS" },
+              { label: "백엔드 커버리지", value: "96.8", unit: "%" },
             ].map((stat, i) => (
               <div
                 key={stat.label}

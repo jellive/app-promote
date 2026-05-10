@@ -11,7 +11,7 @@ const stats = [
     gradientTo: "to-cyan-500",
   },
   {
-    value: 50000,
+    value: 100000,
     label: "작성한 코드 라인",
     icon: Code2,
     suffix: "+",
@@ -19,15 +19,16 @@ const stats = [
     gradientTo: "to-pink-500",
   },
   {
-    value: 1649,
+    value: 4000,
     label: "작성한 테스트",
     icon: TestTube2,
+    suffix: "+",
     gradientFrom: "from-green-500",
     gradientTo: "to-emerald-500",
   },
   {
     value: 96.8,
-    label: "테스트 커버리지",
+    label: "백엔드 커버리지",
     icon: ShieldCheck,
     suffix: "%",
     gradientFrom: "from-orange-500",

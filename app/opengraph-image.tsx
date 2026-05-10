@@ -122,8 +122,8 @@ export default async function Image() {
           <div style={{ display: "flex", gap: "24px" }}>
             {[
               { value: "8+", label: "YEARS" },
-              { value: "18", label: "PROJECTS" },
-              { value: "96.8%", label: "COVERAGE" },
+              { value: "24", label: "PROJECTS" },
+              { value: "96.8%", label: "BE COVERAGE" },
             ].map((stat) => (
               <div
                 key={stat.label}
