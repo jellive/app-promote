@@ -82,7 +82,7 @@ const achievements: Achievement[] = [
   },
   {
     icon: Code2,
-    title: "18개 프로젝트",
+    title: "24개 프로젝트",
     description: "모바일, 웹, AR/3D 등 다양한 플랫폼",
   },
   {

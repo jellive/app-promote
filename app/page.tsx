@@ -18,7 +18,7 @@ const ContactSection = dynamic(() =>
 export const metadata: Metadata = {
   title: "개발자 Jell - 풀스택 개발자 포트폴리오",
   description:
-    "8년+ 경력의 풀스택 개발자. iOS, Flutter, Web, AR/3D 등 18개 프로젝트 | Senior 포지션 구직 중",
+    "8년+ 경력의 풀스택 개발자. iOS, Flutter, Web, AR/3D 등 24개 프로젝트 | Senior 포지션 구직 중",
 };
 
 export default function HomePage() {

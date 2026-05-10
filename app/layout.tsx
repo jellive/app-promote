@@ -44,7 +44,7 @@ const fontBody = localFont({
 const siteConfig = {
   name: "Jell Portfolio",
   description:
-    "8년+ 경력 풀스택 개발자 Jell | iOS · Flutter · React · Next.js | 18개 프로젝트 | Senior 포지션 구직 중",
+    "8년+ 경력 풀스택 개발자 Jell | iOS · Flutter · React · Next.js | 24개 프로젝트 | Senior 포지션 구직 중",
   url: "https://jell.kr",
   ogImage: "/og-image.png",
   author: {

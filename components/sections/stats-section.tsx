@@ -4,7 +4,7 @@ import { StatCard } from "@/components/stat-card";
 
 const stats = [
   {
-    value: 18,
+    value: 24,
     label: "완료된 프로젝트",
     icon: FolderKanban,
     gradientFrom: "from-blue-500",
