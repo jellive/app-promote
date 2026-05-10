@@ -1631,6 +1631,81 @@ export const projectsData: Project[] = [
       github: "https://github.com/jellive/hanwha-score",
     },
   },
+
+  // 24. jell-portfolio-3d - 3D 보셀 포트폴리오
+  {
+    id: "jell-portfolio-3d",
+    name: "Jell World (3D 포트폴리오)",
+    emoji: "🌐",
+    type: ProjectType.WEB,
+    status: ProjectStatus.PRODUCTION,
+    category: ProjectCategory.PERSONAL,
+    period: "2026.05 - 현재",
+    role: "1인 개발",
+    shortDescription:
+      "Three.js + React Three Fiber 기반 3D 보셀 포트폴리오 게임",
+    description:
+      "Minecraft 스타일 보셀 월드를 WASD로 탐험하며 스킬·경력·프로젝트·연락처를 인터랙티브하게 살펴보는 3D 포트폴리오입니다. 단일 세션에 0→Vercel 라이브 배포까지 완주했고, 데스크톱+모바일(가상 조이스틱) 양쪽을 지원합니다. 평면 파스텔 하늘 + WebAudio 8-bit BGM/SFX로 레트로 게임 분위기를 연출합니다.",
+    features: [
+      {
+        title: "복셀 월드 + 물리 충돌",
+        description:
+          "InstancedMesh 1,152블록 지형 + Rapier capsule collider + 카메라 상대 WASD 이동",
+      },
+      {
+        title: "4 zone 인터랙션",
+        description:
+          "Skill Garden / Career Timeline / Projects Park / Contact Station — 근접 탐지 + InfoPanel",
+      },
+      {
+        title: "live minimap + 모바일 컨트롤",
+        description:
+          "Canvas 미니맵에 17 프로젝트 + 5 경력 + 4 연락처 실시간 마커 + 자체 가상 조이스틱",
+      },
+      {
+        title: "WebAudio 직접 합성",
+        description:
+          "mp3 의존 없이 32-step 8-bit BGM 루프 + jump/interact/close SFX 합성",
+      },
+      {
+        title: "OG 동적 이미지 + SEO",
+        description:
+          "Next.js 16 OpenGraph image route + sitemap + structured metadata",
+      },
+    ],
+    techStack: {
+      frontend: [
+        "Next.js 16",
+        "React 19",
+        "Three.js",
+        "@react-three/fiber",
+        "@react-three/drei",
+        "@react-three/rapier",
+        "zustand",
+        "TypeScript",
+        "Tailwind 4",
+      ],
+      backend: [],
+      infrastructure: ["Vercel", "GitHub Actions"],
+      desktop: [],
+    },
+    achievements: [
+      {
+        title: "단일 세션 0→배포",
+        description: "PRD 파싱부터 라이브까지 한 세션 완주",
+        icon: "🚀",
+      },
+      {
+        title: "데스크톱 + 모바일 양면 지원",
+        description: "matchMedia 기반 자동 가상 조이스틱 + DPR/그림자 절감",
+        icon: "📱",
+      },
+    ],
+    links: {
+      github: "https://github.com/jellive/jell-portfolio-3d",
+      live: "https://jell-portfolio-3d.vercel.app",
+    },
+  },
 ];
 
 // ============================================================================
