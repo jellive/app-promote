@@ -33,17 +33,11 @@ interface Value {
 
 const timelineData: TimelineItem[] = [
   {
-    year: "2015",
-    title: "개발자 커리어 시작",
-    description: "솔로몬비젼에서 첫 개발자로 커리어를 시작했습니다.",
-    icon: GraduationCap,
-  },
-  {
     year: "2016",
-    title: "iOS 개발 전문화",
+    title: "개발자 커리어 시작",
     description:
-      "케이라운지에서 KnowLounge, KnowRecorder 등 교육 앱을 개발했습니다.",
-    icon: Briefcase,
+      "클라운지(케이라운지)에서 KnowLounge, KnowRecorder, Gotalk 등 교육 앱을 개발하며 iOS 개발 커리어를 시작했습니다.",
+    icon: GraduationCap,
   },
   {
     year: "2018",
@@ -78,7 +72,7 @@ const achievements: Achievement[] = [
   {
     icon: Award,
     title: "8년+ 경력",
-    description: "2015년부터 iOS, Web, 풀스택 개발",
+    description: "2016년부터 iOS, Web, 풀스택 개발",
   },
   {
     icon: Code2,

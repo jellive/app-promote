@@ -76,7 +76,7 @@ export function TimelineSection() {
     parsed: parsePeriod(p.period),
   }));
 
-  const MIN_YEAR = 2015;
+  const MIN_YEAR = 2016;
   const MAX_YEAR = 2026;
   const years = Array.from(
     { length: MAX_YEAR - MIN_YEAR + 1 },
@@ -95,7 +95,7 @@ export function TimelineSection() {
             프로젝트 타임라인
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            2015년부터 현재까지의 개발 여정
+            2016년부터 현재까지의 개발 여정
           </p>
         </div>
 
