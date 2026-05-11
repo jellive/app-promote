@@ -63,13 +63,13 @@ describe("Robots.txt Generation", () => {
 
   describe("Sitemap Reference", () => {
     it("should reference sitemap.xml", () => {
-      expect(robotsResult.sitemap).toBe("https://jell.kr/sitemap.xml");
+      expect(robotsResult.sitemap).toBe("https://app.jell.kr/sitemap.xml");
     });
   });
 
   describe("Host Configuration", () => {
     it("should have host defined", () => {
-      expect(robotsResult.host).toBe("https://jell.kr");
+      expect(robotsResult.host).toBe("https://app.jell.kr");
     });
   });
 

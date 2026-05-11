@@ -27,20 +27,21 @@ describe("StatsSection", () => {
       expect(statCards).toHaveLength(4);
     });
 
-    it("should display projects count (18)", () => {
+    it("should display projects count (24)", () => {
       render(<StatsSection />);
-      expect(screen.getByText("18")).toBeInTheDocument();
+      expect(screen.getByText("24")).toBeInTheDocument();
     });
 
-    it("should display lines of code (50000+)", () => {
+    it("should display lines of code (100000+)", () => {
       render(<StatsSection />);
       // The value and suffix may be in the same element
-      expect(screen.getByText(/50000/)).toBeInTheDocument();
+      expect(screen.getByText(/100000/)).toBeInTheDocument();
     });
 
     it("should display tests count", () => {
       render(<StatsSection />);
-      expect(screen.getByText("1649")).toBeInTheDocument();
+      // value=4000 + suffix="+" renders as "4000+"
+      expect(screen.getByText(/4000/)).toBeInTheDocument();
     });
 
     it("should display test coverage percentage", () => {

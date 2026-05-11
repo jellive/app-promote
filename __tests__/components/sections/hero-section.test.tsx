@@ -21,10 +21,10 @@ describe("HeroSection", () => {
       expect(elements.length).toBeGreaterThan(0);
     });
 
-    it("should render intro mentioning 18 projects", () => {
+    it("should render intro mentioning 24 projects", () => {
       render(<HeroSection />);
-      // Use getAllByText since "18" appears multiple times in the hero section
-      const elements = screen.getAllByText(/18/);
+      // Use getAllByText since "24" appears multiple times in the hero section
+      const elements = screen.getAllByText(/24/);
       expect(elements.length).toBeGreaterThan(0);
     });
   });

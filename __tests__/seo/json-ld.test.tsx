@@ -24,7 +24,7 @@ describe("PersonJsonLd Component", () => {
   const defaultProps = {
     name: "Jell",
     jobTitle: "풀스택 개발자",
-    url: "https://jell.kr",
+    url: "https://app.jell.kr",
     email: "jellive7@gmail.com",
     sameAs: ["https://github.com/jellive"],
   };
@@ -96,7 +96,7 @@ describe("PersonJsonLd Component", () => {
 describe("WebsiteJsonLd Component", () => {
   const defaultProps = {
     name: "Jell Portfolio",
-    url: "https://jell.kr",
+    url: "https://app.jell.kr",
     description: "Portfolio description",
   };
 
@@ -275,7 +275,7 @@ describe("HomePageJsonLd Component", () => {
     );
     expect(profilePage).toBeDefined();
     expect(profilePage?.name).toContain("Jell");
-    expect(profilePage?.url).toBe("https://jell.kr");
+    expect(profilePage?.url).toBe("https://app.jell.kr");
   });
 
   it("should include seeks in Person JSON-LD", () => {

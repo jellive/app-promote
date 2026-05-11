@@ -16,7 +16,7 @@ describe("Sitemap Generation", () => {
   describe("Static Pages", () => {
     it("should include home page", () => {
       const homePage = sitemapResult.find(
-        (entry) => entry.url === "https://jell.kr",
+        (entry) => entry.url === "https://app.jell.kr",
       );
       expect(homePage).toBeDefined();
       expect(homePage?.priority).toBe(1.0);
@@ -32,18 +32,18 @@ describe("Sitemap Generation", () => {
 
     it("should have lastModified date on static pages", () => {
       const homePage = sitemapResult.find(
-        (entry) => entry.url === "https://jell.kr",
+        (entry) => entry.url === "https://app.jell.kr",
       );
       expect(homePage?.lastModified).toBeInstanceOf(Date);
     });
   });
 
   describe("Project Pages", () => {
-    it("should include all 23 projects", () => {
+    it("should include all 24 projects", () => {
       const projectEntries = sitemapResult.filter((entry) =>
         entry.url.includes("/projects/"),
       );
-      expect(projectEntries).toHaveLength(23);
+      expect(projectEntries).toHaveLength(24);
     });
 
     it("should include cookting project", () => {
@@ -51,7 +51,7 @@ describe("Sitemap Generation", () => {
         entry.url.includes("/projects/cookting"),
       );
       expect(cooktingPage).toBeDefined();
-      expect(cooktingPage?.url).toBe("https://jell.kr/projects/cookting");
+      expect(cooktingPage?.url).toBe("https://app.jell.kr/projects/cookting");
     });
 
     it("should include dev-utils-hub project", () => {
@@ -93,13 +93,13 @@ describe("Sitemap Generation", () => {
   describe("URL Format", () => {
     it("should use correct base URL", () => {
       sitemapResult.forEach((entry) => {
-        expect(entry.url).toMatch(/^https:\/\/jell\.kr/);
+        expect(entry.url).toMatch(/^https:\/\/app\.jell\.kr/);
       });
     });
 
     it("should not have trailing slashes", () => {
       sitemapResult.forEach((entry) => {
-        if (entry.url !== "https://jell.kr") {
+        if (entry.url !== "https://app.jell.kr") {
           expect(entry.url).not.toMatch(/\/$/);
         }
       });
@@ -107,8 +107,8 @@ describe("Sitemap Generation", () => {
   });
 
   describe("Total Entries", () => {
-    it("should have correct total count (2 static + 23 projects)", () => {
-      expect(sitemapResult).toHaveLength(25);
+    it("should have correct total count (2 static + 24 projects)", () => {
+      expect(sitemapResult).toHaveLength(26);
     });
   });
 });

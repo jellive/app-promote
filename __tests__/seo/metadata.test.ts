@@ -38,7 +38,7 @@ describe("SEO Metadata Configuration", () => {
     });
 
     it("should have site URL configured", () => {
-      expect(layoutContent).toContain('url: "https://jell.kr"');
+      expect(layoutContent).toContain('url: "https://app.jell.kr"');
     });
 
     it("should have author information", () => {
@@ -83,10 +83,10 @@ describe("SEO Metadata Configuration", () => {
       expect(layoutContent).toContain('locale: "ko_KR"');
     });
 
-    it("should have og images configured", () => {
-      expect(layoutContent).toContain("images:");
-      expect(layoutContent).toContain("width: 1200");
-      expect(layoutContent).toContain("height: 630");
+    it("should rely on opengraph-image.tsx convention (no explicit images)", () => {
+      // Next.js auto-populates openGraph.images from app/opengraph-image.tsx.
+      // Explicit `images:` array was removed (pointed to missing /og-image.png).
+      expect(layoutContent).not.toContain("images: [");
     });
   });
 
