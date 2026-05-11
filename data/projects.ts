@@ -1301,9 +1301,9 @@ export const projectsData: Project[] = [
     period: "2021.04 - 2021.05",
     role: "1인 개발",
     shortDescription:
-      "JavaScript/TypeScript 유틸리티 함수 라이브러리 (npm 0.2.0)",
+      "JavaScript/TypeScript 유틸리티 함수 라이브러리 (npm v1.0.0)",
     description:
-      "자주 사용하는 JavaScript/TypeScript 유틸리티 함수들을 모아놓은 npm 패키지입니다. 문자열 처리, 날짜 포맷팅, 배열 조작 등의 기능을 제공합니다. npm 레지스트리에 v0.2.0 공개 배포되어 있습니다.",
+      "한국어 특화 TypeScript 유틸리티 라이브러리. 날짜·숫자·문자열·배열·검증·비동기·브라우저 유틸을 제공합니다. 2021-04 v0.x 첫 배포 후 2025-12 v1.0.0으로 ESM/CJS 듀얼 빌드 + 모듈 분리 마이그레이션 완료. npm 공개 배포.",
     features: [
       {
         title: "문자열 유틸리티",
@@ -1335,9 +1335,10 @@ export const projectsData: Project[] = [
     achievements: [
       {
         title: "npm 배포",
-        description: "npm 레지스트리에 v0.2.0 공개 배포 (2021-04 publish)",
+        description:
+          "npm 레지스트리에 v1.0.0 공개 배포 (2021-04 첫 publish → 2025-12 v1.0.0)",
         icon: "📤",
-        metric: "npm v0.2.0 published",
+        metric: "npm v1.0.0 published",
       },
       {
         title: "100% 테스트 커버리지",
