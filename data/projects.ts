@@ -376,6 +376,12 @@ export const projectsData: Project[] = [
         icon: "🎓",
       },
     ],
+    screenshots: [
+      {
+        filename: "knowrecorder.png",
+        alt: "KnowRecorder iOS app — PDF 슬라이드에 음성·드로잉을 녹화하는 화면",
+      },
+    ],
     links: {},
   },
 
@@ -421,6 +427,12 @@ export const projectsData: Project[] = [
         title: "실시간 동기화",
         description: "수십 명 동시 접속 화이트보드 구현",
         icon: "🔄",
+      },
+    ],
+    screenshots: [
+      {
+        filename: "knowlounge.png",
+        alt: "KnowLounge — 실시간 화상수업 + 동기화 화이트보드 플랫폼 화면",
       },
     ],
     links: {},

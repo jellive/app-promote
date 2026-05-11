@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowLeft,
   Github,
@@ -23,6 +24,7 @@ import {
   Link2,
   Smartphone,
   Lock,
+  ImageIcon,
 } from "lucide-react";
 import {
   getProjectById,
@@ -262,6 +264,46 @@ function AchievementsSection({ project }: { project: Project }) {
                 </p>
               </div>
             </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// Screenshots Section Component
+function ScreenshotsSection({ project }: { project: Project }) {
+  if (!project.screenshots || project.screenshots.length === 0) {
+    return null;
+  }
+
+  return (
+    <section
+      data-testid="screenshots-section"
+      className="space-y-6 stagger-fade-in"
+      style={{ animationDelay: "0.45s" }}
+    >
+      <div className="flex items-center gap-3">
+        <div className="px-3 py-1 bg-foreground text-background font-mono text-sm font-bold">
+          <ImageIcon className="inline-block w-4 h-4 mr-2" />
+          SCREENSHOTS
+        </div>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {project.screenshots.map((shot, index) => (
+          <div
+            key={shot.filename}
+            className="border-4 border-foreground bg-card brutal-shadow hover-brutal transition-all overflow-hidden stagger-fade-in"
+            style={{ animationDelay: `${0.5 + index * 0.05}s` }}
+          >
+            <Image
+              src={`/app-screenshot/${shot.filename}`}
+              alt={shot.alt}
+              width={800}
+              height={500}
+              className="w-full h-auto object-contain"
+              sizes="(max-width: 640px) 100vw, 50vw"
+            />
           </div>
         ))}
       </div>
@@ -544,6 +586,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
           <TechStackSection project={project} />
           <FeaturesSection project={project} />
           <AchievementsSection project={project} />
+          <ScreenshotsSection project={project} />
           <CodeStatsSection project={project} />
           <ProjectLinksSection project={project} />
         </div>
