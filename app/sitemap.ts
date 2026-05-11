@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { projectsData } from "@/data/projects";
 
-const BASE_URL = "https://jell.kr";
+const BASE_URL = "https://app.jell.kr";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date();

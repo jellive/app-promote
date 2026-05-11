@@ -45,12 +45,12 @@ const siteConfig = {
   name: "Jell Portfolio",
   description:
     "8년+ 경력 풀스택 개발자 Jell | iOS · Flutter · React · Next.js | 24개 프로젝트 | Senior 포지션 구직 중",
-  url: "https://jell.kr",
+  url: "https://app.jell.kr",
   ogImage: "/og-image.png",
   author: {
     name: "Jell",
     email: "jellive7@gmail.com",
-    url: "https://jell.kr",
+    url: "https://app.jell.kr",
   },
   keywords: [
     "풀스택 개발자",

@@ -215,7 +215,7 @@ export function HomePageJsonLd() {
         name="유한군"
         alternateName="Jell"
         jobTitle="풀스택 개발자"
-        url="https://jell.kr"
+        url="https://app.jell.kr"
         email="jellive7@gmail.com"
         sameAs={[
           "https://github.com/jellive",
@@ -230,12 +230,12 @@ export function HomePageJsonLd() {
       />
       <WebsiteJsonLd
         name="Jell Portfolio"
-        url="https://jell.kr"
+        url="https://app.jell.kr"
         description="8년차 풀스택 개발자 Jell의 포트폴리오. iOS, Flutter, React, Next.js 등 다양한 기술 스택으로 사용자 중심의 앱을 개발합니다."
       />
       <ProfilePageJsonLd
         name="Jell - 풀스택 개발자 포트폴리오"
-        url="https://jell.kr"
+        url="https://app.jell.kr"
       />
     </>
   );
