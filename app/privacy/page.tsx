@@ -308,10 +308,10 @@ const privacy = (): JSX.Element => {
                 개인정보 삭제/탈퇴 요청:
               </p>
               <a
-                href="mailto:jellive7@naver.com"
+                href="mailto:jellive7@gmail.com"
                 className="text-primary font-mono font-bold hover:underline"
               >
-                jellive7@naver.com
+                jellive7@gmail.com
               </a>
             </div>
           </section>
