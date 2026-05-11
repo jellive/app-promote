@@ -28,7 +28,7 @@ const socialLinks = [
   },
   {
     label: "Email",
-    href: "mailto:jellive@gmail.com",
+    href: "mailto:jellive7@gmail.com",
     icon: Mail,
     bgColor: "bg-secondary",
     textColor: "text-foreground",
