@@ -291,7 +291,7 @@ export const projectsData: Project[] = [
     role: "선임연구원 (비주얼신) - 웹 프론트엔드 개발",
     shortDescription: "Unity WebGL 기반 3D 가상 쇼룸",
     description:
-      "Unity WebGL과 웹 기술을 결합한 인터랙티브 3D 가상 쇼룸 플랫폼입니다. Unity 팀과 협업하여 React/TypeScript 기반 웹 프론트엔드를 개발하고, Unity WebGL과의 양방향 JavaScript 통신 인터페이스를 구현했습니다.",
+      "Unity WebGL과 웹 기술을 결합한 인터랙티브 3D 가상 쇼룸 플랫폼입니다. Unity 팀과 협업하여 Nuxt.js/Vue 3 + TypeScript 기반 웹 프론트엔드를 개발하고, Unity WebGL과의 양방향 JavaScript 통신 인터페이스를 구현했습니다.",
     features: [
       {
         title: "3D 가상 공간",
@@ -311,7 +311,7 @@ export const projectsData: Project[] = [
       },
     ],
     techStack: {
-      frontend: ["React", "TypeScript", "Unity WebGL", "Three.js"],
+      frontend: ["Nuxt.js", "Vue 3", "TypeScript", "Unity WebGL", "Three.js"],
       backend: ["Node.js", "Express"],
       infrastructure: ["AWS", "CloudFront", "S3"],
       desktop: [],

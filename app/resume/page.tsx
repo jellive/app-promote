@@ -41,7 +41,7 @@ const EXPERIENCE = [
     highlights: [
       "finiroom: ARKit/RealityKit 기반 iOS 앱 - App Store 정식 출시",
       "glinda AIMI: Unity-JavaScript 양방향 통신 웹 인터페이스 구현",
-      "React/TypeScript 기반 웹 프론트엔드 개발 및 API 연동",
+      "Nuxt.js/Vue 3 + TypeScript 기반 웹 프론트엔드 개발 및 API 연동",
       "Node.js/Express/MongoDB 백엔드 개발",
     ],
   },
@@ -72,14 +72,6 @@ const EXPERIENCE = [
       "Gotalk: WebRTC 기반 1:1 화상 영어 교육 웹앱 개발",
     ],
   },
-  {
-    id: "solomon",
-    company: "솔로몬비젼",
-    role: "연구원",
-    period: "2015.06 - 2016.05",
-    description: "첫 커리어. iOS 앱 개발 및 웹 서비스 운영.",
-    highlights: ["iOS 네이티브 앱 개발", "웹 서비스 유지보수 및 운영"],
-  },
 ];
 
 const SKILLS = [
@@ -97,7 +89,16 @@ const SKILLS = [
   },
   {
     category: "Mobile",
-    items: ["Flutter", "Dart", "Swift", "SwiftUI", "UIKit", "ARKit"],
+    items: [
+      "Flutter",
+      "Dart",
+      "React Native",
+      "Expo",
+      "Swift",
+      "SwiftUI",
+      "UIKit",
+      "ARKit",
+    ],
   },
   {
     category: "Backend",
@@ -109,7 +110,16 @@ const SKILLS = [
   },
   {
     category: "Infrastructure",
-    items: ["AWS", "Docker", "Firebase", "Vercel", "GitHub Actions"],
+    items: [
+      "AWS",
+      "GCP",
+      "Docker",
+      "Firebase",
+      "Supabase",
+      "Vercel",
+      "GitHub Actions",
+      "CI/CD",
+    ],
   },
 ];
 
