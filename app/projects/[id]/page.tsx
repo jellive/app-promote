@@ -37,7 +37,7 @@ import { cn } from "@/lib/utils";
 import { ProjectJsonLd } from "@/components/seo/json-ld";
 
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 // Status badge component
@@ -500,8 +500,9 @@ export function generateStaticParams() {
 export const dynamicParams = false;
 
 // Main Page Component
-export default function ProjectDetailPage({ params }: PageProps) {
-  const project = getProjectById(params.id);
+export default async function ProjectDetailPage({ params }: PageProps) {
+  const { id } = await params;
+  const project = getProjectById(id);
 
   if (!project) {
     notFound();
