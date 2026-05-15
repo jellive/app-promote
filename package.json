@@ -58,7 +58,15 @@
     "typescript": "^5"
   },
   "resolutions": {
-    "handlebars": "^4.7.9"
+    "handlebars": ">=4.7.9",
+    "flatted": ">=3.4.2",
+    "glob": ">=10.5.0",
+    "ip-address": ">=10.1.1",
+    "js-yaml": ">=4.1.1",
+    "minimatch": ">=9.0.5",
+    "nanoid": ">=3.3.8",
+    "picomatch": ">=2.3.2",
+    "tar": ">=7.5.11"
   },
   "packageManager": "yarn@4.5.0"
 }
