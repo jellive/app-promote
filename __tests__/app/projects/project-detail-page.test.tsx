@@ -58,7 +58,7 @@ describe("Project Detail Page", () => {
   });
 
   describe("Page Rendering - Cookting", () => {
-    const params = { id: "cookting" };
+    const params = Promise.resolve({ id: "cookting" });
 
     it("should render project name", async () => {
       const Page = await ProjectDetailPage({ params });
@@ -93,7 +93,7 @@ describe("Project Detail Page", () => {
   });
 
   describe("Tech Stack Section", () => {
-    const params = { id: "cookting" };
+    const params = Promise.resolve({ id: "cookting" });
 
     it("should render tech stack section", async () => {
       const Page = await ProjectDetailPage({ params });
@@ -115,7 +115,7 @@ describe("Project Detail Page", () => {
   });
 
   describe("Features Section", () => {
-    const params = { id: "cookting" };
+    const params = Promise.resolve({ id: "cookting" });
 
     it("should render features section", async () => {
       const Page = await ProjectDetailPage({ params });
@@ -137,7 +137,7 @@ describe("Project Detail Page", () => {
   });
 
   describe("Achievements Section", () => {
-    const params = { id: "cookting" };
+    const params = Promise.resolve({ id: "cookting" });
 
     it("should render achievements section when available", async () => {
       const Page = await ProjectDetailPage({ params });
@@ -155,7 +155,7 @@ describe("Project Detail Page", () => {
   });
 
   describe("Project Links Section", () => {
-    const params = { id: "cookting" };
+    const params = Promise.resolve({ id: "cookting" });
 
     it("should render links section", async () => {
       const Page = await ProjectDetailPage({ params });
@@ -165,7 +165,7 @@ describe("Project Detail Page", () => {
 
     it("should display GitHub link for public repos", async () => {
       const Page = await ProjectDetailPage({
-        params: { id: "dev-utils-hub" },
+        params: Promise.resolve({ id: "dev-utils-hub" }),
       });
       render(Page);
       const githubLink = screen.getByRole("link", { name: /github/i });
@@ -176,7 +176,7 @@ describe("Project Detail Page", () => {
     });
 
     it("should hide GitHub link and show 'Private repo' badge for private repos", async () => {
-      const Page = await ProjectDetailPage({ params: { id: "cookting" } });
+      const Page = await ProjectDetailPage({ params: Promise.resolve({ id: "cookting" }) });
       render(Page);
       expect(screen.getByTestId("private-repo-badge")).toBeInTheDocument();
       expect(screen.getByText(/private repo/i)).toBeInTheDocument();
@@ -187,7 +187,7 @@ describe("Project Detail Page", () => {
 
     it("should not show 'Private repo' badge for public repos", async () => {
       const Page = await ProjectDetailPage({
-        params: { id: "dev-utils-hub" },
+        params: Promise.resolve({ id: "dev-utils-hub" }),
       });
       render(Page);
       expect(
@@ -197,7 +197,7 @@ describe("Project Detail Page", () => {
   });
 
   describe("Code Stats Section", () => {
-    const params = { id: "cookting" };
+    const params = Promise.resolve({ id: "cookting" });
 
     it("should render code stats when available", async () => {
       const Page = await ProjectDetailPage({ params });
@@ -214,21 +214,21 @@ describe("Project Detail Page", () => {
 
   describe("Different Project Types", () => {
     it("should render desktop project (dev-utils-hub)", async () => {
-      const Page = await ProjectDetailPage({ params: { id: "dev-utils-hub" } });
+      const Page = await ProjectDetailPage({ params: Promise.resolve({ id: "dev-utils-hub" }) });
       render(Page);
       expect(screen.getByText("Dev Utils Hub")).toBeInTheDocument();
       expect(screen.getByText("🛠️")).toBeInTheDocument();
     });
 
     it("should render iOS project (jellmodoro)", async () => {
-      const Page = await ProjectDetailPage({ params: { id: "jellmodoro" } });
+      const Page = await ProjectDetailPage({ params: Promise.resolve({ id: "jellmodoro" }) });
       render(Page);
       expect(screen.getByText("Jellmodoro")).toBeInTheDocument();
       expect(screen.getByText("🍅")).toBeInTheDocument();
     });
 
     it("should render npm package project (jell-utils)", async () => {
-      const Page = await ProjectDetailPage({ params: { id: "jell-utils" } });
+      const Page = await ProjectDetailPage({ params: Promise.resolve({ id: "jell-utils" }) });
       render(Page);
       expect(screen.getByText("jell-utils.js")).toBeInTheDocument();
       expect(screen.getByText("📦")).toBeInTheDocument();
@@ -236,7 +236,7 @@ describe("Project Detail Page", () => {
   });
 
   describe("Back Navigation", () => {
-    const params = { id: "cookting" };
+    const params = Promise.resolve({ id: "cookting" });
 
     it("should have back to projects link", async () => {
       const Page = await ProjectDetailPage({ params });
@@ -247,7 +247,7 @@ describe("Project Detail Page", () => {
   });
 
   describe("Accessibility", () => {
-    const params = { id: "cookting" };
+    const params = Promise.resolve({ id: "cookting" });
 
     it("should have proper heading hierarchy", async () => {
       const Page = await ProjectDetailPage({ params });
