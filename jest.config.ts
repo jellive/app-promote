@@ -3,6 +3,7 @@ import type { Config } from "jest";
 const config: Config = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   testEnvironment: "jsdom",
+  coverageProvider: "v8",
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/$1",
     // Handle CSS imports (with CSS modules)
