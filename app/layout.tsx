@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+import Script from "next/script";
 import { Metadata, Viewport } from "next";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/providers/theme-provider";
@@ -151,6 +152,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Footer />
           </div>
         </ThemeProvider>
+        <Script
+          src="https://umami.jell.kr/script.js"
+          data-website-id="f208ade9-555e-48ee-a607-52bd3451f0ea"
+          strategy="afterInteractive"
+          defer
+        />
       </body>
     </html>
   );
