@@ -1462,74 +1462,248 @@ export const projectsData: Project[] = [
     },
   },
 
-  // 12. JellHub
+  // 12. JellHub v2
   {
     id: "jellhub",
     private: true,
-    name: "JellHub",
+    name: "JellHub v2",
     emoji: "🏠",
     type: ProjectType.FULL_STACK_WEB,
     status: ProjectStatus.PRODUCTION,
     category: ProjectCategory.PERSONAL,
-    period: "2026.04 - 현재",
+    period: "2025.12 - 현재",
     role: "1인 개발",
-    shortDescription: "jell-server 통합 운영 대시보드 (hub.jell.kr)",
+    shortDescription: "셀프호스팅 인프라 통합 모니터링 대시보드 (hub.jell.kr)",
     description:
-      "자체 호스팅 인프라 jell-server의 통합 운영 대시보드입니다. SSL 인증서 모니터링 + 일일 텔레그램 리포트, 서버 상태/도메인 헬스체크, 텔레그램 봇을 통한 원격 명령(/ssl, /status, /history) 처리 등 셀프호스팅 운영을 한 곳에서 관리합니다. Korean ISP DPI로 Node.js fetch가 차단되는 문제를 fetch shim + webhook 마이그레이션으로 해결했습니다.",
+      "자체 호스팅 인프라 jell-server의 통합 운영 대시보드입니다. v2에서 Uptime 모니터링(5분 간격), SSL 인증서 만료 추적, 시스템 리소스(CPU/RAM/Disk) SSH 수집, Nginx 트래픽 로그 시각화, Umami 웹 애널리틱스 통합, 공개 Status Page까지 6개 신규 기능을 추가했습니다. 2,007개 테스트(Vitest)로 품질을 보증하며, Prisma ORM + Cron 기반 자동 수집 파이프라인을 갖춘 프로덕션 서비스입니다.",
     features: [
       {
-        title: "SSL 일일 리포트",
+        title: "Uptime 모니터링",
         description:
-          "16개 도메인 SSL 만료 모니터링 + D-14 갱신 권장 알림 자동 발송",
+          "5분 간격 HTTP 헬스체크 + 응답시간 추적 + 24h/7d/30d 가용률 대시보드",
       },
       {
-        title: "Telegram 봇 명령",
+        title: "SSL 인증서 추적",
         description:
-          "/ssl, /status, /history, /help 봇 명령을 webhook으로 처리",
+          "16개 도메인 SSL 만료일 자동 수집 + D-day 경고 + Telegram 일일 리포트",
       },
       {
-        title: "서버 SSH 운영",
+        title: "시스템 리소스 모니터링",
         description:
-          "ssh2로 jell-server에 원격 명령, Socket.IO로 실시간 로그 스트림",
+          "SSH로 CPU/RAM/Disk 사용률 5분 간격 수집 + 실시간 차트 시각화",
       },
       {
-        title: "Korean DPI 우회",
+        title: "Nginx 트래픽 분석",
         description:
-          "Node.js fetch가 ISP DPI로 차단되는 문제를 wget shim + webhook으로 해결",
+          "access.log 파싱 → 시간대별 요청 수, 상위 경로, 상태 코드 분포 시각화",
+      },
+      {
+        title: "Umami 웹 애널리틱스",
+        description:
+          "Umami API v3.1.0 연동 — 페이지뷰, 방문자, 세션, 리퍼러 통합 대시보드",
+      },
+      {
+        title: "공개 Status Page",
+        description:
+          "인증 없이 접근 가능한 서비스 상태 페이지 + 인시던트 타임라인",
       },
     ],
     techStack: {
-      frontend: ["Next.js 16", "React", "TypeScript", "Tailwind CSS"],
-      backend: ["Next.js API Routes", "Socket.IO", "Prisma", "ssh2"],
-      infrastructure: ["PostgreSQL", "Docker", "nginx", "Telegram Bot API"],
+      frontend: [
+        "Next.js 16",
+        "React 19",
+        "TypeScript 5.9",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Recharts",
+        "TanStack Query",
+        "Zustand",
+      ],
+      backend: [
+        "Next.js API Routes",
+        "Prisma ORM",
+        "Socket.IO",
+        "ssh2",
+        "node-cron",
+      ],
+      infrastructure: [
+        "PostgreSQL",
+        "Redis",
+        "Docker",
+        "nginx",
+        "Telegram Bot API",
+        "Umami API",
+      ],
       desktop: [],
+    },
+    codeStats: {
+      total: 35000,
+      frontend: 20000,
+      backend: 15000,
+      tests: 2007,
     },
     achievements: [
       {
+        title: "v2 6개 기능 하루 구현",
+        description:
+          "Uptime/SSL/System/Nginx/Umami/StatusPage 6개 모듈을 25커밋 + 10,000줄로 1일 완성",
+        icon: "⚡",
+        metric: "PRD → 프로덕션 1일 (25커밋)",
+      },
+      {
+        title: "2,007 테스트 통과",
+        description:
+          "Vitest 기반 136파일 2,007개 테스트 — API, 훅, 컴포넌트, 유틸 전수 검증",
+        icon: "✅",
+        metric: "2,007 tests (136 files)",
+      },
+      {
+        title: "Cron 자동 수집 파이프라인",
+        description:
+          "5분 Uptime + 1시간 SSL/System + 6시간 Nginx — node-cron 기반 무중단 수집",
+        icon: "🔄",
+        metric: "4단계 Cron 파이프라인",
+      },
+      {
         title: "Korean DPI 차단 우회",
         description:
-          "Node fetch → wget shim 패치 + 폴링 → webhook 마이그레이션으로 Telegram 정상화",
+          "Node fetch → wget shim + webhook 마이그레이션으로 Telegram 정상화",
         icon: "🔓",
-        metric: "fetch shim + webhook 패턴 정착",
-      },
-      {
-        title: "16 도메인 SSL 자동 모니터링",
-        description: "매일 10:00 KST SSL 만료 현황 + D-14 갱신 권장 알람",
-        icon: "🔒",
-      },
-      {
-        title: "통합 Telegram 봇",
-        description: "/ssl, /status, /history 등 원격 운영 명령을 봇으로 통합",
-        icon: "🤖",
       },
     ],
+    architecture: {
+      summary:
+        "Next.js 16 App Router 풀스택. Prisma ORM으로 Uptime/SSL/System/Nginx/Incident 데이터 영속화, node-cron 4단계 자동 수집(5min/1h/6h), SSH로 서버 메트릭 원격 수집, Umami API v3.1.0 연동, Socket.IO 실시간 로그 스트림, Telegram Bot webhook 알림.",
+      diagram: `flowchart TD
+    A[node-cron Scheduler] -->|5min| B[Uptime Checker]
+    A -->|1h| C[SSL Scanner]
+    A -->|5min| D[System Metrics via SSH]
+    A -->|6h| E[Nginx Log Parser]
+    B --> F[(PostgreSQL + Prisma)]
+    C --> F
+    D --> F
+    E --> F
+    F --> G[Next.js API Routes]
+    G --> H[React Dashboard]
+    G --> I[Public Status Page]
+    G --> J[Telegram Bot]
+    K[Umami API v3.1.0] --> G`,
+      decisions: [
+        "Prisma ORM으로 타입 안전한 DB 레이어 — 8개 마이그레이션 순차 적용",
+        "node-cron 4단계 스케줄링으로 수집 주기별 부하 분산",
+        "SSH2로 원격 서버 메트릭 수집 — Docker stats/df/free 명령 파싱",
+        "Umami API v3.1.0 adaptor — /api/websites/:id/stats 엔드포인트 연동",
+        "Public Status Page 인증 분리 — 외부 공개용 별도 라우트",
+      ],
+    },
     links: {
       github: "https://github.com/jellive/jellhub",
       live: "https://hub.jell.kr",
     },
   },
 
-  // 13. threat-crawler
+  // 13. jell-short (Rust URL Shortener)
+  {
+    id: "jell-short",
+    private: true,
+    name: "jell-short",
+    emoji: "🔗",
+    type: ProjectType.FULL_STACK_WEB,
+    status: ProjectStatus.PRODUCTION,
+    category: ProjectCategory.PERSONAL,
+    period: "2026.05 - 현재",
+    role: "1인 개발",
+    shortDescription: "Rust + Axum 기반 셀프호스팅 URL 단축기 (s.jell.kr)",
+    description:
+      "Rust와 Axum 프레임워크로 구현한 고성능 셀프호스팅 URL 단축기입니다. SQLite 단일 파일 DB에 Base62 인코딩 코드 생성, Token Bucket 기반 레이트 리미터, QR 코드 생성, 비밀번호 보호 URL 등의 기능을 갖췄습니다. TDD(21개 테스트)로 개발하고 Docker 멀티스테이지 빌드 + nginx 리버스 프록시로 jell-server에 배포했습니다.",
+    features: [
+      {
+        title: "Base62 URL 단축",
+        description:
+          "Auto-increment ID → Base62 인코딩으로 짧고 예측 불가능한 코드 생성",
+      },
+      {
+        title: "커스텀 코드 + 비밀번호 보호",
+        description:
+          "사용자 지정 슬러그 + 선택적 비밀번호 보호 URL (bcrypt 해싱)",
+      },
+      {
+        title: "QR 코드 자동 생성",
+        description: "단축 URL 생성 시 PNG QR 코드 자동 생성 및 다운로드 제공",
+      },
+      {
+        title: "Token Bucket 레이트 리미팅",
+        description: "IP 기반 Token Bucket 알고리즘으로 분당 30회 요청 제한",
+      },
+    ],
+    techStack: {
+      frontend: [],
+      backend: [
+        "Rust",
+        "Axum",
+        "rusqlite (SQLite)",
+        "tokio",
+        "bcrypt",
+        "qrcode-rs",
+      ],
+      infrastructure: ["Docker (multi-stage build)", "nginx", "TeamCity CI"],
+      desktop: [],
+    },
+    codeStats: {
+      total: 2500,
+      backend: 2500,
+      tests: 21,
+    },
+    achievements: [
+      {
+        title: "Rust + Axum 프로덕션 배포",
+        description: "PRD 작성 → TDD 개발 → Docker 배포까지 단일 세션 완주",
+        icon: "🦀",
+        metric: "Rust 첫 프로덕션 서비스",
+      },
+      {
+        title: "TDD 21 테스트",
+        description:
+          "URL 검증, 예약어 차단, 리다이렉션, 만료, QR 등 핵심 로직 전수 테스트",
+        icon: "✅",
+        metric: "21 tests (TDD)",
+      },
+      {
+        title: "Docker 멀티스테이지 빌드",
+        description:
+          "빌더 이미지(rust:slim) → 실행 이미지(debian:bookworm-slim) 분리로 경량 컨테이너",
+        icon: "🐳",
+        metric: "~50MB 최종 이미지",
+      },
+    ],
+    architecture: {
+      summary:
+        "Axum HTTP 서버 + rusqlite 단일 파일 DB. 요청 → Token Bucket 레이트 체크 → Base62 코드 생성/조회 → SQLite 영속화 → 301 리다이렉트. Docker 멀티스테이지 빌드로 최소 이미지, nginx 리버스 프록시로 TLS 종단.",
+      diagram: `flowchart LR
+    A[Client] -->|HTTPS| B[nginx]
+    B -->|reverse proxy| C[Axum Server]
+    C --> D{Rate Limiter<br/>Token Bucket}
+    D -->|OK| E[Route Handler]
+    D -->|429| F[Too Many Requests]
+    E -->|POST /shorten| G[Base62 Encode + SQLite INSERT]
+    E -->|GET /:code| H[SQLite SELECT + 301 Redirect]
+    E -->|GET /:code/qr| I[QR PNG Generate]
+    G --> J[(SQLite DB)]
+    H --> J`,
+      decisions: [
+        "Rust + Axum 선택 — 메모리 안전성 + 비동기 성능 + 단일 바이너리 배포",
+        "SQLite 선택 — 셀프호스팅에 적합한 단일 파일 DB, 외부 의존성 없음",
+        "Base62 인코딩 — URL-safe 문자만 사용 (a-z, A-Z, 0-9)",
+        "Token Bucket — 고정 윈도우 대비 버스트 허용으로 UX 향상",
+      ],
+    },
+    links: {
+      github: "https://github.com/jellive/jell_url_short",
+      live: "https://s.jell.kr",
+    },
+  },
+
+  // 14. threat-crawler
   {
     id: "threat-crawler",
     private: true,
@@ -1717,6 +1891,112 @@ export const projectsData: Project[] = [
     links: {
       github: "https://github.com/jellive/jell-portfolio-3d",
       live: "https://jell-portfolio-3d.vercel.app",
+    },
+  },
+
+  // 25. jell-arcade - Unity 6 WebGL 게임 컬렉션
+  {
+    id: "jell-arcade",
+    private: true,
+    name: "Jell Arcade",
+    emoji: "🕹️",
+    type: ProjectType.UNITY_WEBGL,
+    status: ProjectStatus.PRODUCTION,
+    category: ProjectCategory.PERSONAL,
+    period: "2026.05 - 현재",
+    role: "1인 개발",
+    shortDescription:
+      "Unity 6 WebGL 셀프호스팅 게임 컬렉션 — Vampire Survivors 클론 + Brick Breaker + Endless Runner",
+    description:
+      "Unity 6 (6000.0.75f1) 기반 셀프호스팅 게임 컬렉션입니다. 단일 빌드에 3개 미니게임(Space Survivor, Brick Breaker, Endless Runner)을 packaging하고 nginx 컨테이너로 arcade.jell.kr에 배포했습니다. SceneBuilder Editor 스크립트로 전체 Scene/Prefab/Sprite를 코드로 생성해 Unity Editor를 GUI 없이 batchmode만으로 빌드합니다. 온라인 리더보드는 jellhub Prisma DB에 연결되어 있습니다.",
+    features: [
+      {
+        title: "Space Survivor — Vampire Survivors 클론",
+        description:
+          "8 enemy + 3 boss + 5 evolved weapon + meta progression (HP/Damage/Speed/Magnet 4종 영구 업그레이드) + Top-5 로컬 + Top-10 온라인 리더보드",
+      },
+      {
+        title: "Brick Breaker — 5단계 아케이드",
+        description:
+          "Paddle 마우스/터치/키보드 양면 입력 + PhysicsMaterial2D 무한 바운스 + 5 레벨 난이도 (gaps/hp2/boss brick)",
+      },
+      {
+        title: "Endless Runner — 점프 회피",
+        description:
+          "중력 기반 점프 + obstacle 60초 difficulty ramp (interval 1.8→0.7s, speed 6→11) + Best Score PlayerPrefs 영속화",
+      },
+      {
+        title: "코드로 생성하는 Scene/Prefab/Sprite",
+        description:
+          "SpriteGenerator(픽셀 함수) + PrefabFactory + SceneBuilder Editor 스크립트로 GUI 0회 빌드 — Unity Editor는 batchmode만 실행",
+      },
+      {
+        title: "온라인 리더보드 (jellhub 연동)",
+        description:
+          "POST /api/arcade/leaderboard → jellhub Prisma ArcadeLeaderboard 테이블에 영속화, CORS 허용",
+      },
+    ],
+    techStack: {
+      frontend: ["Unity 6 (6000.0.75f1)", "C#", "Unity UI (uGUI)"],
+      backend: ["Next.js API Route (jellhub)", "Prisma", "PostgreSQL"],
+      infrastructure: [
+        "Docker (nginx)",
+        "TeamCity CI",
+        "Brotli compression",
+        "nginx_service",
+      ],
+      desktop: [],
+    },
+    codeStats: {
+      total: 6500,
+      frontend: 6500,
+    },
+    achievements: [
+      {
+        title: "Unity batchmode-only 빌드 파이프라인",
+        description:
+          "setup.sh → build.sh → docker/deploy.sh 3-step. Editor GUI 0회 — 모든 자산(Scene/Prefab/Sprite/Texture/Tag) 코드 생성",
+        icon: "🛠️",
+        metric: "setup.sh 1회로 27 prefab + 5 scene 자동 생성",
+      },
+      {
+        title: "3 game in 7.1MB Brotli",
+        description:
+          "전체 빌드 7.1MB Brotli (data.br 1.58MB) — Vampire Survivors 클론 포함한 풀 컨텐츠를 모바일에서도 즉시 플레이",
+        icon: "🎮",
+        metric: "Brotli 7.1MB / WebGL.data.br 1.58MB",
+      },
+      {
+        title: "Playwright e2e로 발견·수정한 inactive-clone 버그",
+        description:
+          "Object.Instantiate가 source의 activeSelf 상속 → obstacle template이 inactive면 클론도 inactive로 spawn → 충돌 없이 score만 증가. 71초 무손상 플레이로 발견",
+        icon: "🐛",
+        metric: "single SetActive(true) line fix",
+      },
+    ],
+    architecture: {
+      summary:
+        "Editor 스크립트(SpriteGenerator/PrefabFactory/SceneBuilder/TagsAndLayersSetup/PlayerSettingsConfigurator)가 모든 자산을 코드로 생성 → Unity batchmode가 5개 scene + 27 prefab을 빌드 → WebGL.data/wasm/framework를 Brotli 압축 → nginx 컨테이너로 arcade.jell.kr 서빙. 온라인 리더보드만 jellhub REST API 호출.",
+      diagram: `flowchart LR
+    A[setup.sh] -->|JellArcade/FULL AUTO SETUP| B[Editor scripts]
+    B -->|generate| C[Sprites + Prefabs + 5 Scenes]
+    D[build.sh] -->|Builder.BuildWebGL| E[Unity Batchmode]
+    C --> E
+    E -->|Brotli| F[build/WebGL/*.br]
+    F -->|rsync + docker compose| G[nginx container]
+    G -->|HTTPS| H[arcade.jell.kr]
+    I[Unity Player] -->|POST /api/arcade/leaderboard| J[jellhub API]
+    J --> K[(Prisma + Postgres)]`,
+      decisions: [
+        "Unity 6 WebGL — Three.js 대비 풀-에셋 게임 엔진 + 단일 코드베이스로 3개 미니게임 packaging",
+        "Editor 스크립트로 자산 생성 — Unity Editor GUI 의존 0 (마라톤 세션에서 흐름 끊김 방지)",
+        "Brotli + WebGL — 7.1MB로 모바일에서도 즉시 플레이",
+        "리더보드만 외부 API — 게임 자체는 100% static asset",
+      ],
+    },
+    links: {
+      github: "https://github.com/jellive/jell-arcade",
+      live: "https://arcade.jell.kr",
     },
   },
 ];
