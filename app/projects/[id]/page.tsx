@@ -35,6 +35,7 @@ import {
 } from "@/data/projects";
 import { cn } from "@/lib/utils";
 import { ProjectJsonLd } from "@/components/seo/json-ld";
+import { ArcadeEmbed } from "@/components/arcade-embed";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -455,6 +456,7 @@ function ProjectLinksSection({ project }: { project: Project }) {
         </div>
       </div>
       <div className="flex flex-wrap gap-3">
+        {project.id === "jell-arcade" && <ArcadeEmbed />}
         {showPrivateBadge && (
           <span
             data-testid="private-repo-badge"
