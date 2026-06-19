@@ -105,7 +105,7 @@ export function HeroSection() {
                     className="w-2 h-2 rounded-full bg-green-400 animate-pulse"
                     aria-hidden="true"
                   />
-                  OPEN TO WORK · 풀스택 / 프론트엔드 시니어
+                  8년+ 풀스택 · 프론트엔드 시니어
                 </div>
               </div>
 
@@ -254,16 +254,14 @@ export function HeroSection() {
                     </div>
                     <div className="pl-4">
                       <span className="text-secondary">status</span>:{" "}
-                      <span className="text-primary">
-                        &quot;open_to_work&quot;
-                      </span>
+                      <span className="text-primary">&quot;building&quot;</span>
                       ,
                     </div>
                     <div className="pl-4">
-                      <span className="text-secondary">seeking</span>: [
+                      <span className="text-secondary">focus</span>: [
                     </div>
                     <div className="pl-8 text-primary">
-                      &quot;Senior&quot;, &quot;FullStack&quot;
+                      &quot;Web&quot;, &quot;AR/3D&quot;
                     </div>
                     <div className="pl-4">],</div>
                     <div>{"}"}</div>
