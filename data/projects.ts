@@ -737,33 +737,47 @@ export const projectsData: Project[] = [
     category: ProjectCategory.PERSONAL,
     period: "2025.08 - 현재",
     role: "1인 풀스택 개발",
-    shortDescription: "OCR 기반 문서 스캔 & 텍스트 추출 앱",
+    shortDescription: "iPhone LiDAR 센서로 공간·객체를 3D 스캔하는 앱",
     description:
-      "카메라로 문서를 촬영하면 OCR 엔진이 텍스트를 자동 추출하고, NestJS 백엔드에서 AI 기반 후처리로 정확도를 높이는 풀스택 앱입니다. Flutter(모바일) + Next.js(웹)을 Turborepo 모노레포로 통합 관리합니다.",
+      "아이폰 내장 LiDAR 센서로 공간과 객체를 3D 스캔하고, GLB 형식으로 저장·공유할 수 있는 풀스택 앱입니다. React Native(모바일) + Next.js(웹 3D 뷰어)를 NestJS 백엔드 및 Turborepo 모노레포로 통합 관리합니다.",
     features: [
       {
-        title: "OCR 텍스트 추출",
-        description: "카메라/갤러리 이미지에서 텍스트 자동 인식 및 추출",
+        title: "LiDAR 3D 스캔",
+        description: "iPhone LiDAR 센서로 공간과 객체를 3D로 촬영·스캔",
       },
       {
-        title: "AI 후처리",
-        description: "LLM 기반 OCR 결과 교정 및 구조화",
+        title: "3D 뷰어",
+        description: "웹에서 스캔 결과물을 GLB 형식으로 시각화 및 공유",
       },
       {
-        title: "문서 관리",
-        description: "추출된 텍스트 저장, 검색, 공유 기능",
+        title: "스캔 갤러리",
+        description: "촬영한 3D 스캔을 저장·관리하고 쇼룸에 공개",
       },
       {
         title: "Turborepo 모노레포",
-        description: "Flutter(모바일) + Next.js(웹) 통합 관리",
+        description:
+          "React Native(모바일) + Next.js(웹) + NestJS(서버) 통합 관리",
       },
     ],
     techStack: {
-      frontend: ["Flutter", "Dart", "Next.js", "TypeScript"],
-      backend: ["NestJS", "TypeScript", "PostgreSQL"],
-      infrastructure: ["Turborepo", "Docker", "Supabase"],
+      frontend: ["React Native", "Next.js", "TypeScript"],
+      backend: ["NestJS", "TypeScript", "PostgreSQL", "TypeORM"],
+      infrastructure: ["Turborepo", "Docker", "pnpm"],
       desktop: [],
     },
+    achievements: [
+      {
+        title: "iPhone LiDAR 3D 촬영",
+        description:
+          "아이폰 내장 LiDAR 센서로 공간과 객체를 3D로 촬영하고 스캔",
+        icon: "📱",
+      },
+      {
+        title: "GLB 3D 뷰어",
+        description: "스캔 결과물을 GLB 형식으로 저장하고 웹에서 3D로 시각화",
+        icon: "🧊",
+      },
+    ],
     links: {
       github: "https://github.com/jellive/jellscan",
     },
@@ -1912,6 +1926,20 @@ export const projectsData: Project[] = [
       infrastructure: [],
       desktop: [],
     },
+    achievements: [
+      {
+        title: "실시간 경기 중계",
+        description:
+          "한화 이글스 경기를 브라우저에서 실시간으로 중계하는 크롬 확장",
+        icon: "⚾",
+      },
+      {
+        title: "득점 푸시 알림",
+        description:
+          "득점·경기 시작·종료 시 시스템 알림으로 즉시 안내 (notifications API)",
+        icon: "🔔",
+      },
+    ],
     links: {
       github: "https://github.com/jellive/hanwha-score",
     },
