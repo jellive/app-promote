@@ -691,6 +691,12 @@ export const projectsData: Project[] = [
         metric: "BullMQ 비동기 큐 처리",
       },
     ],
+    screenshots: [
+      {
+        filename: "cookting-1.png",
+        alt: "쿡팅 AI 레시피 추천 웹 랜딩",
+      },
+    ],
     architecture: {
       summary:
         "Turborepo 모노레포 기반 4개 앱 통합: Flutter(모바일) + NestJS API + Next.js 웹 + AI 마이크로서비스. BullMQ 비동기 큐로 AI 처리를 분리하여 API 응답 지연 없이 레시피 생성.",
@@ -912,6 +918,12 @@ export const projectsData: Project[] = [
         metric: "Lighthouse PWA 100점 목표",
       },
     ],
+    screenshots: [
+      {
+        filename: "couple-planner-1.png",
+        alt: "커플 플래너 일정 공유 랜딩",
+      },
+    ],
     links: {
       github: "https://github.com/jellive/couple-planner",
       live: "https://couple-planner.jell.kr",
@@ -1131,6 +1143,12 @@ export const projectsData: Project[] = [
         description: "Vitest 641개 테스트, 인터넷 없이도 모든 기능 사용 가능",
         icon: "✅",
         metric: "Vitest 641 tests + Offline PWA",
+      },
+    ],
+    screenshots: [
+      {
+        filename: "dev-utils-hub-1.png",
+        alt: "Developer Utils 22개 도구 그리드",
       },
     ],
     links: {
@@ -1676,6 +1694,12 @@ export const projectsData: Project[] = [
         metric: "~50MB 최종 이미지",
       },
     ],
+    screenshots: [
+      {
+        filename: "jell-short-1.png",
+        alt: "jell-short URL 단축 대시보드",
+      },
+    ],
     architecture: {
       summary:
         "Axum HTTP 서버 + rusqlite 단일 파일 DB. 요청 → Token Bucket 레이트 체크 → Base62 코드 생성/조회 → SQLite 영속화 → 301 리다이렉트. Docker 멀티스테이지 빌드로 최소 이미지, nginx 리버스 프록시로 TLS 종단.",
@@ -1888,6 +1912,12 @@ export const projectsData: Project[] = [
         icon: "📱",
       },
     ],
+    screenshots: [
+      {
+        filename: "jell-portfolio-3d-1.png",
+        alt: "Jell World 3D 복셀 포트폴리오",
+      },
+    ],
     links: {
       github: "https://github.com/jellive/jell-portfolio-3d",
       live: "https://jell-portfolio-3d.vercel.app",
@@ -1994,9 +2024,197 @@ export const projectsData: Project[] = [
         "리더보드만 외부 API — 게임 자체는 100% static asset",
       ],
     },
+    screenshots: [
+      {
+        filename: "jell-arcade-1.png",
+        alt: "Jell Arcade 레트로 WebGL 게임 선택",
+      },
+    ],
     links: {
       github: "https://github.com/jellive/jell-arcade",
       live: "https://arcade.jell.kr",
+    },
+  },
+
+  // 19. ai-pulse
+  {
+    id: "ai-pulse",
+    private: true,
+    name: "ai-pulse",
+    emoji: "📡",
+    type: ProjectType.INFRASTRUCTURE,
+    status: ProjectStatus.PRODUCTION,
+    category: ProjectCategory.PERSONAL,
+    period: "2026.05 - 현재",
+    role: "기획·개발·운영 (1인)",
+    shortDescription: "AI 뉴스를 토픽별로 묶어 매일 전하는 다이제스트 봇 + 웹",
+    description:
+      "AI/LLM 분야 뉴스를 여러 소스에서 자동 수집해 LLM으로 토픽을 클러스터링하고, 출시·툴·트렌딩으로 분류해 매일 아침 텔레그램으로 보내는 자동화 파이프라인. FastAPI 기반 웹 UI에서도 열람할 수 있으며 무중단으로 운영된다.",
+    features: [
+      {
+        title: "다중 소스 수집",
+        description:
+          "HN·marktechpost·simonwillison 등 여러 소스에서 AI 뉴스를 자동 수집",
+      },
+      {
+        title: "LLM 토픽 클러스터링",
+        description: "Gemini로 36시간 배치 아이템을 묶어 핵심 토픽을 추출",
+      },
+      {
+        title: "카테고리 분류",
+        description: "출시·툴·트렌딩으로 자동 분류해 몰아보기 제공",
+      },
+      {
+        title: "GitHub 트렌딩 연동",
+        description: "트렌딩 레포를 파싱해 다이제스트에 포함",
+      },
+      {
+        title: "텔레그램 일일 다이제스트",
+        description: "매일 08:00 KST 자동 발송",
+      },
+      {
+        title: "웹 UI",
+        description: "FastAPI + Jinja + HTMX로 오늘·아카이브 열람",
+      },
+      {
+        title: "헬스체크·알림",
+        description: "내부 스케줄러 + 외부 cron + 텔레그램 이중 감시",
+      },
+      {
+        title: "재시작 catch-up",
+        description: "재시작 시 누락된 cron 작업 보충",
+      },
+    ],
+    techStack: {
+      frontend: ["HTMX", "Jinja2"],
+      backend: ["Python", "FastAPI", "APScheduler", "PostgreSQL"],
+      infrastructure: ["Docker", "Gemini API"],
+      desktop: [],
+    },
+    achievements: [
+      {
+        title: "테스트 커버리지",
+        description: "핵심 로직 전부 테스트로 검증",
+        icon: "✅",
+        metric: "77 tests",
+      },
+      {
+        title: "무중단 운영",
+        description: "매일 08:00 KST 자동 발송 라이브",
+        icon: "🔁",
+        metric: "08:00 KST daily",
+      },
+      {
+        title: "Rate-limit 관리",
+        description: "gemini-proxy 일 950건 한도 내 429 처리",
+        icon: "🛡️",
+        metric: "950/day quota",
+      },
+    ],
+    screenshots: [
+      {
+        filename: "ai-pulse-1.png",
+        alt: "ai-pulse 토픽 브리핑 웹 화면",
+      },
+    ],
+    links: {
+      github: "https://github.com/jellive/ai-pulse",
+      live: "https://ai-pulse.jell.kr",
+    },
+  },
+
+  // 20. wind-down
+  {
+    id: "wind-down",
+    name: "wind-down",
+    emoji: "🌬️",
+    type: ProjectType.WEB,
+    status: ProjectStatus.PRODUCTION,
+    category: ProjectCategory.PERSONAL,
+    period: "2026.05 - 현재",
+    role: "기획·개발 (1인)",
+    shortDescription: "멍때림 비주얼라이저 + 호흡 가이드 PWA",
+    description:
+      "의존성 0의 단일 HTML로 만든 멍때림·호흡 도구. 캔버스 비주얼과 Web Audio로 생성한 환경음, 호흡 가이드를 제공하며 모바일 설치형 PWA로 확장했다. 평소엔 비주얼만 풀스크린, 화면을 탭하면 컨트롤이 나타나는 미니멀 UX.",
+    features: [
+      {
+        title: "비주얼 씬 12종",
+        description: "물결·안개·입자·별·오로라·눈·반딧불 등 캔버스 애니메이션",
+      },
+      {
+        title: "테마 9종",
+        description: "밤하늘·노을·심해·설원 등 분위기 팔레트",
+      },
+      {
+        title: "환경음 6종",
+        description:
+          "드론·비·파도·새소리·모닥불·풀벌레를 Web Audio로 실시간 생성",
+      },
+      {
+        title: "호흡 가이드",
+        description: "4·7·8, 박스, 코히어런트(5·5) 패턴 시각 안내",
+      },
+      {
+        title: "프리셋 9종",
+        description: "분위기 조합을 원터치로 적용",
+      },
+      {
+        title: "멍타이머",
+        description: "오늘 누적 시간과 카운트다운 종료 알림",
+      },
+      {
+        title: "취침 페이드",
+        description: "15·30·45분 뒤 화면과 소리가 서서히 꺼짐",
+      },
+      {
+        title: "공유 링크",
+        description: "현재 조합을 URL 해시로 복사·복원",
+      },
+      {
+        title: "모바일 PWA",
+        description:
+          "설치형, 탭하면 컨트롤이 뜨는 미니멀 UX, network-first 오프라인 동작",
+      },
+    ],
+    techStack: {
+      frontend: [
+        "Vanilla JS",
+        "Canvas",
+        "Web Audio API",
+        "PWA / Service Worker",
+      ],
+      backend: [],
+      infrastructure: ["Docker", "Nginx"],
+      desktop: [],
+    },
+    achievements: [
+      {
+        title: "무의존 단일 파일",
+        description: "외부 라이브러리 0, 단일 HTML로 구현",
+        icon: "🪶",
+        metric: "0 deps",
+      },
+      {
+        title: "설치형 PWA",
+        description: "iOS·Android 홈 화면 설치와 오프라인 동작",
+        icon: "📲",
+        metric: "PWA installable",
+      },
+      {
+        title: "모바일 검증",
+        description: "iOS 시뮬레이터로 탭토글·레이아웃 실측",
+        icon: "✅",
+        metric: "iOS verified",
+      },
+    ],
+    screenshots: [
+      {
+        filename: "wind-down-1.png",
+        alt: "wind-down 멍때림 비주얼라이저 화면",
+      },
+    ],
+    links: {
+      live: "https://wind-down.jell.kr",
     },
   },
 ];
