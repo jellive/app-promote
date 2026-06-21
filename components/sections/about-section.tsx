@@ -60,10 +60,16 @@ const timelineData: TimelineItem[] = [
   },
   {
     year: "2025",
-    title: "프리랜서 & 새로운 도전",
-    description:
-      "빈자리(캠핑장 앱) Flutter 프리랜서 프로젝트를 완수하고, 새로운 풀타임 기회를 찾고 있습니다.",
+    title: "프리랜서 활동",
+    description: "빈자리(캠핑장 앱) Flutter 프리랜서 프로젝트를 완수했습니다.",
     icon: Rocket,
+  },
+  {
+    year: "2026",
+    title: "개인 프로젝트",
+    description:
+      "ai-pulse, wind-down 등 다양한 개인 프로젝트를 이어가며 새로운 기술을 실험하고 있습니다.",
+    icon: Zap,
   },
 ];
 
@@ -118,16 +124,6 @@ export function AboutSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">소개</h2>
-          <div
-            data-testid="job-seeking-badge"
-            className="inline-flex items-center gap-2 px-4 py-2 border-2 border-primary font-mono text-sm font-bold mb-4"
-          >
-            <span
-              className="w-2 h-2 rounded-full bg-green-400 animate-pulse"
-              aria-hidden="true"
-            />
-            정규직 · 프리랜서 · 리모트 가능
-          </div>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             안녕하세요, 풀스택 개발자 Jell입니다.
           </p>

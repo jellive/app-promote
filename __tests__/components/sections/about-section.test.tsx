@@ -143,20 +143,6 @@ describe("AboutSection", () => {
     });
   });
 
-  describe("Job Seeking Badge", () => {
-    it("should render job seeking badge", () => {
-      render(<AboutSection />);
-      expect(screen.getByTestId("job-seeking-badge")).toBeInTheDocument();
-    });
-
-    it("should display employment type options", () => {
-      render(<AboutSection />);
-      expect(
-        screen.getByText(/정규직 · 프리랜서 · 리모트 가능/i),
-      ).toBeInTheDocument();
-    });
-  });
-
   describe("Accessibility", () => {
     it("should have proper heading hierarchy", () => {
       render(<AboutSection />);
