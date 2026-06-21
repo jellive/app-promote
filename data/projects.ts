@@ -701,16 +701,16 @@ export const projectsData: Project[] = [
       summary:
         "Turborepo 모노레포 기반 4개 앱 통합: Flutter(모바일) + NestJS API + Next.js 웹 + AI 마이크로서비스. BullMQ 비동기 큐로 AI 처리를 분리하여 API 응답 지연 없이 레시피 생성.",
       diagram: `flowchart TD
-    A[Flutter App] -->|REST API| B[NestJS API Server]
-    C[Next.js Web] -->|REST API| B
-    B -->|BullMQ Queue| D[AI Microservice]
-    D -->|OpenAI GPT-4| E[Recipe Generation]
+    A["Flutter App"] -->|REST API| B["NestJS API Server"]
+    C["Next.js Web"] -->|REST API| B
+    B -->|BullMQ Queue| D["AI Microservice"]
+    D -->|OpenAI GPT-4| E["Recipe Generation"]
     D -->|Gemini Pro| E
-    B -->|Drizzle ORM| F[(PostgreSQL)]
-    B <-->|Realtime| G[Supabase]
+    B -->|Drizzle ORM| F[("PostgreSQL")]
+    B <-->|Realtime| G["Supabase"]
     G -->|Auth| A
     G -->|Storage| B
-    H[Firebase FCM] -->|Push| A`,
+    H["Firebase FCM"] -->|Push| A`,
       decisions: [
         "BullMQ 비동기 큐로 AI 처리를 API 서버에서 분리 — 응답 지연 제거",
         "Turborepo로 Flutter/NestJS/Next.js/AI 서비스 빌드 캐시 공유",
@@ -924,6 +924,24 @@ export const projectsData: Project[] = [
         alt: "커플 플래너 일정 공유 랜딩",
       },
     ],
+    architecture: {
+      summary:
+        "Next.js 16 App Router + Supabase Realtime으로 커플 간 실시간 동기화, AI SDK/Gemini 기반 4개 AI 기능, @serwist/next PWA를 단일 Vercel 배포로 제공하는 풀스택 웹앱.",
+      diagram: `flowchart TD
+    A["Next.js 16 App Router<br/>src/app/(protected)/"] -->|tanstack/react-query| B["Supabase Client"]
+    B <-->|Realtime subscription| C[("Supabase PostgreSQL")]
+    B -->|Auth| D["Supabase Auth"]
+    A -->|AI Route Handler| E["src/lib/gemini-proxy.ts"]
+    E -->|AI SDK + Gemini| F["4개 AI 기능<br/>일정·갈등·코스·감정"]
+    A -->|Google Calendar API| G["외부 캘린더 연동"]
+    H["Upstash Redis"] -->|rate-limit| E
+    I["@serwist/next"] -->|Service Worker| A`,
+      decisions: [
+        "Supabase Realtime으로 서버 없이 커플 간 실시간 동기화 구현 — 별도 WebSocket 서버 불필요",
+        "App Router (protected) 그룹으로 인증 게이트 단일화, 미인증 라우트는 최상위에서 차단",
+        "Upstash Redis로 Gemini API rate-limit 처리 — Edge Function 없이 Next.js API Route에서 처리",
+      ],
+    },
     links: {
       github: "https://github.com/jellive/couple-planner",
       live: "https://couple-planner.jell.kr",
@@ -1067,6 +1085,23 @@ export const projectsData: Project[] = [
         metric: "iOS 4 + Android 3 사이즈 = 42장",
       },
     ],
+    architecture: {
+      summary:
+        "Flutter(Riverpod) 앱이 core/data/presentation 레이어로 분리되고, Swift/Tuist WidgetExtension이 Firestore 데이터를 홈·잠금화면 위젯으로 렌더링하는 크로스플랫폼 구조.",
+      diagram: `flowchart TD
+    A["Flutter App<br/>presentation/screens"] -->|Riverpod Provider| B["data/repositories"]
+    B -->|read-write| C[("Firebase Firestore")]
+    C -->|Auth| D["Firebase Auth"]
+    E["Swift WidgetExtension<br/>WidgetKit"] -->|AppGroup shared data| B
+    E --> F["홈화면 위젯<br/>잠금화면 위젯"]
+    G["Fastlane + Tuist"] -->|CI 빌드 배포| A
+    G -->|CI 빌드 배포| E`,
+      decisions: [
+        "Flutter v2 풀 재작성 — iOS 전용에서 iOS/Android 동시 지원으로 확장",
+        "WidgetKit은 Swift v1 코드 유지 — Flutter plugin으로 bridge하기보다 네이티브 직접 구현",
+        "Riverpod + freezed 코드 생성으로 보일러플레이트 최소화",
+      ],
+    },
     links: {
       appStore: "https://apps.apple.com/kr/app/wecanner/id6711342598",
       github: "https://github.com/jellive/weekly_widget",
@@ -1151,6 +1186,24 @@ export const projectsData: Project[] = [
         alt: "Developer Utils 22개 도구 그리드",
       },
     ],
+    architecture: {
+      summary:
+        "React 19 + Vite 프론트엔드가 Tauri 2 Rust 셸에 임베드되어 데스크톱 앱으로 동작하며, 동일 코드베이스가 오프라인 PWA로도 서빙되는 듀얼 타깃 구조.",
+      diagram: `flowchart LR
+    A["React 19 UI<br/>src/renderer/"] -->|Zustand store| B["useAppStore"]
+    A -->|react-i18next| C["i18n / ko·en"]
+    A -->|router| D["16+ Tool Pages"]
+    D -->|CPU-bound util| E["src/utils/<br/>순수 TS 함수"]
+    F["Tauri 2 Rust Shell<br/>src-tauri/"] -->|tauri command| A
+    F -->|webview| A
+    G["Vite build"] -->|dist| F
+    G -->|PWA| H["dev-utils.jell.kr<br/>오프라인 서비스"]`,
+      decisions: [
+        "Tauri 2 채택 — Electron 대비 메모리·번들 크기 대폭 절감 (Rust 셸)",
+        "동일 React 코드베이스로 데스크톱 앱 + 오프라인 PWA 듀얼 타깃 빌드",
+        "모든 유틸 로직을 순수 TS 함수로 분리해 Vitest 641개 단위 테스트 가능",
+      ],
+    },
     links: {
       github: "https://github.com/jellive/dev-utils-hub",
       live: "https://dev-utils.jell.kr",
@@ -1313,6 +1366,27 @@ export const projectsData: Project[] = [
       total: 1500,
       frontend: 1500,
     },
+    achievements: [
+      {
+        title: "Chrome Web Store 출시",
+        description:
+          "정식 심사를 통과해 스토어에 게시했고 1.5.0까지 업데이트를 이어감",
+        icon: "🧩",
+        metric: "CWS 1.5.0",
+      },
+      {
+        title: "실검 토론글 직링크",
+        description:
+          "실시간 검색어를 아카라이브 실검챈 토론글로 바로 연결하고 댓글수·검색 폴백을 제공",
+        icon: "🔗",
+      },
+      {
+        title: "UA 위장 백그라운드 fetch",
+        description:
+          "서비스워커가 declarativeNetRequest로 User-Agent를 위장해 앱 API를 직접 호출",
+        icon: "🛡️",
+      },
+    ],
     links: {
       chromeWebStore:
         "https://chromewebstore.google.com/detail/fhmagpkcdpcnmbihkgdcmabidcmdmpgl",
@@ -1462,12 +1536,12 @@ export const projectsData: Project[] = [
       summary:
         "Python 비동기 크롤러 → Gemini AI 요약 → PostgreSQL 저장 → APScheduler 스케줄링 → Telegram 발송. 14개 소스 병렬 크롤 + 6시간 헬스체크 + 긴급 변경 즉시 알림.",
       diagram: `flowchart LR
-    A[14개 소스<br/>HTML/RSS 크롤링] --> B[Gemini AI<br/>한국어 요약 + 분류]
-    B --> C[(PostgreSQL)]
-    C --> D[Telegram 봇]
-    D --> E[매일 08:00 KST<br/>채널 자동 발송]
-    C --> F[6시간 헬스체크<br/>관리자 DM]
-    G[긴급 정책 변경] -.-> H[즉시 Admin DM]`,
+    A["14개 소스<br/>HTML/RSS 크롤링"] --> B["Gemini AI<br/>한국어 요약 + 분류"]
+    B --> C[("PostgreSQL")]
+    C --> D["Telegram 봇"]
+    D --> E["매일 08:00 KST<br/>채널 자동 발송"]
+    C --> F["6시간 헬스체크<br/>관리자 DM"]
+    G["긴급 정책 변경"] -.-> H["즉시 Admin DM"]`,
       decisions: [
         "Gemini로 한국어 요약 + 구조화된 JSON 응답으로 후처리 단순화",
         "APScheduler로 단일 프로세스 내 스케줄링 + 헬스체크 통합",
@@ -1593,19 +1667,19 @@ export const projectsData: Project[] = [
       summary:
         "Next.js 16 App Router 풀스택. Prisma ORM으로 Uptime/SSL/System/Nginx/Incident 데이터 영속화, node-cron 4단계 자동 수집(5min/1h/6h), SSH로 서버 메트릭 원격 수집, Umami API v3.1.0 연동, Socket.IO 실시간 로그 스트림, Telegram Bot webhook 알림.",
       diagram: `flowchart TD
-    A[node-cron Scheduler] -->|5min| B[Uptime Checker]
-    A -->|1h| C[SSL Scanner]
-    A -->|5min| D[System Metrics via SSH]
-    A -->|6h| E[Nginx Log Parser]
-    B --> F[(PostgreSQL + Prisma)]
+    A["node-cron Scheduler"] -->|5min| B["Uptime Checker"]
+    A -->|1h| C["SSL Scanner"]
+    A -->|5min| D["System Metrics via SSH"]
+    A -->|6h| E["Nginx Log Parser"]
+    B --> F[("PostgreSQL + Prisma")]
     C --> F
     D --> F
     E --> F
-    F --> G[Next.js API Routes]
-    G --> H[React Dashboard]
-    G --> I[Public Status Page]
-    G --> J[Telegram Bot]
-    K[Umami API v3.1.0] --> G`,
+    F --> G["Next.js API Routes"]
+    G --> H["React Dashboard"]
+    G --> I["Public Status Page"]
+    G --> J["Telegram Bot"]
+    K["Umami API v3.1.0"] --> G`,
       decisions: [
         "Prisma ORM으로 타입 안전한 DB 레이어 — 8개 마이그레이션 순차 적용",
         "node-cron 4단계 스케줄링으로 수집 주기별 부하 분산",
@@ -1704,15 +1778,15 @@ export const projectsData: Project[] = [
       summary:
         "Axum HTTP 서버 + rusqlite 단일 파일 DB. 요청 → Token Bucket 레이트 체크 → Base62 코드 생성/조회 → SQLite 영속화 → 301 리다이렉트. Docker 멀티스테이지 빌드로 최소 이미지, nginx 리버스 프록시로 TLS 종단.",
       diagram: `flowchart LR
-    A[Client] -->|HTTPS| B[nginx]
-    B -->|reverse proxy| C[Axum Server]
-    C --> D{Rate Limiter<br/>Token Bucket}
-    D -->|OK| E[Route Handler]
-    D -->|429| F[Too Many Requests]
-    E -->|POST /shorten| G[Base62 Encode + SQLite INSERT]
-    E -->|GET /:code| H[SQLite SELECT + 301 Redirect]
-    E -->|GET /:code/qr| I[QR PNG Generate]
-    G --> J[(SQLite DB)]
+    A["Client"] -->|HTTPS| B["nginx"]
+    B -->|reverse proxy| C["Axum Server"]
+    C --> D{"Rate Limiter<br/>Token Bucket"}
+    D -->|OK| E["Route Handler"]
+    D -->|429| F["Too Many Requests"]
+    E -->|POST shorten| G["Base62 Encode + SQLite INSERT"]
+    E -->|GET code| H["SQLite SELECT + 301 Redirect"]
+    E -->|GET code qr| I["QR PNG Generate"]
+    G --> J[("SQLite DB")]
     H --> J`,
       decisions: [
         "Rust + Axum 선택 — 메모리 안전성 + 비동기 성능 + 단일 바이너리 배포",
@@ -2008,15 +2082,15 @@ export const projectsData: Project[] = [
       summary:
         "Editor 스크립트(SpriteGenerator/PrefabFactory/SceneBuilder/TagsAndLayersSetup/PlayerSettingsConfigurator)가 모든 자산을 코드로 생성 → Unity batchmode가 5개 scene + 27 prefab을 빌드 → WebGL.data/wasm/framework를 Brotli 압축 → nginx 컨테이너로 arcade.jell.kr 서빙. 온라인 리더보드만 jellhub REST API 호출.",
       diagram: `flowchart LR
-    A[setup.sh] -->|JellArcade/FULL AUTO SETUP| B[Editor scripts]
-    B -->|generate| C[Sprites + Prefabs + 5 Scenes]
-    D[build.sh] -->|Builder.BuildWebGL| E[Unity Batchmode]
+    A["setup.sh"] -->|JellArcade FULL AUTO SETUP| B["Editor scripts"]
+    B -->|generate| C["Sprites + Prefabs + 5 Scenes"]
+    D["build.sh"] -->|Builder.BuildWebGL| E["Unity Batchmode"]
     C --> E
-    E -->|Brotli| F[build/WebGL/*.br]
-    F -->|rsync + docker compose| G[nginx container]
-    G -->|HTTPS| H[arcade.jell.kr]
-    I[Unity Player] -->|POST /api/arcade/leaderboard| J[jellhub API]
-    J --> K[(Prisma + Postgres)]`,
+    E -->|Brotli| F["build/WebGL/*.br"]
+    F -->|rsync + docker compose| G["nginx container"]
+    G -->|HTTPS| H["arcade.jell.kr"]
+    I["Unity Player"] -->|POST api arcade leaderboard| J["jellhub API"]
+    J --> K[("Prisma + Postgres")]`,
       decisions: [
         "Unity 6 WebGL — Three.js 대비 풀-에셋 게임 엔진 + 단일 코드베이스로 3개 미니게임 packaging",
         "Editor 스크립트로 자산 생성 — Unity Editor GUI 의존 0 (마라톤 세션에서 흐름 끊김 방지)",

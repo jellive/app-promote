@@ -25,6 +25,7 @@ import {
   Smartphone,
   Lock,
   ImageIcon,
+  Network,
 } from "lucide-react";
 import {
   getProjectById,
@@ -36,6 +37,7 @@ import {
 import { cn } from "@/lib/utils";
 import { ProjectJsonLd } from "@/components/seo/json-ld";
 import { ArcadeEmbed } from "@/components/arcade-embed";
+import { MermaidDiagramWrapper } from "@/components/mermaid-diagram-wrapper";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -384,6 +386,74 @@ function CodeStatsSection({ project }: { project: Project }) {
   );
 }
 
+// Architecture Section Component
+function ArchitectureSection({ project }: { project: Project }) {
+  if (!project.architecture) {
+    return null;
+  }
+
+  const { summary, diagram, decisions } = project.architecture;
+
+  return (
+    <section
+      data-testid="architecture-section"
+      className="space-y-6 stagger-fade-in"
+      style={{ animationDelay: "0.75s" }}
+    >
+      <div className="flex items-center gap-3">
+        <div className="px-3 py-1 bg-foreground text-background font-mono text-sm font-bold">
+          <Network className="inline-block w-4 h-4 mr-2" />
+          ARCHITECTURE
+        </div>
+      </div>
+
+      {/* Summary */}
+      <div
+        className="border-4 border-foreground bg-card p-6 brutal-shadow stagger-fade-in"
+        style={{ animationDelay: "0.8s" }}
+      >
+        <p className="text-muted-foreground leading-relaxed">{summary}</p>
+      </div>
+
+      {/* Mermaid Diagram */}
+      {diagram && (
+        <div
+          className="border-4 border-foreground bg-card p-6 brutal-shadow overflow-x-auto stagger-fade-in"
+          style={{ animationDelay: "0.85s" }}
+        >
+          <MermaidDiagramWrapper source={diagram} />
+        </div>
+      )}
+
+      {/* Design Decisions */}
+      {decisions && decisions.length > 0 && (
+        <div
+          className="border-4 border-foreground bg-card p-6 brutal-shadow stagger-fade-in"
+          style={{ animationDelay: "0.9s" }}
+        >
+          <h3 className="font-mono font-bold text-sm mb-4 text-muted-foreground">
+            KEY DECISIONS
+          </h3>
+          <ul className="space-y-3">
+            {decisions.map((decision, index) => (
+              <li
+                key={index}
+                className="flex items-start gap-3 stagger-fade-in"
+                style={{ animationDelay: `${0.95 + index * 0.05}s` }}
+              >
+                <span className="mt-1 w-2 h-2 flex-shrink-0 bg-foreground border border-foreground" />
+                <span className="text-muted-foreground leading-relaxed">
+                  {decision}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </section>
+  );
+}
+
 // Project Links Section Component
 function ProjectLinksSection({ project }: { project: Project }) {
   const links = [
@@ -591,6 +661,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           <AchievementsSection project={project} />
           <ScreenshotsSection project={project} />
           <CodeStatsSection project={project} />
+          <ArchitectureSection project={project} />
           <ProjectLinksSection project={project} />
         </div>
 
