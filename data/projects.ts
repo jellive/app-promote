@@ -793,37 +793,49 @@ export const projectsData: Project[] = [
     status: ProjectStatus.PRODUCTION,
     category: ProjectCategory.PERSONAL,
     period: "2025.10 - 현재",
-    role: "React Native 개발자",
+    role: "1인 풀스택 개발",
     shortDescription: "타임캡슐 일기 앱 (React Native + Next.js 웹)",
     description:
-      "미래의 나에게 편지를 보내는 타임캡슐 일기 앱입니다. React Native(Expo)로 모바일 앱을, Next.js로 웹 앱을 동시에 개발하고 있으며, Turborepo 모노레포 구조로 통합 관리합니다. ESLint 9.x, Sentry 크래시 리포팅, EAS Update OTA 배포, 이메일 인증, 계정 관리 등 프로덕션 수준의 기능과 품질 인프라를 갖추고 App Store/Play Store에 출시되었습니다.",
+      "미래의 나에게 편지를 보내는 타임캡슐 일기 앱입니다. React Native(Expo)로 모바일 앱을, Next.js로 웹 앱을 동시에 개발하며 Turborepo 모노레포 구조로 통합 관리합니다. Firebase(Auth/Firestore/Storage) 백엔드, RevenueCat 인앱 구독(모바일)/Stripe 결제(웹), Google/Apple 소셜 로그인, Gemini AI 감정분석·연말 캡슐 요약, Google Mobile Ads를 갖춘 프로덕션 서비스입니다.",
     features: [
       {
         title: "타임캡슐 편지",
-        description: "미래 날짜를 지정하여 편지를 작성하고 열람",
+        description:
+          "미래 날짜를 지정하여 편지를 작성하고 열람 + 공개 편지 게시판",
+      },
+      {
+        title: "소셜 로그인",
+        description:
+          "Google Sign-In + Apple Sign-In + 이메일 인증 (Firebase Auth)",
+      },
+      {
+        title: "인앱 구독 & 결제",
+        description: "RevenueCat 기반 모바일 인앱 구독 + Stripe 기반 웹 결제",
+      },
+      {
+        title: "AI 감정분석 & 연말 캡슐",
+        description: "Gemini AI로 일기 감정 분석 + 연말 캡슐 요약 자동 생성",
+      },
+      {
+        title: "감정 통계 & 스트릭",
+        description: "일간/주간 감정 통계, 연속 작성 스트릭 추적",
       },
       {
         title: "OTA 업데이트",
         description:
           "EAS Update 기반 development/preview/production 3단계 배포",
       },
-      {
-        title: "크래시 리포팅",
-        description: "Sentry + Error Boundary 기반 안정성 모니터링",
-      },
-      {
-        title: "모노레포 구조",
-        description: "Turborepo + pnpm workspace로 모바일/웹 통합 관리",
-      },
-      {
-        title: "이메일 인증 & 계정 관리",
-        description: "이메일 기반 회원가입/로그인, 계정 삭제 기능",
-      },
     ],
     techStack: {
       frontend: ["React Native", "Expo", "TypeScript", "Next.js"],
-      backend: ["Supabase", "PostgreSQL"],
-      infrastructure: ["Sentry", "EAS Update", "Turborepo", "Fastlane"],
+      backend: ["Firebase Auth", "Firebase Firestore", "Firebase Storage"],
+      infrastructure: [
+        "Sentry",
+        "EAS Update",
+        "Turborepo",
+        "Fastlane",
+        "Vercel",
+      ],
       desktop: [],
     },
     codeStats: {
@@ -838,9 +850,14 @@ export const projectsData: Project[] = [
         icon: "🚀",
       },
       {
-        title: "품질 인프라 100%",
-        description: "ESLint 9.x + Sentry + EAS Update + Branch Coverage 82%",
-        icon: "✅",
+        title: "수익화 통합",
+        description: "RevenueCat 인앱 구독 + Stripe 웹 결제 + Google Ads 연동",
+        icon: "💰",
+      },
+      {
+        title: "AI 기능 통합",
+        description: "Gemini AI 감정분석 + 연말 캡슐 요약 자동 생성",
+        icon: "🤖",
       },
       {
         title: "모노레포 전환",
@@ -869,12 +886,12 @@ export const projectsData: Project[] = [
     shortDescription:
       "커플 일정 및 기념일 공유 웹앱 (PWA) — couple-planner.jell.kr",
     description:
-      "커플이 함께 일정과 기념일을 관리하고 공유할 수 있는 PWA 웹 애플리케이션입니다. Next.js 16 App Router (React 19) + Supabase Realtime으로 실시간 동기화, AI SDK 기반 4개 AI 기능(일정 추천, 갈등 해결, 날짜 코스 추천, 감정 분석), @serwist/next PWA, 다국어(next-intl), Google Calendar 연동을 갖춘 프로덕션 서비스입니다.",
+      "커플이 함께 일정과 기념일을 관리하고 공유할 수 있는 PWA 웹 애플리케이션입니다. Next.js 16 App Router (React 19) + Supabase Realtime으로 실시간 동기화, AI SDK 기반 7개 AI 기능(데이트 코스·식사·선물·맛집 추천, 갈등 해결 심판, 궁합 테스트, 기념일 에이전트), @serwist/next PWA, 다국어(next-intl), Google Calendar 연동을 갖춘 프로덕션 서비스입니다.",
     features: [
       {
-        title: "4가지 AI 기능",
+        title: "7가지 AI 기능",
         description:
-          "일정 추천, 갈등 해결, 데이트 코스 추천, 감정 분석 — AI SDK + Google Gemini",
+          "데이트 코스·식사·선물·맛집 추천, 커플 갈등 해결 심판(judge), 궁합 테스트, 기념일 에이전트 — AI SDK + Google Gemini",
       },
       {
         title: "실시간 동기화",
@@ -901,13 +918,7 @@ export const projectsData: Project[] = [
         "shadcn/ui",
         "@tanstack/react-query",
       ],
-      backend: [
-        "Supabase",
-        "PostgreSQL",
-        "Edge Functions",
-        "AI SDK",
-        "Google Gemini",
-      ],
+      backend: ["Supabase", "PostgreSQL", "AI SDK", "Google Gemini"],
       infrastructure: [
         "Vercel",
         "Supabase Auth",
@@ -920,10 +931,10 @@ export const projectsData: Project[] = [
     },
     achievements: [
       {
-        title: "4개 AI 기능",
-        description: "AI SDK + Gemini 기반 일정·갈등·데이트·감정 분석",
+        title: "7개 AI 기능",
+        description: "AI SDK + Gemini 기반 추천·심판·궁합·기념일 에이전트 통합",
         icon: "🤖",
-        metric: "4가지 AI 기능 통합",
+        metric: "7가지 AI 기능 통합",
       },
       {
         title: "PWA + 실시간",
@@ -940,13 +951,13 @@ export const projectsData: Project[] = [
     ],
     architecture: {
       summary:
-        "Next.js 16 App Router + Supabase Realtime으로 커플 간 실시간 동기화, AI SDK/Gemini 기반 4개 AI 기능, @serwist/next PWA를 단일 Vercel 배포로 제공하는 풀스택 웹앱.",
+        "Next.js 16 App Router + Supabase Realtime으로 커플 간 실시간 동기화, AI SDK/Gemini 기반 7개 AI 기능(데이트·식사·선물·맛집 추천, 갈등 심판, 궁합, 기념일 에이전트), @serwist/next PWA를 단일 Vercel 배포로 제공하는 풀스택 웹앱.",
       diagram: `flowchart TD
     A["Next.js 16 App Router<br/>src/app/(protected)/"] -->|tanstack/react-query| B["Supabase Client"]
     B <-->|Realtime subscription| C[("Supabase PostgreSQL")]
     B -->|Auth| D["Supabase Auth"]
     A -->|AI Route Handler| E["src/lib/gemini-proxy.ts"]
-    E -->|AI SDK + Gemini| F["4개 AI 기능<br/>일정·갈등·코스·감정"]
+    E -->|AI SDK + Gemini| F["7개 AI 기능<br/>추천·심판·궁합·기념일"]
     A -->|Google Calendar API| G["외부 캘린더 연동"]
     H["Upstash Redis"] -->|rate-limit| E
     I["@serwist/next"] -->|Service Worker| A`,
@@ -997,7 +1008,7 @@ export const projectsData: Project[] = [
     techStack: {
       frontend: ["Flutter", "Dart", "Riverpod"],
       backend: ["NestJS", "TypeScript", "PostgreSQL"],
-      infrastructure: ["Docker", "Firebase"],
+      infrastructure: ["Docker"],
       desktop: [],
     },
     codeStats: {
@@ -1424,26 +1435,33 @@ export const projectsData: Project[] = [
       "한국어 특화 TypeScript 유틸리티 라이브러리. 날짜·숫자·문자열·배열·검증·비동기·브라우저 유틸을 제공합니다. 2021-04 v0.x 첫 배포 후 2025-12 v1.0.0으로 ESM/CJS 듀얼 빌드 + 모듈 분리 마이그레이션 완료. npm 공개 배포.",
     features: [
       {
-        title: "문자열 유틸리티",
-        description: "문자열 변환, 포맷팅, 검증 함수",
+        title: "한국어 유틸리티",
+        description:
+          "isKorean, chosungSearch, isBusinessNumber, getChosung, withEunNeun/withIGa/withEulReul 조사 처리",
       },
       {
         title: "날짜 유틸리티",
-        description: "날짜 포맷팅 및 계산 함수",
+        description: "날짜 포맷팅, D-day 계산, timeAgo, 윤년/월별 일수",
       },
       {
-        title: "배열 유틸리티",
-        description: "배열 정렬, 필터링, 그룹핑 함수",
+        title: "숫자 유틸리티",
+        description:
+          "formatCurrency, numberToKorean, formatFileSize, parseNumber",
       },
       {
-        title: "TypeScript 지원",
-        description: "완전한 타입 정의 제공",
+        title: "문자열 유틸리티",
+        description: "toCamelCase, toSnakeCase, maskString, extractNumbers 등",
+      },
+      {
+        title: "배열 / 객체 / 검증 / 비동기",
+        description:
+          "groupBy, sortBy, deepMerge, isEmail, isPhoneNumber, retry(지수 백오프)",
       },
     ],
     techStack: {
       frontend: ["TypeScript", "JavaScript"],
       backend: [],
-      infrastructure: ["npm", "GitHub Actions", "Jest"],
+      infrastructure: ["npm", "GitHub Actions", "Jest", "tsup"],
       desktop: [],
     },
     codeStats: {
@@ -1459,9 +1477,10 @@ export const projectsData: Project[] = [
         metric: "npm v1.0.0 published",
       },
       {
-        title: "100% 테스트 커버리지",
-        description: "모든 함수에 대한 단위 테스트 작성",
+        title: "83.16% 테스트 커버리지",
+        description: "114 test cases across 8 test files (Jest)",
         icon: "✅",
+        metric: "83.16% overall coverage",
       },
     ],
     links: {
@@ -1482,14 +1501,14 @@ export const projectsData: Project[] = [
     period: "2026.04 - 현재",
     role: "1인 개발",
     shortDescription:
-      "유학 정보 자동 크롤링 + AI 요약 + 매일 08:00 KST Telegram 브리핑 봇",
+      "유학 정보 자동 크롤링 + AI 요약 + 매일 08:00 KST Telegram 브리핑 봇 + 웹 뷰어",
     description:
-      "유학 에이전시를 위한 일일 브리핑 봇입니다. 14개 소스(비자/이민 정책, 입학, 커뮤니티 등)를 매일 자동 크롤링하고, Gemini로 한국어 요약 + 분류한 뒤 매일 아침 08:00 KST에 Telegram 채널로 자동 발송합니다. PRD 5편 작성 후 단일 세션에서 MVP를 완성한 케이스입니다.",
+      "유학 에이전시를 위한 일일 브리핑 봇입니다. 12개 소스(비자/이민 정책, 입학, 환율 등)를 매일 자동 크롤링하고, Gemini로 한국어 요약 + 분류한 뒤 매일 아침 08:00 KST에 Telegram 채널로 자동 발송합니다. FastAPI + Jinja2 + HTMX 기반 공개 웹 뷰어(abroad.jell.kr)도 운영 중입니다. PRD 5편 작성 후 단일 세션에서 MVP를 완성한 케이스입니다.",
     features: [
       {
-        title: "14개 소스 자동 크롤링",
+        title: "12개 소스 자동 크롤링",
         description:
-          "httpx + BeautifulSoup4 + feedparser로 RSS/HTML 정적 크롤링",
+          "httpx + BeautifulSoup4 + feedparser로 미국/캐나다/영국/호주/일본 등 비자·이민·유학 뉴스 RSS/HTML 크롤링",
       },
       {
         title: "Gemini AI 한국어 요약",
@@ -1502,12 +1521,17 @@ export const projectsData: Project[] = [
           "APScheduler로 매일 08:00 KST 브리핑 + 6시간마다 헬스체크 DM",
       },
       {
+        title: "공개 웹 뷰어",
+        description:
+          "FastAPI + Jinja2 + HTMX 기반 브라우저 뷰어 (abroad.jell.kr) — 오늘/아카이브 열람",
+      },
+      {
         title: "긴급 정책 변경 알림",
         description: "비자 정책 등 중대 변경 감지 시 관리자 DM으로 즉시 알림",
       },
     ],
     techStack: {
-      frontend: [],
+      frontend: ["HTMX", "Jinja2"],
       backend: [
         "Python 3.12",
         "httpx",
@@ -1518,13 +1542,13 @@ export const projectsData: Project[] = [
         "APScheduler",
         "asyncpg",
       ],
-      infrastructure: ["PostgreSQL", "Docker", "uv"],
+      infrastructure: ["PostgreSQL", "Docker", "uv", "Sentry"],
       desktop: [],
     },
     codeStats: {
       total: 4500,
       backend: 4500,
-      tests: 70,
+      tests: 260,
     },
     achievements: [
       {
@@ -1535,27 +1559,29 @@ export const projectsData: Project[] = [
         metric: "PRD → MVP 1일",
       },
       {
-        title: "70 테스트 + ruff lint clean",
+        title: "260+ 테스트 + ruff lint clean",
         description:
-          "pipeline + crawler + formatter 단위 테스트, ruff 정적 분석",
+          "pipeline + crawler + formatter + web 단위 테스트, ruff 정적 분석",
         icon: "✅",
       },
       {
-        title: "프로덕션 자동화",
-        description: "jell-server에 Docker 배포, 매일 자동 브리핑 운영 중",
+        title: "프로덕션 자동화 + 웹 뷰어",
+        description:
+          "jell-server에 Docker 배포, 매일 자동 브리핑 운영 + abroad.jell.kr 웹 뷰어",
         icon: "🤖",
       },
     ],
     architecture: {
       summary:
-        "Python 비동기 크롤러 → Gemini AI 요약 → PostgreSQL 저장 → APScheduler 스케줄링 → Telegram 발송. 14개 소스 병렬 크롤 + 6시간 헬스체크 + 긴급 변경 즉시 알림.",
+        "Python 비동기 크롤러 → Gemini AI 요약 → PostgreSQL 저장 → APScheduler 스케줄링 → Telegram 발송 + FastAPI 웹 뷰어. 12개 소스 병렬 크롤 + 6시간 헬스체크 + 긴급 변경 즉시 알림.",
       diagram: `flowchart LR
-    A["14개 소스<br/>HTML/RSS 크롤링"] --> B["Gemini AI<br/>한국어 요약 + 분류"]
+    A["12개 소스<br/>HTML/RSS 크롤링"] --> B["Gemini AI<br/>한국어 요약 + 분류"]
     B --> C[("PostgreSQL")]
     C --> D["Telegram 봇"]
     D --> E["매일 08:00 KST<br/>채널 자동 발송"]
     C --> F["6시간 헬스체크<br/>관리자 DM"]
-    G["긴급 정책 변경"] -.-> H["즉시 Admin DM"]`,
+    G["긴급 정책 변경"] -.-> H["즉시 Admin DM"]
+    C --> I["FastAPI 웹 뷰어<br/>abroad.jell.kr"]`,
       decisions: [
         "Gemini로 한국어 요약 + 구조화된 JSON 응답으로 후처리 단순화",
         "APScheduler로 단일 프로세스 내 스케줄링 + 헬스체크 통합",
@@ -1721,7 +1747,7 @@ export const projectsData: Project[] = [
     role: "1인 개발",
     shortDescription: "Rust + Axum 기반 셀프호스팅 URL 단축기 (s.jell.kr)",
     description:
-      "Rust와 Axum 프레임워크로 구현한 고성능 셀프호스팅 URL 단축기입니다. SQLite 단일 파일 DB에 Base62 인코딩 코드 생성, Token Bucket 기반 레이트 리미터, QR 코드 생성, 비밀번호 보호 URL 등의 기능을 갖췄습니다. TDD(21개 테스트)로 개발하고 Docker 멀티스테이지 빌드 + nginx 리버스 프록시로 jell-server에 배포했습니다.",
+      "Rust와 Axum 프레임워크로 구현한 고성능 셀프호스팅 URL 단축기입니다. sqlx + PostgreSQL 기반에 Base62 인코딩 코드 생성, Token Bucket 기반 레이트 리미터, QR 코드 생성, 비밀번호 보호 URL 등의 기능을 갖췄습니다. TDD(21개 테스트)로 개발하고 Docker 멀티스테이지 빌드 + nginx 리버스 프록시로 jell-server에 배포했습니다.",
     features: [
       {
         title: "Base62 URL 단축",
@@ -1731,7 +1757,7 @@ export const projectsData: Project[] = [
       {
         title: "커스텀 코드 + 비밀번호 보호",
         description:
-          "사용자 지정 슬러그 + 선택적 비밀번호 보호 URL (bcrypt 해싱)",
+          "사용자 지정 슬러그 + 선택적 비밀번호 보호 URL (SHA-256 해싱 + 상수시간 비교)",
       },
       {
         title: "QR 코드 자동 생성",
@@ -1739,7 +1765,8 @@ export const projectsData: Project[] = [
       },
       {
         title: "Token Bucket 레이트 리미팅",
-        description: "IP 기반 Token Bucket 알고리즘으로 분당 30회 요청 제한",
+        description:
+          "IP 기반 Token Bucket 알고리즘 — API 60 req/min, 리다이렉트 120 req/min",
       },
     ],
     techStack: {
@@ -1747,9 +1774,9 @@ export const projectsData: Project[] = [
       backend: [
         "Rust",
         "Axum",
-        "rusqlite (SQLite)",
+        "sqlx (PostgreSQL)",
         "tokio",
-        "bcrypt",
+        "sha2",
         "qrcode-rs",
       ],
       infrastructure: ["Docker (multi-stage build)", "nginx", "TeamCity CI"],
@@ -1790,21 +1817,22 @@ export const projectsData: Project[] = [
     ],
     architecture: {
       summary:
-        "Axum HTTP 서버 + rusqlite 단일 파일 DB. 요청 → Token Bucket 레이트 체크 → Base62 코드 생성/조회 → SQLite 영속화 → 301 리다이렉트. Docker 멀티스테이지 빌드로 최소 이미지, nginx 리버스 프록시로 TLS 종단.",
+        "Axum HTTP 서버 + sqlx/PostgreSQL. 요청 → Token Bucket 레이트 체크 → Base62 코드 생성/조회 → PostgreSQL 영속화 → 302 리다이렉트. 비밀번호 보호 URL은 SHA-256 해싱 + 상수시간 비교. Docker 멀티스테이지 빌드로 최소 이미지, nginx 리버스 프록시로 TLS 종단.",
       diagram: `flowchart LR
     A["Client"] -->|HTTPS| B["nginx"]
     B -->|reverse proxy| C["Axum Server"]
     C --> D{"Rate Limiter<br/>Token Bucket"}
     D -->|OK| E["Route Handler"]
     D -->|429| F["Too Many Requests"]
-    E -->|POST shorten| G["Base62 Encode + SQLite INSERT"]
-    E -->|GET code| H["SQLite SELECT + 301 Redirect"]
+    E -->|POST shorten| G["Base62 Encode + PG INSERT"]
+    E -->|GET code| H["PG SELECT + 302 Redirect"]
     E -->|GET code qr| I["QR PNG Generate"]
-    G --> J[("SQLite DB")]
+    G --> J[("PostgreSQL")]
     H --> J`,
       decisions: [
         "Rust + Axum 선택 — 메모리 안전성 + 비동기 성능 + 단일 바이너리 배포",
-        "SQLite 선택 — 셀프호스팅에 적합한 단일 파일 DB, 외부 의존성 없음",
+        "sqlx + PostgreSQL — async 네이티브 드라이버, 공용 postgres 컨테이너 재사용",
+        "SHA-256 + subtle::ConstantTimeEq — 비밀번호 타이밍 공격 방지",
         "Base62 인코딩 — URL-safe 문자만 사용 (a-z, A-Z, 0-9)",
         "Token Bucket — 고정 윈도우 대비 버스트 허용으로 UX 향상",
       ],
@@ -2038,10 +2066,15 @@ export const projectsData: Project[] = [
     period: "2026.05 - 현재",
     role: "1인 개발",
     shortDescription:
-      "Unity 6 WebGL 셀프호스팅 게임 컬렉션 — Vampire Survivors 클론 + Brick Breaker + Endless Runner",
+      "Unity 6 WebGL 셀프호스팅 게임 컬렉션 — Vampire Survivors 클론 + Brick Breaker + Endless Runner + Tetris",
     description:
-      "Unity 6 (6000.0.75f1) 기반 셀프호스팅 게임 컬렉션입니다. 단일 빌드에 3개 미니게임(Space Survivor, Brick Breaker, Endless Runner)을 packaging하고 nginx 컨테이너로 arcade.jell.kr에 배포했습니다. SceneBuilder Editor 스크립트로 전체 Scene/Prefab/Sprite를 코드로 생성해 Unity Editor를 GUI 없이 batchmode만으로 빌드합니다. 온라인 리더보드는 jellhub Prisma DB에 연결되어 있습니다.",
+      "Unity 6 (6000.0.75f1) 기반 셀프호스팅 게임 컬렉션입니다. 단일 빌드에 4개 미니게임(Space Survivor, Brick Breaker, Endless Runner, Tetris)을 공유 Lobby에서 제공하고 nginx 컨테이너로 arcade.jell.kr에 배포했습니다. SceneBuilder Editor 스크립트로 전체 Scene/Prefab/Sprite를 코드로 생성해 Unity Editor를 GUI 없이 batchmode만으로 빌드합니다. 온라인 리더보드는 jellhub Prisma DB에 연결되어 있습니다.",
     features: [
+      {
+        title: "공유 Lobby",
+        description:
+          "4개 게임에 진입하는 공유 허브 — 가로 1×4 / 세로 2×2 그리드, 카드별 Best·Plays·★ 최근 플레이 마커",
+      },
       {
         title: "Space Survivor — Vampire Survivors 클론",
         description:
@@ -2053,9 +2086,14 @@ export const projectsData: Project[] = [
           "Paddle 마우스/터치/키보드 양면 입력 + PhysicsMaterial2D 무한 바운스 + 5 레벨 난이도 (gaps/hp2/boss brick)",
       },
       {
-        title: "Endless Runner — 점프 회피",
+        title: "Endless Runner — 더블 점프 회피",
         description:
-          "중력 기반 점프 + obstacle 60초 difficulty ramp (interval 1.8→0.7s, speed 6→11) + Best Score PlayerPrefs 영속화",
+          "중력 기반 점프 + double jump + obstacle 60초 difficulty ramp (interval 1.8→0.7s, speed 6→11) + Best Score PlayerPrefs 영속화",
+      },
+      {
+        title: "Tetris — 7-bag + hold + ghost",
+        description:
+          "7-bag 랜덤화, hold 피스, ghost piece, NES 스코어링 × level, back-to-back TETRIS 1.5× 보너스, 라인 클리어 팝업",
       },
       {
         title: "코드로 생성하는 Scene/Prefab/Sprite",
@@ -2092,9 +2130,9 @@ export const projectsData: Project[] = [
         metric: "setup.sh 1회로 27 prefab + 5 scene 자동 생성",
       },
       {
-        title: "3 game in 7.1MB Brotli",
+        title: "4 game in 7.1MB Brotli",
         description:
-          "전체 빌드 7.1MB Brotli (data.br 1.58MB) — Vampire Survivors 클론 포함한 풀 컨텐츠를 모바일에서도 즉시 플레이",
+          "전체 빌드 7.1MB Brotli (data.br 1.58MB) — Tetris 포함 4개 게임 풀 컨텐츠를 모바일에서도 즉시 플레이",
         icon: "🎮",
         metric: "Brotli 7.1MB / WebGL.data.br 1.58MB",
       },
@@ -2120,7 +2158,7 @@ export const projectsData: Project[] = [
     I["Unity Player"] -->|POST api arcade leaderboard| J["jellhub API"]
     J --> K[("Prisma + Postgres")]`,
       decisions: [
-        "Unity 6 WebGL — Three.js 대비 풀-에셋 게임 엔진 + 단일 코드베이스로 3개 미니게임 packaging",
+        "Unity 6 WebGL — Three.js 대비 풀-에셋 게임 엔진 + 단일 코드베이스로 4개 미니게임 + 공유 Lobby packaging",
         "Editor 스크립트로 자산 생성 — Unity Editor GUI 의존 0 (마라톤 세션에서 흐름 끊김 방지)",
         "Brotli + WebGL — 7.1MB로 모바일에서도 즉시 플레이",
         "리더보드만 외부 API — 게임 자체는 100% static asset",
