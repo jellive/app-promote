@@ -37,8 +37,13 @@ const nextConfig = {
 
   // Experimental features for better performance
   experimental: {
-    // Enable optimized package imports
-    optimizePackageImports: ["lucide-react"],
+    // Enable optimized package imports — tree-shake icon/component libraries
+    // so only the named exports that are actually imported get bundled.
+    optimizePackageImports: [
+      "lucide-react",
+      "@radix-ui/react-slot",
+      "next-themes",
+    ],
   },
 };
 
