@@ -115,7 +115,7 @@ function TypeBadge({ type }: { type: ProjectType }) {
 
   return (
     <span className="inline-flex items-center gap-2 px-3 py-1 border-2 border-foreground bg-background font-mono text-xs font-bold">
-      <Icon className="w-3 h-3" />
+      <Icon className="w-3 h-3" aria-hidden="true" />
       {config.label}
     </span>
   );
@@ -180,7 +180,10 @@ function TechStackSection({ project }: { project: Project }) {
                     category.color,
                   )}
                 >
-                  <Icon className="w-4 h-4 text-background" />
+                  <Icon
+                    className="w-4 h-4 text-background"
+                    aria-hidden="true"
+                  />
                 </div>
                 <span className="font-bold text-lg">{category.label}</span>
               </div>
@@ -247,7 +250,7 @@ function AchievementsSection({ project }: { project: Project }) {
     >
       <div className="flex items-center gap-3">
         <div className="px-3 py-1 bg-foreground text-background font-mono text-sm font-bold">
-          <Trophy className="inline-block w-4 h-4 mr-2" />
+          <Trophy className="inline-block w-4 h-4 mr-2" aria-hidden="true" />
           ACHIEVEMENTS
         </div>
       </div>
@@ -259,7 +262,9 @@ function AchievementsSection({ project }: { project: Project }) {
             style={{ animationDelay: `${0.5 + index * 0.05}s` }}
           >
             <div className="flex items-start gap-4">
-              <span className="text-3xl">{achievement.icon || "🏆"}</span>
+              <span className="text-3xl" aria-hidden="true">
+                {achievement.icon || "🏆"}
+              </span>
               <div>
                 <h3 className="font-bold text-lg mb-1">{achievement.title}</h3>
                 <p className="text-sm text-muted-foreground">
@@ -288,7 +293,7 @@ function ScreenshotsSection({ project }: { project: Project }) {
     >
       <div className="flex items-center gap-3">
         <div className="px-3 py-1 bg-foreground text-background font-mono text-sm font-bold">
-          <ImageIcon className="inline-block w-4 h-4 mr-2" />
+          <ImageIcon className="inline-block w-4 h-4 mr-2" aria-hidden="true" />
           SCREENSHOTS
         </div>
       </div>
@@ -355,7 +360,7 @@ function CodeStatsSection({ project }: { project: Project }) {
     >
       <div className="flex items-center gap-3">
         <div className="px-3 py-1 bg-foreground text-background font-mono text-sm font-bold">
-          <BarChart3 className="inline-block w-4 h-4 mr-2" />
+          <BarChart3 className="inline-block w-4 h-4 mr-2" aria-hidden="true" />
           CODE STATS
         </div>
       </div>
@@ -402,7 +407,7 @@ function ArchitectureSection({ project }: { project: Project }) {
     >
       <div className="flex items-center gap-3">
         <div className="px-3 py-1 bg-foreground text-background font-mono text-sm font-bold">
-          <Network className="inline-block w-4 h-4 mr-2" />
+          <Network className="inline-block w-4 h-4 mr-2" aria-hidden="true" />
           ARCHITECTURE
         </div>
       </div>
@@ -521,7 +526,7 @@ function ProjectLinksSection({ project }: { project: Project }) {
     >
       <div className="flex items-center gap-3">
         <div className="px-3 py-1 bg-foreground text-background font-mono text-sm font-bold">
-          <Link2 className="inline-block w-4 h-4 mr-2" />
+          <Link2 className="inline-block w-4 h-4 mr-2" aria-hidden="true" />
           PROJECT LINKS
         </div>
       </div>
@@ -534,7 +539,7 @@ function ProjectLinksSection({ project }: { project: Project }) {
             style={{ animationDelay: "0.9s" }}
             title="Source code is in a private repository"
           >
-            <Lock className="w-4 h-4" />
+            <Lock className="w-4 h-4" aria-hidden="true" />
             Private repo
           </span>
         )}
@@ -554,7 +559,7 @@ function ProjectLinksSection({ project }: { project: Project }) {
                 animationDelay: `${(showPrivateBadge ? 0.95 : 0.9) + index * 0.05}s`,
               }}
             >
-              <Icon className="w-4 h-4" />
+              <Icon className="w-4 h-4" aria-hidden="true" />
               {link.label}
             </a>
           );
@@ -606,7 +611,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           href="/#projects"
           className="inline-flex items-center gap-2 px-4 py-2 border-2 border-foreground bg-background font-mono font-bold text-sm brutal-shadow-sm hover-brutal transition-all mb-8"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <ArrowLeft className="w-4 h-4" aria-hidden="true" />
           프로젝트 목록
         </Link>
 
@@ -633,12 +638,12 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
           <div className="flex flex-wrap gap-4 font-mono text-sm">
             <div className="flex items-center gap-2 px-4 py-2 border-2 border-foreground bg-background">
-              <Calendar className="w-4 h-4 text-primary" />
+              <Calendar className="w-4 h-4 text-primary" aria-hidden="true" />
               <span className="text-muted-foreground">Period:</span>
               <span className="font-bold">{project.period}</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 border-2 border-foreground bg-background">
-              <User className="w-4 h-4 text-secondary" />
+              <User className="w-4 h-4 text-secondary" aria-hidden="true" />
               <span className="text-muted-foreground">Role:</span>
               <span className="font-bold">{project.role}</span>
             </div>
