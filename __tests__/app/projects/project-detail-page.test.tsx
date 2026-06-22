@@ -17,8 +17,8 @@ describe("Project Detail Page", () => {
   // that cannot be exported from a "use client" component.
   // Testing the data source directly instead.
   describe("Static Params Data", () => {
-    it("should have 24 projects available", () => {
-      expect(projectsData).toHaveLength(24);
+    it("should have 28 projects available", () => {
+      expect(projectsData).toHaveLength(28);
     });
 
     it("should have correct project IDs", () => {
@@ -176,7 +176,9 @@ describe("Project Detail Page", () => {
     });
 
     it("should hide GitHub link and show 'Private repo' badge for private repos", async () => {
-      const Page = await ProjectDetailPage({ params: Promise.resolve({ id: "cookting" }) });
+      const Page = await ProjectDetailPage({
+        params: Promise.resolve({ id: "cookting" }),
+      });
       render(Page);
       expect(screen.getByTestId("private-repo-badge")).toBeInTheDocument();
       expect(screen.getByText(/private repo/i)).toBeInTheDocument();
@@ -214,21 +216,27 @@ describe("Project Detail Page", () => {
 
   describe("Different Project Types", () => {
     it("should render desktop project (dev-utils-hub)", async () => {
-      const Page = await ProjectDetailPage({ params: Promise.resolve({ id: "dev-utils-hub" }) });
+      const Page = await ProjectDetailPage({
+        params: Promise.resolve({ id: "dev-utils-hub" }),
+      });
       render(Page);
       expect(screen.getByText("Dev Utils Hub")).toBeInTheDocument();
       expect(screen.getByText("🛠️")).toBeInTheDocument();
     });
 
     it("should render iOS project (jellmodoro)", async () => {
-      const Page = await ProjectDetailPage({ params: Promise.resolve({ id: "jellmodoro" }) });
+      const Page = await ProjectDetailPage({
+        params: Promise.resolve({ id: "jellmodoro" }),
+      });
       render(Page);
       expect(screen.getByText("Jellmodoro")).toBeInTheDocument();
       expect(screen.getByText("🍅")).toBeInTheDocument();
     });
 
     it("should render npm package project (jell-utils)", async () => {
-      const Page = await ProjectDetailPage({ params: Promise.resolve({ id: "jell-utils" }) });
+      const Page = await ProjectDetailPage({
+        params: Promise.resolve({ id: "jell-utils" }),
+      });
       render(Page);
       expect(screen.getByText("jell-utils.js")).toBeInTheDocument();
       expect(screen.getByText("📦")).toBeInTheDocument();

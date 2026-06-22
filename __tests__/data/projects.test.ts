@@ -44,8 +44,8 @@ describe("Project Type Definitions", () => {
 
 describe("Project Data Structure", () => {
   describe("projectsData array", () => {
-    it("should contain exactly 24 projects", () => {
-      expect(projectsData.length).toBe(24);
+    it("should contain exactly 28 projects", () => {
+      expect(projectsData.length).toBe(28);
     });
 
     it("should have unique IDs for all projects", () => {
@@ -250,9 +250,9 @@ describe("Helper Functions", () => {
   });
 
   describe("getAllProjects", () => {
-    it("should return all 24 projects", () => {
+    it("should return all 28 projects", () => {
       const projects = getAllProjects();
-      expect(projects.length).toBe(24);
+      expect(projects.length).toBe(28);
     });
 
     it("should return a copy of the array (immutability)", () => {
@@ -298,7 +298,7 @@ describe("Achievement Business Metrics", () => {
 });
 
 describe("Project private flag", () => {
-  // Verified 2026-04-30 via `gh api repos/jellive/<name>` — repos that returned
+  // Verified 2026-06-23 via `gh api repos/jellive/<name>` — repos that returned
   // private:true are the source of truth for this list.
   const expectedPrivateIds = [
     "cookting",
@@ -308,7 +308,10 @@ describe("Project private flag", () => {
     "wecanner",
     "abroad-crawler",
     "jellhub",
+    "jell-short",
     "threat-crawler",
+    "jell-arcade",
+    "ai-pulse",
   ];
 
   it.each(expectedPrivateIds)("%s should be marked private", (id) => {
