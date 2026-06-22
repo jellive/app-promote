@@ -1,6 +1,5 @@
-import type { Config } from "jest";
-
-const config: Config = {
+/** @type {import('jest').Config} */
+const config = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   testEnvironment: "jsdom",
   coverageProvider: "v8",
@@ -63,4 +62,4 @@ const config: Config = {
   verbose: true,
 };
 
-export default config;
+module.exports = config;

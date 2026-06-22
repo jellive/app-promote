@@ -38,7 +38,9 @@ jest.mock("next/navigation", () => ({
 jest.mock("next/image", () => ({
   __esModule: true,
   default: function MockImage(props: Record<string, unknown>) {
-    // Return a simple object that represents an img element
+    // Render a real <img> element — next/image-only props are stripped so they
+    // don't leak onto the DOM node and trigger React unknown-prop warnings.
+    const React = require("react");
     const imgProps = { ...props };
     delete imgProps.priority;
     delete imgProps.loading;
@@ -49,6 +51,6 @@ jest.mock("next/image", () => ({
     delete imgProps.sizes;
     delete imgProps.loader;
     delete imgProps.unoptimized;
-    return imgProps;
+    return React.createElement("img", imgProps);
   },
 }));
