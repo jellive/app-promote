@@ -38,7 +38,7 @@ const nextConfig = {
   // Experimental features for better performance
   experimental: {
     // Enable optimized package imports
-    optimizePackageImports: ["lucide-react", "@radix-ui/react-icons"],
+    optimizePackageImports: ["lucide-react"],
   },
 };
 
