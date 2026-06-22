@@ -79,7 +79,10 @@ export function Footer() {
             </p>
             <div className="flex items-center gap-2 text-sm font-mono">
               <span className="text-muted-foreground">Made with</span>
-              <Heart className="w-4 h-4 text-primary fill-primary animate-pulse" />
+              <Heart
+                className="w-4 h-4 text-primary fill-primary animate-pulse"
+                aria-hidden="true"
+              />
               <span className="text-muted-foreground">and</span>
               <span className="font-bold">Next.js 14</span>
             </div>
@@ -125,7 +128,7 @@ export function Footer() {
                   aria-label={link.label}
                 >
                   <span className="inline-flex items-center gap-2">
-                    <link.icon className="h-4 w-4" />
+                    <link.icon className="h-4 w-4" aria-hidden="true" />
                     {link.label}
                   </span>
                 </a>

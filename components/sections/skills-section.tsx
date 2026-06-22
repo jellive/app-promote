@@ -199,7 +199,7 @@ export function SkillsSection() {
         <div className="max-w-4xl mx-auto mb-16">
           <div className="inline-block mb-6">
             <div className="flex items-center gap-2 px-4 py-2 bg-foreground text-background font-mono text-sm font-bold brutal-shadow-sm">
-              <Code2 className="w-4 h-4" />
+              <Code2 className="w-4 h-4" aria-hidden="true" />
               <span>TECH STACK</span>
             </div>
           </div>

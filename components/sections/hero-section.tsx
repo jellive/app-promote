@@ -150,7 +150,7 @@ export function HeroSection() {
                 >
                   <Link href="#projects">
                     프로젝트 보기
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
                   </Link>
                 </Button>
                 <Button
@@ -160,7 +160,7 @@ export function HeroSection() {
                   className="brutal-shadow-sm hover-lift border-2 border-foreground font-bold text-lg h-14 px-8"
                 >
                   <Link href="#contact">
-                    <Mail className="mr-2 h-5 w-5" />
+                    <Mail className="mr-2 h-5 w-5" aria-hidden="true" />
                     연락하기
                   </Link>
                 </Button>
@@ -171,7 +171,7 @@ export function HeroSection() {
                   className="brutal-shadow-sm hover-lift border-2 border-foreground font-bold text-lg h-14 px-8"
                 >
                   <a href="/이력서_유한군.pdf" download>
-                    <FileDown className="mr-2 h-5 w-5" />
+                    <FileDown className="mr-2 h-5 w-5" aria-hidden="true" />
                     이력서 다운로드
                   </a>
                 </Button>
@@ -186,7 +186,7 @@ export function HeroSection() {
                   className="p-3 border-2 border-foreground hover-brutal transition-all"
                   aria-label="GitHub"
                 >
-                  <Github className="w-6 h-6" />
+                  <Github className="w-6 h-6" aria-hidden="true" />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/han-goon-yoo-429980113/"
@@ -195,7 +195,7 @@ export function HeroSection() {
                   className="p-3 border-2 border-foreground hover-brutal transition-all"
                   aria-label="LinkedIn"
                 >
-                  <Linkedin className="w-6 h-6" />
+                  <Linkedin className="w-6 h-6" aria-hidden="true" />
                 </a>
                 <a
                   href="https://blog.jell.kr"
@@ -204,7 +204,7 @@ export function HeroSection() {
                   className="p-3 border-2 border-foreground hover-brutal transition-all"
                   aria-label="Blog"
                 >
-                  <BookOpen className="w-6 h-6" />
+                  <BookOpen className="w-6 h-6" aria-hidden="true" />
                 </a>
               </div>
             </div>

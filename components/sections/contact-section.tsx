@@ -137,7 +137,7 @@ export function ContactSection() {
         <div className="max-w-4xl mx-auto mb-16 text-center">
           <div className="inline-block mb-6">
             <div className="flex items-center gap-2 px-4 py-2 bg-foreground text-background font-mono text-sm font-bold brutal-shadow-sm">
-              <MessageSquare className="w-4 h-4" />
+              <MessageSquare className="w-4 h-4" aria-hidden="true" />
               <span>GET IN TOUCH</span>
             </div>
           </div>
@@ -370,7 +370,7 @@ export function ContactSection() {
                 href="mailto:jellive7@gmail.com"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-foreground font-bold border-2 border-foreground hover-lift transition-transform font-mono"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-5 h-5" aria-hidden="true" />
                 <span>EMAIL ME</span>
               </a>
               <a
@@ -379,7 +379,7 @@ export function ContactSection() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background font-bold border-2 border-foreground hover-lift transition-transform font-mono"
               >
-                <Github className="w-5 h-5" />
+                <Github className="w-5 h-5" aria-hidden="true" />
                 <span>VIEW GITHUB</span>
               </a>
             </div>
