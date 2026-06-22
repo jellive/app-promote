@@ -41,7 +41,8 @@ const categoryConfig: Record<
 > = {
   [ProjectCategory.PROFESSIONAL]: {
     label: "💼 회사",
-    className: "bg-primary/20 text-primary border-primary",
+    className:
+      "bg-primary/20 text-[hsl(var(--primary-badge-text))] border-primary",
   },
   [ProjectCategory.FREELANCE]: {
     label: "🏢 프리랜서",
@@ -49,7 +50,8 @@ const categoryConfig: Record<
   },
   [ProjectCategory.PERSONAL]: {
     label: "🔧 개인",
-    className: "bg-accent/20 text-accent-foreground border-accent",
+    className:
+      "bg-accent/20 text-[hsl(var(--accent-badge-text))] border-accent",
   },
 };
 

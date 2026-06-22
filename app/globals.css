@@ -29,6 +29,9 @@
     /* Accent - Hot Pink */
     --accent: 330 100% 60%;
     --accent-foreground: 0 0% 100%;
+    /* Badge text — darkened same-hue tones for AA contrast on /20 wash backgrounds */
+    --primary-badge-text: 217 91% 40%;
+    --accent-badge-text: 330 100% 35%;
 
     /* Destructive */
     --destructive: 0 84% 60%;
@@ -72,6 +75,9 @@
     /* Accent - Neon Pink */
     --accent: 330 100% 70%;
     --accent-foreground: 0 0% 5%;
+    /* Badge text — light same-hue tones for AA contrast on /20 wash in dark mode */
+    --primary-badge-text: 199 100% 60%;
+    --accent-badge-text: 330 100% 75%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
