@@ -1,8 +1,7 @@
-"use client";
-
 import * as React from "react";
 import Link from "next/link";
-import { Github, Linkedin, Mail, ArrowUp, Terminal, Heart } from "lucide-react";
+import { Github, Linkedin, Mail, Terminal, Heart } from "lucide-react";
+import { ScrollToTopButton } from "@/components/scroll-to-top-button";
 
 const navLinks = [
   { label: "Projects", href: "#projects" },
@@ -37,10 +36,6 @@ const socialLinks = [
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   return (
     <footer className="relative border-t-4 border-foreground overflow-hidden">
@@ -159,13 +154,7 @@ export function Footer() {
               >
                 PRIVACY
               </Link>
-              <button
-                onClick={scrollToTop}
-                className="group px-4 py-2 border-2 border-foreground bg-background hover-brutal transition-all duration-200"
-                aria-label="Scroll to top"
-              >
-                <ArrowUp className="h-4 w-4" />
-              </button>
+              <ScrollToTopButton />
             </div>
           </div>
         </div>

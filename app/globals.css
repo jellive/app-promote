@@ -95,7 +95,7 @@
   body {
     @apply bg-background text-foreground;
     font-family:
-      var(--font-body),
+      var(--font-heading),
       -apple-system,
       BlinkMacSystemFont,
       sans-serif;

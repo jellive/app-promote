@@ -35,6 +35,20 @@ const nextConfig = {
         : false,
   },
 
+  async headers() {
+    return [
+      {
+        source: "/fonts/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+    ];
+  },
+
   // Experimental features for better performance
   experimental: {
     // Enable optimized package imports — tree-shake icon/component libraries

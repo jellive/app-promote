@@ -35,13 +35,6 @@ const fontMono = localFont({
   variable: "--font-mono",
 });
 
-const fontBody = localFont({
-  src: "../public/fonts/manrope-variable.woff2",
-  display: "swap",
-  variable: "--font-body",
-  weight: "400 800",
-});
-
 const siteConfig = {
   name: "Jell Portfolio",
   description:
@@ -138,12 +131,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko" suppressHydrationWarning>
       <body
-        className={cn(
-          "antialiased",
-          fontHeading.variable,
-          fontBody.variable,
-          fontMono.variable,
-        )}
+        className={cn("antialiased", fontHeading.variable, fontMono.variable)}
       >
         <ThemeProvider>
           <div className="flex flex-col min-h-dvh">
