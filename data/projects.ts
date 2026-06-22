@@ -378,7 +378,7 @@ export const projectsData: Project[] = [
     ],
     screenshots: [
       {
-        filename: "knowrecorder.png",
+        filename: "knowrecorder.webp",
         alt: "KnowRecorder iOS app — PDF 슬라이드에 음성·드로잉을 녹화하는 화면",
       },
     ],
@@ -431,7 +431,7 @@ export const projectsData: Project[] = [
     ],
     screenshots: [
       {
-        filename: "knowlounge.png",
+        filename: "knowlounge.webp",
         alt: "KnowLounge — 실시간 화상수업 + 동기화 화이트보드 플랫폼 화면",
       },
     ],
@@ -693,7 +693,7 @@ export const projectsData: Project[] = [
     ],
     screenshots: [
       {
-        filename: "cookting-1.png",
+        filename: "cookting-1.webp",
         alt: "쿡팅 AI 레시피 추천 웹 랜딩",
       },
     ],
@@ -945,7 +945,7 @@ export const projectsData: Project[] = [
     ],
     screenshots: [
       {
-        filename: "couple-planner-1.png",
+        filename: "couple-planner-1.webp",
         alt: "커플 플래너 일정 공유 랜딩",
       },
     ],
@@ -1207,7 +1207,7 @@ export const projectsData: Project[] = [
     ],
     screenshots: [
       {
-        filename: "dev-utils-hub-1.png",
+        filename: "dev-utils-hub-1.webp",
         alt: "Developer Utils 22개 도구 그리드",
       },
     ],
@@ -1811,7 +1811,7 @@ export const projectsData: Project[] = [
     ],
     screenshots: [
       {
-        filename: "jell-short-1.png",
+        filename: "jell-short-1.webp",
         alt: "jell-short URL 단축 대시보드",
       },
     ],
@@ -2044,7 +2044,7 @@ export const projectsData: Project[] = [
     ],
     screenshots: [
       {
-        filename: "jell-portfolio-3d-1.png",
+        filename: "jell-portfolio-3d-1.webp",
         alt: "Jell World 3D 복셀 포트폴리오",
       },
     ],
@@ -2166,7 +2166,7 @@ export const projectsData: Project[] = [
     },
     screenshots: [
       {
-        filename: "jell-arcade-1.png",
+        filename: "jell-arcade-1.webp",
         alt: "Jell Arcade 레트로 WebGL 게임 선택",
       },
     ],
@@ -2253,7 +2253,7 @@ export const projectsData: Project[] = [
     ],
     screenshots: [
       {
-        filename: "ai-pulse-1.png",
+        filename: "ai-pulse-1.webp",
         alt: "ai-pulse 토픽 브리핑 웹 화면",
       },
     ],
@@ -2349,7 +2349,7 @@ export const projectsData: Project[] = [
     ],
     screenshots: [
       {
-        filename: "wind-down-1.png",
+        filename: "wind-down-1.webp",
         alt: "wind-down 멍때림 비주얼라이저 화면",
       },
     ],
