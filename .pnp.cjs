@@ -5336,10 +5336,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["dompurify", [\
-      ["npm:3.4.11", {\
-        "packageLocation": "../../.yarn/berry/cache/dompurify-npm-3.4.11-7df48fdceb-10c0.zip/node_modules/dompurify/",\
+      ["npm:3.4.12", {\
+        "packageLocation": "../../.yarn/berry/cache/dompurify-npm-3.4.12-9e2dc63475-10c0.zip/node_modules/dompurify/",\
         "packageDependencies": [\
-          ["dompurify", "npm:3.4.11"],\
+          ["dompurify", "npm:3.4.12"],\
           ["@types/trusted-types", "npm:2.0.7"]\
         ],\
         "linkType": "HARD"\
@@ -8206,7 +8206,7 @@ const RAW_RUNTIME_STATE =
           ["d3-sankey", "npm:0.12.3"],\
           ["dagre-d3-es", "npm:7.0.14"],\
           ["dayjs", "npm:1.11.21"],\
-          ["dompurify", "npm:3.4.11"],\
+          ["dompurify", "npm:3.4.12"],\
           ["es-toolkit", "npm:1.48.1"],\
           ["katex", "npm:0.16.47"],\
           ["khroma", "npm:2.1.0"],\
