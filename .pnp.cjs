@@ -50,7 +50,7 @@ const RAW_RUNTIME_STATE =
           ["jest", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:30.2.0"],\
           ["jest-environment-jsdom", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:30.2.0"],\
           ["lucide-react", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:0.446.0"],\
-          ["mermaid", "npm:11.15.0"],\
+          ["mermaid", "npm:11.16.1"],\
           ["next", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:15.5.21"],\
           ["next-themes", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:0.4.6"],\
           ["postcss", "npm:8.5.14"],\
@@ -1979,10 +1979,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@mermaid-js/parser", [\
-      ["npm:1.1.1", {\
-        "packageLocation": "../../.yarn/berry/cache/@mermaid-js-parser-npm-1.1.1-eec28c7bd5-10c0.zip/node_modules/@mermaid-js/parser/",\
+      ["npm:1.2.0", {\
+        "packageLocation": "../../.yarn/berry/cache/@mermaid-js-parser-npm-1.2.0-41de615345-10c0.zip/node_modules/@mermaid-js/parser/",\
         "packageDependencies": [\
-          ["@mermaid-js/parser", "npm:1.1.1"],\
+          ["@mermaid-js/parser", "npm:1.2.0"],\
           ["@chevrotain/types", "npm:11.1.2"]\
         ],\
         "linkType": "HARD"\
@@ -3718,7 +3718,7 @@ const RAW_RUNTIME_STATE =
           ["jest", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:30.2.0"],\
           ["jest-environment-jsdom", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:30.2.0"],\
           ["lucide-react", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:0.446.0"],\
-          ["mermaid", "npm:11.15.0"],\
+          ["mermaid", "npm:11.16.1"],\
           ["next", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:15.5.21"],\
           ["next-themes", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:0.4.6"],\
           ["postcss", "npm:8.5.14"],\
@@ -4562,10 +4562,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:c096dbb5475061e3cc215842f46629df52a0c08884099ef8f50086f3c0198470ff1da368a46951bcb2c229f4d1882193e72930ea1e3f2e10afff9077528864a9#npm:4.1.0", {\
-        "packageLocation": "./.yarn/__virtual__/cytoscape-cose-bilkent-virtual-6a53aee6b7/3/.yarn/berry/cache/cytoscape-cose-bilkent-npm-4.1.0-30566f1cf4-10c0.zip/node_modules/cytoscape-cose-bilkent/",\
+      ["virtual:21aa8e9b1b4c82ecf60b288855edce4f1bc7530a2fe22866785c75812e8fbe2b1bbecf8a39ad456a87cc9c03ab5e74156382d66f677169c7dfcf14499f2c537c#npm:4.1.0", {\
+        "packageLocation": "./.yarn/__virtual__/cytoscape-cose-bilkent-virtual-2b8f3e9d25/3/.yarn/berry/cache/cytoscape-cose-bilkent-npm-4.1.0-30566f1cf4-10c0.zip/node_modules/cytoscape-cose-bilkent/",\
         "packageDependencies": [\
-          ["cytoscape-cose-bilkent", "virtual:c096dbb5475061e3cc215842f46629df52a0c08884099ef8f50086f3c0198470ff1da368a46951bcb2c229f4d1882193e72930ea1e3f2e10afff9077528864a9#npm:4.1.0"],\
+          ["cytoscape-cose-bilkent", "virtual:21aa8e9b1b4c82ecf60b288855edce4f1bc7530a2fe22866785c75812e8fbe2b1bbecf8a39ad456a87cc9c03ab5e74156382d66f677169c7dfcf14499f2c537c#npm:4.1.0"],\
           ["@types/cytoscape", null],\
           ["cose-base", "npm:1.0.3"],\
           ["cytoscape", "npm:3.34.0"]\
@@ -4585,10 +4585,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:c096dbb5475061e3cc215842f46629df52a0c08884099ef8f50086f3c0198470ff1da368a46951bcb2c229f4d1882193e72930ea1e3f2e10afff9077528864a9#npm:2.2.0", {\
-        "packageLocation": "./.yarn/__virtual__/cytoscape-fcose-virtual-fabcb23de4/3/.yarn/berry/cache/cytoscape-fcose-npm-2.2.0-06f382e763-10c0.zip/node_modules/cytoscape-fcose/",\
+      ["virtual:21aa8e9b1b4c82ecf60b288855edce4f1bc7530a2fe22866785c75812e8fbe2b1bbecf8a39ad456a87cc9c03ab5e74156382d66f677169c7dfcf14499f2c537c#npm:2.2.0", {\
+        "packageLocation": "./.yarn/__virtual__/cytoscape-fcose-virtual-aadf146855/3/.yarn/berry/cache/cytoscape-fcose-npm-2.2.0-06f382e763-10c0.zip/node_modules/cytoscape-fcose/",\
         "packageDependencies": [\
-          ["cytoscape-fcose", "virtual:c096dbb5475061e3cc215842f46629df52a0c08884099ef8f50086f3c0198470ff1da368a46951bcb2c229f4d1882193e72930ea1e3f2e10afff9077528864a9#npm:2.2.0"],\
+          ["cytoscape-fcose", "virtual:21aa8e9b1b4c82ecf60b288855edce4f1bc7530a2fe22866785c75812e8fbe2b1bbecf8a39ad456a87cc9c03ab5e74156382d66f677169c7dfcf14499f2c537c#npm:2.2.0"],\
           ["@types/cytoscape", null],\
           ["cose-base", "npm:2.2.0"],\
           ["cytoscape", "npm:3.34.0"]\
@@ -5336,10 +5336,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["dompurify", [\
-      ["npm:3.4.12", {\
-        "packageLocation": "../../.yarn/berry/cache/dompurify-npm-3.4.12-9e2dc63475-10c0.zip/node_modules/dompurify/",\
+      ["npm:3.4.13", {\
+        "packageLocation": "../../.yarn/berry/cache/dompurify-npm-3.4.13-71386e31f7-10c0.zip/node_modules/dompurify/",\
         "packageDependencies": [\
-          ["dompurify", "npm:3.4.12"],\
+          ["dompurify", "npm:3.4.13"],\
           ["@types/trusted-types", "npm:2.0.7"]\
         ],\
         "linkType": "HARD"\
@@ -8190,23 +8190,23 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["mermaid", [\
-      ["npm:11.15.0", {\
-        "packageLocation": "../../.yarn/berry/cache/mermaid-npm-11.15.0-c096dbb547-10c0.zip/node_modules/mermaid/",\
+      ["npm:11.16.1", {\
+        "packageLocation": "../../.yarn/berry/cache/mermaid-npm-11.16.1-21aa8e9b1b-10c0.zip/node_modules/mermaid/",\
         "packageDependencies": [\
-          ["mermaid", "npm:11.15.0"],\
+          ["mermaid", "npm:11.16.1"],\
           ["@braintree/sanitize-url", "npm:7.1.2"],\
           ["@iconify/utils", "npm:3.1.3"],\
-          ["@mermaid-js/parser", "npm:1.1.1"],\
+          ["@mermaid-js/parser", "npm:1.2.0"],\
           ["@types/d3", "npm:7.4.3"],\
           ["@upsetjs/venn.js", "npm:2.0.0"],\
           ["cytoscape", "npm:3.34.0"],\
-          ["cytoscape-cose-bilkent", "virtual:c096dbb5475061e3cc215842f46629df52a0c08884099ef8f50086f3c0198470ff1da368a46951bcb2c229f4d1882193e72930ea1e3f2e10afff9077528864a9#npm:4.1.0"],\
-          ["cytoscape-fcose", "virtual:c096dbb5475061e3cc215842f46629df52a0c08884099ef8f50086f3c0198470ff1da368a46951bcb2c229f4d1882193e72930ea1e3f2e10afff9077528864a9#npm:2.2.0"],\
+          ["cytoscape-cose-bilkent", "virtual:21aa8e9b1b4c82ecf60b288855edce4f1bc7530a2fe22866785c75812e8fbe2b1bbecf8a39ad456a87cc9c03ab5e74156382d66f677169c7dfcf14499f2c537c#npm:4.1.0"],\
+          ["cytoscape-fcose", "virtual:21aa8e9b1b4c82ecf60b288855edce4f1bc7530a2fe22866785c75812e8fbe2b1bbecf8a39ad456a87cc9c03ab5e74156382d66f677169c7dfcf14499f2c537c#npm:2.2.0"],\
           ["d3", "npm:7.9.0"],\
           ["d3-sankey", "npm:0.12.3"],\
           ["dagre-d3-es", "npm:7.0.14"],\
           ["dayjs", "npm:1.11.21"],\
-          ["dompurify", "npm:3.4.12"],\
+          ["dompurify", "npm:3.4.13"],\
           ["es-toolkit", "npm:1.48.1"],\
           ["katex", "npm:0.16.47"],\
           ["khroma", "npm:2.1.0"],\
