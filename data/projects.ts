@@ -1,6 +1,6 @@
 /**
  * @fileoverview Project data structure and helper functions
- * Contains TypeScript types/interfaces and data for all 18 portfolio projects
+ * Contains TypeScript types/interfaces and data for all 29 portfolio projects
  */
 
 // ============================================================================
@@ -550,7 +550,7 @@ export const projectsData: Project[] = [
     type: ProjectType.FULL_STACK_MOBILE,
     status: ProjectStatus.PRODUCTION,
     category: ProjectCategory.FREELANCE,
-    period: "2025.12 - 현재",
+    period: "2025.12 - 2026.02",
     role: "Flutter 모바일 개발자 (프리랜서)",
     shortDescription: "캠핑장 예약 플랫폼 하이브리드 앱",
     description:
@@ -1970,6 +1970,70 @@ export const projectsData: Project[] = [
     ],
     links: {
       github: "https://github.com/jellive/hanwha-score",
+    },
+  },
+
+  // sober-streak - 금주 스트릭 트래커 PWA
+  {
+    id: "sober-streak",
+    name: "Sober Streak (금주 스트릭)",
+    emoji: "🌱",
+    type: ProjectType.WEB,
+    status: ProjectStatus.PRODUCTION,
+    category: ProjectCategory.PERSONAL,
+    period: "2026.07 - 현재",
+    role: "1인 개발",
+    shortDescription:
+      "서버·계정·DB 없이 localStorage 하나로 도는 초경량 금주 트래커 PWA",
+    description:
+      "음주/금주 여부를 하루 한 번 탭으로 기록하는 설치형 PWA입니다. 서버도 계정도 DB도 없이 브라우저 localStorage 만으로 현재 스트릭·최고 기록·누적 금주일을 추적하며, 오프라인에서 그대로 동작합니다. '마셨음'을 눌러도 경고나 실패 문구를 띄우지 않는 무판단 톤을 설계 원칙으로 삼았습니다.",
+    features: [
+      {
+        title: "한 탭 기록",
+        description: "마셨음/안 마셨음 한 번의 탭, 논알콜은 별도 토글로 독립 기록",
+      },
+      {
+        title: "세 가지 숫자",
+        description: "현재 스트릭 · 최고 스트릭 · 누적 금주일만 메인에 노출",
+      },
+      {
+        title: "히트맵 + 월 캘린더",
+        description: "최근 기록 미니 히트맵과 날짜별 편집이 가능한 월 단위 캘린더",
+      },
+      {
+        title: "오프라인 PWA",
+        description: "Serwist 기반 서비스워커로 설치·오프라인 동작, JSON 백업 내보내기/가져오기",
+      },
+    ],
+    techStack: {
+      frontend: [
+        "Next.js 15",
+        "React 19",
+        "TypeScript",
+        "Serwist (PWA)",
+        "localStorage",
+      ],
+      backend: [],
+      infrastructure: ["Vercel"],
+      desktop: [],
+    },
+    achievements: [
+      {
+        title: "무서버 아키텍처",
+        description:
+          "백엔드·계정·DB 없이 브라우저 저장소만으로 완결되는 구조 — 운영 비용 0",
+        icon: "🪶",
+      },
+      {
+        title: "무판단 UX 원칙",
+        description:
+          "실패를 경고하지 않는 톤을 제품 원칙으로 정의하고 화면 전반에 적용",
+        icon: "🌿",
+      },
+    ],
+    links: {
+      github: "https://github.com/jellive/sober-streak",
+      live: "https://sober.jell.kr",
     },
   },
 

@@ -18,6 +18,23 @@ const TOP_PROJECT_IDS = [
 
 const EXPERIENCE = [
   {
+    id: "neoflat",
+    company: "네오플랫 (Neoflat)",
+    role: "풀스택 개발자",
+    period: "2026.06 - 현재",
+    description: "",
+    highlights: [],
+  },
+  {
+    id: "freelance-vinjari",
+    company: "프리랜서",
+    role: "Flutter 모바일 개발자",
+    period: "2025.12 - 2026.02",
+    description:
+      "캠핑장 예약 플랫폼 '빈자리(Vinjari)' 하이브리드 앱 개발.",
+    highlights: [],
+  },
+  {
     id: "azflow",
     company: "애즈플로우 (AZFlow)",
     role: "수석연구원",

@@ -107,7 +107,7 @@ describe("Resume Page", () => {
 
     it("should show 빈자리 or Vinjari project", () => {
       render(<ResumePage />);
-      expect(screen.getByText(/빈자리|Vinjari/)).toBeInTheDocument();
+      expect(screen.getAllByText(/빈자리|Vinjari/).length).toBeGreaterThan(0);
     });
 
     it("should show finiroom project", () => {
