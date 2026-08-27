@@ -22,8 +22,13 @@ const EXPERIENCE = [
     company: "네오플랫 (Neoflat)",
     role: "풀스택 개발자",
     period: "2026.06 - 현재",
-    description: "",
-    highlights: [],
+    description:
+      "자사 서비스 '고방' 개발. 웹 프론트엔드부터 백엔드 서버, 모바일 앱까지 전 영역을 담당하는 풀스택 개발.",
+    highlights: [
+      "고방 웹 프론트엔드 개발",
+      "고방 백엔드 서버 개발",
+      "고방 모바일 앱 개발",
+    ],
   },
   {
     id: "freelance-vinjari",
