@@ -3,7 +3,7 @@
  * TDD: RED phase - Write tests first
  */
 
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import ResumePage from "@/app/resume/page";
 
 describe("Resume Page", () => {
@@ -107,7 +107,10 @@ describe("Resume Page", () => {
 
     it("should show 빈자리 or Vinjari project", () => {
       render(<ResumePage />);
-      expect(screen.getAllByText(/빈자리|Vinjari/).length).toBeGreaterThan(0);
+      // 프리랜서 경력 설명에도 같은 이름이 나오므로 프로젝트 섹션으로 범위를 좁힌다.
+      // 개수 단언으로 넘기면 프로젝트 섹션이 통째로 사라져도 통과한다.
+      const section = screen.getByTestId("projects-section");
+      expect(within(section).getByText(/빈자리|Vinjari/)).toBeInTheDocument();
     });
 
     it("should show finiroom project", () => {
