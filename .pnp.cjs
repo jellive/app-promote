@@ -33,7 +33,7 @@ const RAW_RUNTIME_STATE =
           ["@swc/core", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:1.16.1"],\
           ["@swc/jest", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:0.2.39"],\
           ["@testing-library/dom", "npm:10.4.1"],\
-          ["@testing-library/jest-dom", "npm:6.9.1"],\
+          ["@testing-library/jest-dom", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:6.10.0"],\
           ["@testing-library/react", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:16.3.2"],\
           ["@testing-library/user-event", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:14.6.6"],\
           ["@types/identity-obj-proxy", "npm:3.0.2"],\
@@ -2574,16 +2574,29 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@testing-library/jest-dom", [\
-      ["npm:6.9.1", {\
-        "packageLocation": "../../.yarn/berry/cache/@testing-library-jest-dom-npm-6.9.1-125d97d1a5-10c0.zip/node_modules/@testing-library/jest-dom/",\
+      ["npm:6.10.0", {\
+        "packageLocation": "../../.yarn/berry/cache/@testing-library-jest-dom-npm-6.10.0-ca277bd734-10c0.zip/node_modules/@testing-library/jest-dom/",\
         "packageDependencies": [\
-          ["@testing-library/jest-dom", "npm:6.9.1"],\
+          ["@testing-library/jest-dom", "npm:6.10.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:6.10.0", {\
+        "packageLocation": "./.yarn/__virtual__/@testing-library-jest-dom-virtual-418c37022f/3/.yarn/berry/cache/@testing-library-jest-dom-npm-6.10.0-ca277bd734-10c0.zip/node_modules/@testing-library/jest-dom/",\
+        "packageDependencies": [\
+          ["@testing-library/jest-dom", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:6.10.0"],\
           ["@adobe/css-tools", "npm:4.4.4"],\
+          ["@testing-library/dom", "npm:10.4.1"],\
+          ["@types/testing-library__dom", null],\
           ["aria-query", "npm:5.3.2"],\
           ["css.escape", "npm:1.5.1"],\
           ["dom-accessibility-api", "npm:0.6.3"],\
           ["picocolors", "npm:1.1.1"],\
           ["redent", "npm:3.0.0"]\
+        ],\
+        "packagePeers": [\
+          "@testing-library/dom",\
+          "@types/testing-library__dom"\
         ],\
         "linkType": "HARD"\
       }]\
@@ -3785,7 +3798,7 @@ const RAW_RUNTIME_STATE =
           ["@swc/core", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:1.16.1"],\
           ["@swc/jest", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:0.2.39"],\
           ["@testing-library/dom", "npm:10.4.1"],\
-          ["@testing-library/jest-dom", "npm:6.9.1"],\
+          ["@testing-library/jest-dom", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:6.10.0"],\
           ["@testing-library/react", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:16.3.2"],\
           ["@testing-library/user-event", "virtual:8993ff387925ef66b229cd128edda50ead31bfa5cef56df3b2eae4eb0bf0fbcf5a8582e712b53c8745da3d01816d8a17c03741fa555cef1d353e5dc9ae7555ad#npm:14.6.6"],\
           ["@types/identity-obj-proxy", "npm:3.0.2"],\
