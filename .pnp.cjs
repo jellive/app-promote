@@ -9347,7 +9347,7 @@ const RAW_RUNTIME_STATE =
           ["postcss-nested", "virtual:413012276f6163a51df090be5a956a421a802740bc70e111322dff62c659f4c0f4848f59c7bdabe1bbe58669e14430e54403ab8d289083fb590db38cd4e73250#npm:6.2.0"],\
           ["@types/postcss", null],\
           ["postcss", "npm:8.5.14"],\
-          ["postcss-selector-parser", "npm:6.1.2"]\
+          ["postcss-selector-parser", "npm:6.1.4"]\
         ],\
         "packagePeers": [\
           "@types/postcss",\
@@ -9357,15 +9357,6 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["postcss-selector-parser", [\
-      ["npm:6.1.2", {\
-        "packageLocation": "../../.yarn/berry/cache/postcss-selector-parser-npm-6.1.2-46a8e03b00-10c0.zip/node_modules/postcss-selector-parser/",\
-        "packageDependencies": [\
-          ["postcss-selector-parser", "npm:6.1.2"],\
-          ["cssesc", "npm:3.0.0"],\
-          ["util-deprecate", "npm:1.0.2"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:6.1.4", {\
         "packageLocation": "../../.yarn/berry/cache/postcss-selector-parser-npm-6.1.4-45600dece5-10c0.zip/node_modules/postcss-selector-parser/",\
         "packageDependencies": [\
