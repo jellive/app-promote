@@ -13,6 +13,7 @@ import {
   FileDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { projectsData } from "@/data/projects";
 
 const ROLES = [
   "Full-Stack Developer",
@@ -132,7 +133,9 @@ export function HeroSection() {
               <p className="text-xl md:text-2xl leading-relaxed max-w-2xl">
                 <span className="font-bold text-foreground">8년+ 경력</span>의
                 풀스택 개발자로,{" "}
-                <span className="font-bold text-primary">24개의 프로젝트</span>
+                <span className="font-bold text-primary">
+                  {projectsData.length}개의 프로젝트
+                </span>
                 를 통해 iOS, Web, AR/3D 등 다양한 플랫폼에서{" "}
                 <span className="relative inline-block">
                   <span className="relative z-10">사용자 경험을 혁신</span>
@@ -284,7 +287,11 @@ export function HeroSection() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 lg:mt-24">
             {[
               { label: "경력", value: "8+", unit: "YEARS" },
-              { label: "프로젝트", value: "24", unit: "PROJECTS" },
+              {
+                label: "프로젝트",
+                value: String(projectsData.length),
+                unit: "PROJECTS",
+              },
               { label: "테스트", value: "4K+", unit: "TESTS" },
               { label: "백엔드 커버리지", value: "96.8", unit: "%" },
             ].map((stat, i) => (

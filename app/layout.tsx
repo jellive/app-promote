@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { projectsData } from "@/data/projects";
 import "./globals.css";
 
 // Self-hosted (originally Manrope + Space Mono via next/font/google).
@@ -37,8 +38,7 @@ const fontMono = localFont({
 
 const siteConfig = {
   name: "Jell Portfolio",
-  description:
-    "8년+ 경력 풀스택 개발자 Jell | iOS · Flutter · React · Next.js | 24개 프로젝트 | Senior 포지션 구직 중",
+  description: `8년+ 경력 풀스택 개발자 Jell | iOS · Flutter · React · Next.js | ${projectsData.length}개 프로젝트 | Senior 포지션 구직 중`,
   url: "https://app.jell.kr",
   ogImage: "/og-image.png",
   author: {

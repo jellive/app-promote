@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { projectsData } from "@/data/projects";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -122,7 +123,7 @@ export default async function Image() {
           <div style={{ display: "flex", gap: "24px" }}>
             {[
               { value: "8+", label: "YEARS" },
-              { value: "24", label: "PROJECTS" },
+              { value: String(projectsData.length), label: "PROJECTS" },
               { value: "96.8%", label: "BE COVERAGE" },
             ].map((stat) => (
               <div

@@ -9,6 +9,7 @@ import { BlogSection } from "@/components/sections/blog-section";
 import { AboutSection } from "@/components/sections/about-section";
 import { TimelineSection } from "@/components/sections/timeline-section";
 import { Floating3DCTA } from "@/components/floating-3d-cta";
+import { projectsData } from "@/data/projects";
 
 // 폴드 아래 무거운 Client Component는 지연 로딩 (초기 JS 번들 감소)
 const ContactSection = dynamic(() =>
@@ -17,8 +18,7 @@ const ContactSection = dynamic(() =>
 
 export const metadata: Metadata = {
   title: "개발자 Jell - 풀스택 개발자 포트폴리오",
-  description:
-    "8년+ 경력의 풀스택 개발자. iOS, Flutter, Web, AR/3D 등 24개 프로젝트.",
+  description: `8년+ 경력의 풀스택 개발자. iOS, Flutter, Web, AR/3D 등 ${projectsData.length}개 프로젝트.`,
 };
 
 export default function HomePage() {

@@ -1,10 +1,11 @@
 import * as React from "react";
 import { Code2, FolderKanban, TestTube2, ShieldCheck } from "lucide-react";
 import { StatCard } from "@/components/stat-card";
+import { projectsData } from "@/data/projects";
 
 const stats = [
   {
-    value: 24,
+    value: projectsData.length,
     label: "완료된 프로젝트",
     icon: FolderKanban,
     gradientFrom: "from-blue-500",

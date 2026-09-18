@@ -10,6 +10,7 @@ import {
   Rocket,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { projectsData } from "@/data/projects";
 
 interface TimelineItem {
   year: string;
@@ -81,7 +82,7 @@ const achievements: Achievement[] = [
   },
   {
     icon: Code2,
-    title: "24개 프로젝트",
+    title: `${projectsData.length}개 프로젝트`,
     description: "모바일, 웹, AR/3D 등 다양한 플랫폼",
   },
   {

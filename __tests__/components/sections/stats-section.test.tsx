@@ -5,6 +5,7 @@
 
 import { render, screen } from "@testing-library/react";
 import { StatsSection } from "@/components/sections/stats-section";
+import { projectsData } from "@/data/projects";
 
 describe("StatsSection", () => {
   describe("Rendering", () => {
@@ -27,9 +28,13 @@ describe("StatsSection", () => {
       expect(statCards).toHaveLength(4);
     });
 
-    it("should display projects count (24)", () => {
+    it("should display the live project count", () => {
       render(<StatsSection />);
-      expect(screen.getByText("24")).toBeInTheDocument();
+      // 숫자를 박아두면 프로젝트를 추가할 때마다 여기가 같이 썩는다.
+      // 실제로 그래서 24 로 굳은 채 30 이 될 때까지 아무도 몰랐다.
+      expect(
+        screen.getByText(String(projectsData.length)),
+      ).toBeInTheDocument();
     });
 
     it("should display lines of code (100000+)", () => {
