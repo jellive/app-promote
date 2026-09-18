@@ -17,8 +17,8 @@ describe("Project Detail Page", () => {
   // that cannot be exported from a "use client" component.
   // Testing the data source directly instead.
   describe("Static Params Data", () => {
-    it("should have 29 projects available", () => {
-      expect(projectsData).toHaveLength(29);
+    it("should have 30 projects available", () => {
+      expect(projectsData).toHaveLength(30);
     });
 
     it("should have correct project IDs", () => {

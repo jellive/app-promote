@@ -1,6 +1,6 @@
 /**
  * @fileoverview Project data structure and helper functions
- * Contains TypeScript types/interfaces and data for all 29 portfolio projects
+ * Contains TypeScript types/interfaces and data for all 30 portfolio projects
  */
 
 // ============================================================================
@@ -2419,6 +2419,105 @@ export const projectsData: Project[] = [
     ],
     links: {
       live: "https://wind-down.jell.kr",
+    },
+  },
+
+  // 30. noir-witness - 목격자가 LLM 이고 그 목격자는 거짓말을 한다
+  {
+    id: "noir-witness",
+    private: true,
+    name: "noir-witness",
+    emoji: "🕵️",
+    type: ProjectType.FULL_STACK_WEB,
+    status: ProjectStatus.PRODUCTION,
+    category: ProjectCategory.PERSONAL,
+    period: "2026.09",
+    role: "기획·개발·운영 (1인)",
+    shortDescription: "목격자가 LLM 이고, 그 목격자는 거짓말을 한다",
+    description:
+      "플레이어는 탐정, 목격자는 LLM 인 느와르 추리 게임. 어느 진술이 거짓인지는 결정론 엔진이 미리 정하고 LLM 은 그 하나를 뒤집어 그랴듯하게 연기만 한다. 플레이어는 거짓 진술과 그것을 반박하는 증거를 함께 지목해야 한다. 진실의 권위를 끝까지 코드가 쥐고 있어서, 모델이 무엇을 말하든 채점은 흔들리지 않는다.",
+    features: [
+      {
+        title: "거짓말은 코드가 정한다",
+        description:
+          "라운드마다 진술 3개 중 정확히 하나가 거짓이며, 어느 것인지는 엔진이 결정한다. LLM 은 지정된 진술만 뒤집어 연기한다",
+      },
+      {
+        title: "진술·증거 짝짓기",
+        description:
+          "거짓 진술 하나와 그것을 반박하는 증거 하나를 함께 제시해야 정답으로 인정된다",
+      },
+      {
+        title: "태그 구조 검증",
+        description:
+          "LLM 응답의 세그먼트 개수·태그 집합·중복·공백을 검사해 하나라도 어긋나면 그 라운드를 통째로 폴백 대사로 대체한다. 절반만 LLM 인 진술은 채점의 공정성을 깨므로 부분 채택은 하지 않는다",
+      },
+      {
+        title: "LLM 없이도 완주",
+        description:
+          "키가 없거나 프록시가 죽어도 게임이 멈추지 않는다. 모든 실패 경로가 content:null 로 수렴하고 폴백 대사로 진행된다",
+      },
+      {
+        title: "프롬프트 주입 차단",
+        description:
+          "witness API 는 roundId 와 caseId 만 받는다. persona·claim 본문을 클라이언트가 정하게 두면 누구나 쓰는 공개 LLM 프록시가 되기 때문",
+      },
+      {
+        title: "블라인드 솔버 검증",
+        description:
+          "정답을 지운 사건 사본을 다른 모델에게 풀려 본다. 구조 검사로는 못 잡는 복수 정답을 실제로 잡아냈다",
+      },
+      {
+        title: "DB 는 선택",
+        description:
+          "붙이면 재배포 없이 사건을 갱신하고, 없으면 저장소에 번들된 사건으로 돌아간다",
+      },
+    ],
+    techStack: {
+      frontend: ["Next.js 15", "React 19", "TypeScript"],
+      backend: ["Next.js Route Handlers", "PostgreSQL"],
+      infrastructure: ["Vercel", "gemini-proxy", "Gemini API"],
+      desktop: [],
+    },
+    codeStats: {
+      total: 4410,
+      tests: 2623,
+    },
+    achievements: [
+      {
+        title: "테스트가 소스보다 많다",
+        description: "엔진·파서·라우트·저장소 전 층을 vitest 로 검증",
+        icon: "✅",
+        metric: "197 tests / 16 files",
+      },
+      {
+        title: "LLM 을 신뢰하지 않는 설계",
+        description:
+          "진실은 순수 함수 엔진이 쥐고, 모델 출력은 구조 검증을 통과해야만 화면에 오른다",
+        icon: "🔒",
+        metric: "구조 위반 시 라운드 통째 폴백",
+      },
+      {
+        title: "의미론은 테스트로 못 잡는다",
+        description:
+          "증거가 그 거짓말을 실제로 반박하는지는 블라인드 솔버로 확인한다",
+        icon: "🧪",
+        metric: "복수 정답 1건 사전 발견",
+      },
+    ],
+    architecture: {
+      summary:
+        "진실의 권위자(순수 함수 엔진)·사건 데이터·LLM 클라이언트·저장소를 분리하고, LLM 은 정해진 거짓을 연기하는 배우로만 둔다",
+      decisions: [
+        "채점은 engine 의 순수 함수가 한다 — LLM 응답이 어떻든 정답은 코드가 안다",
+        "witness 라우트는 roundId·caseId 만 받는다 — 공개 LLM 프록시가 되는 것을 막는다",
+        "라우트의 모든 실패는 content:null 로 수렴하고 500 을 내지 않는다. 폴백 대사 생성은 클라이언트 몫",
+        "구조 검증은 코드가 강제하지만 의미 충실성은 프롬프트로만 요구한다 — 계약이지 증명이 아니라고 문서에 명시",
+      ],
+    },
+    links: {
+      github: "https://github.com/jellive/noir-witness",
+      live: "https://noir-witness.vercel.app",
     },
   },
 ];

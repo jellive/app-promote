@@ -44,8 +44,8 @@ describe("Project Type Definitions", () => {
 
 describe("Project Data Structure", () => {
   describe("projectsData array", () => {
-    it("should contain exactly 29 projects", () => {
-      expect(projectsData.length).toBe(29);
+    it("should contain exactly 30 projects", () => {
+      expect(projectsData.length).toBe(30);
     });
 
     it("should have unique IDs for all projects", () => {
@@ -250,9 +250,9 @@ describe("Helper Functions", () => {
   });
 
   describe("getAllProjects", () => {
-    it("should return all 29 projects", () => {
+    it("should return all 30 projects", () => {
       const projects = getAllProjects();
-      expect(projects.length).toBe(29);
+      expect(projects.length).toBe(30);
     });
 
     it("should return a copy of the array (immutability)", () => {
@@ -312,6 +312,8 @@ describe("Project private flag", () => {
     "threat-crawler",
     "jell-arcade",
     "ai-pulse",
+    // 2026-09-18 확인: gh repo view jellive/noir-witness → isPrivate true
+    "noir-witness",
   ];
 
   it.each(expectedPrivateIds)("%s should be marked private", (id) => {
