@@ -2310,9 +2310,10 @@ export const projectsData: Project[] = [
       },
       {
         title: "Rate-limit 관리",
-        description: "gemini-proxy 일 950건 한도 내 429 처리",
+        description:
+          "gemini-proxy 가 429 를 주면 배치를 중단하고 다음 cron 을 기다린다 — 부분 결과를 남기지 않는다",
         icon: "🛡️",
-        metric: "950/day quota",
+        metric: "429 → 배치 중단",
       },
     ],
     screenshots: [
