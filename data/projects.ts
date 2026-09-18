@@ -2132,7 +2132,7 @@ export const projectsData: Project[] = [
     shortDescription:
       "Unity 6 WebGL 셀프호스팅 게임 컬렉션 — Vampire Survivors 클론 + Brick Breaker + Endless Runner + Tetris",
     description:
-      "Unity 6 (6000.0.75f1) 기반 셀프호스팅 게임 컬렉션입니다. 단일 빌드에 4개 미니게임(Space Survivor, Brick Breaker, Endless Runner, Tetris)을 공유 Lobby에서 제공하고 nginx 컨테이너로 arcade.jell.kr에 배포했습니다. SceneBuilder Editor 스크립트로 전체 Scene/Prefab/Sprite를 코드로 생성해 Unity Editor를 GUI 없이 batchmode만으로 빌드합니다. 온라인 리더보드는 jellhub Prisma DB에 연결되어 있습니다.",
+      "Unity 6 (6000.0.75f1) 기반 셀프호스팅 게임 컬렉션입니다. 단일 빌드에 5개 미니게임(Space Survivor, Brick Breaker, Endless Runner, Tetris, Micro Rogue)을 공유 Lobby에서 제공하고 nginx 컨테이너로 arcade.jell.kr에 배포했습니다. SceneBuilder Editor 스크립트로 전체 Scene/Prefab/Sprite를 코드로 생성해 Unity Editor를 GUI 없이 batchmode만으로 빌드합니다. 온라인 리더보드는 jellhub Prisma DB에 연결되어 있습니다.",
     features: [
       {
         title: "공유 Lobby",
@@ -2222,7 +2222,7 @@ export const projectsData: Project[] = [
     I["Unity Player"] -->|POST api arcade leaderboard| J["jellhub API"]
     J --> K[("Prisma + Postgres")]`,
       decisions: [
-        "Unity 6 WebGL — Three.js 대비 풀-에셋 게임 엔진 + 단일 코드베이스로 4개 미니게임 + 공유 Lobby packaging",
+        "Unity 6 WebGL — Three.js 대비 풀-에셋 게임 엔진 + 단일 코드베이스로 5개 미니게임 + 공유 Lobby packaging",
         "Editor 스크립트로 자산 생성 — Unity Editor GUI 의존 0 (마라톤 세션에서 흐름 끊김 방지)",
         "Brotli + WebGL — 7.1MB로 모바일에서도 즉시 플레이",
         "리더보드만 외부 API — 게임 자체는 100% static asset",
