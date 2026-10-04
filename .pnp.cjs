@@ -4219,10 +4219,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["brace-expansion", [\
-      ["npm:5.0.9", {\
-        "packageLocation": "../../.yarn/berry/cache/brace-expansion-npm-5.0.9-2717df6b49-10c0.zip/node_modules/brace-expansion/",\
+      ["npm:5.0.12", {\
+        "packageLocation": "../../.yarn/berry/cache/brace-expansion-npm-5.0.12-5e9282f26b-10c0.zip/node_modules/brace-expansion/",\
         "packageDependencies": [\
-          ["brace-expansion", "npm:5.0.9"],\
+          ["brace-expansion", "npm:5.0.12"],\
           ["balanced-match", "npm:4.0.4"]\
         ],\
         "linkType": "HARD"\
@@ -8427,7 +8427,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../.yarn/berry/cache/minimatch-npm-10.2.5-f1c8297822-10c0.zip/node_modules/minimatch/",\
         "packageDependencies": [\
           ["minimatch", "npm:10.2.5"],\
-          ["brace-expansion", "npm:5.0.9"]\
+          ["brace-expansion", "npm:5.0.12"]\
         ],\
         "linkType": "HARD"\
       }]\
